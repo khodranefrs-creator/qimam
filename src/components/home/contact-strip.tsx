@@ -27,21 +27,21 @@ export function ContactStrip() {
             </h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
+                <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <div>
                   <p className="text-text-dark text-sm font-medium">{t.contact.address}</p>
                   <p className="text-text-muted text-sm">{t.contact.addressDetail}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-accent-gold shrink-0" />
-                <a href="tel:966565555437" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200 ltr:text-left rtl:text-right" dir="ltr">
+                <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
+                <a href="tel:+966565555437" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200 ltr:text-left rtl:text-right" dir="ltr">
                   {t.common.phone}
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-accent-gold shrink-0" />
-                <a href="mailto:info@qimam-law.com" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200" dir="ltr">
+                <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
+                <a href="mailto:info@qimamlaw.com" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200" dir="ltr">
                   {t.common.email}
                 </a>
               </div>
@@ -79,7 +79,7 @@ export function ContactStrip() {
               className="block w-full h-[130px] bg-gradient-to-br from-primary-light/10 to-border rounded-card hover:from-primary-light/20 transition-colors duration-200 overflow-hidden relative group"
             >
               <div className="w-full h-full flex items-center justify-center flex-col gap-2">
-                <MapPin className="w-6 h-6 text-accent-gold/40 group-hover:text-accent-gold/60 transition-colors duration-200" />
+                <MapPin aria-hidden="true" className="w-6 h-6 text-accent-gold/40 group-hover:text-accent-gold/60 transition-colors duration-200" />
                 <span className="text-text-muted/40 text-xs">{t.footer.mapPlaceholder}</span>
               </div>
               <div className="absolute inset-0 border border-border/30 rounded-card pointer-events-none" />
@@ -90,7 +90,7 @@ export function ContactStrip() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-accent-gold text-sm font-medium hover:text-accent-gold-light transition-colors duration-200 group"
             >
-              <Navigation className="w-4 h-4" />
+              <Navigation aria-hidden="true" className="w-4 h-4" />
               {t.footer.getDirections}
             </Link>
           </div>

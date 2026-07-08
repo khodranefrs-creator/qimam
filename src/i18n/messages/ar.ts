@@ -172,6 +172,7 @@ const ar = {
     morning: 'الفترة الصباحية',
     afternoon: 'الفترة المسائية',
     notes: 'ملاحظات إضافية',
+    consent: 'أوافق على',
   },
   contact: {
     title: 'اتصل بنا',

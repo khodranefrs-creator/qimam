@@ -49,7 +49,7 @@ export function CtaBanner() {
             aria-label={t.home.ctaBooking}
           >
             {t.home.ctaBooking}
-            <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
+            <ArrowLeft aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
           </Link>
           <a
             href="https://wa.me/966565555437"
@@ -58,7 +58,7 @@ export function CtaBanner() {
             className="btn-secondary"
             aria-label={t.home.ctaWhatsapp}
           >
-            <MessageCircle className="w-5 h-5" />
+            <MessageCircle aria-hidden="true" className="w-5 h-5" />
             {t.home.ctaWhatsapp}
           </a>
           <a
@@ -66,7 +66,7 @@ export function CtaBanner() {
             className="btn-secondary"
             aria-label={t.nav.contactUs}
           >
-            <Phone className="w-5 h-5" />
+            <Phone aria-hidden="true" className="w-5 h-5" />
             {t.nav.phone}
           </a>
         </div>

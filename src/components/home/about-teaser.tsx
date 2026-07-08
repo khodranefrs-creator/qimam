@@ -43,7 +43,7 @@ export function AboutTeaser() {
                 return (
                   <div key={item.label} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-border/60">
                     <div className="w-9 h-9 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 text-accent-gold" />
+                      <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                     </div>
                     <span className="text-text-dark text-sm leading-snug">{item.label}</span>
                   </div>
@@ -55,7 +55,7 @@ export function AboutTeaser() {
               className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group"
             >
               {t.home.aboutLink}
-              <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
             </Link>
           </motion.div>
 
@@ -70,7 +70,7 @@ export function AboutTeaser() {
               <div className="w-full h-full flex items-center justify-center">
                 <div className="text-center p-8">
                   <div className="w-20 h-20 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-4">
-                    <Scale className="w-8 h-8 text-accent-gold" />
+                    <Scale aria-hidden="true" className="w-8 h-8 text-accent-gold" />
                   </div>
                   <div className="space-y-1">
                     <p className="text-text-light/80 text-sm font-heading font-semibold">{t.site.fullName}</p>

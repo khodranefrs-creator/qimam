@@ -108,7 +108,7 @@ export default function TestimonialsSlider({
                     </p>
                     <div className="flex items-center justify-center gap-1 mb-4">
                       {[...Array(5)].map((_, i) => (
-                        <Star
+                        <Star aria-hidden="true"
                           key={i}
                           className={`w-4 h-4 ${
                             i < (testimonials[current].rating ?? 5)
@@ -123,7 +123,7 @@ export default function TestimonialsSlider({
                         {testimonials[current].name}
                       </span>
                       {testimonials[current].role && (
-                        <span className="text-text-muted text-sm mr-2">— {testimonials[current].role}</span>
+                        <span className="text-text-muted text-sm me-2">— {testimonials[current].role}</span>
                       )}
                     </div>
                   </div>
@@ -173,9 +173,9 @@ export default function TestimonialsSlider({
             className="max-w-lg mx-auto text-center py-12"
           >
             <div className="w-20 h-20 rounded-full bg-accent-gold/5 border border-accent-gold/10 flex items-center justify-center mx-auto mb-6">
-              <MessageSquare className="w-8 h-8 text-accent-gold/40" />
+              <MessageSquare aria-hidden="true" className="w-8 h-8 text-accent-gold/40" />
             </div>
-            <Quote className="w-8 h-8 text-accent-gold/20 mx-auto mb-4" />
+            <Quote aria-hidden="true" className="w-8 h-8 text-accent-gold/20 mx-auto mb-4" />
             <p className="text-text-muted leading-relaxed mb-6">
               {t.testimonials.noTestimonials}
             </p>

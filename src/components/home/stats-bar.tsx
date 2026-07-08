@@ -32,7 +32,7 @@ export function StatsBar() {
                 className="flex flex-col items-center text-center gap-3 px-4 py-6 rounded-xl bg-primary-light/40 border border-border-dark/30 hover:border-accent-gold/20 transition-all duration-500"
               >
                 <div className="w-14 h-14 rounded-full bg-accent-gold/10 flex items-center justify-center">
-                  <Icon className="w-6 h-6 text-accent-gold" />
+                  <Icon aria-hidden="true" className="w-6 h-6 text-accent-gold" />
                 </div>
                 <span className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold gradient-text-gold leading-none">{stat.value}</span>
                 <span className="text-text-muted text-sm leading-tight">{stat.label}</span>

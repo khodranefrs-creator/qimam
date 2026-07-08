@@ -68,7 +68,7 @@ export function LawyerTeaser() {
                 const Icon = item.icon
                 return (
                   <div key={item.label} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-light/40 border border-border-dark/30">
-                    <Icon className="w-4 h-4 text-accent-gold shrink-0" />
+                    <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
                     <span className="text-text-muted text-sm">{item.label}</span>
                   </div>
                 )
@@ -79,7 +79,7 @@ export function LawyerTeaser() {
               className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group"
             >
               {t.home.lawyerLink}
-              <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
             </Link>
           </motion.div>
         </div>

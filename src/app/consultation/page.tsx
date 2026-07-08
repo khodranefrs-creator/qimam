@@ -527,7 +527,7 @@ export default function ConsultationPage() {
             className="mt-1 w-4 h-4 rounded border-border/60 text-accent-gold focus:ring-accent-gold shrink-0"
           />
           <label htmlFor="consent" className="text-sm text-text-muted cursor-pointer">
-            {t.common.error}{" "}
+            {t.consultation.consent}{" "}
             <Link href="/privacy-policy" className="text-accent-gold hover:underline">{t.privacy.title}</Link>
             <span className="text-error"> *</span>
           </label>

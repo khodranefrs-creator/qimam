@@ -29,6 +29,7 @@ const footerAreaLinks = [
 const socialLinks = [
   {
     href: 'https://x.com/qemmalyaqin',
+    label: 'x',
     icon: () => (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -37,6 +38,7 @@ const socialLinks = [
   },
   {
     href: 'https://wa.me/966565555437',
+    label: 'whatsapp',
     icon: () => <MessageCircle className="w-5 h-5" />,
   },
 ]
@@ -90,7 +92,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-muted hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
-                    aria-label={t.footer.x}
+                    aria-label={t.footer[social.label as keyof typeof t.footer]}
                   >
                     <SocialIcon />
                   </a>
@@ -149,7 +151,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
+                <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <span className="text-text-muted text-sm leading-relaxed">
                   {t.footer.address}
                 </span>
@@ -159,7 +161,7 @@ export default function Footer() {
                   href="tel:+966565555437"
                   className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
                 >
-                  <Phone className="w-4 h-4 text-accent-gold shrink-0" />
+                  <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
                   {t.footer.phone}
                 </a>
               </li>
@@ -170,7 +172,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
                 >
-                  <MessageCircle className="w-4 h-4 text-accent-gold shrink-0" />
+                  <MessageCircle aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
                   {t.footer.whatsapp}
                 </a>
               </li>
@@ -179,12 +181,12 @@ export default function Footer() {
                   href="mailto:info@qimamlaw.com"
                   className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
                 >
-                  <Mail className="w-4 h-4 text-accent-gold shrink-0" />
+                  <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
                   {t.footer.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
+                <Clock aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <div>
                   <span className="text-text-muted text-sm block">{t.footer.workingHours}</span>
                   <span className="text-text-light/80 text-sm">

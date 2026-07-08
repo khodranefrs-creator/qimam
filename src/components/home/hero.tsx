@@ -59,12 +59,12 @@ export function Hero() {
         <div className="absolute bottom-1/4 -right-1/4 w-[400px] h-[400px] rounded-full bg-accent-gold/3 blur-[100px]" />
 
         {/* Gavel/Scale decorative icon top-right */}
-        <div className="absolute top-20 right-[10%] opacity-[0.04] hidden lg:block">
+        <div className="absolute top-20 right-[10%] opacity-[0.04] hidden lg:block" aria-hidden="true">
           <Scale className="w-32 h-32 text-accent-gold" />
         </div>
 
         {/* Abstract geometric accent bottom-left */}
-        <div className="absolute bottom-20 left-[5%] opacity-[0.03] hidden lg:block">
+        <div className="absolute bottom-20 left-[5%] opacity-[0.03] hidden lg:block" aria-hidden="true">
           <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#B08D57" strokeWidth="0.5">
             <rect x="10" y="10" width="100" height="100" rx="4" />
             <rect x="25" y="25" width="70" height="70" rx="2" />
@@ -77,7 +77,7 @@ export function Hero() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent" />
 
       <div className="relative z-10 container-custom pt-36 pb-20 md:pt-44 md:pb-28">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-3xl mx-auto lg:mx-0 text-center lg:text-right">
+        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-3xl mx-auto lg:mx-0 text-center lg:text-end">
           <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6 justify-center lg:justify-start">
             <span className="w-8 h-px bg-accent-gold/60" />
             <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">Qimam Al-Yaqin Law Firm</span>
@@ -98,7 +98,7 @@ export function Hero() {
               aria-label={t.home.heroCta}
             >
               {t.home.heroCta}
-              <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
+              <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true" />
             </Link>
             <Link
               href="/about"
@@ -115,7 +115,7 @@ export function Hero() {
               return (
                 <div key={badge.label} className="flex items-center gap-2">
                   <div className="w-9 h-9 rounded-lg bg-accent-gold/10 flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-accent-gold" />
+                    <Icon className="w-4 h-4 text-accent-gold" aria-hidden="true" />
                   </div>
                   <span className="text-text-muted text-sm">{badge.label}</span>
                 </div>

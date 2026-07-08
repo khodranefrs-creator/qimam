@@ -174,6 +174,7 @@ export const en: Messages = {
     morning: 'Morning',
     afternoon: 'Afternoon',
     notes: 'Additional Notes',
+    consent: 'I agree to the',
   },
   contact: {
     title: 'Contact Us',
