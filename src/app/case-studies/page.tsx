@@ -1,0 +1,93 @@
+import { prisma } from "@/lib/prisma"
+import type { CaseStudyData } from "@/types/prisma-models"
+import { Metadata } from "next"
+import Link from "next/link"
+import { Calendar, ArrowLeft } from "lucide-react"
+
+export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: "دراسات الحالة",
+  description: "نماذج من القضايا والاستشارات القانونية التي تعاملت معها شركة قمم اليقين للمحاماة",
+}
+
+export default async function CaseStudiesPage() {
+  const rawCaseStudies = await prisma.caseStudy.findMany({
+    where: { published: true },
+    orderBy: { createdAt: "desc" },
+  })
+  const caseStudies = rawCaseStudies as CaseStudyData[]
+
+  return (
+    <div>
+      <div className="bg-primary text-text-light py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 text-sm text-text-muted">
+            <Link href="/">الرئيسية</Link>
+            <span>/</span>
+            <span className="text-accent-gold">دراسات الحالة</span>
+          </div>
+        </div>
+      </div>
+
+      <section className="py-16 md:py-24 bg-primary text-text-light text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">دراسات الحالة</h1>
+          <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
+          <p className="text-text-muted max-w-2xl mx-auto">نماذج من القضايا والاستشارات القانونية التي تعاملنا معها بنجاح</p>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-secondary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {caseStudies.length === 0 ? (
+            <div className="text-center py-12 text-text-muted">
+              <p>لا توجد دراسات حالة بعد. سنقوم بنشرها قريباً.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-8">
+              {caseStudies.map((cs) => (
+                <Link key={cs.id} href={`/case-studies/${cs.slug}`} className="group">
+                  <div className="bg-white rounded-xl border border-border overflow-hidden shadow-card hover-lift transition-all">
+                    <div className="flex flex-col sm:flex-row">
+                      <div className="sm:w-48 h-48 sm:h-auto bg-gray-200 flex items-center justify-center text-text-muted shrink-0">
+                        {cs.coverImage ? (
+                          <img src={cs.coverImage} alt={cs.title} className="w-full h-full object-cover" />
+                        ) : (
+                          <span>صورة</span>
+                        )}
+                      </div>
+                      <div className="p-6 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center gap-2 text-xs text-text-muted mb-2">
+                            <Calendar className="w-3 h-3" />
+                            <span>{new Date(cs.createdAt).toLocaleDateString("ar-SA")}</span>
+                            {cs.category && (
+                              <span className="px-2 py-0.5 bg-accent-gold/10 text-accent-gold rounded-full">{cs.category}</span>
+                            )}
+                          </div>
+                          <h3 className="text-xl font-heading font-bold mb-2 group-hover:text-accent-gold transition-colors">{cs.title}</h3>
+                          <p className="text-sm text-text-muted leading-[1.7]">{cs.excerpt?.substring(0, 150)}...</p>
+                          {cs.outcomeSummary && (
+                            <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                              <p className="text-xs text-green-700 font-bold mb-1">النتيجة:</p>
+                              <p className="text-sm text-green-600">{cs.outcomeSummary}</p>
+                            </div>
+                          )}
+                        </div>
+                        <div className="mt-4 flex items-center gap-1 text-accent-gold text-sm font-medium group-hover:gap-2 transition-all">
+                          <span>اقرأ المزيد</span>
+                          <ArrowLeft className="w-4 h-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  )
+}
