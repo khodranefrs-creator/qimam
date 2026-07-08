@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Scale, Building2, Gavel } from 'lucide-react'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 const highlights = [
   { icon: Scale, label: 'محاماة وترافع أمام جميع درجات المحاكم' },
@@ -11,6 +13,9 @@ const highlights = [
 ]
 
 export function AboutTeaser() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
   return (
     <section className="bg-secondary section-padding">
       <div className="container-custom">
@@ -23,17 +28,13 @@ export function AboutTeaser() {
           >
             <div className="flex items-center gap-2 mb-4">
               <span className="w-8 h-px bg-accent-gold/60" />
-              <span className="text-accent-gold text-sm font-medium">من نحن</span>
+              <span className="text-accent-gold text-sm font-medium">{t.nav.about}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-6">
-              شريكك القانوني الموثوق في مكة المكرمة
+              {t.home.aboutTitle}
             </h2>
             <p className="text-text-muted leading-relaxed mb-8">
-              شركة قمم اليقين للمحاماة والاستشارات القانونية، بقيادة المحامي والموثق
-              عبدالعزيز حمود المطيري، نقدم خدمات قانونية شاملة تجمع بين الخبرة القضائية
-              العميقة والفهم المتطور لمتطلبات السوق القانوني في المملكة العربية السعودية.
-              نلتزم بأعلى معايير المهنة ونحرص على تحقيق العدالة بأقصى درجات الكفاءة
-              والأمانة.
+              {t.home.aboutDesc}
             </p>
             <div className="space-y-4 mb-8">
               {highlights.map((item) => {
@@ -49,7 +50,7 @@ export function AboutTeaser() {
               })}
             </div>
             <Link href="/about" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
-              اقرأ المزيد عنا
+              {t.home.aboutLink}
               <ArrowLeft className="w-4 h-4" />
             </Link>
           </motion.div>

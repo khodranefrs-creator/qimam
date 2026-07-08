@@ -3,30 +3,31 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
-const quickLinks = [
-  { label: 'الرئيسية', href: '/' },
-  { label: 'من نحن', href: '/about' },
-  { label: 'المحامي', href: '/lawyer' },
-  { label: 'مجالات الممارسة', href: '/practice-areas' },
-  { label: 'الخدمات', href: '/services' },
-  { label: 'المدونة', href: '/blog' },
-  { label: 'الأسئلة الشائعة', href: '/faq' },
-  { label: 'تواصل معنا', href: '/contact' },
-]
+const footerQuickLinks = [
+  { href: '/' },
+  { href: '/about' },
+  { href: '/lawyer' },
+  { href: '/practice-areas' },
+  { href: '/services' },
+  { href: '/blog' },
+  { href: '/faq' },
+  { href: '/contact' },
+] as const
 
-const practiceAreaLinks = [
-  { label: 'القانون التجاري', href: '/practice-areas/commercial-law' },
-  { label: 'قانون الشركات وتأسيسها', href: '/practice-areas/corporate-law' },
-  { label: 'التقاضي والمرافعات', href: '/practice-areas/litigation' },
-  { label: 'القانون العقاري', href: '/practice-areas/real-estate-law' },
-  { label: 'الأحوال الشخصية', href: '/practice-areas/family-law' },
-  { label: 'المواريث والوصايا', href: '/practice-areas/inheritance-law' },
-]
+const footerAreaLinks = [
+  { href: '/practice-areas/commercial-law' },
+  { href: '/practice-areas/corporate-law' },
+  { href: '/practice-areas/litigation' },
+  { href: '/practice-areas/real-estate-law' },
+  { href: '/practice-areas/family-law' },
+  { href: '/practice-areas/inheritance-law' },
+] as const
 
 const socialLinks = [
   {
-    label: 'X',
     href: 'https://x.com/qemmalyaqin',
     icon: () => (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -35,14 +36,29 @@ const socialLinks = [
     ),
   },
   {
-    label: 'واتساب',
     href: 'https://wa.me/966565555437',
     icon: () => <MessageCircle className="w-5 h-5" />,
   },
 ]
 
 export default function Footer() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
   const currentYear = new Date().getFullYear()
+
+  const dd = t.nav.practiceAreasDropDown as unknown as Record<string, { label: string; desc: string }>
+  const areaKeyOrder = ['commercial', 'corporate', 'litigation', 'realEstate', 'family', 'inheritance'] as const
+
+  const navLabelMap: Record<string, string> = {
+    '/': t.nav.home,
+    '/about': t.nav.about,
+    '/lawyer': t.nav.lawyer,
+    '/practice-areas': t.nav.practiceAreas,
+    '/services': t.nav.services,
+    '/blog': t.nav.blog,
+    '/faq': t.nav.faq,
+    '/contact': t.nav.contact,
+  }
 
   return (
     <footer className="bg-primary border-t border-accent-gold/20">
@@ -52,31 +68,29 @@ export default function Footer() {
             <Link href="/" className="block mb-4">
               <Image
                 src="/logo.png"
-                alt="شركة قمم اليقين للمحاماة والاستشارات القانونية"
+                alt={t.common.firmName}
                 width={160}
                 height={44}
                 className="h-10 w-auto object-contain"
               />
             </Link>
             <p className="text-accent-gold font-heading text-sm mb-4">
-              الثقة أساس التميز
+              {t.site.tagline}
             </p>
             <p className="text-text-muted text-sm leading-relaxed mb-6">
-              شركة قمم اليقين للمحاماة والاستشارات القانونية — خبرة قانونية رفيعة في
-              مكة المكرمة. نقدم حلولاً قانونية متكاملة في القضايا التجارية والمدنية
-              والجزائية.
+              {t.site.fullName} — {t.footer.description}
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => {
                 const SocialIcon = social.icon
                 return (
                   <a
-                    key={social.label}
+                    key={social.href}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-muted hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
-                    aria-label={social.label}
+                    aria-label={t.footer.x}
                   >
                     <SocialIcon />
                   </a>
@@ -87,16 +101,16 @@ export default function Footer() {
 
           <div>
             <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
-              روابط سريعة
+              {t.footer.quickLinks}
             </h3>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
+              {footerQuickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
                   >
-                    {link.label}
+                    {navLabelMap[link.href]}
                   </Link>
                 </li>
               ))}
@@ -105,16 +119,16 @@ export default function Footer() {
 
           <div>
             <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
-              مجالات الممارسة
+              {t.footer.practiceAreas}
             </h3>
             <ul className="space-y-3">
-              {practiceAreaLinks.map((link) => (
+              {footerAreaLinks.map((link, i) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
                   >
-                    {link.label}
+                    {dd[areaKeyOrder[i]]?.label || ''}
                   </Link>
                 </li>
               ))}
@@ -123,7 +137,7 @@ export default function Footer() {
                   href="/practice-areas"
                   className="text-accent-gold text-sm hover:text-accent-gold-light transition-colors duration-200 inline-flex items-center gap-1"
                 >
-                  عرض الكل ←
+                  {t.nav.viewAllAreas}
                 </Link>
               </li>
             </ul>
@@ -131,13 +145,13 @@ export default function Footer() {
 
           <div>
             <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
-              تواصل معنا
+              {t.nav.contactUs}
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <span className="text-text-muted text-sm leading-relaxed">
-                  شارع النسيم العام، حي النسيم، مكة المكرمة
+                  {t.footer.address}
                 </span>
               </li>
               <li>
@@ -146,18 +160,18 @@ export default function Footer() {
                   className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
                 >
                   <Phone className="w-4 h-4 text-accent-gold shrink-0" />
-                  +966 56 555 5437
+                  {t.footer.phone}
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/966565555437?text=مرحباً، أرغب بالاستفسار عن خدماتكم القانونية"
+                  href="https://wa.me/966565555437"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
                 >
                   <MessageCircle className="w-4 h-4 text-accent-gold shrink-0" />
-                  واتساب
+                  {t.footer.whatsapp}
                 </a>
               </li>
               <li>
@@ -166,29 +180,17 @@ export default function Footer() {
                   className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
                 >
                   <Mail className="w-4 h-4 text-accent-gold shrink-0" />
-                  info@qimamlaw.com
+                  {t.footer.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <div>
-                  <span className="text-text-muted text-sm block">أوقات العمل</span>
+                  <span className="text-text-muted text-sm block">{t.footer.workingHours}</span>
                   <span className="text-text-light/80 text-sm">
-                    السبت - الخميس: 9:00 صباحاً - 9:00 مساءً
+                    {t.footer.satThu}
                   </span>
                 </div>
-              </li>
-              <li>
-                <a
-                  href="https://maps.google.com/?q=شارع+النسيم+العام+مكة+المكرمة"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block mt-2 group"
-                >
-                  <div className="w-full h-24 bg-primary-light rounded-card border border-border-dark/50 flex items-center justify-center text-text-muted text-xs group-hover:border-accent-gold/50 group-hover:text-accent-gold transition-all duration-300">
-                    عرض الموقع على الخريطة
-                  </div>
-                </a>
               </li>
             </ul>
           </div>
@@ -200,29 +202,29 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4 text-xs text-text-muted">
               <span>
-                © {currentYear} شركة قمم اليقين للمحاماة. جميع الحقوق محفوظة.
+                &copy; {currentYear} {t.common.firmName}. {t.footer.copyright}
               </span>
               <Link
                 href="/privacy-policy"
                 className="hover:text-accent-gold transition-colors duration-200"
               >
-                الخصوصية
+                {t.footer.privacy}
               </Link>
               <Link
                 href="/terms-of-service"
                 className="hover:text-accent-gold transition-colors duration-200"
               >
-                الشروط
+                {t.footer.terms}
               </Link>
             </div>
             <div className="flex items-center gap-2 w-full lg:w-auto">
               <input
                 type="email"
-                placeholder="بريدك الإلكتروني"
+                placeholder={t.footer.newsletter}
                 className="flex-1 lg:w-56 px-4 py-2.5 bg-primary-light border border-border-dark/50 rounded-[8px] text-text-light text-sm placeholder:text-text-muted/50 focus:outline-none focus:border-accent-gold/50 transition-colors"
               />
               <button className="px-4 py-2.5 bg-accent-gold text-primary font-semibold text-sm rounded-[8px] hover:bg-accent-gold/90 transition-all duration-300 shrink-0">
-                اشتراك
+                {t.footer.subscribe}
               </button>
             </div>
           </div>

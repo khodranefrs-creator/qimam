@@ -3,15 +3,23 @@ import type { TestimonialData } from "@/types/prisma-models"
 import { Metadata } from "next"
 import Link from "next/link"
 import { Star } from "lucide-react"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
-  title: "آراء العملاء",
-  description: "آراء وتقييمات عملاء شركة قمم اليقين للمحاماة والاستشارات القانونية",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
+  return {
+    title: t.testimonials.title,
+    description: t.testimonials.description,
+  }
 }
 
 export default async function TestimonialsPage() {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   const rawTestimonials = await prisma.testimonial.findMany({
     where: { approved: true },
     orderBy: { createdAt: "desc" },
@@ -23,18 +31,18 @@ export default async function TestimonialsPage() {
       <div className="bg-primary text-text-light py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <span className="text-accent-gold">آراء العملاء</span>
+            <span className="text-accent-gold">{t.testimonials.title}</span>
           </div>
         </div>
       </div>
 
       <section className="py-16 md:py-24 bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">آراء العملاء</h1>
+          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.testimonials.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
-          <p className="text-text-muted max-w-2xl mx-auto">نفخر بثقة عملائنا الذين هم سر نجاحنا وشاهد على جودة خدماتنا القانونية</p>
+          <p className="text-text-muted max-w-2xl mx-auto">{t.testimonials.description}</p>
         </div>
       </section>
 
@@ -42,7 +50,7 @@ export default async function TestimonialsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {testimonials.length === 0 ? (
             <div className="text-center py-12 text-text-muted">
-              <p>لا توجد آراء بعد. سنقوم بنشرها قريباً.</p>
+              <p>{t.testimonials.noTestimonials}</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

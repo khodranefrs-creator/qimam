@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ChevronDown } from 'lucide-react'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 interface FaqPreviewItem {
   id: string
@@ -16,6 +18,8 @@ interface Props {
 }
 
 export function FaqPreview({ faqs }: Props) {
+  const locale = useLocale()
+  const t = getTranslations(locale)
   const [openId, setOpenId] = useState<string | null>(null)
 
   const toggle = (id: string) => {
@@ -34,14 +38,14 @@ export function FaqPreview({ faqs }: Props) {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium">استفسارات</span>
+            <span className="text-accent-gold text-sm font-medium">{t.faq.title}</span>
             <span className="w-8 h-px bg-accent-gold/60" />
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-4">
-            الأسئلة الشائعة
+            {t.home.faqTitle}
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">
-            إجابات لأكثر الأسئلة شيوعاً حول خدماتنا القانونية
+            {t.home.faqDesc}
           </p>
         </motion.div>
 
@@ -106,7 +110,7 @@ export function FaqPreview({ faqs }: Props) {
           className="text-center mt-10"
         >
           <Link href="/faq" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
-            عرض جميع الأسئلة
+            {t.home.faqLink}
             <ArrowLeft className="w-4 h-4" />
           </Link>
         </motion.div>

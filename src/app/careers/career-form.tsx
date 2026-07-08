@@ -3,20 +3,21 @@
 import { useState, FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Send, Loader2 } from "lucide-react"
-
-const positions = [
-  "محامٍ ممارس",
-  "محامٍ مساعد",
-  "باحث قانوني",
-  "مستشار قانوني",
-  "متدرب قانوني",
-  "مساعد إداري",
-  "مسؤول موارد بشرية",
-  "مسؤول تسويق",
-  "أخرى",
-]
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export function CareerForm() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
+  const positions = [
+    t.careers.legalConsultant,
+    t.careers.associateLawyer,
+    t.careers.legalResearcher,
+    t.careers.paralegal,
+    t.careers.adminAssistant,
+  ]
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -43,10 +44,10 @@ export function CareerForm() {
         setFeedback({ type: "success", text: data.message })
         setFormData({ name: "", email: "", phone: "", position: "", coverLetter: "" })
       } else {
-        setFeedback({ type: "error", text: data.error || "حدث خطأ" })
+        setFeedback({ type: "error", text: data.error || t.common.error })
       }
     } catch {
-      setFeedback({ type: "error", text: "حدث خطأ في الاتصال" })
+      setFeedback({ type: "error", text: t.common.error })
     } finally {
       setLoading(false)
     }
@@ -54,7 +55,7 @@ export function CareerForm() {
 
   return (
     <div className="bg-white rounded-xl border border-border p-8 md:p-12 shadow-card">
-      <h2 className="text-2xl font-heading font-bold text-primary mb-6">تقديم طلب توظيف</h2>
+      <h2 className="text-2xl font-heading font-bold text-primary mb-6">{t.careers.title}</h2>
 
       {feedback && (
         <div
@@ -70,7 +71,7 @@ export function CareerForm() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-text-dark mb-1">الاسم الكامل *</label>
+          <label htmlFor="name" className="block text-sm font-medium text-text-dark mb-1">{t.careers.nameLabel} *</label>
           <input
             id="name"
             type="text"
@@ -78,13 +79,13 @@ export function CareerForm() {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full px-4 py-3 bg-secondary border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark"
-            placeholder="أدخل اسمك الكامل"
+            placeholder={t.careers.namePlaceholder}
           />
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-text-dark mb-1">البريد الإلكتروني *</label>
+            <label htmlFor="email" className="block text-sm font-medium text-text-dark mb-1">{t.careers.emailLabel} *</label>
             <input
               id="email"
               type="email"
@@ -96,20 +97,20 @@ export function CareerForm() {
             />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-text-dark mb-1">رقم الهاتف</label>
+            <label htmlFor="phone" className="block text-sm font-medium text-text-dark mb-1">{t.careers.phoneLabel}</label>
             <input
               id="phone"
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               className="w-full px-4 py-3 bg-secondary border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark"
-              placeholder="05xxxxxxxx"
+              placeholder={t.careers.phonePlaceholder}
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="position" className="block text-sm font-medium text-text-dark mb-1">الوظيفة المطلوبة *</label>
+          <label htmlFor="position" className="block text-sm font-medium text-text-dark mb-1">{t.careers.positionLabel} *</label>
           <select
             id="position"
             required
@@ -117,7 +118,7 @@ export function CareerForm() {
             onChange={(e) => setFormData({ ...formData, position: e.target.value })}
             className="w-full px-4 py-3 bg-secondary border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark"
           >
-            <option value="">-- اختر الوظيفة --</option>
+            <option value="">-- {t.careers.positionPlaceholder} --</option>
             {positions.map((pos) => (
               <option key={pos} value={pos}>{pos}</option>
             ))}
@@ -125,22 +126,22 @@ export function CareerForm() {
         </div>
 
         <div>
-          <label htmlFor="coverLetter" className="block text-sm font-medium text-text-dark mb-1">خطاب التقديم</label>
+          <label htmlFor="coverLetter" className="block text-sm font-medium text-text-dark mb-1">{t.careers.coverLetterLabel}</label>
           <textarea
             id="coverLetter"
             rows={5}
             value={formData.coverLetter}
             onChange={(e) => setFormData({ ...formData, coverLetter: e.target.value })}
             className="w-full px-4 py-3 bg-secondary border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark resize-y"
-            placeholder="اكتب نبذة عن مؤهلاتك وخبراتك ودوافعك للتقديم"
+            placeholder={t.careers.coverLetterPlaceholder}
           />
         </div>
 
         <Button type="submit" disabled={loading} size="lg" className="w-full">
           {loading ? (
-            <><Loader2 className="w-4 h-4 animate-spin ml-2" /> جاري الإرسال...</>
+            <><Loader2 className="w-4 h-4 animate-spin ml-2" /> {t.common.loading}</>
           ) : (
-            <><Send className="w-4 h-4 ml-2" /> إرسال الطلب</>
+            <><Send className="w-4 h-4 ml-2" /> {t.careers.submit}</>
           )}
         </Button>
       </form>

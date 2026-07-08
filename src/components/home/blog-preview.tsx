@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Clock } from 'lucide-react'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 interface BlogPreviewPost {
   slug: string
@@ -41,6 +43,9 @@ function formatDate(date: string | Date) {
 }
 
 export function BlogPreview({ posts }: Props) {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
   if (!posts || posts.length === 0) return null
 
   return (
@@ -55,14 +60,14 @@ export function BlogPreview({ posts }: Props) {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium">المدونة</span>
+            <span className="text-accent-gold text-sm font-medium">{t.nav.blog}</span>
             <span className="w-8 h-px bg-accent-gold/60" />
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4">
-            آخر المقالات القانونية
+            {t.home.blogTitle}
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">
-            أحدث المقالات والتحليلات القانونية في القضاء السعودي
+            {t.home.blogDesc}
           </p>
         </motion.div>
 
@@ -96,7 +101,7 @@ export function BlogPreview({ posts }: Props) {
                     {post.readingTime && (
                       <span className="inline-flex items-center gap-1.5 text-xs text-accent-gold bg-accent-gold/5 px-2.5 py-0.5 rounded-full">
                         <Clock className="w-3 h-3" />
-                        {post.readingTime} دقائق
+                        {post.readingTime} {t.blog.readTime}
                       </span>
                     )}
                   </div>
@@ -120,7 +125,7 @@ export function BlogPreview({ posts }: Props) {
           className="text-center mt-10"
         >
           <Link href="/blog" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
-            عرض جميع المقالات
+            {t.home.blogLink}
             <ArrowLeft className="w-4 h-4" />
           </Link>
         </motion.div>

@@ -49,3 +49,8 @@ next-env.d.ts
 # prisma
 node_modules/.prisma
 .prisma
+
+# temp files
+*.log
+CLAUDE.md
+mainlogo.png

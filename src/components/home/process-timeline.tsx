@@ -2,15 +2,20 @@
 
 import { motion } from 'framer-motion'
 import { PhoneCall, FileText, Handshake, Scale } from 'lucide-react'
-
-const steps = [
-  { icon: PhoneCall, title: 'التواصل الأولي', description: 'نتواصل معك لفهم طبيعة قضيتك وتحديد احتياجاتك القانونية.' },
-  { icon: FileText, title: 'الدراسة والتحليل', description: 'ندرس ملف القضية بعناية ونقدم تقييماً قانونياً دقيقاً.' },
-  { icon: Handshake, title: 'الاتفاق والتفويض', description: 'نضع خطة العمل القانونية ويتم الاتفاق على آليات التعاون.' },
-  { icon: Scale, title: 'المتابعة والتنفيذ', description: 'نتولى إجراءات القضية خطوة بخطوة حتى الوصول إلى النتيجة.' },
-]
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export function ProcessTimeline() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
+  const steps = [
+    { icon: PhoneCall, title: t.home.step1Title, description: t.home.step1Desc },
+    { icon: FileText, title: t.home.step2Title, description: t.home.step2Desc },
+    { icon: Handshake, title: t.home.step3Title, description: t.home.step3Desc },
+    { icon: Scale, title: t.home.step4Title, description: t.home.step4Desc },
+  ]
+
   return (
     <section className="bg-primary section-padding">
       <div className="container-custom">
@@ -23,14 +28,14 @@ export function ProcessTimeline() {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium">آلية العمل</span>
+            <span className="text-accent-gold text-sm font-medium">{t.home.processTitle}</span>
             <span className="w-8 h-px bg-accent-gold/60" />
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-4">
-            كيف نعمل؟
+            {t.home.processTitle}
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">
-            نتبع منهجية واضحة وممنهجة لضمان تقديم أفضل الخدمات القانونية لعملائنا
+            {t.home.processDesc}
           </p>
         </motion.div>
 

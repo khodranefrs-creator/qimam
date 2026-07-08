@@ -5,19 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Check, ChevronRight, ChevronLeft, Calendar, Clock, User, FileText, Phone, Mail, MessageSquare, CheckCircle, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-
-const steps = [
-  { id: 1, title: "نوع القضية" },
-  { id: 2, title: "الموعد المفضل" },
-  { id: 3, title: "بيانات التواصل" },
-  { id: 4, title: "مراجعة وتأكيد" },
-]
-
-const contactMethods = [
-  { value: "phone", label: "اتصال هاتفي" },
-  { value: "whatsapp", label: "واتساب" },
-  { value: "email", label: "بريد إلكتروني" },
-]
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 const timeSlots = [
   "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
@@ -61,7 +50,26 @@ function isFriday(dateStr: string): boolean {
   return d.getDay() === 5
 }
 
+function getSteps(t: ReturnType<typeof getTranslations>) {
+  return [
+    { id: 1, title: t.consultation.practiceArea },
+    { id: 2, title: t.consultation.preferredTime },
+    { id: 3, title: t.contact.formTitle },
+    { id: 4, title: t.consultation.title },
+  ]
+}
+
+function getContactMethods(t: ReturnType<typeof getTranslations>) {
+  return [
+    { value: "phone", label: t.nav.contactUs },
+    { value: "whatsapp", label: t.footer.whatsapp },
+    { value: "email", label: t.contact.emailLabel },
+  ]
+}
+
 export default function ConsultationPage() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
   const [currentStep, setCurrentStep] = useState(1)
   const [practiceAreas, setPracticeAreas] = useState<PracticeArea[]>([])
   const [formData, setFormData] = useState<FormData>({
@@ -97,28 +105,28 @@ export default function ConsultationPage() {
 
   function validateStep1(): boolean {
     const errs: FormErrors = {}
-    if (!formData.practiceAreaId) errs.practiceAreaId = "يرجى اختيار نوع القضية"
+    if (!formData.practiceAreaId) errs.practiceAreaId = t.common.error
     setErrors(errs)
     return Object.keys(errs).length === 0
   }
 
   function validateStep2(): boolean {
     const errs: FormErrors = {}
-    if (!formData.preferredDate) errs.preferredDate = "يرجى اختيار تاريخ"
-    else if (formData.preferredDate < getTodayString()) errs.preferredDate = "لا يمكن اختيار تاريخ في الماضي"
-    else if (isFriday(formData.preferredDate)) errs.preferredDate = "يوم الجمعة غير متاح للاستشارات"
-    if (!formData.preferredTime) errs.preferredTime = "يرجى اختيار الوقت"
+    if (!formData.preferredDate) errs.preferredDate = t.common.error
+    else if (formData.preferredDate < getTodayString()) errs.preferredDate = t.common.error
+    else if (isFriday(formData.preferredDate)) errs.preferredDate = t.common.error
+    if (!formData.preferredTime) errs.preferredTime = t.common.error
     setErrors(errs)
     return Object.keys(errs).length === 0
   }
 
   function validateStep3(): boolean {
     const errs: FormErrors = {}
-    if (!formData.name.trim()) errs.name = "الاسم مطلوب"
-    if (!formData.phone.trim()) errs.phone = "رقم الجوال مطلوب"
-    else if (!/^\+966\d{9}$/.test(formData.phone.trim())) errs.phone = "رقم الجوال غير صحيح (مثال: +9665XXXXXXXX)"
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) errs.email = "البريد الإلكتروني غير صحيح"
-    if (!formData.contactMethod) errs.contactMethod = "يرجى اختيار طريقة التواصل المفضلة"
+    if (!formData.name.trim()) errs.name = t.common.error
+    if (!formData.phone.trim()) errs.phone = t.common.error
+    else if (!/^\+966\d{9}$/.test(formData.phone.trim())) errs.phone = t.common.error
+    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) errs.email = t.common.error
+    if (!formData.contactMethod) errs.contactMethod = t.common.error
     setErrors(errs)
     return Object.keys(errs).length === 0
   }
@@ -137,18 +145,18 @@ export default function ConsultationPage() {
 
   function getSelectedAreaTitle(): string {
     const area = practiceAreas.find((a) => a.id === formData.practiceAreaId)
-    return area ? area.title : "لم يتم الاختيار"
+    return area ? area.title : t.common.noData
   }
 
   function formatDate(dateStr: string): string {
-    if (!dateStr) return "لم يتم الاختيار"
+    if (!dateStr) return t.common.noData
     const d = new Date(dateStr + "T12:00:00")
-    return d.toLocaleDateString("ar-SA", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
+    return d.toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
   }
 
   async function handleSubmit() {
     if (!formData.consent) {
-      setErrors({ step1: "يجب الموافقة على سياسة الخصوصية" })
+      setErrors({ step1: t.common.error })
       return
     }
     setSubmitting(true)
@@ -162,13 +170,13 @@ export default function ConsultationPage() {
       })
       const data = await res.json()
       if (!res.ok) {
-        setErrors({ step1: data.error || "حدث خطأ أثناء الإرسال" })
+        setErrors({ step1: data.error || t.common.error })
         setSubmitting(false)
         return
       }
       setSubmitted(true)
     } catch {
-      setErrors({ step1: "حدث خطأ في الاتصال بالخادم" })
+      setErrors({ step1: t.common.error })
       setSubmitting(false)
     }
   }
@@ -182,16 +190,16 @@ export default function ConsultationPage() {
               <div className="w-20 h-20 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-6">
                 <CheckCircle size={40} className="text-success" />
               </div>
-              <h1 className="text-2xl md:text-3xl font-heading font-bold text-primary mb-4">تم إرسال طلب الاستشارة بنجاح</h1>
+              <h1 className="text-2xl md:text-3xl font-heading font-bold text-primary mb-4">{t.consultation.success}</h1>
               <p className="text-text-muted mb-8 leading-relaxed">
-                شكراً لتواصلك مع شركة قمم اليقين للمحاماة. سنقوم بمراجعة طلبك والتواصل معك في أقرب وقت ممكن عبر طريقة التواصل التي اخترتها.
+                {t.consultation.successDesc}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/">
-                  <Button variant="primary" size="lg">العودة إلى الرئيسية</Button>
+                  <Button variant="primary" size="lg">{t.nav.home}</Button>
                 </Link>
                 <Link href="/practice-areas">
-                  <Button variant="secondary" size="lg">تصفح التخصصات القانونية</Button>
+                  <Button variant="secondary" size="lg">{t.practiceAreas.title}</Button>
                 </Link>
               </div>
             </div>
@@ -204,7 +212,7 @@ export default function ConsultationPage() {
   function renderStepIndicator() {
     return (
       <div className="flex items-center justify-center gap-0 mb-10">
-        {steps.map((step, idx) => (
+        {getSteps(t).map((step, idx) => (
           <div key={step.id} className="flex items-center">
             <div className="flex flex-col items-center gap-2">
               <div
@@ -226,7 +234,7 @@ export default function ConsultationPage() {
                 {step.title}
               </span>
             </div>
-            {idx < steps.length - 1 && (
+            {idx < getSteps(t).length - 1 && (
               <div
                 className={`w-12 md:w-20 h-0.5 mx-2 md:mx-3 mt-[-1.5rem] transition-colors duration-300 ${
                   step.id < currentStep ? "bg-success" : "bg-gray-200"
@@ -242,9 +250,9 @@ export default function ConsultationPage() {
   function renderBreadcrumb() {
     return (
       <nav className="flex items-center gap-2 text-sm text-text-muted mb-6">
-        <Link href="/" className="hover:text-accent-gold transition">الرئيسية</Link>
+        <Link href="/" className="hover:text-accent-gold transition">{t.nav.home}</Link>
         <ChevronLeft size={14} />
-        <span className="text-text-dark font-medium">حجز استشارة</span>
+        <span className="text-text-dark font-medium">{t.consultation.title}</span>
       </nav>
     )
   }
@@ -256,16 +264,16 @@ export default function ConsultationPage() {
           <div className="w-14 h-14 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-3">
             <FileText size={24} className="text-accent-gold" />
           </div>
-          <h2 className="text-xl font-heading font-bold text-primary">نوع القضية</h2>
-          <p className="text-text-muted text-sm mt-1">اختر التخصص القانوني المناسب لقضيتك</p>
+          <h2 className="text-xl font-heading font-bold text-primary">{t.consultation.practiceArea}</h2>
+          <p className="text-text-muted text-sm mt-1">{t.consultation.description}</p>
         </div>
 
         <div>
-          <label className={labelClass}>التخصص القانوني <span className="text-error">*</span></label>
+          <label className={labelClass}>{t.consultation.practiceArea} <span className="text-error">*</span></label>
           {loadingAreas ? (
             <div className="flex items-center gap-2 text-text-muted text-sm py-2">
               <Loader2 size={16} className="animate-spin" />
-              جاري تحميل التخصصات...
+              {t.common.loading}
             </div>
           ) : (
             <select
@@ -273,7 +281,7 @@ export default function ConsultationPage() {
               onChange={(e) => updateField("practiceAreaId", e.target.value)}
               className={`${inputClass} appearance-none cursor-pointer`}
             >
-              <option value="">-- اختر التخصص --</option>
+              <option value="">-- {t.consultation.selectArea} --</option>
               {practiceAreas.map((area) => (
                 <option key={area.id} value={area.id}>{area.title}</option>
               ))}
@@ -283,11 +291,11 @@ export default function ConsultationPage() {
         </div>
 
         <div>
-          <label className={labelClass}>تفاصيل إضافية عن القضية</label>
+          <label className={labelClass}>{t.consultation.detailsLabel}</label>
           <textarea
             value={formData.details}
             onChange={(e) => updateField("details", e.target.value)}
-            placeholder="اكتب وصفاً مختصراً لقضيتك (اختياري)..."
+            placeholder={t.consultation.detailsPlaceholder}
             rows={4}
             className={`${inputClass} resize-none`}
           />
@@ -303,12 +311,12 @@ export default function ConsultationPage() {
           <div className="w-14 h-14 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-3">
             <Calendar size={24} className="text-accent-gold" />
           </div>
-          <h2 className="text-xl font-heading font-bold text-primary">الموعد المفضل</h2>
-          <p className="text-text-muted text-sm mt-1">اختر التاريخ والوقت المناسبين للاستشارة</p>
+          <h2 className="text-xl font-heading font-bold text-primary">{t.consultation.preferredTime}</h2>
+          <p className="text-text-muted text-sm mt-1">{t.consultation.description}</p>
         </div>
 
         <div>
-          <label className={labelClass}>التاريخ <span className="text-error">*</span></label>
+          <label className={labelClass}>{t.consultation.dateLabel} <span className="text-error">*</span></label>
           <input
             type="date"
             value={formData.preferredDate}
@@ -316,12 +324,12 @@ export default function ConsultationPage() {
             min={todayStr}
             className={`${inputClass} [color-scheme:light]`}
           />
-          <p className="text-xs text-text-muted mt-1.5">الاستشارات متاحة من السبت إلى الخميس. يوم الجمعة غير متاح.</p>
+              <p className="text-xs text-text-muted mt-1.5">{t.footer.satThu}</p>
           {errors.preferredDate && <p className={errorClass}>{errors.preferredDate}</p>}
         </div>
 
         <div>
-          <label className={labelClass}>الوقت <span className="text-error">*</span></label>
+          <label className={labelClass}>{t.consultation.timeLabel} <span className="text-error">*</span></label>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
             {timeSlots.map((time) => (
               <button
@@ -351,25 +359,25 @@ export default function ConsultationPage() {
           <div className="w-14 h-14 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-3">
             <User size={24} className="text-accent-gold" />
           </div>
-          <h2 className="text-xl font-heading font-bold text-primary">بيانات التواصل</h2>
-          <p className="text-text-muted text-sm mt-1">أدخل معلومات التواصل الخاصة بك</p>
+          <h2 className="text-xl font-heading font-bold text-primary">{t.contact.formTitle}</h2>
+          <p className="text-text-muted text-sm mt-1">{t.contact.formDesc}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className={labelClass}>الاسم الكامل <span className="text-error">*</span></label>
+            <label className={labelClass}>{t.consultation.nameLabel} <span className="text-error">*</span></label>
             <input
               type="text"
               value={formData.name}
               onChange={(e) => updateField("name", e.target.value)}
-              placeholder="أدخل اسمك الكامل"
+              placeholder={t.consultation.namePlaceholder}
               className={inputClass}
             />
             {errors.name && <p className={errorClass}>{errors.name}</p>}
           </div>
 
           <div>
-            <label className={labelClass}>رقم الجوال <span className="text-error">*</span></label>
+            <label className={labelClass}>{t.consultation.phoneLabel} <span className="text-error">*</span></label>
             <div className="relative">
               <input
                 type="tel"
@@ -387,12 +395,12 @@ export default function ConsultationPage() {
               />
               <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
-            <p className="text-xs text-text-muted mt-1.5">مثال: +966501234567</p>
+            <p className="text-xs text-text-muted mt-1.5">+966501234567</p>
             {errors.phone && <p className={errorClass}>{errors.phone}</p>}
           </div>
 
           <div>
-            <label className={labelClass}>البريد الإلكتروني</label>
+            <label className={labelClass}>{t.consultation.emailLabel}</label>
             <div className="relative">
               <input
                 type="email"
@@ -403,14 +411,14 @@ export default function ConsultationPage() {
               />
               <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
-            <p className="text-xs text-text-muted mt-1.5">اختياري</p>
+            <p className="text-xs text-text-muted mt-1.5">{t.common.noData}</p>
             {errors.email && <p className={errorClass}>{errors.email}</p>}
           </div>
 
           <div>
-            <label className={labelClass}>طريقة التواصل المفضلة <span className="text-error">*</span></label>
+            <label className={labelClass}>{t.consultation.preferredTime} <span className="text-error">*</span></label>
             <div className="flex gap-2 mt-1">
-              {contactMethods.map((method) => (
+              {getContactMethods(t).map((method) => (
                 <button
                   key={method.value}
                   type="button"
@@ -442,21 +450,21 @@ export default function ConsultationPage() {
           <div className="w-14 h-14 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-3">
             <CheckCircle size={24} className="text-accent-gold" />
           </div>
-          <h2 className="text-xl font-heading font-bold text-primary">مراجعة وتأكيد</h2>
-          <p className="text-text-muted text-sm mt-1">يرجى مراجعة بيانات طلب الاستشارة قبل الإرسال</p>
+          <h2 className="text-xl font-heading font-bold text-primary">{t.consultation.title}</h2>
+          <p className="text-text-muted text-sm mt-1">{t.consultation.description}</p>
         </div>
 
         <div className="bg-gray-50 rounded-[12px] border border-border/60 divide-y divide-border/40">
           <div className="px-5 py-4">
-            <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">نوع القضية</h3>
+            <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">{t.consultation.practiceArea}</h3>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span className="text-sm text-text-muted">التخصص:</span>
+                <span className="text-sm text-text-muted">{t.consultation.practiceArea}:</span>
                 <span className="text-sm font-medium text-text-dark">{getSelectedAreaTitle()}</span>
               </div>
               {formData.details && (
                 <div>
-                  <span className="text-sm text-text-muted block mb-1">التفاصيل:</span>
+                  <span className="text-sm text-text-muted block mb-1">{t.consultation.detailsLabel}:</span>
                   <p className="text-sm text-text-dark bg-white rounded-[8px] p-3 border border-border/40">{formData.details}</p>
                 </div>
               )}
@@ -464,17 +472,17 @@ export default function ConsultationPage() {
           </div>
 
           <div className="px-5 py-4">
-            <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">الموعد المفضل</h3>
+            <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">{t.consultation.preferredTime}</h3>
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-text-muted">التاريخ:</span>
+                <span className="text-sm text-text-muted">{t.consultation.dateLabel}:</span>
                 <span className="text-sm font-medium text-text-dark flex items-center gap-1.5">
                   <Calendar size={14} className="text-accent-gold" />
                   {formatDate(formData.preferredDate)}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-text-muted">الوقت:</span>
+                <span className="text-sm text-text-muted">{t.consultation.timeLabel}:</span>
                 <span className="text-sm font-medium text-text-dark flex items-center gap-1.5">
                   <Clock size={14} className="text-accent-gold" />
                   {formData.preferredTime || "لم يتم الاختيار"}
@@ -484,26 +492,26 @@ export default function ConsultationPage() {
           </div>
 
           <div className="px-5 py-4">
-            <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">بيانات التواصل</h3>
+            <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">{t.contact.infoTitle}</h3>
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span className="text-sm text-text-muted">الاسم:</span>
+                <span className="text-sm text-text-muted">{t.consultation.nameLabel}:</span>
                 <span className="text-sm font-medium text-text-dark">{formData.name}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-text-muted">الجوال:</span>
+                <span className="text-sm text-text-muted">{t.consultation.phoneLabel}:</span>
                 <span className="text-sm font-medium text-text-dark" dir="ltr">{formData.phone}</span>
               </div>
               {formData.email && (
                 <div className="flex justify-between">
-                  <span className="text-sm text-text-muted">البريد:</span>
+                  <span className="text-sm text-text-muted">{t.consultation.emailLabel}:</span>
                   <span className="text-sm font-medium text-text-dark">{formData.email}</span>
                 </div>
               )}
               <div className="flex justify-between">
                 <span className="text-sm text-text-muted">طريقة التواصل:</span>
                 <span className="text-sm font-medium text-text-dark">
-                  {contactMethods.find((m) => m.value === formData.contactMethod)?.label || formData.contactMethod}
+                  {getContactMethods(t).find((m) => m.value === formData.contactMethod)?.label || formData.contactMethod}
                 </span>
               </div>
             </div>
@@ -519,9 +527,8 @@ export default function ConsultationPage() {
             className="mt-1 w-4 h-4 rounded border-border/60 text-accent-gold focus:ring-accent-gold shrink-0"
           />
           <label htmlFor="consent" className="text-sm text-text-muted cursor-pointer">
-            أوافق على{" "}
-            <Link href="/privacy-policy" className="text-accent-gold hover:underline">سياسة الخصوصية</Link>
-            {" "}وأوافق على استخدام بياناتي للتواصل بخصوص طلب الاستشارة.
+            {t.common.error}{" "}
+            <Link href="/privacy-policy" className="text-accent-gold hover:underline">{t.privacy.title}</Link>
             <span className="text-error"> *</span>
           </label>
         </div>
@@ -560,14 +567,14 @@ export default function ConsultationPage() {
                 {currentStep > 1 && (
                   <Button variant="outline" size="lg" onClick={handlePrev} className="gap-2">
                     <ChevronRight size={18} />
-                    السابق
+                    {t.common.back}
                   </Button>
                 )}
               </div>
               <div>
                 {currentStep < 4 ? (
                   <Button variant="primary" size="lg" onClick={handleNext} className="gap-2">
-                    التالي
+                    {t.blog.next}
                     <ChevronLeft size={18} />
                   </Button>
                 ) : (
@@ -575,12 +582,12 @@ export default function ConsultationPage() {
                     {submitting ? (
                       <>
                         <Loader2 size={18} className="animate-spin" />
-                        جاري الإرسال...
+                        {t.common.loading}
                       </>
                     ) : (
                       <>
                         <Check size={18} />
-                        تأكيد وإرسال
+                        {t.consultation.submit}
                       </>
                     )}
                   </Button>

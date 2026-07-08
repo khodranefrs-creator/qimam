@@ -2,30 +2,38 @@ import { Metadata } from "next"
 import Link from "next/link"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { ContactForm } from "./contact-form"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
-export const metadata: Metadata = {
-  title: "اتصل بنا",
-  description: "تواصل مع شركة قمم اليقين للمحاماة والاستشارات القانونية",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
+  return {
+    title: t.contact.title,
+    description: t.contact.description,
+  }
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   return (
     <div>
       <div className="bg-primary text-text-light py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <span className="text-accent-gold">اتصل بنا</span>
+            <span className="text-accent-gold">{t.contact.title}</span>
           </div>
         </div>
       </div>
 
       <section className="py-16 md:py-24 bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">اتصل بنا</h1>
+          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.contact.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
-          <p className="text-text-muted max-w-2xl mx-auto">نحن هنا للإجابة على استفساراتك وتقديم المساعدة القانونية التي تحتاجها</p>
+          <p className="text-text-muted max-w-2xl mx-auto">{t.contact.description}</p>
         </div>
       </section>
 
@@ -37,7 +45,7 @@ export default function ContactPage() {
                 <MapPin className="w-6 h-6 text-accent-gold" />
               </div>
               <h3 className="font-heading font-bold text-primary mb-2">العنوان</h3>
-              <p className="text-text-muted text-sm leading-[1.7]">شارع النسيم العام، مكة المكرمة<br />المملكة العربية السعودية</p>
+              <p className="text-text-muted text-sm leading-[1.7]">{t.contact.address}</p>
             </div>
 
             <div className="bg-white rounded-xl border border-border p-6 shadow-card text-center hover-lift transition-all">
@@ -52,7 +60,7 @@ export default function ContactPage() {
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mail className="w-6 h-6 text-accent-gold" />
               </div>
-              <h3 className="font-heading font-bold text-primary mb-2">البريد الإلكتروني</h3>
+              <h3 className="font-heading font-bold text-primary mb-2">{t.contact.emailLabel}</h3>
               <p className="text-text-muted text-sm">info@qimam-law.com</p>
             </div>
 
@@ -60,8 +68,8 @@ export default function ContactPage() {
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Clock className="w-6 h-6 text-accent-gold" />
               </div>
-              <h3 className="font-heading font-bold text-primary mb-2">ساعات العمل</h3>
-              <p className="text-text-muted text-sm">السبت - الخميس<br />٩:٠٠ صباحاً - ٩:٠٠ مساءً</p>
+              <h3 className="font-heading font-bold text-primary mb-2">{t.contact.workingHours}</h3>
+              <p className="text-text-muted text-sm">{t.contact.satThu}</p>
             </div>
           </div>
 
@@ -76,7 +84,7 @@ export default function ContactPage() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="موقع شركة قمم اليقين للمحاماة"
+                title={t.site.fullName}
               />
             </div>
           </div>

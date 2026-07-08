@@ -3,6 +3,8 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight, ChevronLeft, Star } from 'lucide-react'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 import type { TestimonialItem } from './types'
 
 export default function TestimonialsSlider({
@@ -10,6 +12,8 @@ export default function TestimonialsSlider({
 }: {
   testimonials: TestimonialItem[]
 }) {
+  const locale = useLocale()
+  const t = getTranslations(locale)
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
   const [isPaused, setIsPaused] = useState(false)
@@ -49,7 +53,7 @@ export default function TestimonialsSlider({
 
   if (!testimonials || testimonials.length === 0) return null
 
-  const t = testimonials[current]
+  const item = testimonials[current]
 
   return (
     <section className="section-padding bg-white overflow-hidden">
@@ -62,10 +66,10 @@ export default function TestimonialsSlider({
           className="text-center mb-14"
         >
           <span className="inline-block text-accent-gold text-sm font-medium tracking-widest mb-3">
-            آراء العملاء
+            {t.testimonials.title}
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-dark">
-            ماذا يقول عملاؤنا
+            {t.home.testimonialsTitle}
           </h2>
           <div className="gold-diamond-divider mt-4 max-w-xs mx-auto">
             <span>◆</span>
@@ -101,14 +105,14 @@ export default function TestimonialsSlider({
                     &quot;
                   </div>
                   <p className="text-lg md:text-xl text-text-dark leading-relaxed mb-6">
-                    {t.content}
+                    {item.content}
                   </p>
                   <div className="flex items-center justify-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
                         className={`w-4 h-4 ${
-                          i < (t.rating ?? 5)
+                          i < (item.rating ?? 5)
                             ? 'fill-accent-gold text-accent-gold'
                             : 'text-border'
                         }`}
@@ -117,10 +121,10 @@ export default function TestimonialsSlider({
                   </div>
                   <div>
                     <span className="font-heading font-bold text-text-dark">
-                      {t.name}
+                      {item.name}
                     </span>
-                    {t.role && (
-                      <span className="text-text-muted text-sm mr-2">— {t.role}</span>
+                    {item.role && (
+                      <span className="text-text-muted text-sm mr-2">— {item.role}</span>
                     )}
                   </div>
                 </div>

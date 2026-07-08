@@ -3,22 +3,24 @@ import type { BlogPostData } from "@/types/prisma-models"
 import Link from "next/link"
 import { Metadata } from "next"
 import { Calendar, Clock } from "lucide-react"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
-  title: "المدونة القانونية",
-  description: "مقالات قانونية متخصصة يقدمها فريق شركة قمم اليقين للمحاماة",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
+  return {
+    title: t.blog.title,
+    description: t.blog.description,
+  }
 }
 
-function formatReadingTime(minutes: number | null): string {
+function formatReadingTime(minutes: number | null, locale: string, t: ReturnType<typeof getTranslations>): string {
   if (!minutes) return ""
-  if (minutes < 1) return "أقل من دقيقة"
-  if (minutes < 10) return `${minutes} دقائق`
-  if (minutes < 60) return `${minutes} دقيقة`
-  const hours = Math.floor(minutes / 60)
-  const mins = minutes % 60
-  return mins > 0 ? `${hours} س و ${mins} د` : `${hours} س`
+  if (minutes < 1) return t.blog.lessThanMin
+  return `${minutes} ${t.blog.readTime}`
 }
 
 export default async function BlogPage({
@@ -26,6 +28,8 @@ export default async function BlogPage({
 }: {
   searchParams: Promise<{ page?: string; category?: string; q?: string }>
 }) {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   const { page: pageStr, category, q: searchQuery } = await searchParams
   const currentPage = Math.max(1, Number(pageStr) || 1)
   const perPage = 9
@@ -58,18 +62,18 @@ export default async function BlogPage({
       <div className="bg-primary text-text-light py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <span className="text-accent-gold">المدونة</span>
+            <span className="text-accent-gold">{t.blog.title}</span>
           </div>
         </div>
       </div>
 
       <section className="py-16 md:py-24 bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">المدونة القانونية</h1>
+          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.blog.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
-          <p className="text-text-muted max-w-2xl mx-auto">مقالات وتحليلات قانونية متخصصة يقدمها فريق شركة قمم اليقين</p>
+          <p className="text-text-muted max-w-2xl mx-auto">{t.blog.description}</p>
         </div>
       </section>
 
@@ -82,7 +86,7 @@ export default async function BlogPage({
                   type="text"
                   name="q"
                   defaultValue={searchQuery || ""}
-                  placeholder="ابحث في المقالات..."
+                  placeholder={t.blog.searchPlaceholder}
                   className="w-full px-4 py-3 pr-10 bg-white border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark placeholder:text-text-muted"
                 />
                 <button type="submit" className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-accent-gold transition-colors">
@@ -100,7 +104,7 @@ export default async function BlogPage({
                   !category ? "bg-accent-gold text-primary border-accent-gold" : "bg-white text-text-muted border-border hover:border-accent-gold"
                 }`}
               >
-                الكل
+                {t.blog.all}
               </Link>
               {categoryList.map((cat) => (
                 <Link
@@ -118,7 +122,7 @@ export default async function BlogPage({
 
           {posts.length === 0 ? (
             <div className="text-center py-12 text-text-muted">
-              <p>لا توجد مقالات بعد. سنقوم بنشر المحتوى قريباً.</p>
+              <p>{t.blog.noPosts}</p>
             </div>
           ) : (
             <>
@@ -142,7 +146,7 @@ export default async function BlogPage({
                           {post.readingTime && (
                             <span className="flex items-center gap-1">
                               <Clock className="w-3 h-3" />
-                              {formatReadingTime(post.readingTime)}
+                              {formatReadingTime(post.readingTime, locale, t)}
                             </span>
                           )}
                         </div>
@@ -161,7 +165,7 @@ export default async function BlogPage({
                       href={`/blog?page=${currentPage - 1}${category ? `&category=${encodeURIComponent(category)}` : ""}${searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : ""}`}
                       className="px-4 py-2 bg-white border border-border rounded-xl text-sm hover:border-accent-gold transition-colors"
                     >
-                      السابق
+                      {t.blog.prev}
                     </Link>
                   )}
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
@@ -182,7 +186,7 @@ export default async function BlogPage({
                       href={`/blog?page=${currentPage + 1}${category ? `&category=${encodeURIComponent(category)}` : ""}${searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : ""}`}
                       className="px-4 py-2 bg-white border border-border rounded-xl text-sm hover:border-accent-gold transition-colors"
                     >
-                      التالي
+                      {t.blog.next}
                     </Link>
                   )}
                 </div>

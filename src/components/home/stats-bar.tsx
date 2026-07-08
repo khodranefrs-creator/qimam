@@ -2,15 +2,20 @@
 
 import { motion } from 'framer-motion'
 import { Briefcase, Users, FileCheck, Star } from 'lucide-react'
-
-const stats = [
-  { icon: Briefcase, value: '١٢+', label: 'سنوات الخبرة' },
-  { icon: Users, value: '٥٠٠+', label: 'قضية ناجحة' },
-  { icon: FileCheck, value: '١٠٠%', label: 'تراخيص معتمدة' },
-  { icon: Star, value: '٥.٠', label: 'تقييم العملاء' },
-]
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export function StatsBar() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
+  const stats = [
+    { icon: Briefcase, value: t.home.statsYearsValue, label: t.home.statsYears },
+    { icon: Users, value: t.home.statsCasesValue, label: t.home.statsCases },
+    { icon: FileCheck, value: t.home.statsLicensesValue, label: t.home.statsLicenses },
+    { icon: Star, value: t.home.statsRatingValue, label: t.home.statsRating },
+  ]
+
   return (
     <section className="bg-primary border-y border-accent-gold/20">
       <div className="container-custom py-10">

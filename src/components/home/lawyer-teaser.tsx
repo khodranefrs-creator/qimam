@@ -3,8 +3,13 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Award, BookOpen, Scale, BadgeCheck } from 'lucide-react'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export function LawyerTeaser() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
   return (
     <section className="bg-primary section-padding">
       <div className="container-custom">
@@ -37,16 +42,14 @@ export function LawyerTeaser() {
           >
             <div className="flex items-center gap-2 mb-4">
               <span className="w-8 h-px bg-accent-gold/60" />
-              <span className="text-accent-gold text-sm font-medium">المحامي</span>
+              <span className="text-accent-gold text-sm font-medium">{t.nav.lawyer}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-2">
-              عبدالعزيز حمود المطيري
+              {t.home.lawyerName}
             </h2>
-            <p className="text-accent-gold font-medium mb-6">محامي وموثّق معتمد</p>
+            <p className="text-accent-gold font-medium mb-6">{t.home.lawyerRole}</p>
             <p className="text-text-muted leading-relaxed mb-8">
-              محامي مرخص من هيئة المحامين السعودية وموثّق معتمد من وزارة العدل،
-              يجمع بين الخبرة القانونية الراسخة والدراية الواسعة في مجالات التقاضي
-              والتحكيم والاستشارات القانونية للشركات والأفراد.
+              {t.home.lawyerDesc}
             </p>
             <div className="grid grid-cols-2 gap-4 mb-8">
               {[
@@ -65,7 +68,7 @@ export function LawyerTeaser() {
               })}
             </div>
             <Link href="/lawyer" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
-              السيرة الكاملة
+              {t.home.lawyerLink}
               <ArrowLeft className="w-4 h-4" />
             </Link>
           </motion.div>

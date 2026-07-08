@@ -3,8 +3,12 @@
 import { useState, FormEvent } from "react"
 import { Button } from "@/components/ui/button"
 import { Send, Loader2 } from "lucide-react"
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export function ContactForm() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,10 +35,10 @@ export function ContactForm() {
         setFeedback({ type: "success", text: data.message })
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
       } else {
-        setFeedback({ type: "error", text: data.error || "حدث خطأ" })
+        setFeedback({ type: "error", text: data.error || t.common.error })
       }
     } catch {
-      setFeedback({ type: "error", text: "حدث خطأ في الاتصال" })
+      setFeedback({ type: "error", text: t.common.error })
     } finally {
       setLoading(false)
     }
@@ -42,7 +46,7 @@ export function ContactForm() {
 
   return (
     <div className="bg-white rounded-xl border border-border p-8 md:p-12 shadow-card">
-      <h2 className="text-2xl font-heading font-bold text-primary mb-6">أرسل لنا رسالة</h2>
+      <h2 className="text-2xl font-heading font-bold text-primary mb-6">{t.contact.formTitle}</h2>
 
       {feedback && (
         <div
@@ -59,7 +63,7 @@ export function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-text-dark mb-1">الاسم الكريم *</label>
+            <label htmlFor="name" className="block text-sm font-medium text-text-dark mb-1">{t.contact.nameLabel} *</label>
             <input
               id="name"
               type="text"
@@ -67,11 +71,11 @@ export function ContactForm() {
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full px-4 py-3 bg-secondary border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold"
-              placeholder="اسمك الكامل"
+              placeholder={t.contact.namePlaceholder}
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-text-dark mb-1">البريد الإلكتروني *</label>
+            <label htmlFor="email" className="block text-sm font-medium text-text-dark mb-1">{t.contact.emailLabel} *</label>
             <input
               id="email"
               type="email"
@@ -85,30 +89,30 @@ export function ContactForm() {
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-text-dark mb-1">رقم الهاتف</label>
+            <label htmlFor="phone" className="block text-sm font-medium text-text-dark mb-1">{t.contact.phoneLabel}</label>
             <input
               id="phone"
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               className="w-full px-4 py-3 bg-secondary border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold"
-              placeholder="05xxxxxxxx"
+              placeholder={t.contact.phonePlaceholder}
             />
           </div>
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-text-dark mb-1">الموضوع</label>
+            <label htmlFor="subject" className="block text-sm font-medium text-text-dark mb-1">{t.contact.subjectLabel}</label>
             <input
               id="subject"
               type="text"
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               className="w-full px-4 py-3 bg-secondary border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold"
-              placeholder="موضوع الرسالة"
+              placeholder={t.contact.subjectPlaceholder}
             />
           </div>
         </div>
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-text-dark mb-1">الرسالة *</label>
+          <label htmlFor="message" className="block text-sm font-medium text-text-dark mb-1">{t.contact.messageLabel} *</label>
           <textarea
             id="message"
             rows={5}
@@ -116,14 +120,14 @@ export function ContactForm() {
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             className="w-full px-4 py-3 bg-secondary border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold resize-y"
-            placeholder="اكتب رسالتك هنا..."
+            placeholder={t.contact.messagePlaceholder}
           />
         </div>
         <Button type="submit" disabled={loading} size="lg" className="w-full">
           {loading ? (
-            <><Loader2 className="w-4 h-4 animate-spin ml-2" /> جاري الإرسال...</>
+            <><Loader2 className="w-4 h-4 animate-spin ml-2" /> {t.common.loading}</>
           ) : (
-            <><Send className="w-4 h-4 ml-2" /> إرسال الرسالة</>
+            <><Send className="w-4 h-4 ml-2" /> {t.contact.submit}</>
           )}
         </Button>
       </form>

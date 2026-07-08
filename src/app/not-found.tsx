@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { Search } from "lucide-react";
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
-export default function NotFound() {
+export default async function NotFound() {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   return (
     <div className="relative min-h-screen bg-primary flex flex-col items-center justify-center overflow-hidden">
       {/* Geometric pattern overlay */}
@@ -38,12 +42,12 @@ export default function NotFound() {
 
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-heading font-semibold text-text-light mb-3">
-          صفحة غير موجودة
+          {t.notFound.title}
         </h2>
 
         {/* Description */}
         <p className="text-text-muted text-lg mb-8 leading-relaxed">
-          عذراً، الصفحة التي تبحث عنها غير متوفرة أو ربما تم نقلها أو حذفها.
+          {t.notFound.desc}
         </p>
 
         {/* Search bar */}
@@ -53,7 +57,7 @@ export default function NotFound() {
           </div>
           <input
             type="text"
-            placeholder="ابحث في الموقع..."
+            placeholder={t.common.search}
             className="w-full h-12 bg-primary-light/60 border border-border-dark/50 rounded-[8px] pr-12 pl-4 text-text-light placeholder:text-text-muted/60 text-sm focus:outline-none focus:border-accent-gold/50 focus:ring-1 focus:ring-accent-gold/20 transition-all"
           />
         </div>
@@ -64,26 +68,26 @@ export default function NotFound() {
             href="/"
             className="inline-flex items-center justify-center h-11 px-6 rounded-[8px] bg-accent-gold text-primary text-sm font-medium hover:bg-accent-gold/90 transition-colors"
           >
-            الرئيسية
+            {t.notFound.home}
           </Link>
           <Link
             href="/services"
             className="inline-flex items-center justify-center h-11 px-6 rounded-[8px] border border-accent-gold/30 text-accent-gold text-sm font-medium hover:bg-accent-gold/10 transition-colors"
           >
-            خدماتنا
+            {t.notFound.services}
           </Link>
           <Link
             href="/contact"
             className="inline-flex items-center justify-center h-11 px-6 rounded-[8px] border border-border-dark/50 text-text-muted text-sm font-medium hover:border-accent-gold/30 hover:text-accent-gold transition-colors"
           >
-            اتصل بنا
+            {t.notFound.contact}
           </Link>
         </nav>
       </div>
 
       {/* Footer */}
       <div className="absolute bottom-6 text-center text-text-muted/40 text-xs">
-        &copy; {new Date().getFullYear()} شركة قمم اليقين للمحاماة والاستشارات القانونية
+        &copy; {new Date().getFullYear()} {t.site.fullName}
       </div>
     </div>
   );

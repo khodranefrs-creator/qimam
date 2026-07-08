@@ -1,29 +1,37 @@
 import { Metadata } from "next"
 import Link from "next/link"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
-export const metadata: Metadata = {
-  title: "سياسة الخصوصية",
-  description: "سياسة الخصوصية لشركة قمم اليقين للمحاماة والاستشارات القانونية وفقاً لنظام حماية البيانات الشخصية السعودي",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
+  return {
+    title: t.privacy.title,
+    description: t.privacy.description,
+  }
 }
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   return (
     <div>
       <div className="bg-primary text-text-light py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <span className="text-accent-gold">سياسة الخصوصية</span>
+            <span className="text-accent-gold">{t.privacy.title}</span>
           </div>
         </div>
       </div>
 
       <section className="py-16 md:py-24 bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">سياسة الخصوصية</h1>
+          <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.privacy.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
-          <p className="text-text-muted max-w-2xl mx-auto">آخر تحديث: ١ يناير ٢٠٢٦</p>
+          <p className="text-text-muted max-w-2xl mx-auto">{t.privacy.lastUpdated}: ١ يناير ٢٠٢٦</p>
         </div>
       </section>
 
@@ -32,12 +40,12 @@ export default function PrivacyPolicyPage() {
           <div className="bg-white rounded-xl border border-border p-8 md:p-12 space-y-8 text-text-dark leading-[1.8]">
 
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">مقدمة</h2>
+              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{t.privacy.intro}</h2>
               <p>نحن في شركة قمم اليقين للمحاماة والاستشارات القانونية (يشار إليها فيما يلي بـ "الشركة" أو "نحن" أو "لنا") نلتزم بحماية خصوصية زوار موقعنا الإلكتروني وعملائنا. توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية البيانات الشخصية التي نتحصل عليها من خلال موقعنا الإلكتروني وخدماتنا، وذلك وفقاً لأحكام نظام حماية البيانات الشخصية الصادر بالمرسوم الملكي رقم (م/148) وتاريخ 5/9/1443هـ ولائحته التنفيذية.</p>
             </div>
 
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">أولاً: البيانات الشخصية التي نجمعها</h2>
+              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{t.privacy.dataCollection}</h2>
               <p>قد نقوم بجمع الأنواع التالية من البيانات الشخصية عند استخدامك لموقعنا أو الاستفادة من خدماتنا:</p>
               <ul className="list-disc pr-6 mt-3 space-y-2">
                 <li><strong>بيانات التعريف الشخصية:</strong> الاسم الكامل، رقم الهوية، الجنسية، تاريخ الميلاد.</li>
@@ -61,7 +69,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">ثالثاً: الغرض من جمع البيانات الشخصية</h2>
+              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{t.privacy.dataUse}</h2>
               <p>نستخدم البيانات الشخصية التي نجمعها للأغراض التالية:</p>
               <ul className="list-disc pr-6 mt-3 space-y-2">
                 <li>تقديم الخدمات القانونية والاستشارات التي تطلبها.</li>
@@ -75,7 +83,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">رابعاً: تخزين البيانات وحمايتها</h2>
+              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{t.privacy.dataProtection}</h2>
               <p>نتخذ التدابير الأمنية والتقنية والإدارية المناسبة لحماية بياناتك الشخصية من الوصول غير المصرح به أو الإفشاء أو التعديل أو الإتلاف. تشمل هذه التدابير:</p>
               <ul className="list-disc pr-6 mt-3 space-y-2">
                 <li>تشفير البيانات أثناء النقل والتخزين باستخدام بروتوكولات آمنة.</li>
@@ -115,7 +123,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">سابعاً: ملفات تعريف الارتباط (الكوكيز)</h2>
+              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{t.privacy.cookies}</h2>
               <p>يستخدم موقعنا الإلكتروني ملفات تعريف الارتباط (كوكيز) لتحسين تجربة التصفح وتحليل استخدام الموقع. يمكنك التحكم في إعدادات الكوكيز من خلال متصفحك. نستخدم الأنواع التالية من الكوكيز:</p>
               <ul className="list-disc pr-6 mt-3 space-y-2">
                 <li><strong>كوكيز أساسية:</strong> ضرورية لتشغيل الموقع بشكل صحيح.</li>
@@ -125,7 +133,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">ثامناً: روابط مواقع خارجية</h2>
+              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{t.privacy.thirdParty}</h2>
               <p>قد يحتوي موقعنا على روابط لمواقع خارجية لا تخضع لسياسة الخصوصية هذه. نحن غير مسؤولين عن ممارسات الخصوصية أو محتوى تلك المواقع. ننصحك بمراجعة سياسات الخصوصية الخاصة بكل موقع تزوره.</p>
             </div>
 
@@ -154,7 +162,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">ثالث عشر: الاتصال بنا</h2>
+              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{t.privacy.contact}</h2>
               <p>إذا كانت لديك أي أسئلة أو استفسارات حول سياسة الخصوصية هذه أو ممارساتنا في التعامل مع البيانات الشخصية، يرجى التواصل معنا:</p>
               <ul className="list-disc pr-6 mt-3 space-y-2">
                 <li><strong>البريد الإلكتروني:</strong> info@qimam-law.com</li>

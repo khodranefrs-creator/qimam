@@ -4,6 +4,8 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Link from "next/link"
 import { Calendar, ArrowLeft } from "lucide-react"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export const dynamic = 'force-dynamic'
 
@@ -39,6 +41,8 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   const cs = await prisma.caseStudy.findUnique({ where: { slug } }) as CaseStudyData | null
   if (!cs || !cs.published) notFound()
 
@@ -53,9 +57,9 @@ export default async function CaseStudyPage({
       <div className="bg-primary text-text-light py-4">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <Link href="/case-studies" className="hover:text-accent-gold transition-colors">دراسات الحالة</Link>
+            <Link href="/case-studies" className="hover:text-accent-gold transition-colors">{t.caseStudies.title}</Link>
             <span>/</span>
             <span className="text-accent-gold truncate">{cs.title}</span>
           </div>
@@ -72,7 +76,7 @@ export default async function CaseStudyPage({
 
           <Link href="/case-studies" className="inline-flex items-center gap-1 text-accent-gold hover:text-accent-gold/80 transition-colors mb-6 text-sm">
             <ArrowLeft className="w-4 h-4" />
-            <span>العودة لدراسات الحالة</span>
+            <span>{t.caseStudies.backToStudies}</span>
           </Link>
 
           <h1 className="text-[clamp(1.75rem,4vw,2.5rem)] font-heading font-bold mb-4">{cs.title}</h1>
@@ -102,7 +106,7 @@ export default async function CaseStudyPage({
           <div className="bg-white rounded-xl border border-border p-8 md:p-12 shadow-card">
             {cs.outcomeSummary && (
               <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl">
-                <h2 className="font-heading font-bold text-green-800 mb-2">ملخص النتيجة</h2>
+                <h2 className="font-heading font-bold text-green-800 mb-2">{t.caseStudies.outcome}</h2>
                 <p className="text-green-700 leading-[1.7]">{cs.outcomeSummary}</p>
               </div>
             )}
@@ -115,7 +119,7 @@ export default async function CaseStudyPage({
 
           {relatedCaseStudies.length > 0 && (
             <div className="mt-16">
-              <h2 className="text-2xl font-heading font-bold text-primary mb-8">دراسات حالة ذات صلة</h2>
+              <h2 className="text-2xl font-heading font-bold text-primary mb-8">{t.caseStudies.title}</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {relatedCaseStudies.map((rcs) => (
                   <Link key={rcs.id} href={`/case-studies/${rcs.slug}`} className="group">

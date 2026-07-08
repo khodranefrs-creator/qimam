@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Scale, Shield, Award } from 'lucide-react'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -14,13 +16,16 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
 }
 
-const badges = [
-  { icon: Scale, label: 'خبرة قانونية رفيعة' },
-  { icon: Shield, label: 'ترخيص هيئة المحامين' },
-  { icon: Award, label: 'توثيق وزارة العدل' },
-]
-
 export function Hero() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
+  const badges = [
+    { icon: Scale, label: t.home.badge1 },
+    { icon: Shield, label: t.home.badge2 },
+    { icon: Award, label: t.home.badge3 },
+  ]
+
   return (
     <section className="relative min-h-screen bg-primary flex items-center overflow-hidden">
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
@@ -37,23 +42,20 @@ export function Hero() {
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-text-light leading-tight mb-6">
-            خبرة قانونية{' '}
-            <span className="gradient-text-gold">رفيعة</span>
-            {' '}في مكة المكرمة
+            {t.home.heroTitle}
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-muted leading-relaxed max-w-2xl mb-10">
-            شركة قمم اليقين للمحاماة والاستشارات القانونية — نقدم حلولاً قانونية متكاملة
-            في القضايا التجارية والمدنية والجزائية بخبرة تمتد لسنوات في المحاكم السعودية.
+            {t.home.heroDesc}
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
             <Link href="/consultation" className="inline-flex items-center gap-2 px-8 py-4 bg-accent-gold text-primary font-semibold text-base rounded-[8px] hover:bg-accent-gold/90 transition-all duration-300 shadow-gold hover:shadow-[0_4px_25px_rgba(176,141,87,0.35)]">
-              احجز استشارة مجانية
+              {t.home.heroCta}
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <Link href="/about" className="inline-flex items-center px-8 py-4 border border-accent-gold/30 text-accent-gold font-medium text-base rounded-[8px] hover:bg-accent-gold/10 transition-all duration-300">
-              تعرف علينا
+              {t.home.heroAbout}
             </Link>
           </motion.div>
 

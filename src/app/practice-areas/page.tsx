@@ -3,12 +3,18 @@ import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 import { Search, ArrowLeft, Briefcase, Building2, Scale, Home, Heart, BookOpen, Gavel, FileText, Users, Shield, Handshake, Lightbulb, DollarSign, MessageSquare, Stamp } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
-  title: "مجالات الممارسة القانونية",
-  description: "مجالات خبرتنا القانونية في مكة المكرمة — القانون التجاري، قانون الشركات، التقاضي، القانون العقاري، الأحوال الشخصية، المواريث، وأكثر.",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
+  return {
+    title: t.practiceAreas.title,
+    description: t.practiceAreas.description,
+  }
 }
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -23,6 +29,8 @@ async function getPracticeAreas() {
 }
 
 export default async function PracticeAreasPage() {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   const areas = await getPracticeAreas()
 
   return (
@@ -30,9 +38,9 @@ export default async function PracticeAreasPage() {
       <div className="bg-primary text-text-light py-4">
         <div className="container-custom">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <span className="text-accent-gold">مجالات الممارسة</span>
+            <span className="text-accent-gold">{t.practiceAreas.title}</span>
           </div>
         </div>
       </div>
@@ -40,10 +48,10 @@ export default async function PracticeAreasPage() {
       <section className="section-padding bg-primary text-text-light">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-6">مجالات الممارسة القانونية</h1>
+            <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-6">{t.practiceAreas.title}</h1>
             <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-8" />
             <p className="text-lg leading-[1.8] text-text-muted">
-              نقدم مجموعة شاملة من الخدمات القانونية في مختلف التخصصات لتلبية احتياجات عملائنا في مكة المكرمة وجميع مناطق المملكة العربية السعودية.
+              {t.practiceAreas.description}
             </p>
           </div>
         </div>
@@ -57,7 +65,7 @@ export default async function PracticeAreasPage() {
             </div>
             <input
               type="text"
-              placeholder="ابحث في مجالات الممارسة..."
+              placeholder={t.practiceAreas.searchPlaceholder}
               className="w-full h-12 bg-white border border-border/60 rounded-[8px] pr-12 pl-4 text-text-dark placeholder:text-text-muted/60 text-sm focus:outline-none focus:border-accent-gold/50 focus:ring-1 focus:ring-accent-gold/20 transition-all shadow-sm"
             />
           </div>
@@ -65,7 +73,7 @@ export default async function PracticeAreasPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {areas.length === 0 && (
               <div className="col-span-full text-center py-12">
-                <p className="text-text-muted">لا توجد مجالات ممارسة منشورة حاليًا.</p>
+                <p className="text-text-muted">{t.practiceAreas.noAreas}</p>
               </div>
             )}
             {areas.map((area) => {
@@ -86,7 +94,7 @@ export default async function PracticeAreasPage() {
                   {area.content && (
                     <div className="mt-3 pt-3 border-t border-border/40">
                       <span className="text-accent-gold text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                        اقرأ المزيد
+                        {t.common.readMore}
                         <ArrowLeft className="w-3 h-3" />
                       </span>
                     </div>
@@ -100,14 +108,14 @@ export default async function PracticeAreasPage() {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold mb-6">لم تجد مجال تخصصك؟</h2>
-          <p className="text-text-muted mb-8">نحن نغطي مجموعة واسعة من التخصصات القانونية، تواصل معنا لاستشارة مخصصة</p>
+          <h2 className="text-2xl font-heading font-bold mb-6">{t.practiceAreas.ctaTitle}</h2>
+          <p className="text-text-muted mb-8">{t.practiceAreas.ctaDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">
-              <Button variant="primary" size="lg">احجز استشارة مجانية</Button>
+              <Button variant="primary" size="lg">{t.practiceAreas.ctaBooking}</Button>
             </Link>
             <Link href="/contact">
-              <Button variant="secondary" size="lg">تواصل معنا</Button>
+              <Button variant="secondary" size="lg">{t.nav.contactUs}</Button>
             </Link>
           </div>
         </div>

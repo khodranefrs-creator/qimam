@@ -4,6 +4,8 @@ import { notFound } from "next/navigation"
 import { prisma } from "@/lib/prisma"
 import { ArrowLeft, CheckCircle2, Phone, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export const dynamic = 'force-dynamic'
 
@@ -37,12 +39,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   const area = await prisma.practiceArea.findUnique({ where: { slug } })
   if (!area) return {}
 
   return {
-    title: area.metaTitle || `${area.title} | شركة قمم اليقين للمحاماة`,
-    description: area.metaDescription || `استشارات قانونية متخصصة في ${area.title} في مكة المكرمة — خبرة قانونية احترافية في ${area.title}.`,
+    title: area.metaTitle || `${area.title} | ${t.site.fullName}`,
+    description: area.metaDescription || `${t.practiceAreas.description} — ${area.title}.`,
     ...(area.ogImage && {
       openGraph: { images: [{ url: area.ogImage }] },
       twitter: { images: [area.ogImage] },
@@ -52,6 +56,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function PracticeAreaPage({ params }: { params: Params }) {
   const { slug } = await params
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   const area = await getPracticeArea(slug)
   if (!area) notFound()
 
@@ -60,12 +66,12 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LegalService",
-    name: `${area.title} — شركة قمم اليقين للمحاماة`,
+    name: `${area.title} — ${t.site.fullName}`,
     description: area.description,
     url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/practice-areas/${slug}`,
     provider: {
       "@type": "Organization",
-      name: "شركة قمم اليقين للمحاماة والاستشارات القانونية",
+      name: t.site.fullName,
       address: {
         "@type": "PostalAddress",
         streetAddress: "شارع النسيم العام",
@@ -81,7 +87,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
     ...(faqs.length > 0 && {
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "الأسئلة الشائعة",
+        name: t.faq.title,
         itemListElement: faqs.map((f, i) => ({
           "@type": "Offer",
           itemOffered: {
@@ -105,9 +111,9 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
       <div className="bg-primary text-text-light py-4">
         <div className="container-custom">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <Link href="/practice-areas" className="hover:text-accent-gold transition-colors">مجالات الممارسة</Link>
+            <Link href="/practice-areas" className="hover:text-accent-gold transition-colors">{t.practiceAreas.title}</Link>
             <span>/</span>
             <span className="text-accent-gold">{area.title}</span>
           </div>
@@ -122,7 +128,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
               className="inline-flex items-center gap-1 text-text-muted hover:text-accent-gold text-sm transition-colors mb-6"
             >
               <ArrowLeft className="w-4 h-4" />
-              العودة إلى مجالات الممارسة
+              {t.practiceAreas.backToAreas}
             </Link>
             <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-6">{area.title}</h1>
             <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mb-8" />
@@ -143,7 +149,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
                 ))}
               </div>
             ) : (
-              <p className="text-text-muted text-center py-12">سيتم إضافة المحتوى قريبًا.</p>
+              <p className="text-text-muted text-center py-12">{t.practiceAreas.contentComingSoon}</p>
             )}
           </div>
         </div>
@@ -153,15 +159,15 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="p-8 md:p-10 rounded-2xl bg-secondary border border-border/60">
-              <h2 className="text-2xl font-heading font-bold mb-6 text-center">لماذا تختار شركة قمم اليقين؟</h2>
+              <h2 className="text-2xl font-heading font-bold mb-6 text-center">{t.practiceAreas.whyChooseTitle}</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {[
-                  "فريق قانوني متخصص وذو خبرة عالية",
-                  "فهم عميق للأنظمة السعودية والتطورات التشريعية",
-                  "خدمات التوثيق المعتمد داخل المكتب (موثّق معتمد)",
-                  "شفافية تامة في الإجراءات والتكاليف",
-                  "سرعة في الاستجابة والإنجاز",
-                  "سمعة مرموقة وتقييمات 5 نجوم من العملاء",
+                  t.practiceAreas.checklist1,
+                  t.practiceAreas.checklist2,
+                  t.practiceAreas.checklist3,
+                  t.practiceAreas.checklist4,
+                  t.practiceAreas.checklist5,
+                  t.practiceAreas.checklist6,
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent-gold shrink-0" />
@@ -178,7 +184,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
         <section className="section-padding bg-secondary">
           <div className="container-custom">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl font-heading font-bold text-center mb-10">أسئلة شائعة</h2>
+              <h2 className="text-2xl font-heading font-bold text-center mb-10">{t.faq.title}</h2>
               <div className="space-y-4">
                 {faqs.map((faq) => (
                   <details
@@ -204,7 +210,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
                   href="/faq"
                   className="inline-flex items-center gap-1 text-accent-gold text-sm font-medium hover:text-accent-gold-light transition-colors"
                 >
-                  عرض جميع الأسئلة الشائعة
+                  {t.practiceAreas.viewAllFaqs}
                   <ArrowLeft className="w-4 h-4" />
                 </Link>
               </div>
@@ -215,16 +221,16 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold mb-6">هل تحتاج إلى استشارة قانونية في {area.title}؟</h2>
-          <p className="text-text-muted mb-8">فريقنا القانوني مستعد للإجابة على استفساراتكم وتقديم الحلول المناسبة</p>
+          <h2 className="text-2xl font-heading font-bold mb-6">{t.practiceAreas.ctaAreaTitle} {area.title}؟</h2>
+          <p className="text-text-muted mb-8">{t.practiceAreas.ctaAreaDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">
-              <Button variant="primary" size="lg">احجز استشارة</Button>
+                  <Button variant="primary" size="lg">{t.nav.consultation}</Button>
             </Link>
             <a href="https://wa.me/966565555437" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" size="lg">
                 <MessageCircle className="w-4 h-4" />
-                تواصل عبر واتساب
+                {t.common.contactWhatsapp}
               </Button>
             </a>
             <a href="tel:+966565555437">

@@ -5,12 +5,18 @@ import {
   MessageSquare, FileEdit, Scale, Stamp, Handshake, ArrowLeft,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
-  title: "الخدمات القانونية",
-  description: "خدمات قانونية احترافية في مكة المكرمة — استشارات، صياغة عقود، تمثيل قانوني، توثيق معتمد، تحكيم تجاري.",
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
+  return {
+    title: t.services.title,
+    description: t.services.description,
+  }
 }
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -25,6 +31,8 @@ async function getServices() {
 }
 
 export default async function ServicesPage() {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   const services = await getServices()
 
   return (
@@ -32,9 +40,9 @@ export default async function ServicesPage() {
       <div className="bg-primary text-text-light py-4">
         <div className="container-custom">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <span className="text-accent-gold">الخدمات</span>
+            <span className="text-accent-gold">{t.services.title}</span>
           </div>
         </div>
       </div>
@@ -42,10 +50,10 @@ export default async function ServicesPage() {
       <section className="section-padding bg-primary text-text-light">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-6">خدماتنا القانونية</h1>
+            <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-6">{t.services.title}</h1>
             <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-8" />
             <p className="text-lg leading-[1.8] text-text-muted">
-              نقدم مجموعة متكاملة من الخدمات القانونية التي تلبي احتياجات الأفراد والشركات في مكة المكرمة وجميع مناطق المملكة.
+              {t.services.description}
             </p>
           </div>
         </div>
@@ -56,7 +64,7 @@ export default async function ServicesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {services.length === 0 && (
               <div className="col-span-full text-center py-12">
-                <p className="text-text-muted">لا توجد خدمات منشورة حاليًا.</p>
+                <p className="text-text-muted">{t.common.noData}</p>
               </div>
             )}
             {services.map((service) => {
@@ -89,15 +97,15 @@ export default async function ServicesPage() {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold mb-6">هل تبحث عن خدمة قانونية محددة؟</h2>
-          <p className="text-text-muted mb-8">تواصل معنا وسنقدم لك الحل القانوني المناسب</p>
+          <h2 className="text-2xl font-heading font-bold mb-6">{t.practiceAreas.ctaTitle}</h2>
+          <p className="text-text-muted mb-8">{t.practiceAreas.ctaDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">
-              <Button variant="primary" size="lg">اطلب الخدمة الآن</Button>
+              <Button variant="primary" size="lg">{t.services.requestService}</Button>
             </Link>
             <Link href="/practice-areas">
               <Button variant="secondary" size="lg">
-                مجالات الممارسة
+                {t.practiceAreas.title}
                 <ArrowLeft className="w-4 h-4" />
               </Button>
             </Link>

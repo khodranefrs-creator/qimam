@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Building2, Scale, Briefcase, Home, Heart, BookOpen, Gavel, FileText, Landmark, Users, Shield } from 'lucide-react'
 import type { PracticeArea } from '@prisma/client'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2, Scale, Briefcase, Home, Heart, BookOpen, Gavel, FileText, Landmark, Users, Shield,
@@ -14,13 +16,17 @@ interface Props {
 }
 
 export function PracticeAreasGrid({ areas }: Props) {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
+  const pa = t.practiceAreas as unknown as Record<string, { title: string; desc: string }>
   const defaultAreas = areas.length > 0 ? areas : [
-    { id: '1', slug: 'commercial-law', title: 'القانون التجاري', description: 'استشارات وحلول قانونية متكاملة في المنازعات التجارية والتعاقدات.', icon: 'Briefcase' },
-    { id: '2', slug: 'corporate-law', title: 'قانون الشركات وتأسيسها', description: 'تأسيس وإدارة الشركات وهياكل الحوكمة والاندماج والاستحواذ.', icon: 'Building2' },
-    { id: '3', slug: 'litigation', title: 'التقاضي والمرافعات', description: 'تمثيل قانوني أمام المحاكم السعودية في جميع درجات التقاضي.', icon: 'Scale' },
-    { id: '4', slug: 'real-estate-law', title: 'القانون العقاري', description: 'استشارات عقارية شاملة في البيع والشراء والإيجار والتطوير.', icon: 'Home' },
-    { id: '5', slug: 'family-law', title: 'الأحوال الشخصية', description: 'قضايا الأسرة والنفقة والحضانة والطلاق والخلع.', icon: 'Heart' },
-    { id: '6', slug: 'inheritance-law', title: 'المواريث والوصايا', description: 'تقسيم التركات وتوثيق الوصايا وفق الشريعة الإسلامية.', icon: 'BookOpen' },
+    { id: '1', slug: 'commercial-law', title: pa.commercial.title, description: pa.commercial.desc, icon: 'Briefcase' },
+    { id: '2', slug: 'corporate-law', title: pa.corporate.title, description: pa.corporate.desc, icon: 'Building2' },
+    { id: '3', slug: 'litigation', title: pa.litigation.title, description: pa.litigation.desc, icon: 'Scale' },
+    { id: '4', slug: 'real-estate-law', title: pa.realEstate.title, description: pa.realEstate.desc, icon: 'Home' },
+    { id: '5', slug: 'family-law', title: pa.family.title, description: pa.family.desc, icon: 'Heart' },
+    { id: '6', slug: 'inheritance-law', title: pa.inheritance.title, description: pa.inheritance.desc, icon: 'BookOpen' },
   ]
 
   return (
@@ -35,14 +41,14 @@ export function PracticeAreasGrid({ areas }: Props) {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium">مجالات الممارسة</span>
+            <span className="text-accent-gold text-sm font-medium">{t.nav.practiceAreas}</span>
             <span className="w-8 h-px bg-accent-gold/60" />
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4">
-            مجالات خبرتنا القانونية
+            {t.home.practiceAreasTitle}
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">
-            نقدم مجموعة شاملة من الخدمات القانونية في مختلف التخصصات لتلبية احتياجات عملائنا
+            {t.home.practiceAreasDesc}
           </p>
         </motion.div>
 
@@ -82,7 +88,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           className="text-center mt-10"
         >
           <Link href="/practice-areas" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
-            عرض جميع مجالات الممارسة
+            {t.nav.viewAllAreas}
             <ArrowLeft className="w-4 h-4" />
           </Link>
         </motion.div>

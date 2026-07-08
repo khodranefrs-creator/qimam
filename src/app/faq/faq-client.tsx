@@ -4,6 +4,8 @@ import { useState } from "react"
 import { ChevronDown, Search } from "lucide-react"
 import * as Accordion from "@radix-ui/react-accordion"
 import { cn } from "@/lib/utils"
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 interface FaqItem {
   id: string
@@ -19,6 +21,8 @@ export function FaqClient({
   faqs: FaqItem[]
   categories: string[]
 }) {
+  const locale = useLocale()
+  const t = getTranslations(locale)
   const [search, setSearch] = useState("")
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [openItems, setOpenItems] = useState<string[]>([])
@@ -38,7 +42,7 @@ export function FaqClient({
         <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
         <input
           type="text"
-          placeholder="ابحث في الأسئلة الشائعة..."
+          placeholder={t.faq.searchPlaceholder}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full pr-12 pl-4 py-3 bg-white border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark placeholder:text-text-muted"
@@ -56,7 +60,7 @@ export function FaqClient({
                 : "bg-white text-text-muted border-border hover:border-accent-gold"
             )}
           >
-            الكل
+            {t.faq.all}
           </button>
           {categories.map((cat) => (
             <button
@@ -77,7 +81,7 @@ export function FaqClient({
 
       {filtered.length === 0 ? (
         <div className="text-center py-12 text-text-muted">
-          <p>لا توجد نتائج مطابقة. حاول تغيير كلمات البحث.</p>
+          <p>{t.faq.noResults}</p>
         </div>
       ) : (
         <Accordion.Root

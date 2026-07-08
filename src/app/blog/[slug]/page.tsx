@@ -6,17 +6,15 @@ import Link from "next/link"
 import { Calendar, Clock } from "lucide-react"
 import { ReadingProgress } from "@/components/blog/reading-progress"
 import { ShareButtons } from "@/components/blog/share-buttons"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export const dynamic = 'force-dynamic'
 
-function formatReadingTime(minutes: number | null): string {
+function formatReadingTime(minutes: number | null, t: ReturnType<typeof getTranslations>): string {
   if (!minutes) return ""
-  if (minutes < 1) return "أقل من دقيقة"
-  if (minutes < 10) return `${minutes} دقائق`
-  if (minutes < 60) return `${minutes} دقيقة`
-  const hours = Math.floor(minutes / 60)
-  const mins = minutes % 60
-  return mins > 0 ? `${hours} س و ${mins} د` : `${hours} س`
+  if (minutes < 1) return t.blog.lessThanMin
+  return `${minutes} ${t.blog.readTime}`
 }
 
 export async function generateStaticParams() {
@@ -56,6 +54,8 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+  const locale = await getLocale()
+  const t = getTranslations(locale)
   const post = await prisma.blogPost.findUnique({ where: { slug } }) as BlogPostData | null
   if (!post || !post.published) notFound()
 
@@ -82,11 +82,11 @@ export default async function BlogPostPage({
     dateModified: post.updatedAt,
     author: {
       "@type": "Person",
-      name: post.author || "فريق شركة قمم اليقين للمحاماة",
+      name: post.author || t.blog.title,
     },
     publisher: {
       "@type": "Organization",
-      name: "شركة قمم اليقين للمحاماة والاستشارات القانونية",
+      name: t.site.fullName,
       logo: {
         "@type": "ImageObject",
         url: `${siteUrl}/logo.png`,
@@ -110,9 +110,9 @@ export default async function BlogPostPage({
       <div className="bg-primary text-text-light py-4">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">الرئيسية</Link>
+            <Link href="/">{t.nav.home}</Link>
             <span>/</span>
-            <Link href="/blog" className="hover:text-accent-gold transition-colors">المدونة</Link>
+            <Link href="/blog" className="hover:text-accent-gold transition-colors">{t.blog.title}</Link>
             <span>/</span>
             <span className="text-accent-gold truncate">{post.title}</span>
           </div>
@@ -149,7 +149,7 @@ export default async function BlogPostPage({
             {post.readingTime && (
               <span className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
-                {formatReadingTime(post.readingTime)}
+                {formatReadingTime(post.readingTime, t)}
               </span>
             )}
             {post.category && (
@@ -177,7 +177,7 @@ export default async function BlogPostPage({
 
           {relatedPosts.length > 0 && (
             <div className="mt-16">
-              <h2 className="text-2xl font-heading font-bold text-primary mb-8">مقالات ذات صلة</h2>
+              <h2 className="text-2xl font-heading font-bold text-primary mb-8">{t.blog.relatedPosts}</h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedPosts.map((rp) => (
                   <Link key={rp.id} href={`/blog/${rp.slug}`} className="group">
@@ -186,7 +186,7 @@ export default async function BlogPostPage({
                         {rp.coverImage ? (
                           <img src={rp.coverImage} alt={rp.title} className="w-full h-full object-cover" />
                         ) : (
-                          <span>صورة</span>
+                          <span>{t.common.noData}</span>
                         )}
                       </div>
                       <div className="p-4">

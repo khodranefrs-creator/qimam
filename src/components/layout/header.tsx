@@ -17,7 +17,21 @@ import {
   BookOpen,
 } from 'lucide-react'
 import Image from 'next/image'
+import { LocaleSwitcher } from '@/components/shared/locale-switcher'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 import { cn } from '@/lib/utils'
+
+const megaIcons = {
+  Briefcase,
+  Building2,
+  Scale,
+  Home,
+  Heart,
+  BookOpen,
+} as const
+
+type MegaIconKey = keyof typeof megaIcons
 
 interface MegaItem {
   label: string
@@ -32,27 +46,18 @@ interface NavItem {
   children?: MegaItem[]
 }
 
-const practiceAreaItems: MegaItem[] = [
-  { label: 'القانون التجاري', href: '/practice-areas/commercial-law', description: 'استشارات وحلول قانونية متكاملة', icon: Briefcase },
-  { label: 'قانون الشركات وتأسيسها', href: '/practice-areas/corporate-law', description: 'تأسيس وإدارة الشركات', icon: Building2 },
-  { label: 'التقاضي والمرافعات', href: '/practice-areas/litigation', description: 'تمثيل قانوني أمام المحاكم', icon: Scale },
-  { label: 'القانون العقاري', href: '/practice-areas/real-estate-law', description: 'استشارات عقارية شاملة', icon: Home },
-  { label: 'الأحوال الشخصية', href: '/practice-areas/family-law', description: 'قضايا الأسرة والأحوال الشخصية', icon: Heart },
-  { label: 'المواريث والوصايا', href: '/practice-areas/inheritance-law', description: 'تقسيم التركات وتوثيق الوصايا', icon: BookOpen },
-]
-
-const navItems: NavItem[] = [
-  { label: 'الرئيسية', href: '/' },
-  { label: 'من نحن', href: '/about' },
-  { label: 'المحامي', href: '/lawyer' },
-  { label: 'مجالات الممارسة', href: '/practice-areas', children: practiceAreaItems },
-  { label: 'الخدمات', href: '/services' },
-  { label: 'المدونة', href: '/blog' },
-  { label: 'الأسئلة الشائعة', href: '/faq' },
-  { label: 'تواصل معنا', href: '/contact' },
+const areaKeys: { key: MegaIconKey; slug: string }[] = [
+  { key: 'Briefcase', slug: '/practice-areas/commercial-law' },
+  { key: 'Building2', slug: '/practice-areas/corporate-law' },
+  { key: 'Scale', slug: '/practice-areas/litigation' },
+  { key: 'Home', slug: '/practice-areas/real-estate-law' },
+  { key: 'Heart', slug: '/practice-areas/family-law' },
+  { key: 'BookOpen', slug: '/practice-areas/inheritance-law' },
 ]
 
 export default function Header() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
@@ -79,6 +84,25 @@ export default function Header() {
     megaTimeoutRef.current = setTimeout(() => setMegaOpen(false), 150)
   }
 
+  const dd = t.nav.practiceAreasDropDown as unknown as Record<string, { label: string; desc: string }>
+  const practiceAreaItems: MegaItem[] = areaKeys.map(({ key, slug }) => ({
+    label: dd[key]?.label || key,
+    href: slug,
+    description: dd[key]?.desc || '',
+    icon: megaIcons[key],
+  }))
+
+  const navItems: NavItem[] = [
+    { label: t.nav.home, href: '/' },
+    { label: t.nav.about, href: '/about' },
+    { label: t.nav.lawyer, href: '/lawyer' },
+    { label: t.nav.practiceAreas, href: '/practice-areas', children: practiceAreaItems },
+    { label: t.nav.services, href: '/services' },
+    { label: t.nav.blog, href: '/blog' },
+    { label: t.nav.faq, href: '/faq' },
+    { label: t.nav.contact, href: '/contact' },
+  ]
+
   return (
     <header
       className={cn(
@@ -91,7 +115,7 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-3 group">
             <Image
               src="/logo.png"
-              alt="شركة قمم اليقين للمحاماة والاستشارات القانونية"
+              alt={t.common.firmName}
               width={160}
               height={44}
               className="h-9 md:h-11 w-auto object-contain"
@@ -161,7 +185,7 @@ export default function Header() {
                             href="/practice-areas"
                             className="col-span-2 text-center text-sm text-accent-gold hover:text-accent-gold-light transition-colors duration-200 pt-4 border-t border-border-dark/50 mt-2"
                           >
-                            عرض جميع مجالات الممارسة ←
+                            {t.nav.viewAllAreas}
                           </Link>
                         </motion.div>
                       )}
@@ -188,28 +212,26 @@ export default function Header() {
             <a
               href="tel:+966565555437"
               className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-light/80 hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300 focus-ring-gold"
-              aria-label="اتصل بنا"
+              aria-label={t.nav.contactUs}
             >
               <Phone className="w-4 h-4" />
             </a>
 
-            <span className="hidden sm:flex items-center gap-1.5 text-xs text-text-muted">
-              <span className="text-accent-gold font-medium">AR</span>
-              <span className="text-text-light/20">|</span>
-              <span className="hover:text-text-light cursor-pointer transition-colors">EN</span>
+            <span className="hidden sm:flex items-center">
+              <LocaleSwitcher />
             </span>
 
             <Link
               href="/consultation"
               className="hidden sm:inline-flex items-center px-5 py-2.5 bg-accent-gold text-primary font-semibold text-sm rounded-[8px] hover:bg-accent-gold/90 active:bg-accent-gold/80 transition-all duration-300 shadow-gold hover:shadow-[0_4px_25px_rgba(176,141,87,0.35)]"
             >
-              احجز استشارة
+              {t.nav.consultation}
             </Link>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden flex items-center justify-center w-10 h-10 text-text-light focus-ring-gold"
-              aria-label={mobileOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
+              aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -250,7 +272,7 @@ export default function Header() {
                 >
                   <Image
                     src="/logo.png"
-                    alt="شركة قمم اليقين للمحاماة والاستشارات القانونية"
+                    alt={t.common.firmName}
                     width={140}
                     height={38}
                     className="h-9 w-auto object-contain"
@@ -260,7 +282,7 @@ export default function Header() {
                 <button
                   onClick={() => setMobileOpen(false)}
                   className="text-text-light/60 hover:text-text-light transition-colors focus-ring-gold"
-                  aria-label="إغلاق القائمة"
+                  aria-label={t.nav.closeMenu}
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -303,7 +325,7 @@ export default function Header() {
                           onClick={() => setMobileOpen(false)}
                           className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-accent-gold hover:text-accent-gold-light transition-colors duration-200"
                         >
-                          عرض الكل ←
+                          {t.nav.viewAll}
                         </Link>
                       </div>
                     )}
@@ -317,14 +339,14 @@ export default function Header() {
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center justify-center w-full px-5 py-3 bg-accent-gold text-primary font-semibold text-sm rounded-[8px] hover:bg-accent-gold/90 transition-all duration-300"
                 >
-                  احجز استشارة
+                  {t.nav.consultation}
                 </Link>
                 <a
                   href="tel:+966565555437"
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-text-light/20 text-text-light/80 rounded-[8px] text-sm hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
                 >
                   <Phone className="w-4 h-4" />
-                  +966 56 555 5437
+                  {t.nav.phone}
                 </a>
               </div>
             </div>

@@ -1,7 +1,14 @@
+'use client'
+
 import Link from 'next/link'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { useLocale } from '@/i18n/use-locale'
+import { getTranslations } from '@/i18n/get-translations'
 
 export function ContactStrip() {
+  const locale = useLocale()
+  const t = getTranslations(locale)
+
   return (
     <section className="bg-secondary border-t border-border/80">
       <div className="container-custom py-14 md:py-16">
@@ -9,7 +16,7 @@ export function ContactStrip() {
           <div>
             <h3 className="font-heading font-bold text-text-dark text-lg mb-5 flex items-center gap-2">
               <MapPin className="w-5 h-5 text-accent-gold" />
-              معلومات الاتصال
+              {t.home.contactTitle}
             </h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
@@ -22,13 +29,13 @@ export function ContactStrip() {
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-accent-gold shrink-0" />
                 <a href="tel:966565555437" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200 ltr:text-left rtl:text-right" dir="ltr">
-                  +966 56 555 5437
+                  {t.common.phone}
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-accent-gold shrink-0" />
                 <a href="mailto:info@qimam-law.com" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200" dir="ltr">
-                  info@qimam-law.com
+                  {t.common.email}
                 </a>
               </div>
             </div>
@@ -37,7 +44,7 @@ export function ContactStrip() {
           <div>
             <h3 className="font-heading font-bold text-text-dark text-lg mb-5 flex items-center gap-2">
               <Clock className="w-5 h-5 text-accent-gold" />
-              ساعات العمل
+              {t.contact.workingHours}
             </h3>
             <div className="space-y-3">
               <div className="flex justify-between items-center">
@@ -58,7 +65,7 @@ export function ContactStrip() {
           <div>
             <h3 className="font-heading font-bold text-text-dark text-lg mb-5 flex items-center gap-2">
               <MapPin className="w-5 h-5 text-accent-gold" />
-              موقعنا
+              {t.footer.mapPlaceholder}
             </h3>
             <Link
               href="https://maps.google.com/?q=Qimam+Al-Yaqin+Law+Firm+Makkah"
@@ -68,7 +75,7 @@ export function ContactStrip() {
             >
               <div className="w-full h-full flex items-center justify-center flex-col gap-2">
                 <MapPin className="w-6 h-6 text-accent-gold/60" />
-                <span className="text-text-muted/50 text-xs">خريطة الموقع</span>
+                <span className="text-text-muted/50 text-xs">{t.footer.mapPlaceholder}</span>
               </div>
             </Link>
             <Link
@@ -78,7 +85,7 @@ export function ContactStrip() {
               className="inline-flex items-center gap-2 mt-3 text-accent-gold text-sm font-medium hover:text-accent-gold-light transition-colors duration-200"
             >
               <MapPin className="w-4 h-4" />
-              احصل على الاتجاهات
+              {t.footer.getDirections}
             </Link>
           </div>
         </div>

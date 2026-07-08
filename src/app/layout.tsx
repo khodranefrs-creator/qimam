@@ -7,59 +7,68 @@ import { Footer } from "@/components/layout";
 import { SkipToContent } from "@/components/shared";
 import { ScrollToTop } from "@/components/shared";
 import { WhatsAppButton } from "@/components/shared";
+import { getLocale } from "@/i18n/get-locale";
+import { localeDirections } from "@/i18n/config";
+import { getTranslations } from "@/i18n/get-translations";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | شركة قمم اليقين للمحاماة",
-    default: "شركة قمم اليقين للمحاماة والاستشارات القانونية",
-  },
-  description:
-    "شركة قمم اليقين للمحاماة والاستشارات القانونية — خبرة قانونية رفيعة في مكة المكرمة. نقدم حلولاً قانونية متكاملة في القضايا التجارية والمدنية والجزائية.",
-  openGraph: {
-    title: "شركة قمم اليقين للمحاماة والاستشارات القانونية",
-    description:
-      "شركة قمم اليقين للمحاماة والاستشارات القانونية — خبرة قانونية رفيعة في مكة المكرمة.",
-    url: siteUrl,
-    siteName: "شركة قمم اليقين للمحاماة والاستشارات القانونية",
-    locale: "ar_SA",
-    type: "website",
-    images: [
-      {
-        url: `${siteUrl}/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "شركة قمم اليقين للمحاماة والاستشارات القانونية",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "شركة قمم اليقين للمحاماة والاستشارات القانونية",
-    description:
-      "شركة قمم اليقين للمحاماة والاستشارات القانونية — خبرة قانونية رفيعة في مكة المكرمة.",
-    images: [`${siteUrl}/og-image.jpg`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: siteUrl,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = getTranslations(locale);
 
-export default function RootLayout({
+  return {
+    title: {
+      template: `%s | ${t.site.fullName}`,
+      default: t.site.fullName,
+    },
+    description: `${t.site.fullName} — ${t.site.tagline} في مكة المكرمة. ${t.footer.description}`,
+    openGraph: {
+      title: t.site.fullName,
+      description: `${t.site.fullName} — ${t.site.tagline} في مكة المكرمة.`,
+      url: siteUrl,
+      siteName: t.site.fullName,
+      locale: locale === 'ar' ? "ar_SA" : "en_US",
+      type: "website",
+      images: [
+        {
+          url: `${siteUrl}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: t.site.fullName,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t.site.fullName,
+      description: `${t.site.fullName} — ${t.site.tagline} في مكة المكرمة.`,
+      images: [`${siteUrl}/og-image.jpg`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    metadataBase: new URL(siteUrl),
+    alternates: {
+      canonical: siteUrl,
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const dir = localeDirections[locale];
+  const t = getTranslations(locale);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "شركة قمم اليقين للمحاماة والاستشارات القانونية",
+    name: t.site.fullName,
     alternateName: "Qimam Al-Yaqin Law Firm",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
@@ -85,7 +94,7 @@ export default function RootLayout({
   };
 
   return (
-    <html dir="rtl" lang="ar" className="h-full">
+    <html dir={dir} lang={locale} className="h-full">
       <head>
         <script
           type="application/ld+json"
@@ -98,7 +107,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col font-body antialiased" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+      <body className={`min-h-full flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>
         <Providers>
           <SkipToContent />
           <Header />
