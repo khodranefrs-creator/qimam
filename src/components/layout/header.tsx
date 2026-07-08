@@ -107,22 +107,26 @@ export default function Header() {
     <header
       className={cn(
         'fixed top-0 right-0 left-0 z-50 transition-all duration-500',
-        scrolled ? 'glass-header' : 'bg-transparent'
+        scrolled
+          ? 'glass-header'
+          : 'bg-gradient-to-b from-black/40 to-transparent'
       )}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-3 group">
+        <div className="flex items-center justify-between h-20 lg:h-24">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-4 group shrink-0">
             <Image
               src="/logo.png"
               alt={t.common.firmName}
-              width={160}
-              height={44}
-              className="h-9 md:h-11 w-auto object-contain"
+              width={220}
+              height={56}
+              className="h-12 md:h-14 w-auto object-contain"
               priority
             />
           </Link>
 
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <div key={item.href} className="relative">
@@ -134,7 +138,7 @@ export default function Header() {
                     <Link
                       href={item.href}
                       className={cn(
-                        'flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 focus-ring-gold',
+                        'flex items-center gap-1 px-3.5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-colors duration-200 focus-ring-gold',
                         isActive(item.href)
                           ? 'text-accent-gold'
                           : 'text-text-light/80 hover:text-text-light'
@@ -143,7 +147,7 @@ export default function Header() {
                       {item.label}
                       <ChevronDown
                         className={cn(
-                          'w-4 h-4 transition-transform duration-300',
+                          'w-3.5 h-3.5 transition-transform duration-300',
                           megaOpen && 'rotate-180'
                         )}
                       />
@@ -195,20 +199,27 @@ export default function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      'px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 focus-ring-gold',
+                      'relative px-3.5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-colors duration-200 focus-ring-gold',
                       isActive(item.href)
                         ? 'text-accent-gold'
                         : 'text-text-light/80 hover:text-text-light'
                     )}
                   >
                     {item.label}
+                    {isActive(item.href) && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute -bottom-px left-3 right-3 h-0.5 bg-accent-gold rounded-full"
+                      />
+                    )}
                   </Link>
                 )}
               </div>
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          {/* Actions */}
+          <div className="flex items-center gap-2.5">
             <a
               href="tel:+966565555437"
               className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-light/80 hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300 focus-ring-gold"
@@ -239,6 +250,7 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Mobile Overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -253,6 +265,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -273,9 +286,9 @@ export default function Header() {
                   <Image
                     src="/logo.png"
                     alt={t.common.firmName}
-                    width={140}
-                    height={38}
-                    className="h-9 w-auto object-contain"
+                    width={180}
+                    height={46}
+                    className="h-11 w-auto object-contain"
                     priority
                   />
                 </Link>

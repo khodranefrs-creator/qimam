@@ -60,11 +60,17 @@
 
 @layer utilities {
   .glass-header {
-    background: rgba(11, 26, 43, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--color-accent-gold);
-    box-shadow: var(--shadow-warm);
+    background: rgba(11, 26, 43, 0.88);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    border-bottom: 1px solid rgba(176, 141, 87, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-header-transparent {
+    background: rgba(11, 26, 43, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   .gold-gradient-border {
@@ -231,13 +237,7 @@
   }
 
   .header-offset {
-    padding-top: 5rem;
-  }
-
-  @media (min-width: 768px) {
-    .header-offset {
-      padding-top: 5rem;
-    }
+    padding-top: 5.5rem;
   }
 
   .focus-ring-visible {
