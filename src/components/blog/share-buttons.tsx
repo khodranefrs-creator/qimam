@@ -30,7 +30,7 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
         <MessageCircle className="w-4 h-4" />
       </a>
       <a
-        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`}
+        href={`https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`}
         target="_blank"
         rel="noopener noreferrer"
         className="w-9 h-9 bg-accent-gold/10 rounded-full flex items-center justify-center text-accent-gold hover:bg-accent-gold/20 transition-colors"
