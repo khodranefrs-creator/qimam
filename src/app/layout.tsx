@@ -11,7 +11,7 @@ import { getLocale } from "@/i18n/get-locale";
 import { localeDirections } from "@/i18n/config";
 import { getTranslations } from "@/i18n/get-translations";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://qimam-lilac.vercel.app";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();

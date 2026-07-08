@@ -44,7 +44,7 @@ export function PracticeAreasGrid({ areas }: Props) {
             <span className="text-accent-gold text-sm font-medium">{t.nav.practiceAreas}</span>
             <span className="w-8 h-px bg-accent-gold/60" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4 text-balance">
             {t.home.practiceAreasTitle}
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">
@@ -52,7 +52,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {defaultAreas.map((area, i) => {
             const Icon = area.icon && iconMap[area.icon] ? iconMap[area.icon] : Briefcase
             return (
@@ -61,19 +61,23 @@ export function PracticeAreasGrid({ areas }: Props) {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const }}
               >
                 <Link
                   href={`/practice-areas/${area.slug}`}
-                  className="group block p-6 bg-white rounded-card border border-border/60 hover:border-accent-gold/30 hover:shadow-gold transition-all duration-300 hover-lift"
+                  className="premium-card-light group block p-6"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-accent-gold/10 flex items-center justify-center mb-4 group-hover:bg-accent-gold/20 transition-colors duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-accent-gold/10 flex items-center justify-center mb-5 group-hover:bg-accent-gold/20 transition-all duration-300">
                     <Icon className="w-6 h-6 text-accent-gold" />
                   </div>
-                  <h3 className="font-heading font-semibold text-text-dark mb-2 group-hover:text-accent-gold transition-colors duration-300">
+                  <h3 className="font-heading font-semibold text-text-dark mb-2.5 text-lg group-hover:text-accent-gold transition-colors duration-300">
                     {area.title}
                   </h3>
-                  <p className="text-text-muted text-sm leading-relaxed">{area.description}</p>
+                  <p className="text-text-muted text-sm leading-[1.7]">{area.description}</p>
+                  <div className="mt-4 flex items-center gap-1.5 text-accent-gold text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>{t.nav.viewAll}</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </div>
                 </Link>
               </motion.div>
             )
@@ -85,11 +89,14 @@ export function PracticeAreasGrid({ areas }: Props) {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-10"
+          className="text-center mt-12"
         >
-          <Link href="/practice-areas" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
+          <Link
+            href="/practice-areas"
+            className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group"
+          >
             {t.nav.viewAllAreas}
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
           </Link>
         </motion.div>
       </div>

@@ -189,6 +189,123 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .gold-border-bottom {
+    border-bottom: 1px solid rgba(176, 141, 87, 0.2);
+  }
+
+  .gold-border-top {
+    border-top: 1px solid rgba(176, 141, 87, 0.2);
+  }
+
+  .premium-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    border: 1px solid rgba(176, 141, 87, 0.15);
+    border-radius: var(--radius-card);
+    transition: all 0.4s var(--ease-expo-out);
+  }
+
+  .premium-card:hover {
+    border-color: rgba(176, 141, 87, 0.35);
+    box-shadow: 0 8px 40px rgba(176, 141, 87, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .premium-card-light {
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    transition: all 0.4s var(--ease-expo-out);
+  }
+
+  .premium-card-light:hover {
+    border-color: var(--color-accent-gold);
+    box-shadow: 0 8px 40px rgba(176, 141, 87, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .text-section {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .header-offset {
+    padding-top: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .header-offset {
+      padding-top: 5rem;
+    }
+  }
+
+  .focus-ring-visible {
+    outline: 2px solid var(--color-accent-gold);
+    outline-offset: 2px;
+    border-radius: var(--radius-button);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: var(--color-accent-gold);
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-button);
+    transition: all 0.3s var(--ease-expo-out);
+    box-shadow: 0 4px 15px rgba(176, 141, 87, 0.25);
+  }
+
+  .btn-primary:hover {
+    background: rgba(176, 141, 87, 0.9);
+    box-shadow: 0 6px 30px rgba(176, 141, 87, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--color-accent-gold);
+    outline-offset: 2px;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: var(--color-accent-gold);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-button);
+    border: 1px solid rgba(176, 141, 87, 0.3);
+    transition: all 0.3s var(--ease-expo-out);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(176, 141, 87, 0.08);
+    border-color: rgba(176, 141, 87, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary:focus-visible {
+    outline: 2px solid var(--color-accent-gold);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .btn-primary,
+    .btn-secondary {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      width: 100%;
+    }
+  }
 }
 
 @keyframes shine {

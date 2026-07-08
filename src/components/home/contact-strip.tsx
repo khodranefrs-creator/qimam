@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { MapPin, Phone, Mail, Navigation } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -10,20 +11,26 @@ export function ContactStrip() {
   const t = getTranslations(locale)
 
   return (
-    <section className="bg-secondary border-t border-border/80">
-      <div className="container-custom py-14 md:py-16">
-        <div className="grid md:grid-cols-3 gap-10 md:gap-8">
-          <div>
+    <section className="bg-secondary border-t border-border/80 overflow-hidden">
+      <div className="container-custom py-16 md:py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+          className="grid md:grid-cols-3 gap-10 md:gap-8"
+        >
+          <div className="space-y-2">
             <h3 className="font-heading font-bold text-text-dark text-lg mb-5 flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-accent-gold" />
+              <span className="w-1 h-5 bg-accent-gold rounded-full" />
               {t.home.contactTitle}
             </h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-text-dark text-sm font-medium">مكة المكرمة</p>
-                  <p className="text-text-muted text-sm">حي العوالي، طريق الموحدين</p>
+                  <p className="text-text-dark text-sm font-medium">{t.contact.address}</p>
+                  <p className="text-text-muted text-sm">{t.contact.addressDetail}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -41,54 +48,53 @@ export function ContactStrip() {
             </div>
           </div>
 
-          <div>
+          <div className="space-y-2">
             <h3 className="font-heading font-bold text-text-dark text-lg mb-5 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-accent-gold" />
+              <span className="w-1 h-5 bg-accent-gold rounded-full" />
               {t.contact.workingHours}
             </h3>
             <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-text-dark text-sm">الأحد – الخميس</span>
-                <span className="text-text-muted text-sm" dir="ltr">٩:٠٠ ص – ٩:٠٠ م</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-text-dark text-sm">الجمعة</span>
-                <span className="text-text-muted text-sm">مغلق</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-text-dark text-sm">السبت</span>
-                <span className="text-text-muted text-sm" dir="ltr">٤:٠٠ م – ٩:٠٠ م</span>
-              </div>
+              {[
+                { day: t.contact.daySunThu, time: t.contact.timeSunThu },
+                { day: t.contact.dayFri, time: t.contact.timeFri },
+                { day: t.contact.daySat, time: t.contact.timeSat },
+              ].map((item) => (
+                <div key={item.day} className="flex justify-between items-center py-2 px-3 rounded-lg bg-white/40">
+                  <span className="text-text-dark text-sm">{item.day}</span>
+                  <span className="text-text-muted text-sm">{item.time}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div>
+          <div className="space-y-2">
             <h3 className="font-heading font-bold text-text-dark text-lg mb-5 flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-accent-gold" />
+              <span className="w-1 h-5 bg-accent-gold rounded-full" />
               {t.footer.mapPlaceholder}
             </h3>
             <Link
               href="https://maps.google.com/?q=Qimam+Al-Yaqin+Law+Firm+Makkah"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full h-[120px] bg-border rounded-card hover:bg-border/80 transition-colors duration-200 overflow-hidden relative"
+              className="block w-full h-[130px] bg-gradient-to-br from-primary-light/10 to-border rounded-card hover:from-primary-light/20 transition-colors duration-200 overflow-hidden relative group"
             >
               <div className="w-full h-full flex items-center justify-center flex-col gap-2">
-                <MapPin className="w-6 h-6 text-accent-gold/60" />
-                <span className="text-text-muted/50 text-xs">{t.footer.mapPlaceholder}</span>
+                <MapPin className="w-6 h-6 text-accent-gold/40 group-hover:text-accent-gold/60 transition-colors duration-200" />
+                <span className="text-text-muted/40 text-xs">{t.footer.mapPlaceholder}</span>
               </div>
+              <div className="absolute inset-0 border border-border/30 rounded-card pointer-events-none" />
             </Link>
             <Link
               href="https://maps.google.com/?q=Qimam+Al-Yaqin+Law+Firm+Makkah"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-3 text-accent-gold text-sm font-medium hover:text-accent-gold-light transition-colors duration-200"
+              className="inline-flex items-center gap-2 text-accent-gold text-sm font-medium hover:text-accent-gold-light transition-colors duration-200 group"
             >
-              <MapPin className="w-4 h-4" />
+              <Navigation className="w-4 h-4" />
               {t.footer.getDirections}
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
