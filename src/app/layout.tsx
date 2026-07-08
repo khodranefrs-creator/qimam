@@ -81,12 +81,6 @@ export default async function RootLayout({
       postalCode: "24221",
       addressCountry: "SA",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      ratingCount: "85",
-      bestRating: "5",
-    },
     priceRange: "$$",
     areaServed: "SA",
     sameAs: ["https://wa.me/966565555437"],
@@ -107,7 +101,7 @@ export default async function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`min-h-full flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`} style={{ fontFamily: "'Tajawal', sans-serif" }}>
+      <body className={`min-h-full flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`}>
         <Providers>
           <SkipToContent />
           <Header />

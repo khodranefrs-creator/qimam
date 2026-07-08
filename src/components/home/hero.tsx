@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Scale, Shield, Award } from 'lucide-react'
+import { ArrowLeft, Scale, Shield, Award, MapPin } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -38,38 +38,29 @@ export function Hero() {
   return (
     <section className="relative min-h-screen bg-primary flex items-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.03]" style={{
+        <div className="absolute inset-0 opacity-[0.04]" style={{
           backgroundImage: `
-            linear-gradient(30deg, #B08D57 12%, transparent 12.5%, transparent 87%, #B08D57 87.5%, #B08D57),
-            linear-gradient(150deg, #B08D57 12%, transparent 12.5%, transparent 87%, #B08D57 87.5%, #B08D57),
-            linear-gradient(30deg, #B08D57 12%, transparent 12.5%, transparent 87%, #B08D57 87.5%, #B08D57),
-            linear-gradient(150deg, #B08D57 12%, transparent 12.5%, transparent 87%, #B08D57 87.5%, #B08D57),
-            linear-gradient(60deg, rgba(176,141,87,0.08) 25%, transparent 25.5%, transparent 75%, rgba(176,141,87,0.08) 75%, rgba(176,141,87,0.08))
+            linear-gradient(30deg, #C6A15B 10%, transparent 10.5%, transparent 90%, #C6A15B 90.5%, #C6A15B)
           `,
-          backgroundSize: '80px 140px',
+          backgroundSize: '100px 100px',
         }} />
 
-        {/* Decorative gold column lines */}
-        <div className="absolute top-0 bottom-0 left-[8%] w-px bg-gradient-to-b from-transparent via-accent-gold/10 to-transparent hidden lg:block" />
-        <div className="absolute top-0 bottom-0 right-[8%] w-px bg-gradient-to-b from-transparent via-accent-gold/10 to-transparent hidden lg:block" />
+        {/* Vertical accent lines */}
+        <div className="absolute top-0 bottom-0 left-[15%] w-px bg-gradient-to-b from-transparent via-accent-gold/15 to-transparent hidden lg:block" />
+        <div className="absolute top-0 bottom-0 right-[15%] w-px bg-gradient-to-b from-transparent via-accent-gold/15 to-transparent hidden lg:block" />
         <div className="absolute top-0 bottom-0 left-[50%] w-px bg-gradient-to-b from-transparent via-accent-gold/05 to-transparent hidden lg:block" />
 
-        {/* Subtle radial glow */}
-        <div className="absolute top-1/3 -left-1/4 w-[600px] h-[600px] rounded-full bg-accent-gold/5 blur-[120px]" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[400px] h-[400px] rounded-full bg-accent-gold/3 blur-[100px]" />
+        {/* Radial glow */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/4 blur-[150px]" />
+        <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] rounded-full bg-accent-gold/2 blur-[120px]" />
 
-        {/* Gavel/Scale decorative icon top-right */}
-        <div className="absolute top-20 right-[10%] opacity-[0.04] hidden lg:block" aria-hidden="true">
-          <Scale className="w-32 h-32 text-accent-gold" />
-        </div>
-
-        {/* Abstract geometric accent bottom-left */}
-        <div className="absolute bottom-20 left-[5%] opacity-[0.03] hidden lg:block" aria-hidden="true">
-          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#B08D57" strokeWidth="0.5">
-            <rect x="10" y="10" width="100" height="100" rx="4" />
-            <rect x="25" y="25" width="70" height="70" rx="2" />
-            <line x1="10" y1="60" x2="110" y2="60" />
-            <line x1="60" y1="10" x2="60" y2="110" />
+        {/* Abstract geometric accent */}
+        <div className="absolute bottom-24 left-[8%] opacity-[0.04] hidden lg:block" aria-hidden="true">
+          <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#C6A15B" strokeWidth="1">
+            <rect x="10" y="10" width="80" height="80" rx="2" />
+            <rect x="25" y="25" width="50" height="50" rx="1" />
+            <line x1="10" y1="50" x2="90" y2="50" />
+            <line x1="50" y1="10" x2="50" y2="90" />
           </svg>
         </div>
       </div>

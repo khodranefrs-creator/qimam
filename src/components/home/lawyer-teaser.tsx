@@ -30,7 +30,7 @@ export function LawyerTeaser() {
           >
             <div className="aspect-[4/5] rounded-2xl bg-gradient-to-b from-primary-light to-primary overflow-hidden border border-border-dark/50 relative">
               <div className="absolute inset-0 opacity-[0.04]" style={{
-                backgroundImage: `radial-gradient(circle at 50% 50%, #B08D57 1px, transparent 1px)`,
+                backgroundImage: `radial-gradient(circle at 50% 50%, #C6A15B 1px, transparent 1px)`,
                 backgroundSize: '24px 24px',
               }} />
               <div className="w-full h-full flex items-center justify-center relative z-10">

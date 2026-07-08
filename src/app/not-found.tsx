@@ -13,11 +13,11 @@ export default async function NotFound() {
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(30deg, #B08D57 12%, transparent 12.5%, transparent 87%, #B08D57 87.5%, #B08D57),
-            linear-gradient(150deg, #B08D57 12%, transparent 12.5%, transparent 87%, #B08D57 87.5%, #B08D57),
-            linear-gradient(30deg, #B08D57 12%, transparent 12.5%, transparent 87%, #B08D57 87.5%, #B08D57),
-            linear-gradient(150deg, #B08D57 12%, transparent 12.5%, transparent 87%, #B08D57 87.5%, #B08D57),
-            linear-gradient(60deg, rgba(176,141,87,0.08) 25%, transparent 25.5%, transparent 75%, rgba(176,141,87,0.08) 75%, rgba(176,141,87,0.08))
+            linear-gradient(30deg, #C6A15B 12%, transparent 12.5%, transparent 87%, #C6A15B 87.5%, #C6A15B),
+            linear-gradient(150deg, #C6A15B 12%, transparent 12.5%, transparent 87%, #C6A15B 87.5%, #C6A15B),
+            linear-gradient(30deg, #C6A15B 12%, transparent 12.5%, transparent 87%, #C6A15B 87.5%, #C6A15B),
+            linear-gradient(150deg, #C6A15B 12%, transparent 12.5%, transparent 87%, #C6A15B 87.5%, #C6A15B),
+            linear-gradient(60deg, rgba(198,161,91,0.08) 25%, transparent 25.5%, transparent 75%, rgba(198,161,91,0.08) 75%, rgba(198,161,91,0.08))
           `,
           backgroundSize: "80px 140px",
         }}

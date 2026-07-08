@@ -14,7 +14,7 @@ export function CtaBanner() {
     <section className="bg-primary relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent" />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
-        backgroundImage: `radial-gradient(circle at 25% 50%, #B08D57 1px, transparent 1px), radial-gradient(circle at 75% 50%, #B08D57 1px, transparent 1px)`,
+        backgroundImage: `radial-gradient(circle at 25% 50%, #C6A15B 1px, transparent 1px), radial-gradient(circle at 75% 50%, #C6A15B 1px, transparent 1px)`,
         backgroundSize: '60px 60px',
       }} />
 
