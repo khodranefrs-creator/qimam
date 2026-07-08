@@ -1,12 +1,13 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
   LayoutDashboard, FileText, Newspaper, Briefcase, Scale,
   Handshake, Star, HelpCircle, CalendarClock, Mail,
-  Image, Search, Users, Download, ChevronDown, X,
+  Search, Users, Download, ChevronDown, X,
 } from "lucide-react"
 import { useState } from "react"
 
@@ -33,13 +34,13 @@ export default function AdminSidebar() {
       )}>
         <div className="flex items-center justify-between px-5 h-16 border-b border-border-dark shrink-0">
           <Link href="/admin/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-accent-gold/20 border border-accent-gold/40 flex items-center justify-center">
-              <span className="text-sm font-heading font-bold text-accent-gold">ق</span>
-            </div>
-            <div>
-              <div className="text-sm font-heading font-bold text-white leading-tight">قمم اليقين</div>
-              <div className="text-[10px] text-accent-gold-light/60">لوحة التحكم</div>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="شركة قمم اليقين"
+              width={100}
+              height={28}
+              className="h-7 w-auto object-contain"
+            />
           </Link>
           <button onClick={() => setOpen(false)} className="text-gray-500 hover:text-accent-gold lg:hidden transition">
             <X size={20} />

@@ -16,6 +16,7 @@ import {
   Heart,
   BookOpen,
 } from 'lucide-react'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 interface MegaItem {
@@ -87,11 +88,15 @@ export default function Header() {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <span className="text-accent-gold text-2xl leading-none transition-transform duration-300 group-hover:scale-110">◆</span>
-            <span className="font-heading text-xl font-bold text-text-light group-hover:text-accent-gold transition-colors duration-300">
-              قمم اليقين
-            </span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <Image
+              src="/logo.png"
+              alt="شركة قمم اليقين للمحاماة والاستشارات القانونية"
+              width={160}
+              height={44}
+              className="h-9 md:h-11 w-auto object-contain"
+              priority
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
@@ -240,13 +245,17 @@ export default function Header() {
               <div className="flex items-center justify-between mb-8">
                 <Link
                   href="/"
-                  className="flex items-center gap-2"
+                  className="flex items-center"
                   onClick={() => setMobileOpen(false)}
                 >
-                  <span className="text-accent-gold text-xl">◆</span>
-                  <span className="font-heading text-lg font-bold text-text-light">
-                    قمم اليقين
-                  </span>
+                  <Image
+                    src="/logo.png"
+                    alt="شركة قمم اليقين للمحاماة والاستشارات القانونية"
+                    width={140}
+                    height={38}
+                    className="h-9 w-auto object-contain"
+                    priority
+                  />
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}

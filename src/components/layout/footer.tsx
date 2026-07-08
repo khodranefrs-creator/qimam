@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react'
 
 const quickLinks = [
@@ -48,13 +49,14 @@ export default function Footer() {
       <div className="container-custom py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           <div>
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
-              <span className="text-accent-gold text-2xl leading-none group-hover:scale-110 transition-transform duration-300">
-                ◆
-              </span>
-              <span className="font-heading text-xl font-bold text-text-light group-hover:text-accent-gold transition-colors duration-300">
-                قمم اليقين
-              </span>
+            <Link href="/" className="block mb-4">
+              <Image
+                src="/logo.png"
+                alt="شركة قمم اليقين للمحاماة والاستشارات القانونية"
+                width={160}
+                height={44}
+                className="h-10 w-auto object-contain"
+              />
             </Link>
             <p className="text-accent-gold font-heading text-sm mb-4">
               الثقة أساس التميز
