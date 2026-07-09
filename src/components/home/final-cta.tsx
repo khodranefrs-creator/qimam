@@ -29,6 +29,7 @@ export function FinalCTASection() {
         >
           <div className="flex items-center justify-center gap-2 mb-5">
             <span className="w-8 h-px bg-accent-gold/60" />
+            <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.home.contactCta}</span>
             <span className="w-8 h-px bg-accent-gold/60" />
           </div>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-heading font-bold text-text-light leading-[1.15] mb-5 text-balance">
