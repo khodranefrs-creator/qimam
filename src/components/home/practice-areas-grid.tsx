@@ -65,18 +65,18 @@ export function PracticeAreasGrid({ areas }: Props) {
               >
                 <Link
                   href={`/practice-areas/${area.slug}`}
-                  className="premium-card-light group block p-6"
+                  className="premium-card-light group block p-7"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-accent-gold/10 flex items-center justify-center mb-5 group-hover:bg-accent-gold/20 transition-all duration-300">
-                    <Icon aria-hidden="true" className="w-6 h-6 text-accent-gold" />
+                  <div className="w-14 h-14 rounded-xl bg-accent-gold/10 flex items-center justify-center mb-6 group-hover:bg-accent-gold/20 transition-all duration-300">
+                    <Icon aria-hidden="true" className="w-7 h-7 text-accent-gold" />
                   </div>
-                  <h3 className="font-heading font-semibold text-text-dark mb-2.5 text-lg group-hover:text-accent-gold transition-colors duration-300">
+                  <h3 className="font-heading font-semibold text-text-dark mb-3 text-xl group-hover:text-accent-gold transition-colors duration-300">
                     {area.title}
                   </h3>
-                  <p className="text-text-muted text-sm leading-[1.7]">{area.description}</p>
-                  <div className="mt-4 flex items-center gap-1.5 text-accent-gold text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-text-muted text-sm leading-[1.8]">{area.description}</p>
+                  <div className="mt-6 flex items-center gap-1.5 text-accent-gold text-xs font-medium">
                     <span>{t.nav.viewAll}</span>
-                    <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5" />
+                    <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
                   </div>
                 </Link>
               </motion.div>

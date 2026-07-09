@@ -2,13 +2,13 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Scale, Shield, Award, MapPin } from 'lucide-react'
+import { ArrowLeft, Scale, Shield, Award, BadgeCheck } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
 }
 
 const itemVariants = {
@@ -16,14 +16,12 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
 }
 
-const statVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const, delay: 0.8 + i * 0.12 },
-  }),
-}
+const trustBadges = [
+  { icon: BadgeCheck, key: 'statsYearsBadge' as const },
+  { icon: Scale, key: 'statsCasesBadge' as const },
+  { icon: Shield, key: 'statsLicensesBadge' as const },
+  { icon: Award, key: 'statsRatingBadge' as const },
+]
 
 export function Hero() {
   const locale = useLocale()
@@ -45,16 +43,12 @@ export function Hero() {
           backgroundSize: '100px 100px',
         }} />
 
-        {/* Vertical accent lines */}
         <div className="absolute top-0 bottom-0 left-[15%] w-px bg-gradient-to-b from-transparent via-accent-gold/15 to-transparent hidden lg:block" />
         <div className="absolute top-0 bottom-0 right-[15%] w-px bg-gradient-to-b from-transparent via-accent-gold/15 to-transparent hidden lg:block" />
-        <div className="absolute top-0 bottom-0 left-[50%] w-px bg-gradient-to-b from-transparent via-accent-gold/05 to-transparent hidden lg:block" />
 
-        {/* Radial glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/4 blur-[150px]" />
         <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] rounded-full bg-accent-gold/2 blur-[120px]" />
 
-        {/* Abstract geometric accent */}
         <div className="absolute bottom-24 left-[8%] opacity-[0.04] hidden lg:block" aria-hidden="true">
           <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#C6A15B" strokeWidth="1">
             <rect x="10" y="10" width="80" height="80" rx="2" />
@@ -74,11 +68,11 @@ export function Hero() {
             <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">Qimam Al-Yaqin Law Firm</span>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-[clamp(2.25rem,5.5vw,3.75rem)] font-heading font-bold text-text-light leading-[1.1] mb-6 text-balance">
+          <motion.h1 variants={itemVariants} className="text-[clamp(2.25rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.05] mb-6 text-balance">
             {t.home.heroTitle}
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-muted leading-[1.75] max-w-xl mb-10 mx-auto lg:mx-0">
+          <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-muted leading-[1.8] max-w-xl mb-10 mx-auto lg:mx-0">
             {t.home.heroDesc}
           </motion.p>
 
@@ -92,53 +86,36 @@ export function Hero() {
               <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true" />
             </Link>
             <Link
-              href="/about"
+              href="/services"
               className="btn-secondary"
               aria-label={t.home.heroAbout}
             >
               {t.home.heroAbout}
             </Link>
           </motion.div>
-
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-6 mt-12 pt-8 border-t border-border-dark/50 justify-center lg:justify-start">
-            {badges.map((badge) => {
-              const Icon = badge.icon
-              return (
-                <div key={badge.label} className="flex items-center gap-2">
-                  <div className="w-9 h-9 rounded-lg bg-accent-gold/10 flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-accent-gold" aria-hidden="true" />
-                  </div>
-                  <span className="text-text-muted text-sm">{badge.label}</span>
-                </div>
-              )
-            })}
-          </motion.div>
         </motion.div>
 
-        {/* Trust indicators row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0, transition: { delay: 1.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border-dark/30 rounded-card overflow-hidden mt-16 max-w-4xl mx-auto lg:mx-0"
+          animate={{ opacity: 1, y: 0, transition: { delay: 1, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
+          className="flex flex-wrap gap-3 mt-16 max-w-4xl mx-auto lg:mx-0 justify-center lg:justify-start"
         >
-          {[
-            { value: t.home.statsYearsValue, label: t.home.statsYears },
-            { value: t.home.statsCasesValue, label: t.home.statsCases },
-            { value: t.home.statsLicensesValue, label: t.home.statsLicenses },
-            { value: t.home.statsRatingValue, label: t.home.statsRating },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              custom={i}
-              variants={statVariants}
-              initial="hidden"
-              animate="visible"
-              className="bg-primary-light/80 backdrop-blur-sm px-6 py-5 text-center"
-            >
-              <div className="text-2xl md:text-3xl font-heading font-bold gradient-text-gold">{stat.value}</div>
-              <div className="text-xs text-text-muted mt-1">{stat.label}</div>
-            </motion.div>
-          ))}
+          {trustBadges.map((badge, i) => {
+            const Icon = badge.icon
+            return (
+              <motion.div
+                key={badge.key}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 1.3 + i * 0.1, duration: 0.4 } }}
+                className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-primary-light/50 backdrop-blur-sm border border-border-dark/30"
+              >
+                <div className="w-8 h-8 rounded-lg bg-accent-gold/10 flex items-center justify-center shrink-0">
+                  <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
+                </div>
+                <span className="text-text-muted text-sm whitespace-nowrap">{t.home[badge.key]}</span>
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
 
