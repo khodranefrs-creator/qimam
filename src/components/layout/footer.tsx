@@ -2,49 +2,53 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 const footerQuickLinks = [
-  { href: '/' },
-  { href: '/about' },
-  { href: '/lawyer' },
-  { href: '/practice-areas' },
-  { href: '/services' },
-  { href: '/case-studies' },
-  { href: '/testimonials' },
-  { href: '/blog' },
-  { href: '/faq' },
-  { href: '/careers' },
-  { href: '/contact' },
+  { href: '/', key: 'home' },
+  { href: '/about', key: 'about' },
+  { href: '/lawyer', key: 'lawyer' },
+  { href: '/practice-areas', key: 'practiceAreas' },
+  { href: '/blog', key: 'blog' },
+  { href: '/contact', key: 'contact' },
 ] as const
 
 const footerAreaLinks = [
-  { href: '/practice-areas/commercial-law' },
-  { href: '/practice-areas/corporate-law' },
-  { href: '/practice-areas/litigation' },
-  { href: '/practice-areas/real-estate-law' },
-  { href: '/practice-areas/family-law' },
-  { href: '/practice-areas/inheritance-law' },
+  { href: '/practice-areas/commercial-law', areaKey: 'commercial' },
+  { href: '/practice-areas/corporate-law', areaKey: 'corporate' },
+  { href: '/practice-areas/litigation', areaKey: 'litigation' },
+  { href: '/practice-areas/real-estate-law', areaKey: 'realEstate' },
+  { href: '/practice-areas/family-law', areaKey: 'family' },
+  { href: '/practice-areas/inheritance-law', areaKey: 'inheritance' },
 ] as const
 
 const socialLinks = [
   {
     href: 'https://x.com/qemmalyaqin',
-    label: 'x',
+    label: 'x' as const,
     icon: () => (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
       </svg>
     ),
   },
   {
     href: 'https://wa.me/966565555437',
-    label: 'whatsapp',
-    icon: () => <MessageCircle className="w-5 h-5" />,
+    label: 'whatsapp' as const,
+    icon: () => <MessageCircle className="w-4 h-4" />,
   },
 ]
+
+const navLabelMap: Record<string, string> = {
+  '/': 'nav.home',
+  '/about': 'nav.about',
+  '/lawyer': 'nav.lawyer',
+  '/practice-areas': 'nav.practiceAreas',
+  '/blog': 'nav.blog',
+  '/contact': 'nav.contact',
+}
 
 export default function Footer() {
   const locale = useLocale()
@@ -54,39 +58,25 @@ export default function Footer() {
   const dd = t.nav.practiceAreasDropDown as unknown as Record<string, { label: string; desc: string }>
   const areaKeyOrder = ['commercial', 'corporate', 'litigation', 'realEstate', 'family', 'inheritance'] as const
 
-  const navLabelMap: Record<string, string> = {
-    '/': t.nav.home,
-    '/about': t.nav.about,
-    '/lawyer': t.nav.lawyer,
-    '/practice-areas': t.nav.practiceAreas,
-    '/services': t.nav.services,
-    '/case-studies': t.caseStudies.title,
-    '/testimonials': t.testimonials.title,
-    '/blog': t.nav.blog,
-    '/faq': t.nav.faq,
-    '/careers': t.careers.title,
-    '/contact': t.nav.contact,
-  }
-
   return (
     <footer className="bg-primary border-t border-accent-gold/20">
-      <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div className="container-custom py-14 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           <div>
             <Link href="/" className="block mb-4">
               <Image
                 src="/logo.png"
                 alt={t.common.firmName}
-              width={69}
-              height={70}
-              className="h-10 w-auto object-contain"
+                width={69}
+                height={70}
+                className="h-12 w-auto object-contain"
               />
             </Link>
-            <p className="text-accent-gold font-heading text-sm mb-4">
+            <p className="text-accent-gold font-heading text-sm mb-3">
               {t.site.tagline}
             </p>
-            <p className="text-text-muted text-muted-on-dark text-sm leading-relaxed mb-6">
-              {t.site.fullName} — {t.footer.description}
+            <p className="text-text-muted text-muted-on-dark text-sm leading-relaxed mb-6 max-w-xs">
+              {t.site.fullName}
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => {
@@ -97,8 +87,8 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-muted text-muted-on-dark hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
-                    aria-label={t.footer[social.label as keyof typeof t.footer]}
+                    className="flex items-center justify-center w-9 h-9 rounded-full border border-text-light/20 text-text-muted text-muted-on-dark hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
+                    aria-label={t.footer[social.label]}
                   >
                     <SocialIcon />
                   </a>
@@ -112,16 +102,21 @@ export default function Footer() {
               {t.footer.quickLinks}
             </h3>
             <ul className="space-y-3">
-              {footerQuickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                  >
-                    {navLabelMap[link.href]}
-                  </Link>
-                </li>
-              ))}
+              {footerQuickLinks.map((link) => {
+                const labelKey = navLabelMap[link.href]
+                const [section, key] = labelKey.split('.')
+                const label = (t as unknown as Record<string, Record<string, string>>)[section][key]
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
           </div>
 
@@ -143,7 +138,7 @@ export default function Footer() {
               <li className="pt-1">
                 <Link
                   href="/practice-areas"
-                  className="text-accent-gold text-sm hover:text-accent-gold-light transition-colors duration-200 inline-flex items-center gap-1"
+                  className="text-accent-gold/80 text-sm hover:text-accent-gold transition-colors duration-200 inline-flex items-center gap-1"
                 >
                   {t.nav.viewAllAreas}
                 </Link>
@@ -173,17 +168,6 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/966565555437"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                >
-                  <MessageCircle aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
-                  {t.footer.whatsapp}
-                </a>
-              </li>
-              <li>
-                <a
                   href="mailto:info@qimamlaw.com"
                   className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
                 >
@@ -191,36 +175,28 @@ export default function Footer() {
                   {t.footer.email}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Clock aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
-                <div>
-                  <span className="text-text-muted text-muted-on-dark text-sm block">{t.footer.workingHours}</span>
-                  <span className="text-text-light/80 text-sm">
-                    {t.footer.satThu}
-                  </span>
-                </div>
-              </li>
             </ul>
           </div>
         </div>
       </div>
 
       <div className="border-t border-border-dark/50">
-        <div className="container-custom py-6">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4 text-xs text-text-muted text-muted-on-dark">
-              <span>
-                &copy; {currentYear} {t.common.firmName}. {t.footer.copyright}
-              </span>
+        <div className="container-custom py-5">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-3">
+            <p className="text-xs text-text-muted text-muted-on-dark">
+              &copy; {currentYear} {t.common.firmName}. {t.footer.copyright}
+            </p>
+            <div className="flex items-center gap-4 text-xs">
               <Link
                 href="/privacy-policy"
-                className="hover:text-accent-gold transition-colors duration-200"
+                className="text-text-muted text-muted-on-dark hover:text-accent-gold transition-colors duration-200"
               >
                 {t.footer.privacy}
               </Link>
+              <span className="text-border-dark/50">|</span>
               <Link
                 href="/terms-of-service"
-                className="hover:text-accent-gold transition-colors duration-200"
+                className="text-text-muted text-muted-on-dark hover:text-accent-gold transition-colors duration-200"
               >
                 {t.footer.terms}
               </Link>

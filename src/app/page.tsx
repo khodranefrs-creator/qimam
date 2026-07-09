@@ -9,7 +9,8 @@ import TestimonialsSlider from "@/components/home/testimonials-slider"
 import { CtaBanner } from "@/components/home/cta-banner"
 import { BlogPreview } from "@/components/home/blog-preview"
 import { FaqPreview } from "@/components/home/faq-preview"
-import { ContactStrip } from "@/components/home/contact-strip"
+import { FinalCTASection } from "@/components/home/final-cta"
+import { ContactOfficeSection } from "@/components/home/contact-office"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import type { Metadata } from "next"
@@ -55,7 +56,8 @@ export default async function HomePage() {
       <CtaBanner />
       <BlogPreview posts={posts} />
       <FaqPreview faqs={faqs} />
-      <ContactStrip />
+      <FinalCTASection />
+      <ContactOfficeSection />
     </>
   )
 }
