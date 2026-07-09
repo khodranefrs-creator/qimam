@@ -54,7 +54,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
           className="text-center mb-14"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
@@ -81,7 +81,7 @@ export function PracticeAreasGrid({ areas }: Props) {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] as const }}
               >
                 <Link
                   href={`/practice-areas/${area.slug}`}

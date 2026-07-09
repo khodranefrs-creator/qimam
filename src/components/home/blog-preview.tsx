@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Clock, BookOpen } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Clock } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -26,8 +26,8 @@ const containerVariants = {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
 }
 
 function truncate(text: string, max: number) {
@@ -49,66 +49,22 @@ export function BlogPreview({ posts }: Props) {
   const t = getTranslations(locale)
 
   if (!posts || posts.length === 0) {
-    return (
-      <section className="bg-secondary section-padding">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-14"
-          >
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="w-8 h-px bg-accent-gold/60" />
-              <span className="text-accent-gold text-sm font-medium">{t.nav.blog}</span>
-              <span className="w-8 h-px bg-accent-gold/60" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4">
-              {t.home.blogTitle}
-            </h2>
-            <p className="text-text-muted max-w-2xl mx-auto">
-              {t.home.blogDesc}
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-lg mx-auto text-center py-12"
-          >
-            <div className="w-16 h-16 rounded-full bg-accent-gold/5 border border-accent-gold/10 flex items-center justify-center mx-auto mb-4">
-              <BookOpen aria-hidden="true" className="w-7 h-7 text-accent-gold/30" />
-            </div>
-            <p className="text-text-muted text-sm">{t.blog.noPosts}</p>
-          </motion.div>
-        </div>
-      </section>
-    )
+    return null
   }
 
   return (
-    <section className="bg-secondary section-padding">
+    <section className="bg-secondary py-14 md:py-16">
       <div className="container-custom">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          className="mb-12"
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium">{t.nav.blog}</span>
-            <span className="w-8 h-px bg-accent-gold/60" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4">
+          <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-dark">
             {t.home.blogTitle}
           </h2>
-          <p className="text-text-muted max-w-2xl mx-auto">
-            {t.home.blogDesc}
-          </p>
         </motion.div>
 
         <motion.div

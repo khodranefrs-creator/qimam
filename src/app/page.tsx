@@ -51,10 +51,10 @@ export default async function HomePage() {
       <PracticeAreasGrid areas={practiceAreas} />
       <ProcessTimeline />
       <WhyQimam />
-      <TestimonialsSlider testimonials={testimonials} />
+      {testimonials.length > 0 && <TestimonialsSlider testimonials={testimonials} />}
       <LawyerTeaser />
-      <BlogPreview posts={posts} />
-      <FaqPreview faqs={faqs} />
+      {posts.length > 0 && <BlogPreview posts={posts} />}
+      {faqs.length > 0 && <FaqPreview faqs={faqs} />}
       <FinalCTASection />
       <ContactOfficeSection />
     </>

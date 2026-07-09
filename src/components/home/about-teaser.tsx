@@ -2,54 +2,47 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Scale, Shield, FileCheck, Award } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Scale } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
+
+const highlights = [
+  { key: 'aboutHighlight1' },
+  { key: 'aboutHighlight2' },
+  { key: 'aboutHighlight3' },
+  { key: 'aboutHighlight4' },
+]
 
 export function AboutTeaser() {
   const locale = useLocale()
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
-  const highlights = [
-    { icon: Scale, label: t.home.aboutHighlight1 },
-    { icon: Shield, label: t.home.aboutHighlight2 },
-    { icon: FileCheck, label: t.home.aboutHighlight3 },
-    { icon: Award, label: t.home.aboutHighlight4 },
-  ]
-
   return (
     <section className="bg-secondary section-padding">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
-            initial={{ opacity: 0, x: locale === 'ar' ? -30 : 30 }}
+            initial={{ opacity: 0, x: locale === 'ar' ? -24 : 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const }}
           >
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-px bg-accent-gold/60" />
-              <span className="text-accent-gold text-sm font-medium">{t.nav.about}</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-6 text-balance">
+            <h2 className="text-3xl md:text-[2.5rem] font-heading font-bold text-text-dark leading-[1.12] mb-6 text-balance">
               {t.home.aboutTitle}
             </h2>
-            <p className="text-text-muted leading-[1.8] mb-8 max-w-xl">
+            <p className="text-text-muted leading-[1.9] mb-8 max-w-xl text-base md:text-[1.0625rem]">
               {t.home.aboutDesc}
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-              {highlights.map((item) => {
-                const Icon = item.icon
-                return (
-                  <div key={item.label} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-border/60">
-                    <div className="w-9 h-9 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
-                      <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
-                    </div>
-                    <span className="text-text-dark text-sm leading-snug">{item.label}</span>
-                  </div>
-                )
-              })}
+            <div className="space-y-3 mb-9">
+              {highlights.map((item) => (
+                <div key={item.key} className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-gold/50 shrink-0" />
+                  <span className="text-text-dark text-sm md:text-base">
+                    {t.home[item.key as keyof typeof t.home] as string}
+                  </span>
+                </div>
+              ))}
             </div>
             <Link
               href="/about"
@@ -65,27 +58,23 @@ export function AboutTeaser() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: locale === 'ar' ? 30 : -30 }}
+            initial={{ opacity: 0, x: locale === 'ar' ? 24 : -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const, delay: 0.15 }}
             className="relative"
           >
             <div className="aspect-[4/3] rounded-card bg-primary overflow-hidden border border-border-dark/50">
               <div className="w-full h-full flex items-center justify-center">
                 <div className="text-center p-8">
-                  <div className="w-20 h-20 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-4">
-                    <Scale aria-hidden="true" className="w-8 h-8 text-accent-gold" />
+                  <div className="w-16 h-16 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-4">
+                    <Scale aria-hidden="true" className="w-7 h-7 text-accent-gold" />
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-text-light/80 text-sm font-heading font-semibold">{t.site.fullName}</p>
-                    <p className="text-text-muted/60 text-xs">{t.footer.address}</p>
-                  </div>
+                  <p className="text-text-light/80 text-sm font-heading font-semibold">{t.site.fullName}</p>
+                  <p className="text-text-muted/60 text-xs mt-1">{t.footer.address}</p>
                 </div>
               </div>
             </div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 border border-accent-gold/20 rounded-card -z-10" />
-            <div className="absolute -top-4 -right-4 w-24 h-24 border border-accent-gold/10 rounded-card -z-10" />
           </motion.div>
         </div>
       </div>
