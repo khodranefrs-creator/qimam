@@ -113,15 +113,15 @@ export default function Header() {
       )}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-20 lg:h-24">
+        <div className="flex items-center justify-between h-20 lg:h-28">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-4 group shrink-0">
             <Image
               src="/logo.png"
               alt={t.common.firmName}
-              width={220}
-              height={56}
-              className="h-12 md:h-14 w-auto object-contain"
+              width={280}
+              height={72}
+              className="h-14 md:h-20 w-auto object-contain"
               priority
             />
           </Link>
@@ -286,9 +286,9 @@ export default function Header() {
                   <Image
                     src="/logo.png"
                     alt={t.common.firmName}
-                    width={180}
-                    height={46}
-                    className="h-11 w-auto object-contain"
+                    width={220}
+                    height={56}
+                    className="h-14 w-auto object-contain"
                     priority
                   />
                 </Link>
