@@ -12,8 +12,11 @@ const footerQuickLinks = [
   { href: '/lawyer' },
   { href: '/practice-areas' },
   { href: '/services' },
+  { href: '/case-studies' },
+  { href: '/testimonials' },
   { href: '/blog' },
   { href: '/faq' },
+  { href: '/careers' },
   { href: '/contact' },
 ] as const
 
@@ -57,8 +60,11 @@ export default function Footer() {
     '/lawyer': t.nav.lawyer,
     '/practice-areas': t.nav.practiceAreas,
     '/services': t.nav.services,
+    '/case-studies': t.caseStudies.title,
+    '/testimonials': t.testimonials.title,
     '/blog': t.nav.blog,
     '/faq': t.nav.faq,
+    '/careers': t.careers.title,
     '/contact': t.nav.contact,
   }
 
@@ -218,16 +224,6 @@ export default function Footer() {
               >
                 {t.footer.terms}
               </Link>
-            </div>
-            <div className="flex items-center gap-2 w-full lg:w-auto">
-              <input
-                type="email"
-                placeholder={t.footer.newsletter}
-                className="flex-1 lg:w-56 px-4 py-2.5 bg-primary-light border border-border-dark/50 rounded-[8px] text-text-light text-sm placeholder:text-text-muted/50 focus:outline-none focus:border-accent-gold/50 transition-colors"
-              />
-              <button className="px-4 py-2.5 bg-accent-gold text-primary font-semibold text-sm rounded-[8px] hover:bg-accent-gold/90 transition-all duration-300 shrink-0">
-                {t.footer.subscribe}
-              </button>
             </div>
           </div>
         </div>

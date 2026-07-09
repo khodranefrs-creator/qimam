@@ -53,7 +53,7 @@ export default async function LawyerPage() {
             <div className="lg:col-span-2 flex justify-center">
               <div className="relative">
                 <div className="w-56 h-56 md:w-64 md:h-64 rounded-full border-4 border-accent-gold bg-primary-light flex items-center justify-center overflow-hidden">
-                  <span className="text-6xl font-heading font-bold text-accent-gold">م</span>
+                  <span className="text-6xl font-heading font-bold text-accent-gold">{t.lawyer.name.charAt(0)}</span>
                 </div>
                 <div className="absolute -bottom-2 -right-2 w-16 h-16 rounded-full bg-accent-gold flex items-center justify-center shadow-gold animate-pulse-ring-subtle">
                   <Award className="w-7 h-7 text-primary" />
@@ -108,11 +108,6 @@ export default async function LawyerPage() {
                 <p>{t.lawyer.bioPara2}</p>
                 <p>{t.lawyer.bioPara3}</p>
               </div>
-              <div className="mt-8 flex items-center gap-2">
-                <span className="text-xs text-text-muted">يمكن التعديل من لوحة التحكم</span>
-                <span className="w-1 h-1 rounded-full bg-text-muted/40" />
-                <span className="text-xs text-text-muted">آخر تحديث: مستمر</span>
-              </div>
             </div>
             <div>
               <div className="bg-primary rounded-card p-6 border border-border-dark mb-8">
@@ -164,16 +159,13 @@ export default async function LawyerPage() {
               <p className="text-lg md:text-xl leading-[1.9] text-text-dark relative z-10 mb-6">{t.lawyer.lawyerQuote}</p>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full border-2 border-accent-gold flex items-center justify-center">
-                  <span className="text-lg font-heading font-bold text-accent-gold">م</span>
+                  <span className="text-lg font-heading font-bold text-accent-gold">{t.lawyer.name.charAt(0)}</span>
                 </div>
                 <div>
                   <div className="font-heading font-bold text-text-dark">{t.lawyer.lawyerNameDisplay}</div>
                   <div className="text-text-muted text-sm">{t.lawyer.lawyerRoleDisplay}</div>
                 </div>
               </div>
-            </div>
-            <div className="mt-6 flex items-center gap-2 justify-center">
-              <span className="text-xs text-text-muted">يمكن التعديل من لوحة التحكم</span>
             </div>
           </div>
         </div>
@@ -183,15 +175,15 @@ export default async function LawyerPage() {
         <div className="container-custom">
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="p-6 rounded-xl bg-white border border-border shadow-card text-center hover-lift">
-              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">12+</div>
+              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
               <div className="text-text-muted text-sm">{t.lawyer.statsLabelYears}</div>
             </div>
             <div className="p-6 rounded-xl bg-white border border-border shadow-card text-center hover-lift">
-              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">500+</div>
+              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
               <div className="text-text-muted text-sm">{t.home.statsCases}</div>
             </div>
             <div className="p-6 rounded-xl bg-white border border-border shadow-card text-center hover-lift">
-              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">85+</div>
+              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
               <div className="text-text-muted text-sm">{t.lawyer.statsLabelRating}</div>
             </div>
           </div>

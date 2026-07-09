@@ -347,6 +347,9 @@ export default function Header() {
               </div>
 
               <div className="mt-8 space-y-3 border-t border-border-dark/50 pt-6">
+                <div className="flex justify-center">
+                  <LocaleSwitcher />
+                </div>
                 <Link
                   href="/consultation"
                   onClick={() => setMobileOpen(false)}

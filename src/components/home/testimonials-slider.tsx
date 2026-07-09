@@ -149,7 +149,7 @@ export default function TestimonialsSlider({
                       className={`w-2 h-2 rounded-full transition-all duration-300 focus-ring-gold ${
                         i === current ? 'bg-accent-gold w-6' : 'bg-border hover:bg-accent-gold/40'
                       }`}
-                      aria-label={`${t.blog.next} ${i + 1}`}
+                      aria-label={`${t.testimonials.title} ${i + 1}`}
                     />
                   ))}
                 </div>
@@ -180,7 +180,7 @@ export default function TestimonialsSlider({
               {t.testimonials.noTestimonials}
             </p>
             <p className="text-text-muted/60 text-sm">
-              {t.common.loading}
+              {t.testimonials.noTestimonials}
             </p>
           </motion.div>
         )}

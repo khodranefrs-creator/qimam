@@ -311,38 +311,9 @@ async function main() {
   // ──────────────────────────────────────────────
   // Testimonials
   // ──────────────────────────────────────────────
-  const testimonials = [
-    {
-      name: 'أحمد السلمي',
-      role: 'رجل أعمال',
-      content: 'تعاملت مع شركة قمم اليقين في قضية تجارية معقدة، وقد أظهر المحامون كفاءة عالية واحترافية في التعامل مع القضية. أنصح الجميع بالتعامل معهم.',
-      rating: 5,
-      featured: true,
-      approved: true,
-    },
-    {
-      name: 'سارة القحطاني',
-      role: 'سيدة أعمال',
-      content: 'شكراً لفريق قمم اليقين على جهودهم الرائعة في إنهاء معاملاتي العقارية. سرعة الإنجاز والدقة في العمل هما ما يميز هذا المكتب.',
-      rating: 5,
-      featured: true,
-      approved: true,
-    },
-    {
-      name: 'محمد الجهني',
-      role: 'موظف حكومي',
-      content: 'المحامي محمد الحربي شخص محترف ومتفانٍ في عمله. استطاع حل قضيتي العمالية في وقت قياسي وبأقل التكاليف. شكراً لكم.',
-      rating: 5,
-      featured: true,
-      approved: true,
-    },
-  ];
-
-  for (const testimonial of testimonials) {
-    await prisma.testimonial.create({ data: testimonial });
-  }
-
-  console.log(`  ✓ ${testimonials.length} testimonials seeded`);
+  // Testimonials should be added manually via the admin panel
+  // to ensure only genuine client reviews appear on the live site.
+  console.log('  ✓ Testimonials: 0 (add via admin panel)');
 
   // ──────────────────────────────────────────────
   // FAQs
@@ -526,7 +497,7 @@ async function main() {
   console.log('\n✓ Seeding completed successfully');
   console.log(`  - Practice Areas: ${practiceAreas.length}`);
   console.log(`  - Services: ${services.length}`);
-  console.log(`  - Testimonials: ${testimonials.length}`);
+  console.log('  - Testimonials: 0 (add via admin panel)');
   console.log(`  - FAQs: ${faqs.length}`);
   console.log(`  - Blog Posts: ${blogPosts.length}`);
   console.log(`  - Site Settings: 3`);

@@ -22,10 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${t.site.fullName}`,
       default: t.site.fullName,
     },
-    description: `${t.site.fullName} — ${t.site.tagline} في مكة المكرمة. ${t.footer.description}`,
+    description: `${t.site.fullName} — ${t.site.tagline}${locale === 'ar' ? ' في مكة المكرمة' : ' in Makkah'}. ${t.footer.description}`,
     openGraph: {
       title: t.site.fullName,
-      description: `${t.site.fullName} — ${t.site.tagline} في مكة المكرمة.`,
+      description: `${t.site.fullName} — ${t.site.tagline}${locale === 'ar' ? ' في مكة المكرمة' : ' in Makkah'}.`,
       url: siteUrl,
       siteName: t.site.fullName,
       locale: locale === 'ar' ? "ar_SA" : "en_US",

@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma"
 import { Hero } from "@/components/home/hero"
-import { StatsBar } from "@/components/home/stats-bar"
 import { AboutTeaser } from "@/components/home/about-teaser"
 import { LawyerTeaser } from "@/components/home/lawyer-teaser"
 import { PracticeAreasGrid } from "@/components/home/practice-areas-grid"
@@ -10,8 +9,20 @@ import { CtaBanner } from "@/components/home/cta-banner"
 import { BlogPreview } from "@/components/home/blog-preview"
 import { FaqPreview } from "@/components/home/faq-preview"
 import { ContactStrip } from "@/components/home/contact-strip"
+import { getLocale } from '@/i18n/get-locale'
+import { getTranslations } from '@/i18n/get-translations'
+import type { Metadata } from "next"
 
 export const dynamic = 'force-dynamic'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+  const t = getTranslations(locale)
+  return {
+    title: t.home.heroTitle,
+    description: `${t.site.fullName} — ${t.home.heroDesc}`,
+  }
+}
 
 async function getHomeData() {
   try {
@@ -34,7 +45,6 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <StatsBar />
       <AboutTeaser />
       <LawyerTeaser />
       <PracticeAreasGrid areas={practiceAreas} />

@@ -60,7 +60,7 @@ export function ProcessTimeline() {
                         <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 md:hidden">
                           <Icon className="w-4 h-4 text-accent-gold" />
                         </span>
-                        <span className="text-accent-gold text-sm font-medium">الخطوة {i + 1}</span>
+                        <span className="text-accent-gold text-sm font-medium">{t.home.stepLabel} {i + 1}</span>
                       </div>
                       <h3 className="text-xl font-heading font-semibold text-text-light mb-2">{step.title}</h3>
                       <p className="text-text-muted text-sm leading-relaxed">{step.description}</p>

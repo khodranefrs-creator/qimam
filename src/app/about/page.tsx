@@ -107,7 +107,7 @@ export default async function AboutPage() {
                 <div className="w-20 h-20 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-4">
                   <Scale className="w-8 h-8 text-accent-gold" />
                 </div>
-                <p className="text-text-light/60 text-sm">صورة المكتب</p>
+                <p className="text-text-light/60 text-sm">{t.home.officeImage}</p>
               </div>
             </div>
           </div>

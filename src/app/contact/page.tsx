@@ -44,7 +44,7 @@ export default async function ContactPage() {
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="w-6 h-6 text-accent-gold" />
               </div>
-              <h3 className="font-heading font-bold text-primary mb-2">العنوان</h3>
+              <h3 className="font-heading font-bold text-primary mb-2">{t.contact.addressTitle}</h3>
               <p className="text-text-muted text-sm leading-[1.7]">{t.contact.address}</p>
             </div>
 
@@ -52,8 +52,8 @@ export default async function ContactPage() {
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Phone className="w-6 h-6 text-accent-gold" />
               </div>
-              <h3 className="font-heading font-bold text-primary mb-2">الهاتف</h3>
-              <p className="text-text-muted text-sm" dir="ltr">+966 56 555 5437</p>
+              <h3 className="font-heading font-bold text-primary mb-2">{t.contact.phoneTitle}</h3>
+              <p className="text-text-muted text-sm" dir="ltr">{t.common.phone}</p>
             </div>
 
             <div className="bg-white rounded-xl border border-border p-6 shadow-card text-center hover-lift transition-all">
@@ -61,7 +61,7 @@ export default async function ContactPage() {
                 <Mail className="w-6 h-6 text-accent-gold" />
               </div>
               <h3 className="font-heading font-bold text-primary mb-2">{t.contact.emailLabel}</h3>
-              <p className="text-text-muted text-sm">info@qimam-law.com</p>
+              <p className="text-text-muted text-sm">{t.common.email}</p>
             </div>
 
             <div className="bg-white rounded-xl border border-border p-6 shadow-card text-center hover-lift transition-all">

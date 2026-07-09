@@ -69,7 +69,7 @@ export default async function CaseStudiesPage() {
                         <div>
                           <div className="flex items-center gap-2 text-xs text-text-muted mb-2">
                             <Calendar className="w-3 h-3" />
-                            <span>{new Date(cs.createdAt).toLocaleDateString("ar-SA")}</span>
+                            <span>{new Date(cs.createdAt).toLocaleDateString(locale)}</span>
                             {cs.category && (
                               <span className="px-2 py-0.5 bg-accent-gold/10 text-accent-gold rounded-full">{cs.category}</span>
                             )}

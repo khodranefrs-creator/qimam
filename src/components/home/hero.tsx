@@ -65,7 +65,7 @@ export function Hero() {
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-3xl mx-auto lg:mx-0 text-center lg:text-end">
           <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6 justify-center lg:justify-start">
             <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">Qimam Al-Yaqin Law Firm</span>
+            <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.home.heroBadge}</span>
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="text-[clamp(2.25rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.05] mb-6 text-balance">

@@ -84,7 +84,7 @@ export default async function CaseStudyPage({
           <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted mb-6">
             <span className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              {new Date(cs.createdAt).toLocaleDateString("ar-SA", {
+              {new Date(cs.createdAt).toLocaleDateString(locale, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",

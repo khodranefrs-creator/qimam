@@ -82,7 +82,7 @@ export default async function BlogPostPage({
     dateModified: post.updatedAt,
     author: {
       "@type": "Person",
-      name: post.author || t.blog.title,
+      name: post.author || t.site.fullName,
     },
     publisher: {
       "@type": "Organization",
@@ -140,7 +140,7 @@ export default async function BlogPostPage({
             )}
             <span className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              {new Date(post.createdAt).toLocaleDateString("ar-SA", {
+              {new Date(post.createdAt).toLocaleDateString(locale, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -191,7 +191,7 @@ export default async function BlogPostPage({
                       </div>
                       <div className="p-4">
                         <h3 className="font-heading font-bold text-sm group-hover:text-accent-gold transition-colors line-clamp-2">{rp.title}</h3>
-                        <p className="text-xs text-text-muted mt-2">{new Date(rp.createdAt).toLocaleDateString("ar-SA")}</p>
+                        <p className="text-xs text-text-muted mt-2">{new Date(rp.createdAt).toLocaleDateString(locale)}</p>
                       </div>
                     </div>
                   </Link>

@@ -134,14 +134,14 @@ export default async function BlogPage({
                         {post.coverImage ? (
                           <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" />
                         ) : (
-                          <span>صورة المقال</span>
+                          <span>{t.home.articleImage}</span>
                         )}
                       </div>
                       <div className="p-6">
                         <div className="flex items-center gap-4 text-xs text-text-muted mb-3">
                           <span className="flex items-center gap-1">
                             <Calendar className="w-3 h-3" />
-                            {new Date(post.createdAt).toLocaleDateString("ar-SA")}
+                            {new Date(post.createdAt).toLocaleDateString(locale)}
                           </span>
                           {post.readingTime && (
                             <span className="flex items-center gap-1">

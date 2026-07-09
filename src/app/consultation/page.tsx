@@ -485,7 +485,7 @@ export default function ConsultationPage() {
                 <span className="text-sm text-text-muted">{t.consultation.timeLabel}:</span>
                 <span className="text-sm font-medium text-text-dark flex items-center gap-1.5">
                   <Clock size={14} className="text-accent-gold" />
-                  {formData.preferredTime || "لم يتم الاختيار"}
+                  {formData.preferredTime || t.consultation.notSelected}
                 </span>
               </div>
             </div>
@@ -509,7 +509,7 @@ export default function ConsultationPage() {
                 </div>
               )}
               <div className="flex justify-between">
-                <span className="text-sm text-text-muted">طريقة التواصل:</span>
+                <span className="text-sm text-text-muted">{t.consultation.contactMethod}</span>
                 <span className="text-sm font-medium text-text-dark">
                   {getContactMethods(t).find((m) => m.value === formData.contactMethod)?.label || formData.contactMethod}
                 </span>
