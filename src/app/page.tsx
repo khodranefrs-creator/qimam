@@ -54,8 +54,8 @@ export default async function HomePage() {
       <TestimonialsSlider testimonials={testimonials} />
       <BlogPreview posts={posts} />
       <FaqPreview faqs={faqs} />
-      <FinalCTASection />
       <ContactOfficeSection />
+      <FinalCTASection />
     </>
   )
 }

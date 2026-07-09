@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Mail, Clock, Navigation, ArrowLeft, ArrowRight } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -24,7 +24,6 @@ const contactItems: ContactItem[] = [
 
 export function ContactOfficeSection() {
   const locale = useLocale()
-  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
   return (
@@ -147,19 +146,6 @@ export function ContactOfficeSection() {
             <p className="text-text-muted/60 text-xs leading-relaxed max-w-sm border-t border-border/60 pt-6">
               {t.home.contactDesc}
             </p>
-            <div className="pt-4">
-              <Link
-                href="/consultation"
-                className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group text-sm"
-              >
-                <span>{t.home.finalCTACta}</span>
-                {isRtl ? (
-                  <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
-                ) : (
-                  <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                )}
-              </Link>
-            </div>
           </div>
         </motion.div>
       </div>
