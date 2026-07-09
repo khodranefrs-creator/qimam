@@ -33,13 +33,19 @@ export function LawyerTeaser() {
                 backgroundImage: `radial-gradient(circle at 50% 50%, #C6A15B 1px, transparent 1px)`,
                 backgroundSize: '24px 24px',
               }} />
+              <div className="absolute bottom-0 right-0 left-0 h-1/2 bg-gradient-to-t from-accent-gold/5 to-transparent" />
               <div className="w-full h-full flex items-center justify-center relative z-10">
                 <div className="text-center p-8">
-                  <div className="w-28 h-28 rounded-full bg-accent-gold/10 border-2 border-accent-gold/20 flex items-center justify-center mx-auto mb-5">
-                    <span className="text-4xl font-heading font-bold text-accent-gold">{t.home.lawyerName.charAt(0)}</span>
+                  <div className="w-36 h-36 rounded-full bg-gradient-to-br from-accent-gold/20 to-accent-gold/5 border-2 border-accent-gold/30 flex items-center justify-center mx-auto mb-6 shadow-[0_0_40px_rgba(198,161,91,0.15)]">
+                    <span className="text-5xl font-heading font-bold text-accent-gold">{t.home.lawyerName.charAt(0)}</span>
                   </div>
-                  <p className="text-text-light/70 text-sm font-heading font-semibold">{t.home.lawyerName}</p>
-                  <p className="text-text-muted/60 text-xs mt-1">{t.home.lawyerRole}</p>
+                  <p className="text-text-light/80 text-sm font-heading font-semibold">{t.home.lawyerName}</p>
+                  <p className="text-accent-gold/60 text-xs mt-1">{t.home.lawyerRole}</p>
+                  <div className="mt-4 flex items-center justify-center gap-3">
+                    <span className="w-12 h-px bg-accent-gold/20" />
+                    <span className="text-accent-gold/40 text-[10px] font-medium tracking-widest">{t.lawyer.resumeLabel}</span>
+                    <span className="w-12 h-px bg-accent-gold/20" />
+                  </div>
                 </div>
               </div>
             </div>

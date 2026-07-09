@@ -11,6 +11,15 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2, Scale, Briefcase, Home, Heart, BookOpen, Gavel, FileText, Landmark, Users, Shield,
 }
 
+const categoryColors: Record<string, string> = {
+  'commercial': 'from-blue-900/20 to-blue-900/5',
+  'corporate': 'from-indigo-900/20 to-indigo-900/5',
+  'litigation': 'from-amber-900/20 to-amber-900/5',
+  'realEstate': 'from-emerald-900/20 to-emerald-900/5',
+  'family': 'from-rose-900/20 to-rose-900/5',
+  'inheritance': 'from-purple-900/20 to-purple-900/5',
+}
+
 interface Props {
   areas: Pick<PracticeArea, 'id' | 'slug' | 'title' | 'description' | 'icon'>[]
 }
@@ -20,14 +29,22 @@ export function PracticeAreasGrid({ areas }: Props) {
   const t = getTranslations(locale)
 
   const pa = t.practiceAreas as unknown as Record<string, { title: string; desc: string }>
-  const defaultAreas = areas.length > 0 ? areas : [
-    { id: '1', slug: 'commercial-law', title: pa.commercial.title, description: pa.commercial.desc, icon: 'Briefcase' },
-    { id: '2', slug: 'corporate-law', title: pa.corporate.title, description: pa.corporate.desc, icon: 'Building2' },
-    { id: '3', slug: 'litigation', title: pa.litigation.title, description: pa.litigation.desc, icon: 'Scale' },
-    { id: '4', slug: 'real-estate-law', title: pa.realEstate.title, description: pa.realEstate.desc, icon: 'Home' },
-    { id: '5', slug: 'family-law', title: pa.family.title, description: pa.family.desc, icon: 'Heart' },
-    { id: '6', slug: 'inheritance-law', title: pa.inheritance.title, description: pa.inheritance.desc, icon: 'BookOpen' },
-  ]
+  const areaKeys = ['commercial', 'corporate', 'litigation', 'realEstate', 'family', 'inheritance'] as const
+  const areaSlugs: Record<string, string> = {
+    commercial: 'commercial-law',
+    corporate: 'corporate-law',
+    litigation: 'litigation',
+    realEstate: 'real-estate-law',
+    family: 'family-law',
+    inheritance: 'inheritance-law',
+  }
+  const defaultAreas = areas.length > 0 ? areas : areaKeys.map((key) => ({
+    id: key,
+    slug: areaSlugs[key] || `${key}-law`,
+    title: pa[key]?.title || key,
+    description: pa[key]?.desc || '',
+    icon: key === 'commercial' ? 'Briefcase' : key === 'corporate' ? 'Building2' : key === 'litigation' ? 'Scale' : key === 'realEstate' ? 'Home' : key === 'family' ? 'Heart' : 'BookOpen',
+  }))
 
   return (
     <section className="bg-secondary section-padding">
@@ -55,6 +72,8 @@ export function PracticeAreasGrid({ areas }: Props) {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {defaultAreas.map((area, i) => {
             const Icon = area.icon && iconMap[area.icon] ? iconMap[area.icon] : Briefcase
+            const areaKey = areaKeys[i] || 'commercial'
+            const gradientClass = categoryColors[areaKey] || 'from-primary-light/20 to-primary-light/5'
             return (
               <motion.div
                 key={area.id}
@@ -65,18 +84,21 @@ export function PracticeAreasGrid({ areas }: Props) {
               >
                 <Link
                   href={`/practice-areas/${area.slug}`}
-                  className="premium-card-light group block p-7"
+                  className="group block bg-white rounded-card border border-border/60 hover:border-accent-gold/30 hover:shadow-gold transition-all duration-300 hover-lift overflow-hidden"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-accent-gold/10 flex items-center justify-center mb-6 group-hover:bg-accent-gold/20 transition-all duration-300">
-                    <Icon aria-hidden="true" className="w-7 h-7 text-accent-gold" />
-                  </div>
-                  <h3 className="font-heading font-semibold text-text-dark mb-3 text-xl group-hover:text-accent-gold transition-colors duration-300">
-                    {area.title}
-                  </h3>
-                  <p className="text-text-muted text-sm leading-[1.8]">{area.description}</p>
-                  <div className="mt-6 flex items-center gap-1.5 text-accent-gold text-xs font-medium">
-                    <span>{t.nav.viewAll}</span>
-                    <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
+                  <div className={`h-1.5 bg-gradient-to-r ${gradientClass}`} />
+                  <div className="p-7">
+                    <div className="w-14 h-14 rounded-xl bg-accent-gold/10 flex items-center justify-center mb-5 group-hover:bg-accent-gold/20 transition-all duration-300">
+                      <Icon aria-hidden="true" className="w-7 h-7 text-accent-gold" />
+                    </div>
+                    <h3 className="font-heading font-semibold text-text-dark mb-3 text-xl group-hover:text-accent-gold transition-colors duration-300">
+                      {area.title}
+                    </h3>
+                    <p className="text-text-muted text-sm leading-[1.8]">{area.description}</p>
+                    <div className="mt-6 flex items-center gap-1.5 text-accent-gold text-xs font-medium">
+                      <span>{t.nav.viewAll}</span>
+                      <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
+                    </div>
                   </div>
                 </Link>
               </motion.div>

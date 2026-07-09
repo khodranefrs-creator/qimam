@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma"
 import { Hero } from "@/components/home/hero"
+import { StatsBar } from "@/components/home/stats-bar"
 import { AboutTeaser } from "@/components/home/about-teaser"
+import { WhyQimam } from "@/components/home/why-qimam"
 import { LawyerTeaser } from "@/components/home/lawyer-teaser"
 import { PracticeAreasGrid } from "@/components/home/practice-areas-grid"
 import { ProcessTimeline } from "@/components/home/process-timeline"
@@ -45,7 +47,9 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
+      <StatsBar />
       <AboutTeaser />
+      <WhyQimam />
       <LawyerTeaser />
       <PracticeAreasGrid areas={practiceAreas} />
       <ProcessTimeline />

@@ -95,28 +95,58 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0, transition: { delay: 1, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
-          className="flex flex-wrap gap-3 mt-16 max-w-4xl mx-auto lg:mx-0 justify-center lg:justify-start"
-        >
-          {trustBadges.map((badge, i) => {
-            const Icon = badge.icon
-            return (
-              <motion.div
-                key={badge.key}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0, transition: { delay: 1.3 + i * 0.1, duration: 0.4 } }}
-                className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-primary-light/50 backdrop-blur-sm border border-border-dark/30"
-              >
-                <div className="w-8 h-8 rounded-lg bg-accent-gold/10 flex items-center justify-center shrink-0">
-                  <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
-                </div>
-                <span className="text-text-muted text-sm whitespace-nowrap">{t.home[badge.key]}</span>
-              </motion.div>
-            )
-          })}
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0, transition: { delay: 1, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
+            className="flex flex-wrap gap-3 mt-16 max-w-4xl mx-auto lg:mx-0 justify-center lg:justify-start"
+          >
+            {trustBadges.map((badge, i) => {
+              const Icon = badge.icon
+              return (
+                <motion.div
+                  key={badge.key}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0, transition: { delay: 1.3 + i * 0.1, duration: 0.4 } }}
+                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-primary-light/50 backdrop-blur-sm border border-border-dark/30"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-accent-gold/10 flex items-center justify-center shrink-0">
+                    <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
+                  </div>
+                  <span className="text-text-muted text-sm whitespace-nowrap">{t.home[badge.key]}</span>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 1.8, duration: 0.5 } }}
+            className="mt-10 pt-8 border-t border-accent-gold/10 max-w-4xl mx-auto lg:mx-0"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { icon: BadgeCheck, label: t.home.statsTrusted },
+                { icon: Scale, label: t.home.statsCompleted },
+                { icon: Shield, label: t.home.statsLicensesBadge },
+                { icon: Award, label: t.home.statsRatingBadge },
+              ].map((stat, i) => {
+                const StatIcon = stat.icon
+                return (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0, transition: { delay: 2 + i * 0.1, duration: 0.4 } }}
+                    className="text-center px-2 py-3"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-2">
+                      <StatIcon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
+                    </div>
+                    <p className="text-text-muted text-xs leading-snug">{stat.label}</p>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </motion.div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary to-transparent pointer-events-none" />

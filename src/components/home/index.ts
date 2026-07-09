@@ -1,6 +1,7 @@
 export { Hero } from './hero'
 export { StatsBar } from './stats-bar'
 export { AboutTeaser } from './about-teaser'
+export { WhyQimam } from './why-qimam'
 export { LawyerTeaser } from './lawyer-teaser'
 export { PracticeAreasGrid } from './practice-areas-grid'
 export { ProcessTimeline } from './process-timeline'
