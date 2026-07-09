@@ -5,11 +5,11 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
-  LayoutDashboard, FileText, Newspaper, Briefcase, Scale,
-  Handshake, Star, HelpCircle, CalendarClock, Mail,
-  Search, Users, Download, ChevronDown, X,
+  LayoutDashboard, Newspaper,
+  Star, CalendarClock, Mail,
+  ChevronDown, X,
 } from "lucide-react"
-import { useState } from "react"
+import { useSidebar } from "@/components/admin/sidebar-context"
 
 const navItems = [
   { href: "/admin/dashboard", label: "لوحة التحكم", icon: LayoutDashboard },
@@ -17,13 +17,11 @@ const navItems = [
   { href: "/admin/messages", label: "الرسائل", icon: Mail },
   { href: "/admin/blog", label: "المقالات", icon: Newspaper },
   { href: "/admin/testimonials", label: "آراء العملاء", icon: Star },
-  { href: "/admin/faqs", label: "الأسئلة الشائعة", icon: HelpCircle },
-  { href: "/admin/settings", label: "الإعدادات", icon: Search },
 ]
 
 export default function AdminSidebar() {
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
+  const { open, setOpen } = useSidebar()
 
   return (
     <>
@@ -42,7 +40,7 @@ export default function AdminSidebar() {
               className="h-7 w-auto object-contain"
             />
           </Link>
-          <button onClick={() => setOpen(false)} className="text-gray-500 hover:text-accent-gold lg:hidden transition">
+          <button onClick={() => setOpen(false)} className="text-gray-500 hover:text-accent-gold lg:hidden transition" aria-label="إغلاق القائمة">
             <X size={20} />
           </button>
         </div>
@@ -75,6 +73,7 @@ export default function AdminSidebar() {
       <button
         onClick={() => setOpen(true)}
         className="fixed bottom-4 right-4 z-30 lg:hidden w-12 h-12 rounded-full bg-accent-gold text-primary shadow-lg flex items-center justify-center"
+        aria-label="فتح القائمة"
       >
         <ChevronDown size={20} className="rotate-90" />
       </button>

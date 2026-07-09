@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Scale, Shield, FileCheck, Award } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Scale, Shield, FileCheck, Award } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 export function AboutTeaser() {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
   const highlights = [
@@ -55,7 +56,11 @@ export function AboutTeaser() {
               className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group"
             >
               {t.home.aboutLink}
-              <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              {isRtl ? (
+                <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              ) : (
+                <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              )}
             </Link>
           </motion.div>
 

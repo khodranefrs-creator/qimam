@@ -46,7 +46,7 @@ export default async function NotFound() {
         </h2>
 
         {/* Description */}
-        <p className="text-text-muted text-lg mb-8 leading-relaxed">
+        <p className="text-text-muted text-muted-on-dark text-lg mb-8 leading-relaxed">
           {t.notFound.desc}
         </p>
 

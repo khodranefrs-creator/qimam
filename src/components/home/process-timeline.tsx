@@ -7,6 +7,7 @@ import { getTranslations } from '@/i18n/get-translations'
 
 export function ProcessTimeline() {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
   const steps = [
@@ -34,13 +35,13 @@ export function ProcessTimeline() {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-4">
             {t.home.processTitle}
           </h2>
-          <p className="text-text-muted max-w-2xl mx-auto">
+          <p className="text-text-muted text-muted-on-dark max-w-2xl mx-auto">
             {t.home.processDesc}
           </p>
         </motion.div>
 
         <div className="relative">
-          <div className="absolute right-8 top-0 bottom-0 w-px bg-gradient-to-b from-accent-gold/40 via-accent-gold/20 to-transparent hidden md:block" />
+          <div className={`absolute ${isRtl ? 'right-8' : 'left-8'} top-0 bottom-0 w-px bg-gradient-to-b from-accent-gold/40 via-accent-gold/20 to-transparent hidden md:block`} />
 
           <div className="space-y-12 md:space-y-0">
             {steps.map((step, i) => {
@@ -54,8 +55,8 @@ export function ProcessTimeline() {
                   transition={{ duration: 0.5, delay: i * 0.15 }}
                   className={`relative md:flex items-start gap-8 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
-                  <div className={`flex-1 ${i % 2 === 0 ? 'md:text-left' : 'md:text-right'} mb-6 md:mb-0`}>
-                    <div className="pr-16 md:pr-0">
+                  <div className={`flex-1 ${i % 2 === 0 ? 'md:text-start' : 'md:text-end'} mb-6 md:mb-0`}>
+                    <div>
                       <div className="flex items-center gap-3 mb-3">
                         <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 md:hidden">
                           <Icon className="w-4 h-4 text-accent-gold" />
@@ -63,7 +64,7 @@ export function ProcessTimeline() {
                         <span className="text-accent-gold text-sm font-medium">{t.home.stepLabel} {i + 1}</span>
                       </div>
                       <h3 className="text-xl font-heading font-semibold text-text-light mb-2">{step.title}</h3>
-                      <p className="text-text-muted text-sm leading-relaxed">{step.description}</p>
+                      <p className="text-text-muted text-muted-on-dark text-sm leading-relaxed">{step.description}</p>
                     </div>
                   </div>
 

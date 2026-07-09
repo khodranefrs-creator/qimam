@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
       rel="noopener noreferrer"
       animate={{ scale: [1, 1.05, 1] }}
       transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-      className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-accent-gold text-primary shadow-gold hover:bg-accent-gold/90 transition-all duration-300 flex items-center justify-center focus-ring-gold before:absolute before:inset-0 before:rounded-full before:border-2 before:border-accent-gold/30 before:animate-pulse-ring"
+      className="fixed bottom-24 lg:bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-accent-gold text-primary shadow-gold hover:bg-accent-gold/90 transition-all duration-300 flex items-center justify-center focus-ring-gold before:absolute before:inset-0 before:rounded-full before:border-2 before:border-accent-gold/30 before:animate-pulse-ring"
       aria-label="تواصل عبر واتساب"
     >
       <MessageCircle className="w-7 h-7" />

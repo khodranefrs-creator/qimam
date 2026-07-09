@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Phone, MessageCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Phone, MessageCircle } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 export function CtaBanner() {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
   return (
@@ -38,7 +39,7 @@ export function CtaBanner() {
           {t.home.ctaTitle}
         </h2>
 
-        <p className="text-text-muted text-lg leading-relaxed max-w-lg mx-auto mb-10">
+        <p className="text-text-muted text-muted-on-dark text-lg leading-relaxed max-w-lg mx-auto mb-10">
           {t.home.ctaDesc}
         </p>
 
@@ -49,7 +50,11 @@ export function CtaBanner() {
             aria-label={t.home.ctaBooking}
           >
             {t.home.ctaBooking}
-            <ArrowLeft aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
+            {isRtl ? (
+              <ArrowLeft aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" />
+            ) : (
+              <ArrowRight aria-hidden="true" className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            )}
           </Link>
           <a
             href="https://wa.me/966565555437"

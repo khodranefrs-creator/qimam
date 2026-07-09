@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Clock, BookOpen } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Clock, BookOpen } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -45,6 +45,7 @@ function formatDate(date: string | Date, locale: string) {
 
 export function BlogPreview({ posts }: Props) {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
   if (!posts || posts.length === 0) {
@@ -167,7 +168,7 @@ export function BlogPreview({ posts }: Props) {
         >
           <Link href="/blog" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
             {t.home.blogLink}
-            <ArrowLeft className="w-4 h-4" />
+            {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
           </Link>
         </motion.div>
       </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { prisma } from "@/lib/prisma"
-import { ArrowLeft, CheckCircle2, Phone, MessageCircle } from "lucide-react"
+import { ArrowLeft, ArrowRight, CheckCircle2, Phone, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
@@ -57,6 +57,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function PracticeAreaPage({ params }: { params: Params }) {
   const { slug } = await params
   const locale = await getLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const area = await getPracticeArea(slug)
   if (!area) notFound()
@@ -110,7 +111,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
 
       <div className="bg-primary text-text-light py-4 header-offset">
         <div className="container-custom">
-          <div className="flex items-center gap-2 text-sm text-text-muted">
+          <div className="flex items-center gap-2 text-sm text-text-muted text-muted-on-dark">
             <Link href="/">{t.nav.home}</Link>
             <span>/</span>
             <Link href="/practice-areas" className="hover:text-accent-gold transition-colors">{t.practiceAreas.title}</Link>
@@ -125,14 +126,14 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
           <div className="max-w-4xl mx-auto">
             <Link
               href="/practice-areas"
-              className="inline-flex items-center gap-1 text-text-muted hover:text-accent-gold text-sm transition-colors mb-6"
+              className="inline-flex items-center gap-1 text-text-muted text-muted-on-dark hover:text-accent-gold text-sm transition-colors mb-6"
             >
-              <ArrowLeft className="w-4 h-4" />
+              {isRtl ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
               {t.practiceAreas.backToAreas}
             </Link>
             <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-6">{area.title}</h1>
             <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mb-8" />
-            <p className="text-lg leading-[1.8] text-text-muted">{area.description}</p>
+            <p className="text-lg leading-[1.8] text-text-muted text-muted-on-dark">{area.description}</p>
           </div>
         </div>
       </section>
@@ -211,7 +212,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
                   className="inline-flex items-center gap-1 text-accent-gold text-sm font-medium hover:text-accent-gold-light transition-colors"
                 >
                   {t.practiceAreas.viewAllFaqs}
-                  <ArrowLeft className="w-4 h-4" />
+                  {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
                 </Link>
               </div>
             </div>
@@ -222,7 +223,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
           <h2 className="text-2xl font-heading font-bold mb-6">{t.practiceAreas.ctaAreaTitle} {area.title}؟</h2>
-          <p className="text-text-muted mb-8">{t.practiceAreas.ctaAreaDesc}</p>
+          <p className="text-text-muted text-muted-on-dark mb-8">{t.practiceAreas.ctaAreaDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">
                   <Button variant="primary" size="lg">{t.nav.consultation}</Button>

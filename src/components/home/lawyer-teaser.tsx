@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Award, BookOpen, Scale, BadgeCheck } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Award, BookOpen, Scale, BadgeCheck } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 export function LawyerTeaser() {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
   const badges = [
@@ -66,7 +67,7 @@ export function LawyerTeaser() {
               {t.home.lawyerName}
             </h2>
             <p className="text-accent-gold font-medium mb-6">{t.home.lawyerRole}</p>
-            <p className="text-text-muted leading-[1.8] mb-8 max-w-lg">
+            <p className="text-text-muted text-muted-on-dark leading-[1.8] mb-8 max-w-lg">
               {t.home.lawyerDesc}
             </p>
             <div className="grid grid-cols-2 gap-3 mb-8">
@@ -75,7 +76,7 @@ export function LawyerTeaser() {
                 return (
                   <div key={item.label} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-light/40 border border-border-dark/30">
                     <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
-                    <span className="text-text-muted text-sm">{item.label}</span>
+                    <span className="text-text-muted text-muted-on-dark text-sm">{item.label}</span>
                   </div>
                 )
               })}
@@ -85,7 +86,11 @@ export function LawyerTeaser() {
               className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group"
             >
               {t.home.lawyerLink}
-              <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              {isRtl ? (
+                <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              ) : (
+                <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              )}
             </Link>
           </motion.div>
         </div>

@@ -21,6 +21,9 @@
   --font-heading: 'IBM Plex Sans Arabic', sans-serif;
   --font-body: 'Tajawal', sans-serif;
 
+  /* Muted variants for dark/light backgrounds */
+  --color-text-muted-dark: #9CA3AF;
+
   /* Shadows */
   --shadow-warm: 0 20px 60px -15px rgba(7, 26, 43, 0.25);
   --shadow-gold: 0 4px 20px rgba(198, 161, 91, 0.2);
@@ -214,6 +217,10 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-muted-on-dark {
+    color: var(--color-text-muted-dark);
   }
 
   .gold-border-bottom {

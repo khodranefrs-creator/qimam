@@ -3,7 +3,7 @@ import type { CaseStudyData } from "@/types/prisma-models"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Link from "next/link"
-import { Calendar, ArrowLeft } from "lucide-react"
+import { Calendar, ArrowLeft, ArrowRight } from "lucide-react"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -42,6 +42,7 @@ export default async function CaseStudyPage({
 }) {
   const { slug } = await params
   const locale = await getLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const cs = await prisma.caseStudy.findUnique({ where: { slug } }) as CaseStudyData | null
   if (!cs || !cs.published) notFound()
@@ -75,7 +76,7 @@ export default async function CaseStudyPage({
           )}
 
           <Link href="/case-studies" className="inline-flex items-center gap-1 text-accent-gold hover:text-accent-gold/80 transition-colors mb-6 text-sm">
-            <ArrowLeft className="w-4 h-4" />
+            {isRtl ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
             <span>{t.caseStudies.backToStudies}</span>
           </Link>
 

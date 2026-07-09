@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma"
 import type { CaseStudyData } from "@/types/prisma-models"
 import { Metadata } from "next"
 import Link from "next/link"
-import { Calendar, ArrowLeft } from "lucide-react"
+import { Calendar, ArrowLeft, ArrowRight } from "lucide-react"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function CaseStudiesPage() {
   const locale = await getLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const rawCaseStudies = await prisma.caseStudy.findMany({
     where: { published: true },
@@ -85,7 +86,7 @@ export default async function CaseStudiesPage() {
                         </div>
                         <div className="mt-4 flex items-center gap-1 text-accent-gold text-sm font-medium group-hover:gap-2 transition-all">
                           <span>{t.caseStudies.readStudy}</span>
-                          <ArrowLeft className="w-4 h-4" />
+                          {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
                         </div>
                       </div>
                     </div>

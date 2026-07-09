@@ -57,6 +57,7 @@ const areaKeys: { key: MegaIconKey; slug: string }[] = [
 
 export default function Header() {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -270,11 +271,11 @@ export default function Header() {
         {mobileOpen && (
           <motion.div
             key="sidebar"
-            initial={{ x: '100%' }}
+            initial={{ x: isRtl ? '100%' : '-100%' }}
             animate={{ x: 0 }}
-            exit={{ x: '100%' }}
+            exit={{ x: isRtl ? '100%' : '-100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed inset-y-0 right-0 w-80 bg-primary border-l border-border-dark/50 z-50 lg:hidden overflow-y-auto"
+            className={`fixed inset-y-0 ${isRtl ? 'right-0 border-l' : 'left-0 border-r'} w-80 bg-primary border-border-dark/50 z-50 lg:hidden overflow-y-auto`}
           >
             <div className="p-6">
               <div className="flex items-center justify-between mb-8">

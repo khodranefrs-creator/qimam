@@ -34,7 +34,7 @@ export function StatsBar() {
                 <div className="w-12 h-12 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <Icon aria-hidden="true" className="w-5 h-5 text-accent-gold" />
                 </div>
-                <span className="text-text-muted text-sm leading-snug">{t.home[item.key]}</span>
+                <span className="text-text-muted text-muted-on-dark text-sm leading-snug">{t.home[item.key]}</span>
               </motion.div>
             )
           })}

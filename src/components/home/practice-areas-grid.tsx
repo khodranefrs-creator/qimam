@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Building2, Scale, Briefcase, Home, Heart, BookOpen, Gavel, FileText, Landmark, Users, Shield } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Building2, Scale, Briefcase, Home, Heart, BookOpen, Gavel, FileText, Landmark, Users, Shield } from 'lucide-react'
 import type { PracticeArea } from '@prisma/client'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
@@ -26,6 +26,7 @@ interface Props {
 
 export function PracticeAreasGrid({ areas }: Props) {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
   const pa = t.practiceAreas as unknown as Record<string, { title: string; desc: string }>
@@ -97,7 +98,11 @@ export function PracticeAreasGrid({ areas }: Props) {
                     <p className="text-text-muted text-sm leading-[1.8]">{area.description}</p>
                     <div className="mt-6 flex items-center gap-1.5 text-accent-gold text-xs font-medium">
                       <span>{t.nav.viewAll}</span>
-                      <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
+                      {isRtl ? (
+                        <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
+                      ) : (
+                        <ArrowRight aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                      )}
                     </div>
                   </div>
                 </Link>
@@ -118,7 +123,11 @@ export function PracticeAreasGrid({ areas }: Props) {
             className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group"
           >
             {t.nav.viewAllAreas}
-            <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+            {isRtl ? (
+              <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+            ) : (
+              <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            )}
           </Link>
         </motion.div>
       </div>

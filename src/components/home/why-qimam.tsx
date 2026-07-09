@@ -47,7 +47,7 @@ export function WhyQimam() {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-4 text-balance">
             {t.practiceAreas.whyChooseTitle}
           </h2>
-          <p className="text-text-muted max-w-2xl mx-auto">
+          <p className="text-text-muted text-muted-on-dark max-w-2xl mx-auto">
             {t.home.aboutDesc}
           </p>
         </motion.div>
@@ -68,7 +68,7 @@ export function WhyQimam() {
                   <div className="w-11 h-11 rounded-xl bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5">
                     <Icon aria-hidden="true" className="w-5 h-5 text-accent-gold" />
                   </div>
-                  <p className="text-text-muted text-sm leading-relaxed">{item}</p>
+                  <p className="text-text-muted text-muted-on-dark text-sm leading-relaxed">{item}</p>
                 </motion.div>
               )
             })}

@@ -4,6 +4,7 @@ import { signOut } from "next-auth/react"
 import { usePathname } from "next/navigation"
 import { LogOut, Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useSidebar } from "@/components/admin/sidebar-context"
 
 const breadcrumbLabels: Record<string, string> = {
   dashboard: "لوحة التحكم",
@@ -21,6 +22,7 @@ interface AdminHeaderProps {
 }
 
 export default function AdminHeader({ user }: AdminHeaderProps) {
+  const { toggle } = useSidebar()
   const pathname = usePathname()
   const segments = pathname.split("/").filter(Boolean)
   const currentLabel = segments.length >= 2 ? breadcrumbLabels[segments[1]] || segments[1] : ""
@@ -39,7 +41,7 @@ export default function AdminHeader({ user }: AdminHeaderProps) {
   return (
     <header className="h-16 bg-white border-b border-border/60 flex items-center justify-between px-4 lg:px-6 shrink-0">
       <div className="flex items-center gap-3">
-        <button className="lg:hidden text-text-muted hover:text-text-dark transition">
+        <button onClick={toggle} className="lg:hidden text-text-muted hover:text-text-dark transition" aria-label="فتح القائمة">
           <Menu size={20} />
         </button>
         <nav className="flex items-center gap-1.5 text-sm text-text-muted">

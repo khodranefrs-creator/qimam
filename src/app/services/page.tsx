@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 import {
-  MessageSquare, FileEdit, Scale, Stamp, Handshake, ArrowLeft,
+  MessageSquare, FileEdit, Scale, Stamp, Handshake, ArrowLeft, ArrowRight,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getLocale } from '@/i18n/get-locale'
@@ -32,6 +32,7 @@ async function getServices() {
 
 export default async function ServicesPage() {
   const locale = await getLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const services = await getServices()
 
@@ -39,7 +40,7 @@ export default async function ServicesPage() {
     <div>
       <div className="bg-primary text-text-light py-4 header-offset">
         <div className="container-custom">
-          <div className="flex items-center gap-2 text-sm text-text-muted">
+          <div className="flex items-center gap-2 text-sm text-text-muted text-muted-on-dark">
             <Link href="/">{t.nav.home}</Link>
             <span>/</span>
             <span className="text-accent-gold">{t.services.title}</span>
@@ -52,7 +53,7 @@ export default async function ServicesPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-6">{t.services.title}</h1>
             <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-8" />
-            <p className="text-lg leading-[1.8] text-text-muted">
+            <p className="text-lg leading-[1.8] text-text-muted text-muted-on-dark">
               {t.services.description}
             </p>
           </div>
@@ -98,7 +99,7 @@ export default async function ServicesPage() {
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
           <h2 className="text-2xl font-heading font-bold mb-6">{t.practiceAreas.ctaTitle}</h2>
-          <p className="text-text-muted mb-8">{t.practiceAreas.ctaDesc}</p>
+          <p className="text-text-muted text-muted-on-dark mb-8">{t.practiceAreas.ctaDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">
               <Button variant="primary" size="lg">{t.services.requestService}</Button>
@@ -106,7 +107,7 @@ export default async function ServicesPage() {
             <Link href="/practice-areas">
               <Button variant="secondary" size="lg">
                 {t.practiceAreas.title}
-                <ArrowLeft className="w-4 h-4" />
+                {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
               </Button>
             </Link>
           </div>

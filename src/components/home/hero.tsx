@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Scale, Shield, Award, BadgeCheck } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Scale, Shield, Award, BadgeCheck } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -16,22 +16,33 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
 }
 
-const trustBadges = [
-  { icon: BadgeCheck, key: 'statsYearsBadge' as const },
-  { icon: Scale, key: 'statsCasesBadge' as const },
-  { icon: Shield, key: 'statsLicensesBadge' as const },
-  { icon: Award, key: 'statsRatingBadge' as const },
+const trustCards = [
+  {
+    icon: BadgeCheck,
+    key: 'statsYearsBadge' as const,
+    desc: { ar: 'استشارات قانونية احترافية', en: 'Professional legal consultations' },
+  },
+  {
+    icon: Scale,
+    key: 'statsCasesBadge' as const,
+    desc: { ar: 'خبرة قانونية متخصصة', en: 'Specialized legal expertise' },
+  },
+  {
+    icon: Shield,
+    key: 'statsLicensesBadge' as const,
+    desc: { ar: 'إجراءات قانونية واضحة', en: 'Clear legal procedures' },
+  },
+  {
+    icon: Award,
+    key: 'statsRatingBadge' as const,
+    desc: { ar: 'سرية واهتمام بكل قضية', en: 'Confidentiality and attention to every case' },
+  },
 ]
 
 export function Hero() {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
-
-  const badges = [
-    { icon: Scale, label: t.home.badge1 },
-    { icon: Shield, label: t.home.badge2 },
-    { icon: Award, label: t.home.badge3 },
-  ]
 
   return (
     <section className="relative min-h-screen bg-primary flex items-center overflow-hidden">
@@ -61,7 +72,7 @@ export function Hero() {
 
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent" />
 
-      <div className="relative z-10 container-custom pt-36 pb-20 md:pt-44 md:pb-28">
+      <div className="relative z-10 container-custom pt-36 pb-24 md:pt-44 md:pb-28">
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-3xl mx-auto lg:mx-0 text-center lg:text-end">
           <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6 justify-center lg:justify-start">
             <span className="w-8 h-px bg-accent-gold/60" />
@@ -72,7 +83,7 @@ export function Hero() {
             {t.home.heroTitle}
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-muted leading-[1.8] max-w-xl mb-10 mx-auto lg:mx-0">
+          <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.8] max-w-xl mb-10 mx-auto lg:mx-0">
             {t.home.heroDesc}
           </motion.p>
 
@@ -83,7 +94,11 @@ export function Hero() {
               aria-label={t.home.heroCta}
             >
               {t.home.heroCta}
-              <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true" />
+              {isRtl ? (
+                <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true" />
+              ) : (
+                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+              )}
             </Link>
             <Link
               href="/services"
@@ -95,58 +110,35 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0, transition: { delay: 1, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
-            className="flex flex-wrap gap-3 mt-16 max-w-4xl mx-auto lg:mx-0 justify-center lg:justify-start"
-          >
-            {trustBadges.map((badge, i) => {
-              const Icon = badge.icon
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 1.6, duration: 0.5 } }}
+          className="mt-20 md:mt-24"
+        >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            {trustCards.map((card, i) => {
+              const Icon = card.icon
               return (
                 <motion.div
-                  key={badge.key}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0, transition: { delay: 1.3 + i * 0.1, duration: 0.4 } }}
-                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-primary-light/50 backdrop-blur-sm border border-border-dark/30"
+                  key={card.key}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0, transition: { delay: 1.8 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] as const } }}
+                  className="group p-5 md:p-6 rounded-xl bg-primary-light/30 border border-border-dark/20 hover:border-accent-gold/20 hover:bg-primary-light/50 transition-all duration-500"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-accent-gold/10 flex items-center justify-center shrink-0">
-                    <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
+                  <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-accent-gold/10 flex items-center justify-center mb-4 group-hover:bg-accent-gold/20 transition-colors duration-500">
+                    <Icon aria-hidden="true" className="w-5 h-5 md:w-6 md:h-6 text-accent-gold" />
                   </div>
-                  <span className="text-text-muted text-sm whitespace-nowrap">{t.home[badge.key]}</span>
+                  <h3 className="font-heading font-semibold text-text-light text-sm md:text-base mb-1.5">
+                    {t.home[card.key]}
+                  </h3>
+                  <p className="text-text-muted text-muted-on-dark text-xs leading-relaxed">
+                    {locale === 'ar' ? card.desc.ar : card.desc.en}
+                  </p>
                 </motion.div>
               )
             })}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { delay: 1.8, duration: 0.5 } }}
-            className="mt-10 pt-8 border-t border-accent-gold/10 max-w-4xl mx-auto lg:mx-0"
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { icon: BadgeCheck, label: t.home.statsTrusted },
-                { icon: Scale, label: t.home.statsCompleted },
-                { icon: Shield, label: t.home.statsLicensesBadge },
-                { icon: Award, label: t.home.statsRatingBadge },
-              ].map((stat, i) => {
-                const StatIcon = stat.icon
-                return (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0, transition: { delay: 2 + i * 0.1, duration: 0.4 } }}
-                    className="text-center px-2 py-3"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-2">
-                      <StatIcon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
-                    </div>
-                    <p className="text-text-muted text-xs leading-snug">{stat.label}</p>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </motion.div>
+          </div>
+        </motion.div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary to-transparent pointer-events-none" />

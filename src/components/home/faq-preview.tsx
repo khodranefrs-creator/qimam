@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ChevronDown, HelpCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ChevronDown, HelpCircle } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -19,6 +19,7 @@ interface Props {
 
 export function FaqPreview({ faqs }: Props) {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const [openId, setOpenId] = useState<string | null>(null)
 
@@ -44,7 +45,7 @@ export function FaqPreview({ faqs }: Props) {
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-4">
             {t.home.faqTitle}
           </h2>
-          <p className="text-text-muted max-w-2xl mx-auto">
+          <p className="text-text-muted text-muted-on-dark max-w-2xl mx-auto">
             {t.home.faqDesc}
           </p>
         </motion.div>
@@ -105,7 +106,7 @@ export function FaqPreview({ faqs }: Props) {
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-5 text-text-muted text-sm leading-relaxed border-t border-accent-gold/10 pt-4">
+                        <div className="px-6 pb-5 text-text-muted text-muted-on-dark text-sm leading-relaxed border-t border-accent-gold/10 pt-4">
                           {faq.answer}
                         </div>
                       </motion.div>
@@ -126,7 +127,7 @@ export function FaqPreview({ faqs }: Props) {
         >
           <Link href="/faq" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
             {t.home.faqLink}
-            <ArrowLeft className="w-4 h-4" />
+            {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
           </Link>
         </motion.div>
       </div>

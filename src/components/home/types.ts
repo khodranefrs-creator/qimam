@@ -1,5 +1,5 @@
 export interface PracticeArea { id: string; slug: string; title: string; description: string; icon?: string }
-export interface PracticeAreaItem extends PracticeArea {}
+export type PracticeAreaItem = PracticeArea
 export interface Testimonial { id: string; name: string; content: string; rating: number; source?: string }
 export interface TestimonialItem { id: string; name: string; role?: string | null; content: string; rating?: number | null; source?: string | null }
 export interface BlogPost { id: string; slug: string; title: string; excerpt?: string; coverImage?: string; readingTime?: string; createdAt: Date }

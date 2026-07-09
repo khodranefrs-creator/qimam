@@ -85,7 +85,7 @@ export default function Footer() {
             <p className="text-accent-gold font-heading text-sm mb-4">
               {t.site.tagline}
             </p>
-            <p className="text-text-muted text-sm leading-relaxed mb-6">
+            <p className="text-text-muted text-muted-on-dark text-sm leading-relaxed mb-6">
               {t.site.fullName} — {t.footer.description}
             </p>
             <div className="flex items-center gap-3">
@@ -97,7 +97,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-muted hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
+                    className="flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-muted text-muted-on-dark hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
                     aria-label={t.footer[social.label as keyof typeof t.footer]}
                   >
                     <SocialIcon />
@@ -116,7 +116,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
+                    className="text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
                   >
                     {navLabelMap[link.href]}
                   </Link>
@@ -134,7 +134,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
+                    className="text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
                   >
                     {dd[areaKeyOrder[i]]?.label || ''}
                   </Link>
@@ -158,14 +158,14 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
-                <span className="text-text-muted text-sm leading-relaxed">
+                <span className="text-text-muted text-muted-on-dark text-sm leading-relaxed">
                   {t.footer.address}
                 </span>
               </li>
               <li>
                 <a
                   href="tel:+966565555437"
-                  className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
+                  className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
                 >
                   <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
                   {t.footer.phone}
@@ -176,7 +176,7 @@ export default function Footer() {
                   href="https://wa.me/966565555437"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
+                  className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
                 >
                   <MessageCircle aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
                   {t.footer.whatsapp}
@@ -185,7 +185,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:info@qimamlaw.com"
-                  className="flex items-center gap-3 text-text-muted text-sm hover:text-accent-gold transition-colors duration-200"
+                  className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
                 >
                   <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
                   {t.footer.email}
@@ -194,7 +194,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Clock aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <div>
-                  <span className="text-text-muted text-sm block">{t.footer.workingHours}</span>
+                  <span className="text-text-muted text-muted-on-dark text-sm block">{t.footer.workingHours}</span>
                   <span className="text-text-light/80 text-sm">
                     {t.footer.satThu}
                   </span>
@@ -208,7 +208,7 @@ export default function Footer() {
       <div className="border-t border-border-dark/50">
         <div className="container-custom py-6">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4 text-xs text-text-muted">
+            <div className="flex items-center gap-4 text-xs text-text-muted text-muted-on-dark">
               <span>
                 &copy; {currentYear} {t.common.firmName}. {t.footer.copyright}
               </span>
