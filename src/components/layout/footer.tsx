@@ -148,22 +148,24 @@ export default function Footer() {
                 </span>
               </li>
               <li>
-                <a
-                  href="tel:+966565555437"
-                  className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                >
-                  <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
-                  {t.footer.phone}
-                </a>
+                  <a
+                    href="tel:+966565555437"
+                    className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
+                    dir="ltr"
+                  >
+                    <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
+                    {t.footer.phone}
+                  </a>
               </li>
               <li>
-                <a
-                  href="mailto:info@qimamlaw.com"
-                  className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                >
-                  <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
-                  {t.footer.email}
-                </a>
+                  <a
+                    href="mailto:info@qimamlaw.com"
+                    className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
+                    dir="ltr"
+                  >
+                    <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
+                    {t.footer.email}
+                  </a>
               </li>
             </ul>
           </div>

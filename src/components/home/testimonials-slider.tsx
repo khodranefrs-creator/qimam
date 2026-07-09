@@ -96,8 +96,13 @@ export default function TestimonialsSlider({
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.3}
                   onDragEnd={(_, info) => {
-                    if (info.offset.x > 50) goPrev()
-                    else if (info.offset.x < -50) goNext()
+                    if (isRtl) {
+                      if (info.offset.x > 50) goNext()
+                      else if (info.offset.x < -50) goPrev()
+                    } else {
+                      if (info.offset.x > 50) goPrev()
+                      else if (info.offset.x < -50) goNext()
+                    }
                   }}
                   className="w-full"
                 >

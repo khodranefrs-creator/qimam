@@ -63,7 +63,7 @@ export function ProcessTimeline() {
                   </span>
 
                   <div className="relative mb-5">
-                    <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 w-[5px] h-[5px] rounded-full bg-accent-gold z-10" />
+                    <div className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[5px] h-[5px] rounded-full bg-accent-gold z-10" />
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-accent-gold/[0.07] flex items-center justify-center group-hover:bg-accent-gold/[0.14] transition-colors duration-500 ring-1 ring-accent-gold/[0.06] group-hover:ring-accent-gold/20">
                       <Icon aria-hidden="true" className="w-5 h-5 md:w-6 md:h-6 text-accent-gold" />
                     </div>

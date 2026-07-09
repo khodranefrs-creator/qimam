@@ -8,10 +8,11 @@ import { getTranslations } from '@/i18n/get-translations'
 export default function WhatsAppButton() {
   const locale = useLocale()
   const t = getTranslations(locale)
+  const whatsappText = locale === 'ar' ? 'مرحباً، أرغب بالاستفسار عن خدماتكم القانونية' : 'Hello, I would like to inquire about your legal services'
 
   return (
     <motion.a
-      href="https://wa.me/966565555437?text=مرحباً، أرغب بالاستفسار عن خدماتكم القانونية"
+      href={`https://wa.me/966565555437?text=${encodeURIComponent(whatsappText)}`}
       target="_blank"
       rel="noopener noreferrer"
       animate={{ scale: [1, 1.05, 1] }}

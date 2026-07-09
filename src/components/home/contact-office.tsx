@@ -111,19 +111,19 @@ export function ContactOfficeSection() {
                           {t.contact[item.titleKey as keyof typeof t.contact] as string}
                         </h4>
                         <div className="space-y-2">
-                          <div className="flex items-center gap-2 text-text-muted text-sm">
+                          <div className="flex items-center gap-2 text-text-muted text-sm" dir="ltr">
                             <span className="w-1.5 h-1.5 rounded-full bg-accent-gold/40 shrink-0" />
                             <span>{t.contact.daySunThu}</span>
                             <span className="text-text-muted/50">—</span>
                             <span>{t.contact.timeSunThu}</span>
                           </div>
-                          <div className="flex items-center gap-2 text-text-muted text-sm">
+                          <div className="flex items-center gap-2 text-text-muted text-sm" dir="ltr">
                             <span className="w-1.5 h-1.5 rounded-full bg-accent-gold/40 shrink-0" />
                             <span>{t.contact.dayFri}</span>
                             <span className="text-text-muted/50">—</span>
                             <span>{t.contact.timeFri}</span>
                           </div>
-                          <div className="flex items-center gap-2 text-text-muted text-sm">
+                          <div className="flex items-center gap-2 text-text-muted text-sm" dir="ltr">
                             <span className="w-1.5 h-1.5 rounded-full bg-accent-gold/40 shrink-0" />
                             <span>{t.contact.daySat}</span>
                             <span className="text-text-muted/50">—</span>

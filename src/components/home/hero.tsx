@@ -30,12 +30,12 @@ const trustCards = [
   {
     icon: Shield,
     key: 'statsLicensesBadge' as const,
-    desc: { ar: 'إجراءات قانونية واضحة', en: 'Clear legal procedures' },
+    desc: { ar: 'إجراءات قانونية واضحة', en: 'Clear, transparent legal processes' },
   },
   {
     icon: Award,
     key: 'statsRatingBadge' as const,
-    desc: { ar: 'سرية واهتمام بكل قضية', en: 'Confidentiality and attention to every case' },
+    desc: { ar: 'سرية واهتمام بكل قضية', en: 'Confidential, client-focused representation' },
   },
 ]
 
@@ -87,7 +87,7 @@ export function Hero() {
             {t.home.heroDesc}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center lg:justify-start">
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center lg:justify-end">
             <Link
               href="/consultation"
               className="btn-primary group"
