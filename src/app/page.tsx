@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma"
 import { Hero } from "@/components/home/hero"
-import { StatsBar } from "@/components/home/stats-bar"
 import { AboutTeaser } from "@/components/home/about-teaser"
 import { WhyQimam } from "@/components/home/why-qimam"
 import { LawyerTeaser } from "@/components/home/lawyer-teaser"
@@ -47,7 +46,6 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <StatsBar />
       <AboutTeaser />
       <WhyQimam />
       <LawyerTeaser />
