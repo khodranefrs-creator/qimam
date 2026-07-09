@@ -142,6 +142,7 @@ const ar = {
     firmSuffix: 'والاستشارات القانونية',
     qimam: 'قمم اليقين',
     notAvailable: 'غير متاح',
+    scrollToTop: 'العودة إلى الأعلى',
     skipToContent: 'تخطي إلى المحتوى الرئيسي',
   },
   error: {

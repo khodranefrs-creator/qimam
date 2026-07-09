@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: t.site.fullName,
-      description: `${t.site.fullName} — ${t.site.tagline} في مكة المكرمة.`,
+      description: `${t.site.fullName} — ${t.site.tagline}${locale === 'ar' ? ' في مكة المكرمة' : ' in Makkah'}.`,
       images: [`${siteUrl}/og-image.jpg`],
     },
     robots: {

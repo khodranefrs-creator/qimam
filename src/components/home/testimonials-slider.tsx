@@ -13,6 +13,7 @@ export default function TestimonialsSlider({
   testimonials: TestimonialItem[]
 }) {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
@@ -145,7 +146,7 @@ export default function TestimonialsSlider({
                   className="w-10 h-10 rounded-full border border-border hover:border-accent-gold hover:text-accent-gold flex items-center justify-center transition-colors duration-200 focus-ring-gold"
                   aria-label={t.blog.prev}
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  {isRtl ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
                 </button>
 
                 <div className="flex items-center gap-2">
@@ -166,7 +167,7 @@ export default function TestimonialsSlider({
                   className="w-10 h-10 rounded-full border border-border hover:border-accent-gold hover:text-accent-gold flex items-center justify-center transition-colors duration-200 focus-ring-gold"
                   aria-label={t.blog.next}
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  {isRtl ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
                 </button>
               </div>
             )}

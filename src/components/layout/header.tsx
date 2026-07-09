@@ -160,7 +160,7 @@ export default function Header() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 8 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-full right-0 mt-2 w-[640px] bg-primary border border-border-dark/50 rounded-card shadow-2xl shadow-black/30 p-6 grid grid-cols-2 gap-3"
+                          className={`absolute top-full ${isRtl ? 'right-0' : 'left-0'} mt-2 w-[640px] bg-primary border border-border-dark/50 rounded-card shadow-2xl shadow-black/30 p-6 grid grid-cols-2 gap-3`}
                           onMouseEnter={handleMegaEnter}
                           onMouseLeave={handleMegaLeave}
                         >
@@ -319,7 +319,7 @@ export default function Header() {
                       {item.children && <ChevronDown className="w-4 h-4 shrink-0" />}
                     </Link>
                     {item.children && (
-                      <div className="pr-4 mt-1 space-y-1 border-r-2 border-accent-gold/20 mr-2">
+                      <div className={`${isRtl ? 'pr-4 border-r-2 mr-2' : 'pl-4 border-l-2 ml-2'} mt-1 space-y-1 border-accent-gold/20`}>
                         {item.children.map((child) => {
                           const ChildIcon = child.icon
                           return (

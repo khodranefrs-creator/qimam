@@ -144,6 +144,7 @@ export const en: Messages = {
     firmSuffix: 'Law Firm',
     qimam: 'Qimam Al-Yaqin',
     notAvailable: 'N/A',
+    scrollToTop: 'Scroll to top',
     skipToContent: 'Skip to main content',
   },
   error: {

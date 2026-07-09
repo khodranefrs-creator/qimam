@@ -84,7 +84,7 @@ export function FaqPreview({ faqs }: Props) {
                 >
                   <button
                     onClick={() => toggle(faq.id)}
-                    className="w-full flex items-center justify-between gap-4 px-6 py-5 text-right focus-ring-gold rounded-card"
+                    className={`w-full flex items-center justify-between gap-4 px-6 py-5 ${isRtl ? 'text-right' : 'text-left'} focus-ring-gold rounded-card`}
                   >
                     <span className={`font-heading font-medium text-base transition-colors duration-300 ${
                       isOpen ? 'text-accent-gold' : 'text-text-light'
