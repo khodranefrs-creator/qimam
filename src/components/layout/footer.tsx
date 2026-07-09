@@ -77,9 +77,9 @@ export default function Footer() {
               <Image
                 src="/logo.png"
                 alt={t.common.firmName}
-                width={160}
-                height={44}
-                className="h-10 w-auto object-contain"
+              width={69}
+              height={70}
+              className="h-10 w-auto object-contain"
               />
             </Link>
             <p className="text-accent-gold font-heading text-sm mb-4">

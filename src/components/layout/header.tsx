@@ -119,8 +119,8 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt={t.common.firmName}
-              width={280}
-              height={72}
+              width={138}
+              height={140}
               className="h-14 md:h-20 w-auto object-contain"
               priority
             />
@@ -286,8 +286,8 @@ export default function Header() {
                   <Image
                     src="/logo.png"
                     alt={t.common.firmName}
-                    width={220}
-                    height={56}
+                    width={138}
+                    height={140}
                     className="h-14 w-auto object-contain"
                     priority
                   />

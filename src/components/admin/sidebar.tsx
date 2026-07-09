@@ -37,8 +37,8 @@ export default function AdminSidebar() {
             <Image
               src="/logo.png"
               alt="شركة قمم اليقين"
-              width={100}
-              height={28}
+              width={69}
+              height={70}
               className="h-7 w-auto object-contain"
             />
           </Link>
