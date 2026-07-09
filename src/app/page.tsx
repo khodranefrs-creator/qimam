@@ -10,6 +10,7 @@ import { BlogPreview } from "@/components/home/blog-preview"
 import { FaqPreview } from "@/components/home/faq-preview"
 import { FinalCTASection } from "@/components/home/final-cta"
 import { ContactOfficeSection } from "@/components/home/contact-office"
+
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import type { Metadata } from "next"
@@ -54,8 +55,8 @@ export default async function HomePage() {
       <LawyerTeaser />
       <BlogPreview posts={posts} />
       <FaqPreview faqs={faqs} />
-      <ContactOfficeSection />
       <FinalCTASection />
+      <ContactOfficeSection />
     </>
   )
 }

@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
@@ -37,30 +36,46 @@ export function ContactOfficeSection() {
           className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start"
         >
           <div>
-            <Link
+            <a
               href="https://maps.google.com/?q=Qimam+Al-Yaqin+Law+Firm+Makkah"
               target="_blank"
               rel="noopener noreferrer"
-              className="block relative w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-primary-light/20 to-primary-light/5 border border-border-dark/30 overflow-hidden group"
+              className="block relative w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-primary-light/25 to-primary-light/5 border border-border-dark/30 overflow-hidden group shadow-lg shadow-primary-light/5"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px),
+                  linear-gradient(135deg, rgba(212,175,55,0.03) 0%, transparent 50%, rgba(212,175,55,0.02) 100%)
+                `,
+                backgroundSize: '28px 28px, 28px 28px, 100% 100%',
+              }}
             >
-              <div className="absolute inset-0 flex items-center justify-center flex-col gap-3">
-                <div className="w-16 h-16 rounded-full bg-accent-gold/10 flex items-center justify-center group-hover:bg-accent-gold/20 transition-colors duration-500 ring-1 ring-accent-gold/[0.08]">
-                  <MapPin aria-hidden="true" className="w-7 h-7 text-accent-gold" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-light/10 via-transparent to-transparent" />
+              <div className="absolute inset-0 flex items-center justify-center flex-col gap-4">
+                <div className="relative">
+                  <div className="w-14 h-14 rounded-full bg-accent-gold/15 flex items-center justify-center shadow-lg shadow-accent-gold/10 ring-1 ring-accent-gold/20 group-hover:ring-accent-gold/40 transition-all duration-500 group-hover:shadow-xl group-hover:shadow-accent-gold/15 group-hover:-translate-y-0.5">
+                    <MapPin aria-hidden="true" className="w-6 h-6 text-accent-gold" />
+                  </div>
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rotate-45 bg-accent-gold/15 ring-1 ring-accent-gold/20" />
                 </div>
-                <span className="text-text-muted text-sm">{t.footer.mapPlaceholder}</span>
-                <span className="inline-flex items-center gap-1.5 text-accent-gold text-xs font-medium">
+                <div className="text-center">
+                  <span className="text-text-muted text-sm font-medium block">{t.footer.mapPlaceholder}</span>
+                  <span className="text-text-muted/50 text-xs block mt-0.5">{t.site.fullName}</span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-accent-gold text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <Navigation aria-hidden="true" className="w-3.5 h-3.5" />
                   {t.footer.getDirections}
                 </span>
               </div>
-            </Link>
+            </a>
           </div>
 
           <div className="space-y-8">
             <div>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-dark mb-3">
-                {t.contact.infoTitle}
-              </h2>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-6 h-px bg-accent-gold/60" />
+                <span className="text-accent-gold text-xs font-medium tracking-[0.15em] uppercase">{t.contact.infoTitle}</span>
+              </div>
               <p className="text-text-muted text-sm leading-relaxed">
                 {t.contact.infoDesc}
               </p>
@@ -72,7 +87,7 @@ export function ContactOfficeSection() {
                 if (item.isAddress) {
                   return (
                     <div key={item.titleKey} className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5 ring-1 ring-accent-gold/[0.08]">
                         <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                       </div>
                       <div>
@@ -88,7 +103,7 @@ export function ContactOfficeSection() {
                 if (item.isHours) {
                   return (
                     <div key={item.titleKey} className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5 ring-1 ring-accent-gold/[0.08]">
                         <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                       </div>
                       <div>
@@ -121,7 +136,7 @@ export function ContactOfficeSection() {
                 }
                 return (
                   <div key={item.titleKey} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5 ring-1 ring-accent-gold/[0.08]">
                       <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                     </div>
                     <div>
@@ -142,10 +157,6 @@ export function ContactOfficeSection() {
                 )
               })}
             </div>
-
-            <p className="text-text-muted/60 text-xs leading-relaxed max-w-sm border-t border-border/60 pt-6">
-              {t.home.contactDesc}
-            </p>
           </div>
         </motion.div>
       </div>

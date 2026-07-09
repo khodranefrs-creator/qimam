@@ -6,15 +6,6 @@ import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
-const footerQuickLinks = [
-  { href: '/', key: 'home' },
-  { href: '/about', key: 'about' },
-  { href: '/lawyer', key: 'lawyer' },
-  { href: '/practice-areas', key: 'practiceAreas' },
-  { href: '/blog', key: 'blog' },
-  { href: '/contact', key: 'contact' },
-] as const
-
 const footerAreaLinks = [
   { href: '/practice-areas/commercial-law', areaKey: 'commercial' },
   { href: '/practice-areas/corporate-law', areaKey: 'corporate' },
@@ -22,6 +13,13 @@ const footerAreaLinks = [
   { href: '/practice-areas/real-estate-law', areaKey: 'realEstate' },
   { href: '/practice-areas/family-law', areaKey: 'family' },
   { href: '/practice-areas/inheritance-law', areaKey: 'inheritance' },
+] as const
+
+const footerCompanyLinks = [
+  { href: '/about', labelKey: 'nav.about' },
+  { href: '/lawyer', labelKey: 'nav.lawyer' },
+  { href: '/careers', labelKey: 'careers.title' },
+  { href: '/contact', labelKey: 'nav.contact' },
 ] as const
 
 const socialLinks = [
@@ -41,15 +39,6 @@ const socialLinks = [
   },
 ]
 
-const navLabelMap: Record<string, string> = {
-  '/': 'nav.home',
-  '/about': 'nav.about',
-  '/lawyer': 'nav.lawyer',
-  '/practice-areas': 'nav.practiceAreas',
-  '/blog': 'nav.blog',
-  '/contact': 'nav.contact',
-}
-
 export default function Footer() {
   const locale = useLocale()
   const t = getTranslations(locale)
@@ -57,6 +46,15 @@ export default function Footer() {
 
   const dd = t.nav.practiceAreasDropDown as unknown as Record<string, { label: string; desc: string }>
   const areaKeyOrder = ['commercial', 'corporate', 'litigation', 'realEstate', 'family', 'inheritance'] as const
+
+  function resolveLabel(key: string): string {
+    const [section, ...rest] = key.split('.')
+    const s = t as unknown as Record<string, Record<string, string>>
+    return rest.reduce((acc: Record<string, string> | string, k: string) => {
+      if (typeof acc === 'object' && acc !== null) return (acc as Record<string, string>)[k]
+      return acc
+    }, s[section]) as string
+  }
 
   return (
     <footer className="bg-primary border-t border-accent-gold/20">
@@ -72,11 +70,8 @@ export default function Footer() {
                 className="h-12 w-auto object-contain"
               />
             </Link>
-            <p className="text-accent-gold font-heading text-sm mb-3">
-              {t.site.tagline}
-            </p>
             <p className="text-text-muted text-muted-on-dark text-sm leading-relaxed mb-6 max-w-xs">
-              {t.site.fullName}
+              {t.footer.description}
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => {
@@ -95,29 +90,6 @@ export default function Footer() {
                 )
               })}
             </div>
-          </div>
-
-          <div>
-            <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
-              {t.footer.quickLinks}
-            </h3>
-            <ul className="space-y-3">
-              {footerQuickLinks.map((link) => {
-                const labelKey = navLabelMap[link.href]
-                const [section, key] = labelKey.split('.')
-                const label = (t as unknown as Record<string, Record<string, string>>)[section][key]
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
           </div>
 
           <div>
@@ -148,13 +120,31 @@ export default function Footer() {
 
           <div>
             <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
+              {t.footer.company}
+            </h3>
+            <ul className="space-y-3">
+              {footerCompanyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
+                  >
+                    {resolveLabel(link.labelKey)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
               {t.nav.contactUs}
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <span className="text-text-muted text-muted-on-dark text-sm leading-relaxed">
-                  {t.footer.address}
+                  {t.contact.address}، {t.footer.country}
                 </span>
               </li>
               <li>

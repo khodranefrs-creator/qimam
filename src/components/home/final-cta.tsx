@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, MessageCircle, Phone } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -13,7 +13,8 @@ export function FinalCTASection() {
 
   return (
     <section className="bg-primary relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
+      <div className="absolute top-6 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/40 to-transparent" />
+      <div className="absolute top-7 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-accent-gold/[0.06] blur-[3px]" />
 
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/[0.02] blur-[120px]" />
@@ -29,7 +30,7 @@ export function FinalCTASection() {
         >
           <div className="flex items-center justify-center gap-2 mb-5">
             <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.home.contactCta}</span>
+            <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.nav.consultation}</span>
             <span className="w-8 h-px bg-accent-gold/60" />
           </div>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-heading font-bold text-text-light leading-[1.15] mb-5 text-balance">
@@ -38,7 +39,7 @@ export function FinalCTASection() {
           <p className="text-text-muted text-muted-on-dark text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto">
             {t.home.finalCTADesc}
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex items-center justify-center">
             <Link
               href="/consultation"
               className="btn-primary group"
@@ -51,31 +52,6 @@ export function FinalCTASection() {
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
               )}
             </Link>
-            <Link
-              href="/contact"
-              className="btn-secondary"
-              aria-label={t.home.finalCTASecondary}
-            >
-              {t.home.finalCTASecondary}
-            </Link>
-            <a
-              href="https://wa.me/966565555437"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-accent-gold/30 text-accent-gold text-sm font-medium rounded-[8px] hover:bg-accent-gold/10 transition-all duration-300"
-              aria-label={t.home.ctaWhatsapp}
-            >
-              <MessageCircle aria-hidden="true" className="w-4 h-4" />
-              {t.home.ctaWhatsapp}
-            </a>
-            <a
-              href="tel:+966565555437"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-text-light/20 text-text-muted text-muted-on-dark text-sm font-medium rounded-[8px] hover:text-accent-gold hover:border-accent-gold/30 transition-all duration-300"
-              aria-label={t.nav.contactUs}
-            >
-              <Phone aria-hidden="true" className="w-4 h-4" />
-              {t.nav.phone}
-            </a>
           </div>
         </motion.div>
       </div>
