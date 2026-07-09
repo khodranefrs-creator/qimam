@@ -70,6 +70,11 @@ export default async function TestimonialsPage() {
                   <div>
                     <p className="font-heading font-bold text-primary">{item.name}</p>
                     {item.role && <p className="text-sm text-text-muted">{item.role}</p>}
+                    {item.source && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] bg-accent-gold/5 text-accent-gold border border-accent-gold/15 font-medium mt-1.5">
+                        {item.source}
+                      </span>
+                    )}
                   </div>
                 </div>
               ))}

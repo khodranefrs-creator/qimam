@@ -125,6 +125,13 @@ export default function TestimonialsSlider({
                       {testimonials[current].role && (
                         <span className="text-text-muted text-sm me-2">— {testimonials[current].role}</span>
                       )}
+                      {testimonials[current].source && (
+                        <div className="mt-2">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] bg-accent-gold/5 text-accent-gold border border-accent-gold/15 font-medium">
+                            {testimonials[current].source}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>

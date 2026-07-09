@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout";
 import { SkipToContent } from "@/components/shared";
 import { ScrollToTop } from "@/components/shared";
 import { WhatsAppButton } from "@/components/shared";
+import { StickyConsultBar } from "@/components/shared";
 import { getLocale } from "@/i18n/get-locale";
 import { localeDirections } from "@/i18n/config";
 import { getTranslations } from "@/i18n/get-translations";
@@ -85,6 +86,21 @@ export default async function RootLayout({
     areaServed: "SA",
     sameAs: ["https://wa.me/966565555437"],
     hasMap: `https://www.google.com/maps/search/?api=1&query=شارع+النسيم+العام+مكة+المكرمة`,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "الخدمات القانونية",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "القانون التجاري" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "قانون الشركات" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "التقاضي والمرافعات" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "القانون العقاري" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "الأحوال الشخصية" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "المواريث والوصايا" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "التحكيم التجاري" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "التوثيق العدلي" } },
+      ],
+    },
+    legalName: t.site.fullName,
   };
 
   return (
@@ -97,7 +113,7 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800&family=Inter:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
@@ -105,12 +121,13 @@ export default async function RootLayout({
         <Providers>
           <SkipToContent />
           <Header />
-          <main className="flex-1" id="main-content">
+          <main className="flex-1 pb-16 lg:pb-0" id="main-content">
             {children}
           </main>
           <Footer />
           <ScrollToTop />
           <WhatsAppButton />
+          <StickyConsultBar />
           <Toaster />
         </Providers>
       </body>

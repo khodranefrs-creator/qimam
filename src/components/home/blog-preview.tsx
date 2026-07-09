@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Clock, BookOpen } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
@@ -122,12 +123,14 @@ export function BlogPreview({ posts }: Props) {
                 href={`/blog/${post.slug}`}
                 className="group block bg-white rounded-card border border-border/60 hover:border-accent-gold/30 hover:shadow-gold transition-all duration-300 hover-lift overflow-hidden"
               >
-                <div className="h-[200px] bg-border rounded-t-card flex items-center justify-center overflow-hidden">
+                <div className="h-[200px] bg-border rounded-t-card flex items-center justify-center overflow-hidden relative">
                   {post.coverImage ? (
-                    <img
+                    <Image
                       src={post.coverImage}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <span className="text-text-muted/40 text-sm">{t.home.articleImage}</span>
