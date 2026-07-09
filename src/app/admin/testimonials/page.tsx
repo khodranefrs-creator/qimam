@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Star, ThumbsUp, ThumbsDown, Trash2, X, Loader2, Search, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckCircle, XCircle } from "lucide-react"
+import { Star, ThumbsUp, ThumbsDown, Trash2, X, Loader2, Search, ChevronLeft, ChevronRight, FileText, AlertTriangle, CheckCircle, XCircle, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface Testimonial {
@@ -56,6 +56,9 @@ export default function AdminTestimonialsPage() {
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
   const [deleting, setDeleting] = useState(false)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
+  const [showCreate, setShowCreate] = useState(false)
+  const [creating, setCreating] = useState(false)
+  const [createForm, setCreateForm] = useState({ name: '', content: '', rating: 5, source: 'Google Maps', featured: true, approved: true })
 
   const fetchData = useCallback(async () => {
     setLoading(true)
@@ -103,6 +106,25 @@ export default function AdminTestimonialsPage() {
     setDeleting(false)
   }
 
+  async function handleCreate(e: React.FormEvent) {
+    e.preventDefault()
+    if (!createForm.name.trim() || !createForm.content.trim()) return
+    setCreating(true)
+    try {
+      const res = await fetch('/api/admin/testimonials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(createForm),
+      })
+      if (res.ok) {
+        setShowCreate(false)
+        setCreateForm({ name: '', content: '', rating: 5, source: 'Google Maps', featured: true, approved: true })
+        fetchData()
+      }
+    } catch {}
+    setCreating(false)
+  }
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -110,6 +132,10 @@ export default function AdminTestimonialsPage() {
           <h1 className="text-2xl font-heading font-bold text-primary">آراء العملاء</h1>
           <p className="text-text-muted text-sm mt-1">إدارة آراء العملاء والتوصيات</p>
         </div>
+        <Button variant="primary" size="md" onClick={() => setShowCreate(true)} className="gap-2">
+          <Plus size={16} />
+          إضافة رأي جديد
+        </Button>
       </div>
 
       <div className="bg-white rounded-xl border border-border/60 shadow-card p-4">
@@ -251,6 +277,102 @@ export default function AdminTestimonialsPage() {
       </div>
 
       <AnimatePresence>
+        {showCreate && (
+          <>
+            <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setShowCreate(false)} />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="fixed inset-0 z-50 flex items-center justify-center"
+            >
+              <div className="bg-white rounded-xl border border-border/60 shadow-2xl w-full max-w-lg mx-4 p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-lg font-heading font-bold text-primary">إضافة رأي جديد</h3>
+                  <button onClick={() => setShowCreate(false)} className="p-1 rounded-lg hover:bg-gray-100 transition">
+                    <X size={18} className="text-text-muted" />
+                  </button>
+                </div>
+                <form onSubmit={handleCreate} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-medium text-text-muted mb-1">الاسم *</label>
+                    <input
+                      type="text"
+                      value={createForm.name}
+                      onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
+                      className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                      placeholder="اسم العميل"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-text-muted mb-1">المحتوى *</label>
+                    <textarea
+                      value={createForm.content}
+                      onChange={(e) => setCreateForm({ ...createForm, content: e.target.value })}
+                      className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
+                      rows={4}
+                      placeholder="نص الرأي"
+                      required
+                    />
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex-1">
+                      <label className="block text-xs font-medium text-text-muted mb-1">التقييم</label>
+                      <select
+                        value={createForm.rating}
+                        onChange={(e) => setCreateForm({ ...createForm, rating: parseInt(e.target.value) })}
+                        className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
+                      >
+                        {[5, 4, 3, 2, 1].map((n) => (
+                          <option key={n} value={n}>{n} {Array(n).fill('★').join('')}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-xs font-medium text-text-muted mb-1">المصدر</label>
+                      <input
+                        type="text"
+                        value={createForm.source}
+                        onChange={(e) => setCreateForm({ ...createForm, source: e.target.value })}
+                        className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        placeholder="مثل: Google Maps"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={createForm.featured}
+                        onChange={(e) => setCreateForm({ ...createForm, featured: e.target.checked })}
+                        className="rounded border-border/60 accent-accent-gold"
+                      />
+                      <span className="text-sm text-text-dark">مميز</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={createForm.approved}
+                        onChange={(e) => setCreateForm({ ...createForm, approved: e.target.checked })}
+                        className="rounded border-border/60 accent-accent-gold"
+                      />
+                      <span className="text-sm text-text-dark">معتمد</span>
+                    </label>
+                  </div>
+                  <div className="flex items-center gap-3 justify-end pt-2">
+                    <Button variant="outline" size="md" type="button" onClick={() => setShowCreate(false)}>إلغاء</Button>
+                    <Button variant="primary" size="md" type="submit" disabled={creating} className="gap-2">
+                      {creating ? <Loader2 size={16} className="animate-spin" /> : <Plus size={16} />}
+                      إضافة
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+          </>
+        )}
+
         {deleteConfirm && (
           <>
             <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setDeleteConfirm(null)} />

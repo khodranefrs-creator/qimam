@@ -38,6 +38,36 @@ export async function GET(request: NextRequest) {
   }
 }
 
+export async function POST(request: NextRequest) {
+  try {
+    await getAdminSession()
+    const body = await request.json()
+    const { name, role, content, rating, source, sourceUrl, featured, approved } = body
+
+    if (!name || !content) {
+      return errorResponse("الاسم والمحتوى مطلوبان")
+    }
+
+    const testimonial = await prisma.testimonial.create({
+      data: {
+        name,
+        role: role || null,
+        content,
+        rating: rating ? parseInt(rating) : null,
+        source: source || null,
+        sourceUrl: sourceUrl || null,
+        featured: featured === true,
+        approved: approved === true,
+      },
+    })
+
+    return successResponse(testimonial, 201)
+  } catch (error: any) {
+    if (error.message === "Unauthorized") return errorResponse("غير مصرح", 401)
+    return errorResponse("حدث خطأ أثناء إضافة الرأي", 500)
+  }
+}
+
 export async function PATCH(request: NextRequest) {
   try {
     await getAdminSession()
