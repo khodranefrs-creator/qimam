@@ -309,11 +309,73 @@ async function main() {
   console.log(`  ✓ ${services.length} services seeded`);
 
   // ──────────────────────────────────────────────
-  // Testimonials
+  // Testimonials — real Google Maps reviews
   // ──────────────────────────────────────────────
-  // Testimonials should be added manually via the admin panel
-  // to ensure only genuine client reviews appear on the live site.
-  console.log('  ✓ Testimonials: 0 (add via admin panel)');
+  // Clear existing testimonials, then seed real Google Maps reviews
+  await prisma.testimonial.deleteMany();
+
+  const testimonials = [
+    {
+      name: 'Amro Mohammad',
+      role: null,
+      content: 'السلام عليكم ورحمة الله وبركاته\nتجربتي مع مكتب المحامي ماجد خالد السواط كانت مميزة جدًا، وجدت المصداقية في التعامل وسرعة الاستجابة واحترافية عالية ولديه فريق عمل مميز، بالإضافة إلى خبرة قانونية كبيرة. أنصح الجميع بالتعامل معهم.\nأفضل مكتب محاماة تعاملت معه، شكرًا للمحامي ماجد خالد السواط وفريقه على سرعة الرد وسرعة الإنجاز.',
+      rating: 5,
+      source: 'Google Maps',
+      featured: true,
+      approved: true,
+    },
+    {
+      name: 'maha Sofyani',
+      role: null,
+      content: 'أتقدم بجزيل الشكر والتقدير لمكتب قمم اليقين للمحاماة على احترافيتهم العالية في متابعة قضيتي، حيث يتم العمل بكل سهولة وإتقان دون أي تقصير، كما أشكرهم على أخلاقهم الراقية وتعاونهم المستمر وحرصهم الدائم على التواصل.',
+      rating: 5,
+      source: 'Google Maps',
+      featured: true,
+      approved: true,
+    },
+    {
+      name: 'Misbah alsuwat',
+      role: null,
+      content: 'احترافية عالية واهتمام بالعميل، تجربة تستحق الشكر والثناء.\nوالشكر موصول للأستاذ ماجد خالد السواط وفريقه على جهودهم وتعاونهم الرائع.',
+      rating: 5,
+      source: 'Google Maps',
+      featured: true,
+      approved: true,
+    },
+    {
+      name: 'ABDULMJEED ALLHIBE',
+      role: null,
+      content: 'أنصح وبكل قوة التعامل معهم وبالذات الأستاذ ماجد. عندهم سرعة في الإنجاز وسرعة في التواصل وإعطائك المعلومات أولاً بأول وتوضيح كل شيء.',
+      rating: 5,
+      source: 'Google Maps',
+      featured: true,
+      approved: true,
+    },
+    {
+      name: 'Noor Moalem',
+      role: null,
+      content: 'من أفضل المحامين، المحامي ماجد إنسان خلوق ومجتهد وملم بجميع الأنظمة. أشكرك على جهودك العالية.',
+      rating: 5,
+      source: 'Google Maps',
+      featured: true,
+      approved: true,
+    },
+    {
+      name: 'Saif Alotaibi',
+      role: null,
+      content: 'أشكر فريق العمل وعلى رأسهم المحامي ماجد السواط على حسن تعاملهم وسرعة الإنجاز.',
+      rating: 5,
+      source: 'Google Maps',
+      featured: true,
+      approved: true,
+    },
+  ];
+
+  for (const testimonial of testimonials) {
+    await prisma.testimonial.create({ data: testimonial });
+  }
+
+  console.log(`  ✓ ${testimonials.length} testimonials seeded (Google Maps reviews)`);
 
   // ──────────────────────────────────────────────
   // FAQs
@@ -497,7 +559,7 @@ async function main() {
   console.log('\n✓ Seeding completed successfully');
   console.log(`  - Practice Areas: ${practiceAreas.length}`);
   console.log(`  - Services: ${services.length}`);
-  console.log('  - Testimonials: 0 (add via admin panel)');
+  console.log(`  - Testimonials: ${testimonials.length} (Google Maps reviews)`);
   console.log(`  - FAQs: ${faqs.length}`);
   console.log(`  - Blog Posts: ${blogPosts.length}`);
   console.log(`  - Site Settings: 3`);
