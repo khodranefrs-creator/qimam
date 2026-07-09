@@ -1,7 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { PhoneCall, FileText, Handshake, Scale } from 'lucide-react'
+import { PhoneCall, FileText, Handshake, Scale, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -14,6 +15,7 @@ const processSteps = [
 
 export function ProcessTimeline() {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
   return (
@@ -78,6 +80,25 @@ export function ProcessTimeline() {
             })}
           </div>
 
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="text-center mt-14 md:mt-16"
+          >
+            <Link
+              href="/consultation"
+              className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group"
+            >
+              <span>{t.home.ctaBooking}</span>
+              {isRtl ? (
+                <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              ) : (
+                <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              )}
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

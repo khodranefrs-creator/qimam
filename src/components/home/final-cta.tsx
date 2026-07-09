@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, MessageCircle, Phone } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -58,6 +58,24 @@ export function FinalCTASection() {
             >
               {t.home.finalCTASecondary}
             </Link>
+            <a
+              href="https://wa.me/966565555437"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-accent-gold/30 text-accent-gold text-sm font-medium rounded-[8px] hover:bg-accent-gold/10 transition-all duration-300"
+              aria-label={t.home.ctaWhatsapp}
+            >
+              <MessageCircle aria-hidden="true" className="w-4 h-4" />
+              {t.home.ctaWhatsapp}
+            </a>
+            <a
+              href="tel:+966565555437"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-text-light/20 text-text-muted text-muted-on-dark text-sm font-medium rounded-[8px] hover:text-accent-gold hover:border-accent-gold/30 transition-all duration-300"
+              aria-label={t.nav.contactUs}
+            >
+              <Phone aria-hidden="true" className="w-4 h-4" />
+              {t.nav.phone}
+            </a>
           </div>
         </motion.div>
       </div>

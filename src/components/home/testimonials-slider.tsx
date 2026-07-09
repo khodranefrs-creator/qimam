@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronRight, ChevronLeft, Star, Quote, MessageSquare } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Star, Quote, MessageSquare, ArrowLeft, ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import type { TestimonialItem } from './types'
@@ -172,27 +173,47 @@ export default function TestimonialsSlider({
               </div>
             )}
           </div>
-        ) : (
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+              className="max-w-lg mx-auto text-center py-12"
+            >
+              <div className="w-20 h-20 rounded-full bg-accent-gold/5 border border-accent-gold/10 flex items-center justify-center mx-auto mb-6">
+                <MessageSquare aria-hidden="true" className="w-8 h-8 text-accent-gold/40" />
+              </div>
+              <Quote aria-hidden="true" className="w-8 h-8 text-accent-gold/20 mx-auto mb-4" />
+              <p className="text-text-muted leading-relaxed mb-6">
+                {t.testimonials.noTestimonials}
+              </p>
+              <p className="text-text-muted/60 text-sm">
+                {t.testimonials.noTestimonials}
+              </p>
+            </motion.div>
+          )}
+
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-            className="max-w-lg mx-auto text-center py-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-center mt-12"
           >
-            <div className="w-20 h-20 rounded-full bg-accent-gold/5 border border-accent-gold/10 flex items-center justify-center mx-auto mb-6">
-              <MessageSquare aria-hidden="true" className="w-8 h-8 text-accent-gold/40" />
-            </div>
-            <Quote aria-hidden="true" className="w-8 h-8 text-accent-gold/20 mx-auto mb-4" />
-            <p className="text-text-muted leading-relaxed mb-6">
-              {t.testimonials.noTestimonials}
-            </p>
-            <p className="text-text-muted/60 text-sm">
-              {t.testimonials.noTestimonials}
-            </p>
+            <Link
+              href="/consultation"
+              className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group"
+            >
+              <span>{t.home.ctaBooking}</span>
+              {isRtl ? (
+                <ArrowLeft aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+              ) : (
+                <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              )}
+            </Link>
           </motion.div>
-        )}
-      </div>
+        </div>
     </section>
   )
 }

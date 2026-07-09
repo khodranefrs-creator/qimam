@@ -6,7 +6,6 @@ import { LawyerTeaser } from "@/components/home/lawyer-teaser"
 import { PracticeAreasGrid } from "@/components/home/practice-areas-grid"
 import { ProcessTimeline } from "@/components/home/process-timeline"
 import TestimonialsSlider from "@/components/home/testimonials-slider"
-import { CtaBanner } from "@/components/home/cta-banner"
 import { BlogPreview } from "@/components/home/blog-preview"
 import { FaqPreview } from "@/components/home/faq-preview"
 import { FinalCTASection } from "@/components/home/final-cta"
@@ -53,7 +52,6 @@ export default async function HomePage() {
       <PracticeAreasGrid areas={practiceAreas} />
       <ProcessTimeline />
       <TestimonialsSlider testimonials={testimonials} />
-      <CtaBanner />
       <BlogPreview posts={posts} />
       <FaqPreview faqs={faqs} />
       <FinalCTASection />
