@@ -19,7 +19,8 @@ export function LawyerTeaser() {
   ]
 
   return (
-    <section className="bg-primary section-padding">
+    <section className="bg-primary section-padding relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div

@@ -47,11 +47,11 @@ export default async function HomePage() {
     <>
       <Hero />
       <AboutTeaser />
-      <WhyQimam />
-      <LawyerTeaser />
       <PracticeAreasGrid areas={practiceAreas} />
       <ProcessTimeline />
+      <WhyQimam />
       <TestimonialsSlider testimonials={testimonials} />
+      <LawyerTeaser />
       <BlogPreview posts={posts} />
       <FaqPreview faqs={faqs} />
       <ContactOfficeSection />
