@@ -91,7 +91,7 @@ export function LawyerTeaser() {
               {t.home.lawyerDesc}
             </p>
 
-            <div className="mb-10">
+            <div className="mb-6">
               <h3 className="text-sm font-medium text-accent-gold/70 uppercase tracking-[0.12em] mb-5">
                 {t.home.lawyerCredHeading}
               </h3>
