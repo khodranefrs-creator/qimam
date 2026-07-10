@@ -73,8 +73,8 @@ export function Hero() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent" />
 
       <div className="relative z-10 container-custom pt-28 pb-14 md:pt-44 md:pb-20">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-3xl mx-auto lg:mx-0 text-center lg:text-end">
-          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-4 md:mb-6 justify-center lg:justify-start">
+        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-4xl mx-auto text-center">
+          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-3 justify-center">
             <span className="w-8 h-px bg-accent-gold/60" />
             <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.home.heroBadge}</span>
           </motion.div>
@@ -83,11 +83,11 @@ export function Hero() {
             {t.home.heroTitle}
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-xl mb-8 md:mb-10 mx-auto lg:mx-0">
+          <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-2xl mb-8 md:mb-10 mx-auto">
             {t.home.heroDesc}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center lg:justify-end">
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/services"
               className="btn-primary group"
