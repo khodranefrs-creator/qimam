@@ -220,11 +220,12 @@ export default function Header() {
           </nav>
 
           {/* Actions */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-4">
             <a
               href="tel:+966565555437"
-              className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-light/80 hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300 focus-ring-gold"
+              className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-light/80 hover:text-accent-gold hover:border-accent-gold/50 hover:bg-accent-gold/5 active:bg-accent-gold/10 transition-all duration-300 focus-ring-gold"
               aria-label={t.nav.contactUs}
+              title={t.nav.phone}
             >
               <Phone className="w-4 h-4" />
             </a>

@@ -24,7 +24,7 @@ export function LocaleSwitcher() {
   return (
     <button
       onClick={switchLocale}
-      className="text-xs font-medium text-text-muted hover:text-accent-gold transition-colors duration-200 cursor-pointer"
+      className="text-xs font-medium text-text-muted hover:text-accent-gold transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold rounded"
       aria-label={`Switch to ${next === 'en' ? 'English' : 'Arabic'}`}
     >
       <span className="text-accent-gold font-medium">{localeNames[current]}</span>
