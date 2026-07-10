@@ -37,6 +37,7 @@ export default function AdminSidebar() {
               alt="شركة قمم اليقين"
               width={69}
               height={70}
+              sizes="69px"
               className="h-7 w-auto object-contain"
             />
           </Link>

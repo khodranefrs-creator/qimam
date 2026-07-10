@@ -51,16 +51,17 @@ export default async function NotFound() {
         </p>
 
         {/* Search bar */}
-        <div className="relative mb-10 max-w-sm mx-auto">
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none">
+        <form action="/blog" className="relative mb-10 max-w-sm mx-auto">
+          <button type="submit" aria-label={t.common.search} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-accent-gold transition-colors" tabIndex={-1}>
             <Search className="w-5 h-5" />
-          </div>
+          </button>
           <input
             type="text"
+            name="q"
             placeholder={t.common.search}
             className="w-full h-12 bg-primary-light/60 border border-border-dark/50 rounded-control pr-12 pl-4 text-text-light placeholder:text-text-muted/60 text-sm focus:outline-none focus:border-accent-gold/50 focus:ring-1 focus:ring-accent-gold/20 transition-all"
           />
-        </div>
+        </form>
 
         {/* Navigation links */}
         <nav className="flex flex-wrap items-center justify-center gap-3">

@@ -28,8 +28,8 @@ export async function safeQuery<T>(query: () => Promise<T>, fallback: T): Promis
   try {
     if (!prisma) return fallback
     return await query()
-  } catch {
-    console.warn("Database query failed, returning fallback data")
+  } catch (e) {
+    console.error("Database query failed, returning fallback data", e)
     return fallback
   }
 }

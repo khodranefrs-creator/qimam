@@ -67,8 +67,13 @@ export function AboutTeaser() {
             <div className="aspect-[4/3] relative">
               {/* Front panel — photo-ready area */}
               <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/50 bg-primary-light/80">
-                {/* Replace with <Image /> when a photo is available */}
-                <div className="w-full h-full" />
+                <div className="w-full h-full flex items-center justify-center bg-primary-light/40">
+                  <svg viewBox="0 0 400 300" className="w-3/5 h-3/5 opacity-[0.08]" aria-hidden="true">
+                    <rect x="50" y="50" width="300" height="200" rx="8" stroke="#C6A15B" strokeWidth="1.5" fill="none" />
+                    <circle cx="200" cy="130" r="40" stroke="#C6A15B" strokeWidth="1" fill="none" />
+                    <path d="M80 240 L170 170 L220 200 L300 150 L360 240" stroke="#C6A15B" strokeWidth="1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
               </div>
 
               {/* Back panel — decorative SVG, horizontally offset to peek from behind */}

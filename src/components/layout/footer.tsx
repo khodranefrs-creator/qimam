@@ -67,6 +67,7 @@ export default function Footer() {
                 alt={t.common.firmName}
                 width={69}
                 height={70}
+                sizes="(max-width: 1023px) 69px, 69px"
                 className="h-12 w-auto object-contain"
               />
             </Link>

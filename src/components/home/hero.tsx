@@ -18,26 +18,10 @@ const itemVariants = {
 }
 
 const trustCards = [
-  {
-    icon: BadgeCheck,
-    key: 'statsYearsBadge' as const,
-    desc: { ar: 'استشارات قانونية احترافية', en: 'Professional legal consultations' },
-  },
-  {
-    icon: Scale,
-    key: 'statsCasesBadge' as const,
-    desc: { ar: 'خبرة قانونية متخصصة', en: 'Specialized legal expertise' },
-  },
-  {
-    icon: Shield,
-    key: 'statsLicensesBadge' as const,
-    desc: { ar: 'إجراءات قانونية واضحة', en: 'Clear, transparent legal processes' },
-  },
-  {
-    icon: Award,
-    key: 'statsRatingBadge' as const,
-    desc: { ar: 'سرية واهتمام بكل قضية', en: 'Confidential, client-focused representation' },
-  },
+  { icon: BadgeCheck, titleKey: 'statsYearsBadge', descKey: 'card1Desc' },
+  { icon: Scale, titleKey: 'statsCasesBadge', descKey: 'card2Desc' },
+  { icon: Shield, titleKey: 'statsLicensesBadge', descKey: 'card3Desc' },
+  { icon: Award, titleKey: 'statsRatingBadge', descKey: 'card4Desc' },
 ]
 
 export function Hero() {
@@ -120,7 +104,7 @@ export function Hero() {
               const Icon = card.icon
               return (
                 <motion.div
-                  key={card.key}
+                  key={card.titleKey}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0, transition: { delay: 1.8 + i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
                   className="group relative p-4 sm:p-5 md:p-8 rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-all duration-700"
@@ -130,10 +114,10 @@ export function Hero() {
                     <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-gold" />
                   </div>
                   <h3 className="text-sm sm:text-base md:text-lg font-heading font-semibold text-text-light mb-1.5 sm:mb-2 leading-snug tracking-tight">
-                    {t.home[card.key]}
+                    {t.home[card.titleKey as keyof typeof t.home] as string}
                   </h3>
                   <p className="text-xs md:text-sm text-text-muted text-muted-on-dark leading-relaxed md:leading-[1.7]">
-                    {locale === 'ar' ? card.desc.ar : card.desc.en}
+                    {t.home[card.descKey as keyof typeof t.home] as string}
                   </p>
                 </motion.div>
               )
