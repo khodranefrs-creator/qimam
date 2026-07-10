@@ -54,79 +54,77 @@ export function ProcessTimeline() {
 
         {/* Timeline */}
         <div dir={isRtl ? 'rtl' : 'ltr'}>
-          {/* Desktop: numbered timeline strip above cards */}
-          <div className="hidden lg:block relative mb-14">
-            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-px pointer-events-none">
-              <div className={`w-full h-full ${isRtl ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-accent-gold/15 via-accent-gold/30 to-accent-gold/15`} />
+          {/* Combined timeline + cards */}
+          <div className="relative">
+            {/* Desktop: horizontal connector line */}
+            <div className="hidden lg:block absolute top-[20px] left-0 right-0 h-[1.5px] pointer-events-none">
+              <div className={`w-full h-full ${isRtl ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-transparent via-accent-gold/20 to-transparent`} />
             </div>
-            <div className="grid grid-cols-4 gap-5 md:gap-6 relative">
-              {processSteps.map((step, i) => (
-                <div key={step.number} className="flex justify-center">
-                  <div className="w-12 h-12 rounded-full bg-accent-gold flex items-center justify-center shadow-[0_0_24px_rgba(198,161,91,0.25)]">
-                    <span className="text-primary font-heading font-bold text-sm">{step.number}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Steps */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 md:gap-6">
-            {processSteps.map((step, i) => {
-              const Icon = step.icon
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 md:gap-6">
+              {processSteps.map((step, i) => {
+                const Icon = step.icon
 
-              return (
-                <motion.div
-                  key={step.titleKey}
-                  custom={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-50px' }}
-                  variants={cardVariants}
-                  className="group"
-                >
-                  {/* Mobile: numbered badge above card */}
-                  <div className="lg:hidden flex items-center gap-3 mb-3">
-                    <div className="w-9 h-9 rounded-full bg-accent-gold flex items-center justify-center shadow-[0_0_16px_rgba(198,161,91,0.2)] shrink-0">
-                      <span className="text-primary font-heading font-bold text-[11px]">{step.number}</span>
-                    </div>
-                    <span className="text-[11px] font-medium text-accent-gold/60 tracking-widest uppercase">
-                      {t.home.stepLabel} {step.number}
-                    </span>
-                  </div>
-
-                  {/* Card */}
-                  <div className="relative rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-all duration-500 p-5 md:p-8 flex flex-col items-center text-center h-full overflow-hidden">
-                    <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />
-
-                    {/* Icon */}
-                    <div className="relative z-10 mb-5 md:mb-6 mt-1">
-                      <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-accent-gold/[0.08] flex items-center justify-center group-hover:bg-accent-gold/[0.15] transition-all duration-500 ring-1 ring-accent-gold/[0.15] group-hover:ring-accent-gold/30 shadow-[0_0_20px_rgba(198,161,91,0.06)] group-hover:shadow-[0_0_30px_rgba(198,161,91,0.12)]">
-                        <Icon aria-hidden="true" className="w-6 h-6 md:w-8 md:h-8 text-accent-gold" />
+                return (
+                  <motion.div
+                    key={step.titleKey}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: '-50px' }}
+                    variants={cardVariants}
+                    className="group"
+                  >
+                    {/* Desktop: numbered node above card */}
+                    <div className="hidden lg:flex justify-center relative z-10 mb-1">
+                      <div className="w-10 h-10 rounded-full bg-accent-gold flex items-center justify-center shadow-[0_0_20px_rgba(198,161,91,0.3)] ring-2 ring-primary">
+                        <span className="text-primary font-heading font-bold text-sm">{step.number}</span>
                       </div>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-lg md:text-xl font-heading font-bold text-text-light mb-3 leading-snug relative z-10">
-                      {t.home[step.titleKey]}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm md:text-[0.9375rem] text-text-muted text-muted-on-dark leading-[1.75] relative z-10 max-w-[260px]">
-                      {t.home[step.descKey]}
-                    </p>
-                  </div>
-
-                  {/* Mobile: separator line between cards */}
-                  {i < processSteps.length - 1 && (
-                    <div className="lg:hidden flex items-center gap-2 my-5">
-                      <div className="flex-1 h-px bg-gradient-to-r from-accent-gold/20 via-accent-gold/10 to-transparent" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-accent-gold/30 shrink-0" />
+                    {/* Mobile: numbered badge */}
+                    <div className="lg:hidden flex items-center gap-3 mb-3">
+                      <div className="w-9 h-9 rounded-full bg-accent-gold flex items-center justify-center shadow-[0_0_16px_rgba(198,161,91,0.2)] shrink-0">
+                        <span className="text-primary font-heading font-bold text-[11px]">{step.number}</span>
+                      </div>
+                      <span className="text-[11px] font-medium text-accent-gold/60 tracking-widest uppercase">
+                        {t.home.stepLabel} {step.number}
+                      </span>
                     </div>
-                  )}
-                </motion.div>
-              )
-            })}
+
+                    {/* Card */}
+                    <div className="relative rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-all duration-500 pt-5 md:pt-6 pb-5 md:pb-7 px-5 md:px-8 flex flex-col items-center text-center h-full overflow-hidden">
+                      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />
+
+                      {/* Icon */}
+                      <div className="relative z-10 mb-4 md:mb-5">
+                        <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-accent-gold/[0.10] flex items-center justify-center group-hover:bg-accent-gold/[0.18] transition-all duration-500 ring-1 ring-accent-gold/25 group-hover:ring-accent-gold/40 shadow-[0_0_25px_rgba(198,161,91,0.10)] group-hover:shadow-[0_0_35px_rgba(198,161,91,0.18)]">
+                          <Icon aria-hidden="true" className="w-6 h-6 md:w-8 md:h-8 text-accent-gold" />
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-lg md:text-xl font-heading font-bold text-text-light mb-2 leading-snug relative z-10">
+                        {t.home[step.titleKey]}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-sm md:text-[0.9375rem] text-text-muted text-muted-on-dark leading-[1.65] md:leading-[1.7] relative z-10 max-w-[260px]">
+                        {t.home[step.descKey]}
+                      </p>
+                    </div>
+
+                    {/* Mobile: separator */}
+                    {i < processSteps.length - 1 && (
+                      <div className="lg:hidden flex items-center gap-2 my-5">
+                        <div className="flex-1 h-px bg-gradient-to-r from-accent-gold/20 via-accent-gold/10 to-transparent" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent-gold/30 shrink-0" />
+                      </div>
+                    )}
+                  </motion.div>
+                )
+              })}
+            </div>
           </div>
 
           {/* CTA */}
