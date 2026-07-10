@@ -39,7 +39,7 @@ export function LawyerTeaser() {
   const [imgError, setImgError] = useState(false)
 
   return (
-    <section className="bg-primary py-20 md:py-28 lg:py-32 relative overflow-hidden">
+    <section className="bg-primary section-padding relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
