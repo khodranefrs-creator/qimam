@@ -258,7 +258,10 @@ export default function ConsultationPage() {
       <div className="flex items-center justify-center gap-0 mb-8 md:mb-10 -mx-2 md:mx-0">
         {getSteps(t).map((step, idx) => (
           <div key={step.id} className="flex items-center min-w-0 flex-1">
-            <div className="flex flex-col items-center gap-1.5 md:gap-2 w-full px-1">
+            <div
+              onClick={step.id < currentStep ? () => setCurrentStep(step.id) : undefined}
+              className={`flex flex-col items-center gap-1.5 md:gap-2 w-full px-1 ${step.id < currentStep ? "cursor-pointer" : ""}`}
+            >
               <div
                 className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[11px] md:text-sm font-bold transition-all duration-300 shrink-0 ${
                   step.id === currentStep
@@ -361,7 +364,6 @@ export default function ConsultationPage() {
             <Calendar size={24} className="text-accent-gold" />
           </div>
           <h2 className="text-xl font-heading font-bold text-primary">{t.consultation.preferredTime}</h2>
-          <p className="text-text-muted text-sm mt-1">{t.consultation.description}</p>
         </div>
 
         <div>
@@ -465,7 +467,6 @@ export default function ConsultationPage() {
               />
               <Mail size={16} className="absolute start-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
-            <p className="text-xs text-text-muted mt-1.5">{t.common.noData}</p>
             {errors.email && <p className={errorClass}>{errors.email}</p>}
           </div>
 
