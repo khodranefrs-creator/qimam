@@ -165,28 +165,28 @@ export default function Footer() {
               </a>
 
               <div className="pt-2 border-t border-border-dark/30">
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-2">
                   <Clock aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
                   <span className="text-text-muted text-muted-on-dark text-xs font-medium">{t.contact.workingHours}</span>
                 </div>
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <div className="flex items-center gap-2 text-text-muted text-muted-on-dark text-xs" dir="ltr">
                     <span className="w-1 h-1 rounded-full bg-accent-gold/40 shrink-0" />
                     <span>{t.contact.daySunThu}</span>
                     <span className="text-border-dark/40">—</span>
-                    <span dir="ltr">{t.contact.timeSunThu}</span>
+                    <span>{t.contact.timeSunThu}</span>
                   </div>
                   <div className="flex items-center gap-2 text-text-muted text-muted-on-dark text-xs" dir="ltr">
                     <span className="w-1 h-1 rounded-full bg-accent-gold/40 shrink-0" />
                     <span>{t.contact.dayFri}</span>
                     <span className="text-border-dark/40">—</span>
-                    <span dir="ltr">{t.contact.timeFri}</span>
+                    <span>{t.contact.timeFri}</span>
                   </div>
                   <div className="flex items-center gap-2 text-text-muted text-muted-on-dark text-xs" dir="ltr">
                     <span className="w-1 h-1 rounded-full bg-accent-gold/40 shrink-0" />
                     <span>{t.contact.daySat}</span>
                     <span className="text-border-dark/40">—</span>
-                    <span dir="ltr">{t.contact.timeSat}</span>
+                    <span>{t.contact.timeSat}</span>
                   </div>
                 </div>
               </div>
@@ -195,7 +195,7 @@ export default function Footer() {
                 href="https://maps.google.com/?q=Qimam+Al-Yaqin+Law+Firm+Makkah"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block relative w-full aspect-[16/7] rounded-xl overflow-hidden bg-gradient-to-br from-primary-light/30 to-primary-light/10 border border-border-dark/30 mt-1"
+                className="group block relative w-full aspect-[3/1] md:aspect-[16/7] rounded-xl overflow-hidden bg-gradient-to-br from-primary-light/30 to-primary-light/10 border border-border-dark/30"
                 style={{
                   backgroundImage: `
                     linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
@@ -204,13 +204,11 @@ export default function Footer() {
                   backgroundSize: '20px 20px, 20px 20px',
                 }}
               >
-                <div className="absolute inset-0 flex items-center justify-center gap-3">
-                  <div className="flex items-center gap-2">
-                    <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold" />
-                    <span className="text-text-muted text-muted-on-dark text-[11px] font-medium">{t.footer.mapPlaceholder}</span>
-                  </div>
-                  <span className="flex items-center gap-1 text-accent-gold/70 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Navigation aria-hidden="true" className="w-3 h-3" />
+                <div className="absolute inset-0 flex items-center justify-center gap-2">
+                  <MapPin aria-hidden="true" className="w-3.5 h-3.5 text-accent-gold shrink-0" />
+                  <span className="text-text-muted text-muted-on-dark text-[10px] font-medium">{t.footer.mapPlaceholder}</span>
+                  <span className="flex items-center gap-1 text-accent-gold/60 text-[9px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Navigation aria-hidden="true" className="w-2.5 h-2.5" />
                     {t.footer.getDirections}
                   </span>
                 </div>
