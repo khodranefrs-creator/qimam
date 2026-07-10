@@ -18,10 +18,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function getPracticeAreas() {
-  return prisma.practiceArea.findMany({
-    where: { published: true },
-    orderBy: { order: "asc" },
-  })
+  try {
+    return await prisma.practiceArea.findMany({
+      where: { published: true },
+      orderBy: { order: "asc" },
+    })
+  } catch {
+    console.warn("Database unavailable for practice areas, showing empty state")
+    return []
+  }
 }
 
 export default async function PracticeAreasPage() {

@@ -20,11 +20,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function FaqPage() {
   const locale = await getLocale()
   const t = getTranslations(locale)
-  const rawFaqs = await prisma.faq.findMany({
-    where: { published: true },
-    orderBy: { order: "asc" },
-  })
-  const faqs = rawFaqs as FaqData[]
+  let faqs: FaqData[] = []
+  try {
+    const rawFaqs = await prisma.faq.findMany({
+      where: { published: true },
+      orderBy: { order: "asc" },
+    })
+    faqs = rawFaqs as FaqData[]
+  } catch {
+    console.warn("Database unavailable for FAQ page, showing empty state")
+  }
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -58,7 +63,7 @@ export default async function FaqPage() {
         </div>
       </div>
 
-      <section className="py-16 md:py-24 bg-primary text-text-light text-center">
+      <section className="section-padding bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.faq.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
@@ -66,7 +71,7 @@ export default async function FaqPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="section-padding bg-secondary">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <FaqClient faqs={faqs} categories={categories} />
         </div>

@@ -20,11 +20,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function TestimonialsPage() {
   const locale = await getLocale()
   const t = getTranslations(locale)
-  const rawTestimonials = await prisma.testimonial.findMany({
-    where: { approved: true },
-    orderBy: { createdAt: "desc" },
-  })
-  const testimonials = rawTestimonials as TestimonialData[]
+  let testimonials: TestimonialData[] = []
+  try {
+    const rawTestimonials = await prisma.testimonial.findMany({
+      where: { approved: true },
+      orderBy: { createdAt: "desc" },
+    })
+    testimonials = rawTestimonials as TestimonialData[]
+  } catch {
+    console.warn("Database unavailable for testimonials page, showing empty state")
+  }
 
   return (
     <div>
@@ -38,7 +43,7 @@ export default async function TestimonialsPage() {
         </div>
       </div>
 
-      <section className="py-16 md:py-24 bg-primary text-text-light text-center">
+      <section className="section-padding bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.testimonials.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
@@ -46,7 +51,7 @@ export default async function TestimonialsPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="section-padding bg-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {testimonials.length === 0 ? (
             <div className="text-center py-12 text-text-muted">

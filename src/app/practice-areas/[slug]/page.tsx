@@ -12,17 +12,27 @@ export const dynamic = 'force-dynamic'
 type Params = Promise<{ slug: string }>
 
 async function getPracticeArea(slug: string) {
-  return prisma.practiceArea.findUnique({
-    where: { slug, published: true },
-  })
+  try {
+    return await prisma.practiceArea.findUnique({
+      where: { slug, published: true },
+    })
+  } catch {
+    console.warn("Database unavailable for practice area detail")
+    return null
+  }
 }
 
 async function getRelatedFaqs() {
-  return prisma.faq.findMany({
-    where: { published: true },
-    orderBy: { order: "asc" },
-    take: 5,
-  })
+  try {
+    return await prisma.faq.findMany({
+      where: { published: true },
+      orderBy: { order: "asc" },
+      take: 5,
+    })
+  } catch {
+    console.warn("Database unavailable for related FAQs")
+    return []
+  }
 }
 
 export async function generateStaticParams() {
@@ -38,19 +48,23 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { slug } = await params
-  const locale = await getLocale()
-  const t = getTranslations(locale)
-  const area = await prisma.practiceArea.findUnique({ where: { slug } })
-  if (!area) return {}
+  try {
+    const { slug } = await params
+    const locale = await getLocale()
+    const t = getTranslations(locale)
+    const area = await prisma.practiceArea.findUnique({ where: { slug } })
+    if (!area) return {}
 
-  return {
-    title: area.metaTitle || `${area.title} | ${t.site.fullName}`,
-    description: area.metaDescription || `${t.practiceAreas.description} — ${area.title}.`,
-    ...(area.ogImage && {
-      openGraph: { images: [{ url: area.ogImage }] },
-      twitter: { images: [area.ogImage] },
-    }),
+    return {
+      title: area.metaTitle || `${area.title} | ${t.site.fullName}`,
+      description: area.metaDescription || `${t.practiceAreas.description} — ${area.title}.`,
+      ...(area.ogImage && {
+        openGraph: { images: [{ url: area.ogImage }] },
+        twitter: { images: [area.ogImage] },
+      }),
+    }
+  } catch {
+    return {}
   }
 }
 

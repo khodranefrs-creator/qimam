@@ -29,7 +29,7 @@ export default async function ContactPage() {
         </div>
       </div>
 
-      <section className="py-16 md:py-24 bg-primary text-text-light text-center">
+      <section className="section-padding bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.contact.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
@@ -37,7 +37,7 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="section-padding bg-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8 mb-12">
             <div className="bg-white rounded-xl border border-border p-6 shadow-card text-center hover-lift transition-all">

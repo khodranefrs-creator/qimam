@@ -24,10 +24,15 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 }
 
 async function getServices() {
-  return prisma.service.findMany({
-    where: { published: true },
-    orderBy: { order: "asc" },
-  })
+  try {
+    return await prisma.service.findMany({
+      where: { published: true },
+      orderBy: { order: "asc" },
+    })
+  } catch {
+    console.warn("Database unavailable for services page, showing empty state")
+    return []
+  }
 }
 
 export default async function ServicesPage() {

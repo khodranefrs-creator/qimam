@@ -26,12 +26,16 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params
-  const cs = await prisma.caseStudy.findUnique({ where: { slug } })
-  if (!cs) return {}
-  return {
-    title: cs.metaTitle || cs.title,
-    description: cs.metaDescription || cs.excerpt || "",
+  try {
+    const { slug } = await params
+    const cs = await prisma.caseStudy.findUnique({ where: { slug } })
+    if (!cs) return {}
+    return {
+      title: cs.metaTitle || cs.title,
+      description: cs.metaDescription || cs.excerpt || "",
+    }
+  } catch {
+    return {}
   }
 }
 
@@ -44,14 +48,24 @@ export default async function CaseStudyPage({
   const locale = await getLocale()
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
-  const cs = await prisma.caseStudy.findUnique({ where: { slug } }) as CaseStudyData | null
+  let cs: CaseStudyData | null = null
+  try {
+    cs = await prisma.caseStudy.findUnique({ where: { slug } }) as CaseStudyData | null
+  } catch {
+    console.warn("Database unavailable for case study detail")
+  }
   if (!cs || !cs.published) notFound()
 
-  const relatedCaseStudies = await prisma.caseStudy.findMany({
-    where: { published: true, id: { not: cs.id } },
-    orderBy: { createdAt: "desc" },
-    take: 2,
-  }) as CaseStudyData[]
+  let relatedCaseStudies: CaseStudyData[] = []
+  try {
+    relatedCaseStudies = await prisma.caseStudy.findMany({
+      where: { published: true, id: { not: cs.id } },
+      orderBy: { createdAt: "desc" },
+      take: 2,
+    }) as CaseStudyData[]
+  } catch {
+    console.warn("Database unavailable for related case studies")
+  }
 
   return (
     <article>
@@ -102,7 +116,7 @@ export default async function CaseStudyPage({
         </div>
       </div>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="section-padding bg-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl border border-border p-8 md:p-12 shadow-card">
             {cs.outcomeSummary && (

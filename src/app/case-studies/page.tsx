@@ -21,11 +21,16 @@ export default async function CaseStudiesPage() {
   const locale = await getLocale()
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
-  const rawCaseStudies = await prisma.caseStudy.findMany({
-    where: { published: true },
-    orderBy: { createdAt: "desc" },
-  })
-  const caseStudies = rawCaseStudies as CaseStudyData[]
+  let caseStudies: CaseStudyData[] = []
+  try {
+    const rawCaseStudies = await prisma.caseStudy.findMany({
+      where: { published: true },
+      orderBy: { createdAt: "desc" },
+    })
+    caseStudies = rawCaseStudies as CaseStudyData[]
+  } catch {
+    console.warn("Database unavailable for case studies page, showing empty state")
+  }
 
   return (
     <div>
@@ -39,7 +44,7 @@ export default async function CaseStudiesPage() {
         </div>
       </div>
 
-      <section className="py-16 md:py-24 bg-primary text-text-light text-center">
+      <section className="section-padding bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.caseStudies.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
@@ -47,7 +52,7 @@ export default async function CaseStudiesPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="section-padding bg-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {caseStudies.length === 0 ? (
             <div className="text-center py-12 text-text-muted">

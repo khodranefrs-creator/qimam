@@ -171,7 +171,7 @@ export default async function PrivacyPolicyPage() {
         </div>
       </div>
 
-      <section className="py-16 md:py-24 bg-primary text-text-light text-center">
+      <section className="section-padding bg-primary text-text-light text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-[clamp(2rem,5vw,2.75rem)] font-heading font-bold mb-4">{t.privacy.title}</h1>
           <div className="w-20 h-[2px] bg-gradient-to-l from-accent-gold to-transparent mx-auto mb-6" />
@@ -179,7 +179,7 @@ export default async function PrivacyPolicyPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="section-padding bg-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl border border-border p-8 md:p-12 space-y-8 text-text-dark leading-[1.8]">
             {content.map((section) => (

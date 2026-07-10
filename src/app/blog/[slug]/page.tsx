@@ -34,17 +34,21 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params
-  const post = await prisma.blogPost.findUnique({ where: { slug } })
-  if (!post) return {}
-  return {
-    title: post.metaTitle || post.title,
-    description: post.metaDescription || post.excerpt || "",
-    openGraph: {
+  try {
+    const { slug } = await params
+    const post = await prisma.blogPost.findUnique({ where: { slug } })
+    if (!post) return {}
+    return {
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt || "",
-      ...(post.ogImage || post.coverImage ? { images: [{ url: post.ogImage || post.coverImage! }] } : {}),
-    },
+      openGraph: {
+        title: post.metaTitle || post.title,
+        description: post.metaDescription || post.excerpt || "",
+        ...(post.ogImage || post.coverImage ? { images: [{ url: post.ogImage || post.coverImage! }] } : {}),
+      },
+    }
+  } catch {
+    return {}
   }
 }
 
@@ -56,18 +60,28 @@ export default async function BlogPostPage({
   const { slug } = await params
   const locale = await getLocale()
   const t = getTranslations(locale)
-  const post = await prisma.blogPost.findUnique({ where: { slug } }) as BlogPostData | null
+  let post: BlogPostData | null = null
+  try {
+    post = await prisma.blogPost.findUnique({ where: { slug } }) as BlogPostData | null
+  } catch {
+    console.warn("Database unavailable for blog post")
+  }
   if (!post || !post.published) notFound()
 
-  const relatedPosts = await prisma.blogPost.findMany({
-    where: {
-      published: true,
-      id: { not: post.id },
-      ...(post.category ? { category: post.category } : {}),
-    },
-    orderBy: { createdAt: "desc" },
-    take: 3,
-  }) as BlogPostData[]
+  let relatedPosts: BlogPostData[] = []
+  try {
+    relatedPosts = await prisma.blogPost.findMany({
+      where: {
+        published: true,
+        id: { not: post.id },
+        ...(post.category ? { category: post.category } : {}),
+      },
+      orderBy: { createdAt: "desc" },
+      take: 3,
+    }) as BlogPostData[]
+  } catch {
+    console.warn("Database unavailable for related blog posts")
+  }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   const postUrl = `${siteUrl}/blog/${post.slug}`
@@ -166,7 +180,7 @@ export default async function BlogPostPage({
         </div>
       </div>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="section-padding bg-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl border border-border p-8 md:p-12 shadow-card">
             <div

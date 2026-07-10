@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import { PrismaPg } from "@prisma/adapter-pg"
+import { Pool } from "pg"
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 
@@ -10,7 +11,8 @@ function createPrismaClient() {
     return null as unknown as PrismaClient
   }
   try {
-    const adapter = new PrismaPg(url)
+    const pool = new Pool({ connectionString: url, connectionTimeoutMillis: 3000, max: 1 })
+    const adapter = new PrismaPg(pool)
     return new PrismaClient({ adapter })
   } catch (e) {
     console.warn("Failed to create Prisma client:", e)
@@ -26,11 +28,8 @@ export async function safeQuery<T>(query: () => Promise<T>, fallback: T): Promis
   try {
     if (!prisma) return fallback
     return await query()
-  } catch (e: any) {
-    if (e?.code === 'ECONNREFUSED' || e?.message?.includes('ECONNREFUSED')) {
-      console.warn("Database not available, returning fallback data")
-      return fallback
-    }
-    throw e
+  } catch {
+    console.warn("Database query failed, returning fallback data")
+    return fallback
   }
 }
