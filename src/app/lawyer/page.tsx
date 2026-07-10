@@ -71,8 +71,8 @@ export default async function LawyerPage() {
               <h1 className="text-[clamp(1.75rem,4vw,2.5rem)] font-heading font-bold mb-2 leading-tight">
                 {t.lawyer.name}
               </h1>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-gold/10 border border-accent-gold/20 text-accent-gold text-sm font-medium mb-6">
-                <BadgeCheck className="w-4 h-4" />
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-gold/20 border border-accent-gold/30 text-accent-gold-light text-sm font-medium mb-6 shadow-sm shadow-accent-gold/5">
+                <BadgeCheck className="w-4 h-4 text-accent-gold" />
                 <span>{t.lawyer.role}</span>
               </div>
               <p className="text-text-muted leading-relaxed max-w-2xl mx-auto lg:mx-0">
