@@ -64,8 +64,16 @@ export function AboutTeaser() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }}
             className="relative hidden lg:block"
           >
-            <div className="aspect-[4/3] rounded-card bg-primary overflow-hidden border border-border-dark/50">
-              <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden="true">
+            <div className="aspect-[4/3] relative">
+              {/* Front panel — photo-ready area */}
+              <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/50 bg-primary-light/80">
+                {/* Replace with <Image /> when a photo is available */}
+                <div className="w-full h-full" />
+              </div>
+
+              {/* Back panel — decorative SVG, horizontally offset to peek from behind */}
+              <div className={`absolute inset-0 z-0 rounded-card overflow-hidden bg-primary border border-border-dark/50 ${isRtl ? 'translate-x-7' : '-translate-x-7'}`}>
+                <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden="true">
                 <defs>
                   <pattern id="aboutGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
                     <circle cx="12" cy="12" r="0.75" fill="#C6A15B" fillOpacity="0.04" />
@@ -122,6 +130,7 @@ export function AboutTeaser() {
                 <rect x="175" y="456" width="10" height="8" rx="1" stroke="#C6A15B" strokeOpacity="0.08" strokeWidth="0.5" fill="none" />
                 <rect x="615" y="456" width="10" height="8" rx="1" stroke="#C6A15B" strokeOpacity="0.08" strokeWidth="0.5" fill="none" />
               </svg>
+            </div>
             </div>
           </motion.div>
         </div>
