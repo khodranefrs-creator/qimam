@@ -173,15 +173,15 @@ export default async function LawyerPage() {
       <section className="section-padding bg-secondary">
         <div className="container-custom">
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="p-6 rounded-xl bg-white border border-border shadow-card text-center hover-lift">
+            <div className="p-6 rounded-panel bg-white border border-border shadow-subtle text-center hover-lift">
               <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
               <div className="text-text-muted text-sm">{t.lawyer.statsLabelYears}</div>
             </div>
-            <div className="p-6 rounded-xl bg-white border border-border shadow-card text-center hover-lift">
+            <div className="p-6 rounded-panel bg-white border border-border shadow-subtle text-center hover-lift">
               <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
               <div className="text-text-muted text-sm">{t.home.statsCases}</div>
             </div>
-            <div className="p-6 rounded-xl bg-white border border-border shadow-card text-center hover-lift">
+            <div className="p-6 rounded-panel bg-white border border-border shadow-subtle text-center hover-lift">
               <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
               <div className="text-text-muted text-sm">{t.lawyer.statsLabelRating}</div>
             </div>

@@ -60,7 +60,7 @@ export default async function TestimonialsPage() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {testimonials.map((item) => (
-                <div key={item.id} className="bg-white rounded-xl border border-border p-6 shadow-card hover-lift transition-all">
+                <div key={item.id} className="bg-white rounded-panel border border-border p-6 shadow-subtle hover-lift transition-all">
                   {item.rating && (
                     <div className="flex items-center gap-1 mb-4" dir="ltr">
                       {Array.from({ length: 5 }).map((_, i) => (

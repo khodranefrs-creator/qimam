@@ -230,7 +230,7 @@ export default function ConsultationPage() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-[16px] border border-border/60 shadow-card p-8 md:p-12 text-center">
+            <div className="bg-white rounded-surface border border-border/60 shadow-subtle p-8 md:p-12 text-center">
               <div className="w-20 h-20 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-6">
                 <CheckCircle size={40} className="text-success" />
               </div>
@@ -602,7 +602,7 @@ export default function ConsultationPage() {
         <div className="max-w-3xl mx-auto">
           {renderBreadcrumb()}
 
-          <div className="bg-white rounded-[16px] border border-border/60 shadow-card p-6 md:p-8 lg:p-10">
+          <div className="bg-white rounded-surface border border-border/60 shadow-subtle p-6 md:p-8 lg:p-10">
             {renderStepIndicator()}
 
             <AnimatePresence mode="wait">

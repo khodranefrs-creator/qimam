@@ -24,15 +24,22 @@
   /* Muted variants for dark/light backgrounds */
   --color-text-muted-dark: #9CA3AF;
 
-  /* Shadows */
+  /* Shadows — standard tokens */
+  --shadow-subtle: 0 2px 40px rgba(0, 0, 0, 0.08);
+  --shadow-raised: 0 4px 20px rgba(198, 161, 91, 0.2);
   --shadow-warm: 0 20px 60px -15px rgba(7, 26, 43, 0.25);
-  --shadow-gold: 0 4px 20px rgba(198, 161, 91, 0.2);
-  --shadow-card: 0 2px 40px rgba(0, 0, 0, 0.08);
+  /* Backward-compat aliases */
+  --shadow-card: var(--shadow-subtle);
+  --shadow-gold: var(--shadow-raised);
 
-  /* Border radius */
-  --radius-card: 16px;
-  --radius-button: 8px;
+  /* Border radius — standard tokens */
+  --radius-surface: 16px;
+  --radius-panel: 12px;
+  --radius-control: 8px;
   --radius-full: 9999px;
+  /* Backward-compat aliases */
+  --radius-card: var(--radius-surface);
+  --radius-button: var(--radius-control);
 
   /* Animations */
   --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);

@@ -117,8 +117,8 @@ export default async function AboutPage() {
             {values(t).map((v, i) => {
               const Icon = v.icon
               return (
-                <div key={i} className="p-6 rounded-xl bg-white border border-border shadow-card hover-lift transition-all">
-                  <div className="w-12 h-12 rounded-lg bg-accent-gold/10 flex items-center justify-center mb-4">
+                <div key={i} className="p-6 rounded-panel bg-white border border-border shadow-subtle hover-lift transition-all">
+                  <div className="w-12 h-12 rounded-control bg-accent-gold/10 flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-accent-gold" />
                   </div>
                   <h3 className="text-lg font-heading font-bold mb-2">{v.title}</h3>

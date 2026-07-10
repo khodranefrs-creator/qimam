@@ -51,7 +51,7 @@ export default function DashboardClient({ session, stats, recentActivity, pendin
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="bg-white rounded-xl border border-border/60 p-5 shadow-card hover:shadow-gold transition-shadow">
+          <div key={stat.label} className="bg-white rounded-panel border border-border/60 p-5 shadow-subtle hover:shadow-raised transition-shadow">
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-sm text-text-muted">{stat.label}</p>
@@ -70,7 +70,7 @@ export default function DashboardClient({ session, stats, recentActivity, pendin
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-xl border border-border/60 p-5 shadow-card">
+        <div className="lg:col-span-2 bg-white rounded-panel border border-border/60 p-5 shadow-subtle">
           <h2 className="text-lg font-heading font-bold text-primary mb-4">النشاطات الأخيرة</h2>
           {recentActivity.length === 0 ? (
             <div className="text-center py-8 text-text-muted text-sm">لا توجد نشاطات حديثة</div>
@@ -96,7 +96,7 @@ export default function DashboardClient({ session, stats, recentActivity, pendin
         </div>
 
         <div className="space-y-4">
-          <div className="bg-white rounded-xl border border-border/60 p-5 shadow-card">
+          <div className="bg-white rounded-panel border border-border/60 p-5 shadow-subtle">
             <h2 className="text-lg font-heading font-bold text-primary mb-4">إجراءات سريعة</h2>
             <div className="space-y-2">
               {quickActions.map((action) => (
@@ -113,7 +113,7 @@ export default function DashboardClient({ session, stats, recentActivity, pendin
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-border/60 p-5 shadow-card">
+          <div className="bg-white rounded-panel border border-border/60 p-5 shadow-subtle">
             <h2 className="text-lg font-heading font-bold text-primary mb-4">ملخص الاستشارات</h2>
             <div className="space-y-3">
               <div className="flex items-center justify-between">

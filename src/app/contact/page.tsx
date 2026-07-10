@@ -40,7 +40,7 @@ export default async function ContactPage() {
       <section className="section-padding bg-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8 mb-12">
-            <div className="bg-white rounded-xl border border-border p-6 shadow-card text-center hover-lift transition-all">
+            <div className="bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all">
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="w-6 h-6 text-accent-gold" />
               </div>
@@ -48,7 +48,7 @@ export default async function ContactPage() {
               <p className="text-text-muted text-sm leading-[1.7]">{t.contact.address}</p>
             </div>
 
-            <div className="bg-white rounded-xl border border-border p-6 shadow-card text-center hover-lift transition-all">
+            <div className="bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all">
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Phone className="w-6 h-6 text-accent-gold" />
               </div>
@@ -56,7 +56,7 @@ export default async function ContactPage() {
               <p className="text-text-muted text-sm" dir="ltr">{t.common.phone}</p>
             </div>
 
-            <div className="bg-white rounded-xl border border-border p-6 shadow-card text-center hover-lift transition-all">
+            <div className="bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all">
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mail className="w-6 h-6 text-accent-gold" />
               </div>
@@ -64,7 +64,7 @@ export default async function ContactPage() {
               <p className="text-text-muted text-sm">{t.common.email}</p>
             </div>
 
-            <div className="bg-white rounded-xl border border-border p-6 shadow-card text-center hover-lift transition-all">
+            <div className="bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all">
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Clock className="w-6 h-6 text-accent-gold" />
               </div>

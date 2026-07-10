@@ -62,7 +62,7 @@ export default async function CaseStudiesPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {caseStudies.map((cs) => (
                 <Link key={cs.id} href={`/case-studies/${cs.slug}`} className="group">
-                  <div className="bg-white rounded-xl border border-border overflow-hidden shadow-card hover-lift transition-all">
+                  <div className="bg-white rounded-panel border border-border overflow-hidden shadow-subtle hover-lift transition-all">
                     <div className="flex flex-col sm:flex-row">
                       <div className="sm:w-48 h-48 sm:h-auto bg-gray-200 flex items-center justify-center text-text-muted shrink-0">
                         {cs.coverImage ? (

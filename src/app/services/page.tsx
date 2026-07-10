@@ -78,9 +78,9 @@ export default async function ServicesPage() {
               return (
                 <div
                   key={service.id}
-                  className="group p-6 bg-white rounded-card border border-border/60 hover:border-accent-gold/30 hover:shadow-gold transition-all duration-300 hover-lift"
+                    className="group p-6 bg-white rounded-surface border border-border/60 hover:border-accent-gold/30 hover:shadow-raised transition-all duration-300 hover-lift"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-accent-gold/10 flex items-center justify-center mb-4 group-hover:bg-accent-gold/20 transition-colors duration-300">
+                    <div className="w-12 h-12 rounded-control bg-accent-gold/10 flex items-center justify-center mb-4 group-hover:bg-accent-gold/20 transition-colors duration-300">
                     <Icon className="w-6 h-6 text-accent-gold" />
                   </div>
                   <h3 className="font-heading font-semibold text-text-dark mb-2 text-lg">

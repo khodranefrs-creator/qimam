@@ -182,7 +182,7 @@ export default async function BlogPostPage({
 
       <section className="section-padding bg-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl border border-border p-8 md:p-12 shadow-card">
+          <div className="bg-white rounded-panel border border-border p-8 md:p-12 shadow-subtle">
             <div
               className="prose prose-lg max-w-none text-text-dark leading-[1.9]"
               dangerouslySetInnerHTML={{ __html: post.content }}
@@ -195,7 +195,7 @@ export default async function BlogPostPage({
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedPosts.map((rp) => (
                   <Link key={rp.id} href={`/blog/${rp.slug}`} className="group">
-                    <div className="bg-white rounded-xl border border-border overflow-hidden shadow-card hover-lift transition-all">
+                    <div className="bg-white rounded-panel border border-border overflow-hidden shadow-subtle hover-lift transition-all">
                       <div className="h-36 bg-gray-200 flex items-center justify-center text-text-muted text-sm">
                         {rp.coverImage ? (
                           <img src={rp.coverImage} alt={rp.title} className="w-full h-full object-cover" />

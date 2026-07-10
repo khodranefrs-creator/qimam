@@ -118,7 +118,7 @@ export default async function CaseStudyPage({
 
       <section className="section-padding bg-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl border border-border p-8 md:p-12 shadow-card">
+          <div className="bg-white rounded-panel border border-border p-8 md:p-12 shadow-subtle">
             {cs.outcomeSummary && (
               <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-xl">
                 <h2 className="font-heading font-bold text-green-800 mb-2">{t.caseStudies.outcome}</h2>
@@ -138,7 +138,7 @@ export default async function CaseStudyPage({
               <div className="grid md:grid-cols-2 gap-6">
                 {relatedCaseStudies.map((rcs) => (
                   <Link key={rcs.id} href={`/case-studies/${rcs.slug}`} className="group">
-                    <div className="bg-white rounded-xl border border-border overflow-hidden shadow-card hover-lift transition-all">
+                    <div className="bg-white rounded-panel border border-border overflow-hidden shadow-subtle hover-lift transition-all">
                       <div className="p-6">
                         <h3 className="font-heading font-bold group-hover:text-accent-gold transition-colors">{rcs.title}</h3>
                         <p className="text-sm text-text-muted mt-2 leading-[1.7]">{rcs.excerpt?.substring(0, 120)}...</p>

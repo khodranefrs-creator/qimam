@@ -54,7 +54,7 @@ export function CareerForm() {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-border p-8 md:p-12 shadow-card">
+    <div className="bg-white rounded-panel border border-border p-8 md:p-12 shadow-subtle">
       <h2 className="text-2xl font-heading font-bold leading-[1.15] text-primary mb-6">{t.careers.title}</h2>
 
       {feedback && (

@@ -94,7 +94,7 @@ export function FaqClient({
             <Accordion.Item
               key={faq.id}
               value={faq.id}
-              className="bg-white rounded-xl border border-border overflow-hidden shadow-card"
+              className="bg-white rounded-panel border border-border overflow-hidden shadow-subtle"
             >
               <Accordion.Header>
                 <Accordion.Trigger className="w-full flex items-center justify-between p-5 text-right font-heading font-bold text-primary hover:text-accent-gold transition-colors group">
