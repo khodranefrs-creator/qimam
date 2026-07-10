@@ -49,21 +49,21 @@ export default async function LawyerPage() {
 
       <section className="section-padding bg-primary text-text-light">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-5 gap-12 items-center max-w-5xl mx-auto">
-            <div className="lg:col-span-2 flex justify-center">
-              <div className="relative">
-                <div className="w-56 h-56 md:w-64 md:h-64 rounded-full border-4 border-accent-gold bg-primary-light flex items-center justify-center overflow-hidden">
+          <div className="grid lg:grid-cols-12 gap-12 items-center max-w-5xl mx-auto">
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative w-full max-w-xs">
+                <div className="aspect-[4/5] rounded-2xl border-4 border-accent-gold overflow-hidden bg-primary-light flex items-center justify-center">
                   <span className="text-6xl font-heading font-bold text-accent-gold">{t.lawyer.name.charAt(0)}</span>
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-16 h-16 rounded-full bg-accent-gold flex items-center justify-center shadow-gold animate-pulse-ring-subtle">
-                  <Award className="w-7 h-7 text-primary" />
+                <div className="absolute -bottom-2 -end-2 w-14 h-14 rounded-full bg-accent-gold flex items-center justify-center shadow-gold animate-pulse-ring-subtle">
+                  <Award className="w-6 h-6 text-primary" />
                 </div>
-                <div className="absolute -top-2 -left-2 w-10 h-10 rounded-full border-2 border-accent-gold/40 bg-primary flex items-center justify-center">
+                <div className="absolute -top-2 -start-2 w-9 h-9 rounded-full border-2 border-accent-gold/40 bg-primary flex items-center justify-center">
                   <span className="text-accent-gold text-xs font-heading font-bold">✓</span>
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-3 text-center lg:text-right">
+            <div className="lg:col-span-7 text-center lg:text-right">
               <div className="flex items-center gap-2 mb-4 justify-center lg:justify-start">
                 <span className="w-8 h-px bg-accent-gold/60" />
                 <span className="text-accent-gold text-sm font-medium tracking-widest">{t.lawyer.resumeLabel}</span>
