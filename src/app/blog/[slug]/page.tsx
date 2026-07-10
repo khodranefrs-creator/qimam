@@ -137,7 +137,7 @@ export default async function BlogPostPage({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {post.coverImage && (
             <div className="rounded-xl overflow-hidden mb-8 shadow-warm">
-              <img src={post.coverImage} alt={post.title} className="w-full h-64 md:h-96 object-cover" />
+              <img src={post.coverImage} alt={post.title} loading="lazy" className="w-full h-64 md:h-96 object-cover" />
             </div>
           )}
 

@@ -291,7 +291,7 @@ export default function ConsultationPage() {
                 {step.id < currentStep ? <Check size={14} className="md:w-4 md:h-4" /> : step.id}
               </div>
               <span
-                className={`text-[10px] md:text-xs font-medium text-center leading-tight transition-colors duration-300 ${
+                className={`text-[11px] md:text-xs font-medium text-center leading-tight transition-colors duration-300 ${
                   step.id <= currentStep ? "text-accent-gold" : "text-text-muted"
                 }`}
               >
