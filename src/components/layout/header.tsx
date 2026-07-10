@@ -138,8 +138,10 @@ export default function Header() {
                   >
                     <Link
                       href={item.href}
+                      aria-haspopup="true"
+                      aria-expanded={megaOpen}
                       className={cn(
-                        'flex items-center gap-1 px-3.5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-colors duration-200 focus-ring-gold',
+                        'flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-colors duration-200 focus-ring-gold',
                         isActive(item.href)
                           ? 'text-accent-gold'
                           : 'text-text-light/80 hover:text-text-light'
@@ -148,7 +150,7 @@ export default function Header() {
                       {item.label}
                       <ChevronDown
                         className={cn(
-                          'w-3.5 h-3.5 transition-transform duration-300',
+                          'w-4 h-4 transition-transform duration-300',
                           megaOpen && 'rotate-180'
                         )}
                       />
@@ -308,6 +310,7 @@ export default function Header() {
                   <div key={item.href}>
                     <Link
                       href={item.href}
+                      aria-haspopup={item.children ? "true" : undefined}
                       onClick={() => !item.children && setMobileOpen(false)}
                       className={cn(
                         'flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200',
