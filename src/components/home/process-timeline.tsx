@@ -29,7 +29,7 @@ export function ProcessTimeline() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12 md:mb-16 lg:mb-20"
+          className="text-center mb-10 md:mb-12"
         >
           <div className="flex justify-center mb-4">
             <EyebrowTag label={t.home.processTitle} />
@@ -84,7 +84,7 @@ export function ProcessTimeline() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-center mt-10 md:mt-14 lg:mt-16"
+            className="text-center mt-10 md:mt-12"
           >
             <Link
               href="/consultation"

@@ -13,7 +13,7 @@ export function FinalCTASection() {
   const t = getTranslations(locale)
 
   return (
-    <section className="bg-primary relative overflow-hidden">
+    <section className="bg-primary section-padding relative overflow-hidden">
       <div className="absolute top-6 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/40 to-transparent" />
       <div className="absolute top-7 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-accent-gold/[0.06] blur-[3px]" />
 
@@ -21,7 +21,7 @@ export function FinalCTASection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/[0.02] blur-[120px]" />
       </div>
 
-      <div className="container-custom section-padding">
+      <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

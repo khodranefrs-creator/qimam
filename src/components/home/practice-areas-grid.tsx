@@ -56,7 +56,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-          className="text-center mb-10 md:mb-12 lg:mb-14"
+          className="text-center mb-10 md:mb-12"
         >
           <div className="flex justify-center mb-4">
             <EyebrowTag label={t.nav.practiceAreas} />
@@ -116,7 +116,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-12"
+          className="text-center mt-10 md:mt-12"
         >
           <Link
             href="/practice-areas"

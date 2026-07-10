@@ -60,7 +60,7 @@ export function BlogPreview({ posts }: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-          className="mb-12"
+          className="mb-10 md:mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark leading-[1.15]">
             {t.home.blogTitle}
@@ -120,7 +120,7 @@ export function BlogPreview({ posts }: Props) {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-10"
+          className="text-center mt-10 md:mt-12"
         >
           <Link href="/blog" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group">
             <span>{t.home.blogLink}</span>

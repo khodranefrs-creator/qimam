@@ -63,7 +63,7 @@ export default function TestimonialsSlider({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-          className="text-center mb-14"
+          className="text-center mb-10 md:mb-12"
         >
           <span className="inline-block text-accent-gold text-sm font-medium tracking-widest mb-3">
             {t.testimonials.title}
@@ -204,7 +204,7 @@ export default function TestimonialsSlider({
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-center mt-12"
+            className="text-center mt-10 md:mt-12"
           >
             <Link
               href="/consultation"

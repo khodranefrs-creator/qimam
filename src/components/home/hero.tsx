@@ -73,7 +73,7 @@ export function Hero() {
 
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent" />
 
-      <div className="relative z-10 container-custom pt-28 pb-14 md:pt-44 md:pb-20">
+      <div className="relative z-10 container-custom pt-28 pb-16 md:pt-44 md:pb-20">
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-4xl mx-auto text-center">
           <motion.div variants={itemVariants} className="flex justify-center mb-3">
             <EyebrowTag label={t.home.heroBadge} />
