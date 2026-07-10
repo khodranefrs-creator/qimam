@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Phone, MessageCircle } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
+import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
 export function CtaBanner() {
   const locale = useLocale()
@@ -29,10 +30,8 @@ export function CtaBanner() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
         className="container-custom py-24 md:py-32 text-center relative z-10"
       >
-        <div className="flex items-center justify-center gap-2 mb-6">
-          <span className="w-8 h-px bg-accent-gold/60" />
-          <span className="text-accent-gold text-sm font-medium">{t.home.contactCta}</span>
-          <span className="w-8 h-px bg-accent-gold/60" />
+        <div className="flex justify-center mb-6">
+          <EyebrowTag label={t.home.contactCta} />
         </div>
 
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-text-light leading-[1.15] mb-6 max-w-3xl mx-auto text-balance">

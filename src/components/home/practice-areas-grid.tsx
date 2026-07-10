@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Building2, Scale, Briefcase, Home, Heart, BookOp
 import type { PracticeArea } from '@prisma/client'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
+import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2, Scale, Briefcase, Home, Heart, BookOpen, Gavel, FileText, Landmark, Users, Shield,
@@ -57,10 +58,8 @@ export function PracticeAreasGrid({ areas }: Props) {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-center mb-10 md:mb-12 lg:mb-14"
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium">{t.nav.practiceAreas}</span>
-            <span className="w-8 h-px bg-accent-gold/60" />
+          <div className="flex justify-center mb-4">
+            <EyebrowTag label={t.nav.practiceAreas} />
           </div>
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4 text-balance">
             {t.home.practiceAreasTitle}

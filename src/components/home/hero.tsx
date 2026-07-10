@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Scale, Shield, Award, BadgeCheck } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
+import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -74,9 +75,8 @@ export function Hero() {
 
       <div className="relative z-10 container-custom pt-28 pb-14 md:pt-44 md:pb-20">
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-4xl mx-auto text-center">
-          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-3 justify-center">
-            <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.home.heroBadge}</span>
+          <motion.div variants={itemVariants} className="flex justify-center mb-3">
+            <EyebrowTag label={t.home.heroBadge} />
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="text-[clamp(1.875rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.05] mb-5 md:mb-6 text-balance">

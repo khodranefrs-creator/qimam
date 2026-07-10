@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, BadgeCheck, Award, Calendar, Scale } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
+import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
 const credentials = (t: ReturnType<typeof getTranslations>) => [
   {
@@ -76,9 +77,8 @@ export function LawyerTeaser() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }}
             className="order-1 lg:order-2"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-px bg-accent-gold/60" />
-              <span className="text-accent-gold text-sm font-medium">{t.nav.lawyer}</span>
+            <div className="flex mb-4">
+              <EyebrowTag label={t.nav.lawyer} />
             </div>
 
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-text-light mb-3 text-balance leading-[1.1]">

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { PhoneCall, FileText, Handshake, Scale, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
+import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
 const processSteps = [
   { number: '01', icon: PhoneCall, titleKey: 'step1Title' as const, descKey: 'step1Desc' as const },
@@ -30,10 +31,8 @@ export function ProcessTimeline() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.home.processTitle}</span>
-            <span className="w-8 h-px bg-accent-gold/60" />
+          <div className="flex justify-center mb-4">
+            <EyebrowTag label={t.home.processTitle} />
           </div>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-heading font-bold text-text-light leading-[1.1] mb-5 text-balance max-w-3xl mx-auto">
             {t.home.processHeading}

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Award, BadgeCheck, Phone, MessageCircle, Briefcase, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { EyebrowTag } from "@/components/ui/eyebrow-tag"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -64,9 +65,8 @@ export default async function LawyerPage() {
               </div>
             </div>
             <div className="lg:col-span-7 text-center lg:text-right">
-              <div className="flex items-center gap-2 mb-4 justify-center lg:justify-start">
-                <span className="w-8 h-px bg-accent-gold/60" />
-                <span className="text-accent-gold text-sm font-medium tracking-widest">{t.lawyer.resumeLabel}</span>
+              <div className="flex justify-center lg:justify-start mb-4">
+                <EyebrowTag label={t.lawyer.resumeLabel} />
               </div>
               <h1 className="text-[clamp(1.75rem,4vw,2.5rem)] font-heading font-bold mb-2 leading-tight">
                 {t.lawyer.name}
@@ -150,9 +150,8 @@ export default async function LawyerPage() {
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
-            <div className="flex items-center gap-2 mb-4 justify-center">
-              <span className="w-8 h-px bg-accent-gold/60" />
-              <span className="text-accent-gold text-sm font-medium tracking-widest">{t.lawyer.title}</span>
+            <div className="flex justify-center mb-4">
+              <EyebrowTag label={t.lawyer.title} />
             </div>
             <div className="relative p-8 md:p-12 rounded-2xl bg-secondary border border-border/60">
               <Quote className="absolute top-6 right-6 w-12 h-12 text-accent-gold/10" />

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
+import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
 export function FinalCTASection() {
   const locale = useLocale()
@@ -28,10 +29,8 @@ export function FinalCTASection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
           className="max-w-2xl mx-auto text-center"
         >
-          <div className="flex items-center justify-center gap-2 mb-5">
-            <span className="w-8 h-px bg-accent-gold/60" />
-            <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.nav.consultation}</span>
-            <span className="w-8 h-px bg-accent-gold/60" />
+          <div className="flex justify-center mb-5">
+            <EyebrowTag label={t.nav.consultation} />
           </div>
           <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-heading font-bold text-text-light leading-[1.15] mb-5 text-balance">
             {t.home.finalCTATitle}
