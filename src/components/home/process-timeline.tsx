@@ -76,7 +76,7 @@ export function ProcessTimeline() {
                     className="group"
                   >
                     {/* Desktop: numbered node above card */}
-                    <div className="hidden lg:flex justify-center relative z-10 mb-1">
+                    <div className="hidden lg:flex justify-center relative z-10 -mb-3">
                       <div className="w-10 h-10 rounded-full bg-accent-gold flex items-center justify-center shadow-[0_0_20px_rgba(198,161,91,0.3)] ring-2 ring-primary">
                         <span className="text-primary font-heading font-bold text-sm">{step.number}</span>
                       </div>
