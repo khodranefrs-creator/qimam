@@ -39,13 +39,13 @@ export function FaqClient({
   return (
     <>
       <div className="relative mb-8">
-        <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
+        <Search className="absolute end-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" />
         <input
           type="text"
           placeholder={t.faq.searchPlaceholder}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pr-12 pl-4 py-3 bg-white border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark placeholder:text-text-muted"
+          className="w-full px-4 py-3 ps-12 bg-white border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark placeholder:text-text-muted"
         />
       </div>
 

@@ -125,9 +125,9 @@ export function ContactForm() {
         </div>
         <Button type="submit" disabled={loading} size="lg" className="w-full">
           {loading ? (
-            <><Loader2 className="w-4 h-4 animate-spin ml-2" /> {t.common.loading}</>
+            <><Loader2 className="w-4 h-4 animate-spin ms-2" /> {t.common.loading}</>
           ) : (
-            <><Send className="w-4 h-4 ml-2" /> {t.contact.submit}</>
+            <><Send className="w-4 h-4 ms-2" /> {t.contact.submit}</>
           )}
         </Button>
       </form>

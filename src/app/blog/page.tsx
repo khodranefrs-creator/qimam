@@ -87,9 +87,9 @@ export default async function BlogPage({
                   name="q"
                   defaultValue={searchQuery || ""}
                   placeholder={t.blog.searchPlaceholder}
-                  className="w-full px-4 py-3 pr-10 bg-white border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark placeholder:text-text-muted"
+                  className="w-full px-4 py-3 ps-10 bg-white border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-gold text-text-dark placeholder:text-text-muted"
                 />
-                <button type="submit" aria-label={t.blog.searchPlaceholder} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-accent-gold transition-colors">
+                <button type="submit" aria-label={t.blog.searchPlaceholder} className="absolute end-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-accent-gold transition-colors">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 </button>
               </div>
@@ -159,7 +159,7 @@ export default async function BlogPage({
               </div>
 
               {totalPages > 1 && (
-                <div className="flex items-center justify-center gap-2 mt-12" dir="ltr">
+                <div className="flex items-center justify-center gap-2 mt-12">
                   {currentPage > 1 && (
                     <Link
                       href={`/blog?page=${currentPage - 1}${category ? `&category=${encodeURIComponent(category)}` : ""}${searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : ""}`}
