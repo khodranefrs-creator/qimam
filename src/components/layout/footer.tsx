@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Navigation, MessageCircle } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -140,34 +140,82 @@ export default function Footer() {
             <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
               {t.nav.contactUs}
             </h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
                 <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
                 <span className="text-text-muted text-muted-on-dark text-sm leading-relaxed">
                   {t.contact.address}، {t.footer.country}
                 </span>
-              </li>
-              <li>
-                  <a
-                    href="tel:+966565555437"
-                    className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                    dir="ltr"
-                  >
-                    <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
-                    {t.footer.phone}
-                  </a>
-              </li>
-              <li>
-                  <a
-                    href="mailto:info@qimamlaw.com"
-                    className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                    dir="ltr"
-                  >
-                    <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
-                    {t.footer.email}
-                  </a>
-              </li>
-            </ul>
+              </div>
+              <a
+                href="tel:+966565555437"
+                className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
+                dir="ltr"
+              >
+                <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
+                {t.footer.phone}
+              </a>
+              <a
+                href="mailto:info@qimamlaw.com"
+                className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
+                dir="ltr"
+              >
+                <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
+                {t.footer.email}
+              </a>
+
+              <div className="pt-2 border-t border-border-dark/30">
+                <div className="flex items-center gap-3 mb-3">
+                  <Clock aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
+                  <span className="text-text-muted text-muted-on-dark text-xs font-medium">{t.contact.workingHours}</span>
+                </div>
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2 text-text-muted text-muted-on-dark text-xs" dir="ltr">
+                    <span className="w-1 h-1 rounded-full bg-accent-gold/40 shrink-0" />
+                    <span>{t.contact.daySunThu}</span>
+                    <span className="text-border-dark/40">—</span>
+                    <span dir="ltr">{t.contact.timeSunThu}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-text-muted text-muted-on-dark text-xs" dir="ltr">
+                    <span className="w-1 h-1 rounded-full bg-accent-gold/40 shrink-0" />
+                    <span>{t.contact.dayFri}</span>
+                    <span className="text-border-dark/40">—</span>
+                    <span dir="ltr">{t.contact.timeFri}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-text-muted text-muted-on-dark text-xs" dir="ltr">
+                    <span className="w-1 h-1 rounded-full bg-accent-gold/40 shrink-0" />
+                    <span>{t.contact.daySat}</span>
+                    <span className="text-border-dark/40">—</span>
+                    <span dir="ltr">{t.contact.timeSat}</span>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="https://maps.google.com/?q=Qimam+Al-Yaqin+Law+Firm+Makkah"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block relative w-full aspect-[16/7] rounded-xl overflow-hidden bg-gradient-to-br from-primary-light/30 to-primary-light/10 border border-border-dark/30 mt-1"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '20px 20px, 20px 20px',
+                }}
+              >
+                <div className="absolute inset-0 flex items-center justify-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold" />
+                    <span className="text-text-muted text-muted-on-dark text-[11px] font-medium">{t.footer.mapPlaceholder}</span>
+                  </div>
+                  <span className="flex items-center gap-1 text-accent-gold/70 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Navigation aria-hidden="true" className="w-3 h-3" />
+                    {t.footer.getDirections}
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>

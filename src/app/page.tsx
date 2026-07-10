@@ -9,7 +9,6 @@ import TestimonialsSlider from "@/components/home/testimonials-slider"
 import { BlogPreview } from "@/components/home/blog-preview"
 import { FaqPreview } from "@/components/home/faq-preview"
 import { FinalCTASection } from "@/components/home/final-cta"
-import { ContactOfficeSection } from "@/components/home/contact-office"
 
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
@@ -56,7 +55,6 @@ export default async function HomePage() {
       {posts.length > 0 && <BlogPreview posts={posts} />}
       {faqs.length > 0 && <FaqPreview faqs={faqs} />}
       <FinalCTASection />
-      <ContactOfficeSection />
     </>
   )
 }
