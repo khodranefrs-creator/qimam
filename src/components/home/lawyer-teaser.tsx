@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -34,6 +35,7 @@ export function LawyerTeaser() {
   const locale = useLocale()
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
+  const [imgError, setImgError] = useState(false)
 
   return (
     <section className="bg-primary py-20 md:py-28 lg:py-32 relative overflow-hidden">
@@ -53,14 +55,17 @@ export function LawyerTeaser() {
                 backgroundSize: '24px 24px',
               }} />
               <div className="absolute bottom-0 right-0 left-0 h-1/3 bg-gradient-to-t from-accent-gold/10 to-transparent" />
-              <Image
-                src="/images/lawyer-headshot.jpg"
-                alt={t.home.lawyerName}
-                fill
-                sizes="(max-width: 1023px) 100vw, 50vw"
-                priority
-                className="object-cover object-center relative z-10"
-              />
+              {!imgError && (
+                <Image
+                  src="/images/lawyer-headshot.jpg"
+                  alt={t.home.lawyerName}
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 50vw"
+                  priority
+                  onError={() => setImgError(true)}
+                  className="object-cover object-center relative z-10"
+                />
+              )}
             </div>
           </motion.div>
 
