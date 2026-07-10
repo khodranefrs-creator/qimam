@@ -55,7 +55,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
-          className="text-center mb-14"
+          className="text-center mb-10 md:mb-12 lg:mb-14"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="w-8 h-px bg-accent-gold/60" />

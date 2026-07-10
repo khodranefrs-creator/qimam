@@ -20,7 +20,7 @@ export function FinalCTASection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/[0.02] blur-[120px]" />
       </div>
 
-      <div className="container-custom py-20 md:py-28">
+      <div className="container-custom py-16 md:py-20 lg:py-28">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

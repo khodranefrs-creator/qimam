@@ -35,7 +35,7 @@ export function WhyQimam() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
-          className="text-center mb-14"
+          className="text-center mb-10 md:mb-12 lg:mb-14"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-4 text-balance">
             {t.practiceAreas.whyChooseTitle}
@@ -46,7 +46,7 @@ export function WhyQimam() {
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="grid sm:grid-cols-2 gap-x-12 gap-y-6">
+          <div className="grid sm:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-6">
             {items.map((item, i) => (
               <motion.div
                 key={item}

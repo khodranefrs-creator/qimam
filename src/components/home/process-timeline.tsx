@@ -28,7 +28,7 @@ export function ProcessTimeline() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="w-8 h-px bg-accent-gold/60" />
@@ -46,7 +46,7 @@ export function ProcessTimeline() {
         <div className="relative">
           <div className={`hidden lg:block absolute left-[10%] right-[10%] top-[92px] h-px ${isRtl ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-transparent via-accent-gold/[0.25] to-transparent`} />
 
-          <div dir={isRtl ? 'rtl' : 'ltr'} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 lg:gap-5">
+          <div dir={isRtl ? 'rtl' : 'ltr'} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 lg:gap-5">
             {processSteps.map((step, i) => {
               const Icon = step.icon
               return (
@@ -85,7 +85,7 @@ export function ProcessTimeline() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-center mt-14 md:mt-16"
+            className="text-center mt-10 md:mt-14 lg:mt-16"
           >
             <Link
               href="/consultation"

@@ -72,18 +72,18 @@ export function Hero() {
 
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent" />
 
-      <div className="relative z-10 container-custom pt-36 pb-16 md:pt-44 md:pb-20">
+      <div className="relative z-10 container-custom pt-28 pb-14 md:pt-44 md:pb-20">
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-3xl mx-auto lg:mx-0 text-center lg:text-end">
-          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6 justify-center lg:justify-start">
+          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-4 md:mb-6 justify-center lg:justify-start">
             <span className="w-8 h-px bg-accent-gold/60" />
             <span className="text-accent-gold text-sm font-medium tracking-[0.15em] uppercase">{t.home.heroBadge}</span>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-[clamp(2.25rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.05] mb-6 text-balance">
+          <motion.h1 variants={itemVariants} className="text-[clamp(1.875rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.05] mb-5 md:mb-6 text-balance">
             {t.home.heroTitle}
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.8] max-w-xl mb-10 mx-auto lg:mx-0">
+          <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-xl mb-8 md:mb-10 mx-auto lg:mx-0">
             {t.home.heroDesc}
           </motion.p>
 
@@ -106,9 +106,9 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 1.6, duration: 0.5 } }}
-          className="mt-16 md:mt-20"
+          className="mt-10 sm:mt-12 md:mt-20"
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {trustCards.map((card, i) => {
               const Icon = card.icon
               return (
@@ -116,12 +116,12 @@ export function Hero() {
                   key={card.key}
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0, transition: { delay: 1.8 + i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
-                  className="group relative p-6 md:p-8 rounded-2xl bg-primary-light/40 backdrop-blur-sm border border-white/[0.06] hover:border-accent-gold/20 hover:bg-primary-light/60 transition-all duration-700"
+                  className="group relative p-4 sm:p-5 md:p-8 rounded-2xl bg-primary-light/40 backdrop-blur-sm border border-white/[0.06] hover:border-accent-gold/20 hover:bg-primary-light/60 transition-all duration-700"
                 >
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-accent-gold/[0.08] flex items-center justify-center mb-5 group-hover:bg-accent-gold/[0.15] transition-colors duration-700 ring-1 ring-accent-gold/[0.08] group-hover:ring-accent-gold/20">
-                    <Icon aria-hidden="true" className="w-6 h-6 md:w-7 md:h-7 text-accent-gold" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-accent-gold/[0.08] flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-accent-gold/[0.15] transition-colors duration-700 ring-1 ring-accent-gold/[0.08] group-hover:ring-accent-gold/20">
+                    <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-gold" />
                   </div>
-                  <h3 className="text-base md:text-lg font-heading font-semibold text-text-light mb-2 leading-snug tracking-tight">
+                  <h3 className="text-sm sm:text-base md:text-lg font-heading font-semibold text-text-light mb-1.5 sm:mb-2 leading-snug tracking-tight">
                     {t.home[card.key]}
                   </h3>
                   <p className="text-xs md:text-sm text-text-muted text-muted-on-dark leading-relaxed md:leading-[1.7]">

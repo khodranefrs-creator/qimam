@@ -275,7 +275,7 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: isRtl ? '100%' : '-100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className={`fixed inset-y-0 ${isRtl ? 'right-0 border-l' : 'left-0 border-r'} w-80 bg-primary border-border-dark/50 z-50 lg:hidden overflow-y-auto`}
+            className={`fixed inset-y-0 ${isRtl ? 'right-0 border-l' : 'left-0 border-r'} w-[85vw] max-w-sm bg-primary border-border-dark/50 z-50 lg:hidden overflow-y-auto`}
           >
             <div className="p-6">
               <div className="flex items-center justify-between mb-8">
