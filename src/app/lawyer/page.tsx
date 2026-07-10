@@ -119,11 +119,11 @@ export default async function LawyerPage() {
                   {certifications(t).map((cert) => {
                     const Icon = cert.icon
                     return (
-                      <div key={cert.label} className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
+                      <div key={cert.label} className="flex items-start gap-4">
+                        <div className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5">
                           <Icon className="w-4 h-4 text-accent-gold" />
                         </div>
-                        <span className="text-text-muted text-sm">{cert.label}</span>
+                        <span className="text-text-muted text-sm break-words">{cert.label}</span>
                       </div>
                     )
                   })}
