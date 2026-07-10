@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: `${siteUrl}/og-image.jpg`,
+          url: `${siteUrl}/og-image.svg`,
           width: 1200,
           height: 630,
           alt: t.site.fullName,
@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: t.site.fullName,
       description: `${t.site.fullName} — ${t.site.tagline}${locale === 'ar' ? ' في مكة المكرمة' : ' in Makkah'}.`,
-      images: [`${siteUrl}/og-image.jpg`],
+      images: [`${siteUrl}/og-image.svg`],
     },
     robots: {
       index: true,

@@ -25,14 +25,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let blogRoutes: MetadataRoute.Sitemap = []
   let caseStudyRoutes: MetadataRoute.Sitemap = []
+  let practiceAreaRoutes: MetadataRoute.Sitemap = []
 
   try {
-    const [posts, caseStudies] = await Promise.all([
+    const [posts, caseStudies, practiceAreas] = await Promise.all([
       prisma.blogPost.findMany({
         where: { published: true },
         select: { slug: true, updatedAt: true },
       }),
       prisma.caseStudy.findMany({
+        where: { published: true },
+        select: { slug: true, updatedAt: true },
+      }),
+      prisma.practiceArea.findMany({
         where: { published: true },
         select: { slug: true, updatedAt: true },
       }),
@@ -51,9 +56,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     }))
+
+    practiceAreaRoutes = practiceAreas.map((pa) => ({
+      url: `${baseUrl}/practice-areas/${pa.slug}`,
+      lastModified: pa.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }))
   } catch {
     console.warn("Failed to fetch dynamic routes for sitemap")
   }
 
-  return [...staticRoutes, ...blogRoutes, ...caseStudyRoutes]
+  return [...staticRoutes, ...blogRoutes, ...caseStudyRoutes, ...practiceAreaRoutes]
 }

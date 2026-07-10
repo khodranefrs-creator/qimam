@@ -198,7 +198,7 @@ export default async function BlogPostPage({
                     <div className="bg-white rounded-panel border border-border overflow-hidden shadow-subtle hover-lift transition-all">
                       <div className="h-36 bg-gray-200 flex items-center justify-center text-text-muted text-sm">
                         {rp.coverImage ? (
-                          <img src={rp.coverImage} alt={rp.title} className="w-full h-full object-cover" />
+                          <img src={rp.coverImage} alt={rp.title} loading="lazy" className="w-full h-full object-cover" />
                         ) : (
                           <span>{t.common.noData}</span>
                         )}

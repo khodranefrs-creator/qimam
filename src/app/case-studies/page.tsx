@@ -66,7 +66,7 @@ export default async function CaseStudiesPage() {
                     <div className="flex flex-col sm:flex-row">
                       <div className="sm:w-48 h-48 sm:h-auto bg-gray-200 flex items-center justify-center text-text-muted shrink-0">
                         {cs.coverImage ? (
-                          <img src={cs.coverImage} alt={cs.title} className="w-full h-full object-cover" />
+                          <img src={cs.coverImage} alt={cs.title} loading="lazy" className="w-full h-full object-cover" />
                         ) : (
                           <span>{t.common.noData}</span>
                         )}

@@ -85,7 +85,7 @@ export default async function CaseStudyPage({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {cs.coverImage && (
             <div className="rounded-xl overflow-hidden mb-8 shadow-warm">
-              <img src={cs.coverImage} alt={cs.title} className="w-full h-64 md:h-96 object-cover" />
+              <img src={cs.coverImage} alt={cs.title} loading="lazy" className="w-full h-64 md:h-96 object-cover" />
             </div>
           )}
 
