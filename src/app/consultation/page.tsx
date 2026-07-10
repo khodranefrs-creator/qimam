@@ -88,14 +88,19 @@ export default function ConsultationPage() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [loadingAreas, setLoadingAreas] = useState(true)
+  const [areasError, setAreasError] = useState(false)
 
   useEffect(() => {
     fetch("/api/practice-areas")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error()
+        return res.json()
+      })
       .then((data) => {
         if (Array.isArray(data)) setPracticeAreas(data)
+        else throw new Error()
       })
-      .catch(() => {})
+      .catch(() => setAreasError(true))
       .finally(() => setLoadingAreas(false))
   }, [])
 
@@ -106,28 +111,32 @@ export default function ConsultationPage() {
 
   function validateStep1(): boolean {
     const errs: FormErrors = {}
-    if (!formData.practiceAreaId) errs.practiceAreaId = t.common.error
+    const areaErr = getFieldError("practiceAreaId")
+    if (areaErr) errs.practiceAreaId = areaErr
     setErrors(errs)
     return Object.keys(errs).length === 0
   }
 
   function validateStep2(): boolean {
     const errs: FormErrors = {}
-    if (!formData.preferredDate) errs.preferredDate = t.common.error
-    else if (formData.preferredDate < getTodayString()) errs.preferredDate = t.common.error
-    else if (isFriday(formData.preferredDate)) errs.preferredDate = t.common.error
-    if (!formData.preferredTime) errs.preferredTime = t.common.error
+    const dateErr = getFieldError("preferredDate")
+    if (dateErr) errs.preferredDate = dateErr
+    const timeErr = getFieldError("preferredTime")
+    if (timeErr) errs.preferredTime = timeErr
     setErrors(errs)
     return Object.keys(errs).length === 0
   }
 
   function validateStep3(): boolean {
     const errs: FormErrors = {}
-    if (!formData.name.trim()) errs.name = t.common.error
-    if (!formData.phone.trim()) errs.phone = t.common.error
-    else if (!/^\+966\d{9}$/.test(formData.phone.trim())) errs.phone = t.common.error
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) errs.email = t.common.error
-    if (!formData.contactMethod) errs.contactMethod = t.common.error
+    const nameErr = getFieldError("name")
+    if (nameErr) errs.name = nameErr
+    const phoneErr = getFieldError("phone")
+    if (phoneErr) errs.phone = phoneErr
+    const emailErr = getFieldError("email")
+    if (emailErr) errs.email = emailErr
+    const cmErr = getFieldError("contactMethod")
+    if (cmErr) errs.contactMethod = cmErr
     setErrors(errs)
     return Object.keys(errs).length === 0
   }
@@ -144,6 +153,40 @@ export default function ConsultationPage() {
 
   const todayStr = getTodayString()
 
+  function getFieldError(field: keyof FormData): string | undefined {
+    switch (field) {
+      case "practiceAreaId":
+        return formData.practiceAreaId ? undefined : t.consultation.errArea
+      case "preferredDate":
+        if (!formData.preferredDate) return t.consultation.errDate
+        if (formData.preferredDate < todayStr) return t.consultation.errDate
+        if (isFriday(formData.preferredDate)) return t.consultation.errDate
+        return undefined
+      case "preferredTime":
+        return formData.preferredTime ? undefined : t.consultation.errTime
+      case "name":
+        return formData.name.trim() ? undefined : t.consultation.errName
+      case "phone":
+        if (!formData.phone.trim()) return t.consultation.errPhone
+        if (!/^\+966\d{9}$/.test(formData.phone.trim())) return t.consultation.errPhone
+        return undefined
+      case "email":
+        if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) return t.consultation.errEmail
+        return undefined
+      case "contactMethod":
+        return formData.contactMethod ? undefined : t.consultation.errContactMethod
+      case "consent":
+        return formData.consent ? undefined : t.consultation.errConsent
+      default:
+        return undefined
+    }
+  }
+
+  function handleBlur(field: keyof FormData) {
+    const err = getFieldError(field)
+    setErrors((prev) => ({ ...prev, [field]: err }))
+  }
+
   function getSelectedAreaTitle(): string {
     const area = practiceAreas.find((a) => a.id === formData.practiceAreaId)
     return area ? area.title : t.common.noData
@@ -157,7 +200,7 @@ export default function ConsultationPage() {
 
   async function handleSubmit() {
     if (!formData.consent) {
-      setErrors({ step1: t.common.error })
+      setErrors({ consent: t.consultation.errConsent })
       return
     }
     setSubmitting(true)
@@ -276,10 +319,15 @@ export default function ConsultationPage() {
               <Loader2 size={16} className="animate-spin" />
               {t.common.loading}
             </div>
+          ) : areasError ? (
+            <div className="flex items-center gap-2 text-error text-sm py-2">
+              <span>{t.common.error}</span>
+            </div>
           ) : (
             <select
               value={formData.practiceAreaId}
               onChange={(e) => updateField("practiceAreaId", e.target.value)}
+              onBlur={() => handleBlur("practiceAreaId")}
               className={`${inputClass} appearance-none cursor-pointer`}
             >
               <option value="">-- {t.consultation.selectArea} --</option>
@@ -322,8 +370,9 @@ export default function ConsultationPage() {
             type="date"
             value={formData.preferredDate}
             onChange={(e) => updateField("preferredDate", e.target.value)}
+            onBlur={() => handleBlur("preferredDate")}
             min={todayStr}
-            className={`${inputClass} [color-scheme:light]`}
+            className={`${inputClass}`}
           />
               <p className="text-xs text-text-muted mt-1.5">{t.footer.satThu}</p>
           {errors.preferredDate && <p className={errorClass}>{errors.preferredDate}</p>}
@@ -337,6 +386,7 @@ export default function ConsultationPage() {
                 key={time}
                 type="button"
                 onClick={() => updateField("preferredTime", time)}
+                onBlur={() => handleBlur("preferredTime")}
                 className={`px-3 py-2.5 rounded-[8px] text-sm font-medium transition-all duration-200 border ${
                   formData.preferredTime === time
                     ? "bg-accent-gold text-primary border-accent-gold shadow-gold"
@@ -367,13 +417,14 @@ export default function ConsultationPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>{t.consultation.nameLabel} <span className="text-error">*</span></label>
-            <input
-              type="text"
-              value={formData.name}
-              onChange={(e) => updateField("name", e.target.value)}
-              placeholder={t.consultation.namePlaceholder}
-              className={inputClass}
-            />
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => updateField("name", e.target.value)}
+                onBlur={() => handleBlur("name")}
+                placeholder={t.consultation.namePlaceholder}
+                className={inputClass}
+              />
             {errors.name && <p className={errorClass}>{errors.name}</p>}
           </div>
 
@@ -391,6 +442,7 @@ export default function ConsultationPage() {
                     updateField("phone", "+966")
                   }
                 }}
+                onBlur={() => handleBlur("phone")}
                 placeholder="+9665XXXXXXXX"
                 className={`${inputClass} ps-10`}
               />
@@ -407,6 +459,7 @@ export default function ConsultationPage() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => updateField("email", e.target.value)}
+                onBlur={() => handleBlur("email")}
                 placeholder="example@domain.com"
                 className={`${inputClass} ps-10`}
               />
@@ -417,13 +470,14 @@ export default function ConsultationPage() {
           </div>
 
           <div>
-            <label className={labelClass}>{t.consultation.preferredTime} <span className="text-error">*</span></label>
+              <label className={labelClass}>{t.consultation.contactMethod} <span className="text-error">*</span></label>
             <div className="flex flex-col sm:flex-row gap-2 mt-1">
               {getContactMethods(t).map((method) => (
                 <button
                   key={method.value}
                   type="button"
                   onClick={() => updateField("contactMethod", method.value)}
+                  onBlur={() => handleBlur("contactMethod")}
                   className={`flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-[8px] text-xs sm:text-sm font-medium transition-all duration-200 border ${
                     formData.contactMethod === method.value
                       ? "bg-accent-gold text-primary border-accent-gold shadow-gold"
@@ -525,6 +579,7 @@ export default function ConsultationPage() {
             id="consent"
             checked={formData.consent}
             onChange={(e) => updateField("consent", e.target.checked)}
+            onBlur={() => handleBlur("consent")}
             className="mt-0.5 w-4 h-4 rounded border-border/60 text-accent-gold focus:ring-accent-gold shrink-0"
           />
           <label htmlFor="consent" className="text-xs sm:text-sm text-text-muted cursor-pointer leading-relaxed">
@@ -534,6 +589,7 @@ export default function ConsultationPage() {
           </label>
         </div>
 
+        {errors.consent && <p className={errorClass}>{errors.consent}</p>}
         {errors.step1 && <p className={errorClass}>{errors.step1}</p>}
       </div>
     )
@@ -583,7 +639,7 @@ export default function ConsultationPage() {
                     {submitting ? (
                       <>
                         <Loader2 size={16} className="animate-spin shrink-0" />
-                        <span className="truncate">{t.common.loading}</span>
+                        <span className="truncate">{t.consultation.submitting}</span>
                       </>
                     ) : (
                       <>
