@@ -62,7 +62,7 @@ export function AboutTeaser() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const, delay: 0.15 }}
-            className="relative"
+            className="relative hidden lg:block"
           >
             <div className="aspect-[4/3] rounded-card bg-primary overflow-hidden border border-border-dark/50">
               <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden="true">
