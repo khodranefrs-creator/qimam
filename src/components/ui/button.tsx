@@ -4,12 +4,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[8px] text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 select-none relative overflow-hidden",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-control text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 select-none relative overflow-hidden",
   {
     variants: {
       variant: {
         primary:
-          "bg-accent-gold text-primary hover:bg-accent-gold/90 active:bg-accent-gold/80 shadow-gold hover:shadow-[0_4px_25px_rgba(176,141,87,0.35)] before:absolute before:inset-0 before:translate-x-[-100%] before:skew-x-[-15deg] before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent before:transition-transform before:duration-[600ms] hover:before:translate-x-[200%]",
+          "bg-accent-gold text-primary hover:bg-accent-gold/90 active:bg-accent-gold/80 shadow-raised hover:shadow-[0_4px_25px_rgba(176,141,87,0.35)] before:absolute before:inset-0 before:translate-x-[-100%] before:skew-x-[-15deg] before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent before:transition-transform before:duration-[600ms] hover:before:translate-x-[200%]",
         secondary:
           "border border-accent-gold/30 bg-transparent text-accent-gold hover:bg-accent-gold/10 active:bg-accent-gold/20",
         ghost:

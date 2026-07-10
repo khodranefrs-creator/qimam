@@ -265,7 +265,7 @@ export default function ConsultationPage() {
               <div
                 className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[11px] md:text-sm font-bold transition-all duration-300 shrink-0 ${
                   step.id === currentStep
-                    ? "bg-accent-gold text-primary shadow-gold"
+                    ? "bg-accent-gold text-primary shadow-raised"
                     : step.id < currentStep
                     ? "bg-success text-white"
                     : "bg-gray-100 text-text-muted"
@@ -389,9 +389,9 @@ export default function ConsultationPage() {
                 type="button"
                 onClick={() => updateField("preferredTime", time)}
                 onBlur={() => handleBlur("preferredTime")}
-                className={`px-3 py-2.5 rounded-[8px] text-sm font-medium transition-all duration-200 border ${
+                className={`px-3 py-2.5 rounded-control text-sm font-medium transition-all duration-200 border ${
                   formData.preferredTime === time
-                    ? "bg-accent-gold text-primary border-accent-gold shadow-gold"
+                    ? "bg-accent-gold text-primary border-accent-gold shadow-raised"
                     : "bg-white text-text-dark border-border/60 hover:border-accent-gold/40 hover:bg-accent-gold/5"
                 }`}
               >
@@ -479,9 +479,9 @@ export default function ConsultationPage() {
                   type="button"
                   onClick={() => updateField("contactMethod", method.value)}
                   onBlur={() => handleBlur("contactMethod")}
-                  className={`flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-[8px] text-xs sm:text-sm font-medium transition-all duration-200 border ${
+                  className={`flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-control text-xs sm:text-sm font-medium transition-all duration-200 border ${
                     formData.contactMethod === method.value
-                      ? "bg-accent-gold text-primary border-accent-gold shadow-gold"
+                      ? "bg-accent-gold text-primary border-accent-gold shadow-raised"
                       : "bg-white text-text-dark border-border/60 hover:border-accent-gold/40 hover:bg-accent-gold/5"
                   }`}
                 >
@@ -510,7 +510,7 @@ export default function ConsultationPage() {
           <p className="text-text-muted text-sm mt-1">{t.consultation.description}</p>
         </div>
 
-        <div className="bg-gray-50 rounded-[12px] border border-border/60 divide-y divide-border/40">
+        <div className="bg-gray-50 rounded-panel border border-border/60 divide-y divide-border/40">
           <div className="px-4 sm:px-5 py-4">
             <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">{t.consultation.practiceArea}</h3>
             <div className="space-y-2">
@@ -521,7 +521,7 @@ export default function ConsultationPage() {
               {formData.details && (
                 <div>
                   <span className="text-sm text-text-muted block mb-1">{t.consultation.detailsLabel}:</span>
-                  <p className="text-sm text-text-dark bg-white rounded-[8px] p-3 border border-border/40">{formData.details}</p>
+                  <p className="text-sm text-text-dark bg-white rounded-control p-3 border border-border/40">{formData.details}</p>
                 </div>
               )}
             </div>
@@ -574,7 +574,7 @@ export default function ConsultationPage() {
           </div>
         </div>
 
-        <div className="flex items-start gap-3 bg-amber-50/50 rounded-[12px] border border-amber-200/50 p-3 sm:p-4">
+        <div className="flex items-start gap-3 bg-amber-50/50 rounded-panel border border-amber-200/50 p-3 sm:p-4">
           <input
             type="checkbox"
             id="consent"

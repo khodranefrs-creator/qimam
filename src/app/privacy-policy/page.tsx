@@ -181,7 +181,7 @@ export default async function PrivacyPolicyPage() {
 
       <section className="section-padding bg-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl border border-border p-8 md:p-12 space-y-8 text-text-dark leading-[1.8]">
+          <div className="bg-white rounded-panel border border-border p-8 md:p-12 space-y-8 text-text-dark leading-[1.8]">
             {content.map((section) => (
               <div key={section.key}>
                 <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-4 text-primary">{section.heading}</h2>

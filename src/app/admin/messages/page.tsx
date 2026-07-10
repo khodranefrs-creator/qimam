@@ -112,7 +112,7 @@ export default function AdminMessagesPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-border/60 shadow-card p-4">
+      <div className="bg-white rounded-panel border border-border/60 shadow-subtle p-4">
         <div className="flex flex-wrap gap-3 items-end">
           <div className="flex-1 min-w-[200px]">
             <label className="block text-xs font-medium text-text-muted mb-1">بحث</label>
@@ -122,7 +122,7 @@ export default function AdminMessagesPage() {
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); setPage(1) }}
                 placeholder="بحث بالاسم أو البريد أو الموضوع..."
-                className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 pr-9 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                className="w-full rounded-control border border-border/60 bg-white px-3 py-2 pr-9 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
               />
               <Search size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
@@ -132,7 +132,7 @@ export default function AdminMessagesPage() {
             <select
               value={readFilter}
               onChange={(e) => { setReadFilter(e.target.value); setPage(1) }}
-              className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
+              className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
             >
               <option value="">الكل</option>
               <option value="false">غير مقروءة</option>
@@ -144,7 +144,7 @@ export default function AdminMessagesPage() {
             <select
               value={archivedFilter}
               onChange={(e) => { setArchivedFilter(e.target.value); setPage(1) }}
-              className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
+              className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
             >
               <option value="false">غير مؤرشفة</option>
               <option value="true">مؤرشفة</option>
@@ -154,7 +154,7 @@ export default function AdminMessagesPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-border/60 shadow-card overflow-hidden">
+      <div className="bg-white rounded-panel border border-border/60 shadow-subtle overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <Loader2 size={32} className="animate-spin text-accent-gold" />
@@ -257,7 +257,7 @@ export default function AdminMessagesPage() {
                 </div>
 
                 <div className="p-6 space-y-5">
-                  <div className="bg-gray-50 rounded-[12px] border border-border/60 p-4 space-y-3">
+                  <div className="bg-gray-50 rounded-panel border border-border/60 p-4 space-y-3">
                     <div className="flex items-center gap-2">
                       <User size={16} className="text-accent-gold" />
                       <span className="font-medium text-text-dark">{selectedMessage.name}</span>
@@ -282,7 +282,7 @@ export default function AdminMessagesPage() {
                     <h3 className="text-sm font-bold text-text-dark mb-2">
                       {selectedMessage.subject || "(بدون موضوع)"}
                     </h3>
-                    <div className="bg-gray-50 rounded-[12px] border border-border/60 p-4">
+                    <div className="bg-gray-50 rounded-panel border border-border/60 p-4">
                       <p className="text-sm text-text-dark leading-relaxed whitespace-pre-wrap">
                         {selectedMessage.message}
                       </p>

@@ -99,7 +99,7 @@ export function LawyerTeaser() {
                 {credentials(t).map((item) => {
                   const Icon = item.icon
                   return (
-                    <div key={item.label} className="flex items-start gap-4 px-5 py-3.5 rounded-xl bg-primary-light/40 border border-border-dark/30">
+                    <div key={item.label} className="flex items-start gap-4 px-5 py-3.5 rounded-panel bg-primary-light/40 border border-border-dark/30">
                       <div className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5">
                         <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                       </div>

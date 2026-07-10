@@ -28,7 +28,7 @@ export default function Error({
       </p>
       <button
         onClick={reset}
-        className="px-8 py-3 bg-accent-gold text-primary font-semibold rounded-[8px] hover:bg-accent-gold/90 transition-all duration-300"
+        className="px-8 py-3 bg-accent-gold text-primary font-semibold rounded-control hover:bg-accent-gold/90 transition-all duration-300"
       >
         {t.common.retry}
       </button>

@@ -138,7 +138,7 @@ export default function AdminTestimonialsPage() {
         </Button>
       </div>
 
-      <div className="bg-white rounded-xl border border-border/60 shadow-card p-4">
+      <div className="bg-white rounded-panel border border-border/60 shadow-subtle p-4">
         <div className="flex flex-wrap gap-3 items-end">
           <div className="flex-1 min-w-[200px]">
             <label className="block text-xs font-medium text-text-muted mb-1">بحث</label>
@@ -148,7 +148,7 @@ export default function AdminTestimonialsPage() {
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); setPage(1) }}
                 placeholder="بحث بالاسم أو المحتوى..."
-                className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 pr-9 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                className="w-full rounded-control border border-border/60 bg-white px-3 py-2 pr-9 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
               />
               <Search size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
@@ -158,7 +158,7 @@ export default function AdminTestimonialsPage() {
             <select
               value={approvedFilter}
               onChange={(e) => { setApprovedFilter(e.target.value); setPage(1) }}
-              className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
+              className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
             >
               <option value="">الكل</option>
               <option value="true">معتمدة</option>
@@ -168,7 +168,7 @@ export default function AdminTestimonialsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-border/60 shadow-card overflow-hidden">
+      <div className="bg-white rounded-panel border border-border/60 shadow-subtle overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <Loader2 size={32} className="animate-spin text-accent-gold" />
@@ -300,7 +300,7 @@ export default function AdminTestimonialsPage() {
                       type="text"
                       value={createForm.name}
                       onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
-                      className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                      className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       placeholder="اسم العميل"
                       required
                     />
@@ -310,7 +310,7 @@ export default function AdminTestimonialsPage() {
                     <textarea
                       value={createForm.content}
                       onChange={(e) => setCreateForm({ ...createForm, content: e.target.value })}
-                      className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
+                      className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
                       rows={4}
                       placeholder="نص الرأي"
                       required
@@ -322,7 +322,7 @@ export default function AdminTestimonialsPage() {
                       <select
                         value={createForm.rating}
                         onChange={(e) => setCreateForm({ ...createForm, rating: parseInt(e.target.value) })}
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
+                        className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
                       >
                         {[5, 4, 3, 2, 1].map((n) => (
                           <option key={n} value={n}>{n} {Array(n).fill('★').join('')}</option>
@@ -335,7 +335,7 @@ export default function AdminTestimonialsPage() {
                         type="text"
                         value={createForm.source}
                         onChange={(e) => setCreateForm({ ...createForm, source: e.target.value })}
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
                         placeholder="مثل: Google Maps"
                       />
                     </div>

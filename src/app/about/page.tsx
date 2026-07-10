@@ -67,13 +67,13 @@ export default async function AboutPage() {
       <section className="section-padding bg-primary text-text-light">
         <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="p-8 rounded-xl border border-border-dark bg-primary-light">
+            <div className="p-8 rounded-panel border border-border-dark bg-primary-light">
               <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-4 text-accent-gold">{t.about.visionTitle}</h2>
               <p className="leading-[1.8] text-text-muted">
                 {t.about.visionDesc}
               </p>
             </div>
-            <div className="p-8 rounded-xl border border-border-dark bg-primary-light">
+            <div className="p-8 rounded-panel border border-border-dark bg-primary-light">
               <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-4 text-accent-gold">{t.about.missionTitle}</h2>
               <p className="leading-[1.8] text-text-muted">
                 {t.about.missionDesc}

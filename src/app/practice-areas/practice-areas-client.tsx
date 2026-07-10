@@ -38,7 +38,7 @@ export function PracticeAreasClient({ areas }: Props) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.practiceAreas.searchPlaceholder}
-          className="w-full h-12 bg-white border border-border/60 rounded-[8px] ps-12 pe-4 text-text-dark placeholder:text-text-muted/60 text-sm focus:outline-none focus:border-accent-gold/50 focus:ring-1 focus:ring-accent-gold/20 transition-all shadow-sm"
+          className="w-full h-12 bg-white border border-border/60 rounded-control ps-12 pe-4 text-text-dark placeholder:text-text-muted/60 text-sm focus:outline-none focus:border-accent-gold/50 focus:ring-1 focus:ring-accent-gold/20 transition-all shadow-sm"
         />
       </div>
 

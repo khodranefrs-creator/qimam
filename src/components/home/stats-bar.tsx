@@ -29,7 +29,7 @@ export function StatsBar() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-                className="flex items-center gap-4 px-5 py-5 rounded-xl bg-primary-light/30 border border-border-dark/20 hover:border-accent-gold/20 transition-all duration-500"
+                className="flex items-center gap-4 px-5 py-5 rounded-panel bg-primary-light/30 border border-border-dark/20 hover:border-accent-gold/20 transition-all duration-500"
               >
                 <div className="w-12 h-12 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <Icon aria-hidden="true" className="w-5 h-5 text-accent-gold" />

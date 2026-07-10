@@ -56,7 +56,7 @@ export default async function LawyerPage() {
                 <div className="aspect-[4/5] rounded-2xl border-4 border-accent-gold overflow-hidden bg-primary-light flex items-center justify-center">
                   <span className="text-6xl font-heading font-bold text-accent-gold">{t.lawyer.name.charAt(0)}</span>
                 </div>
-                <div className="absolute -bottom-2 -end-2 w-14 h-14 rounded-full bg-accent-gold flex items-center justify-center shadow-gold animate-pulse-ring-subtle">
+                <div className="absolute -bottom-2 -end-2 w-14 h-14 rounded-full bg-accent-gold flex items-center justify-center shadow-raised animate-pulse-ring-subtle">
                   <Award className="w-6 h-6 text-primary" />
                 </div>
                 <div className="absolute -top-2 -start-2 w-9 h-9 rounded-full border-2 border-accent-gold/40 bg-primary flex items-center justify-center">
@@ -110,7 +110,7 @@ export default async function LawyerPage() {
               </div>
             </div>
             <div>
-              <div className="bg-primary rounded-card p-6 border border-border-dark mb-8">
+              <div className="bg-primary rounded-panel p-6 border border-border-dark mb-8">
                 <h3 className="font-heading font-bold text-text-light mb-5 flex items-center gap-2">
                   <Award className="w-5 h-5 text-accent-gold" />
                   <span>{t.lawyer.certificationsLabel}</span>
@@ -129,7 +129,7 @@ export default async function LawyerPage() {
                   })}
                 </div>
               </div>
-              <div className="bg-primary rounded-card p-6 border border-border-dark">
+              <div className="bg-primary rounded-panel p-6 border border-border-dark">
                 <h3 className="font-heading font-bold text-text-light mb-5 flex items-center gap-2">
                   <Briefcase className="w-5 h-5 text-accent-gold" />
                   <span>{t.lawyer.skillsLabel}</span>

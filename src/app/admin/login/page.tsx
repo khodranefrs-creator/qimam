@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
           <h1 className="text-2xl font-heading font-bold text-white">قمم اليقين</h1>
           <p className="text-accent-gold-light/70 text-sm mt-1">لوحة التحكم</p>
         </div>
-        <form onSubmit={handleSubmit} className="bg-primary-light/80 backdrop-blur-sm border border-border-dark rounded-2xl p-8 space-y-5 shadow-warm">
+        <form onSubmit={handleSubmit} className="bg-primary-light/80 backdrop-blur-sm border border-border-dark rounded-surface p-8 space-y-5 shadow-warm">
           {error && (
             <div className="bg-error/10 border border-error/30 text-error text-sm rounded-lg px-4 py-3 text-center">
               {error}

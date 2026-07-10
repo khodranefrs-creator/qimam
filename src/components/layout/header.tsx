@@ -238,7 +238,7 @@ export default function Header() {
 
             <Link
               href="/consultation"
-              className="hidden sm:inline-flex items-center px-5 py-2.5 bg-accent-gold text-primary font-semibold text-sm rounded-[8px] hover:bg-accent-gold/90 active:bg-accent-gold/80 transition-all duration-300 shadow-gold hover:shadow-[0_4px_25px_rgba(176,141,87,0.35)]"
+              className="hidden sm:inline-flex items-center px-5 py-2.5 bg-accent-gold text-primary font-semibold text-sm rounded-control hover:bg-accent-gold/90 active:bg-accent-gold/80 transition-all duration-300 shadow-raised hover:shadow-[0_4px_25px_rgba(176,141,87,0.35)]"
             >
               {t.nav.consultation}
             </Link>
@@ -358,13 +358,13 @@ export default function Header() {
                 <Link
                   href="/consultation"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center w-full px-5 py-3 bg-accent-gold text-primary font-semibold text-sm rounded-[8px] hover:bg-accent-gold/90 transition-all duration-300"
+                  className="flex items-center justify-center w-full px-5 py-3 bg-accent-gold text-primary font-semibold text-sm rounded-control hover:bg-accent-gold/90 transition-all duration-300"
                 >
                   {t.nav.consultation}
                 </Link>
                 <a
                   href="tel:+966565555437"
-                  className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-text-light/20 text-text-light/80 rounded-[8px] text-sm hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
+                  className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-text-light/20 text-text-light/80 rounded-control text-sm hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
                 >
                   <Phone className="w-4 h-4" />
                   {t.nav.phone}

@@ -177,7 +177,7 @@ export default function AdminConsultationsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-border/60 shadow-card p-4">
+      <div className="bg-white rounded-panel border border-border/60 shadow-subtle p-4">
         <div className="flex flex-wrap gap-3 items-end">
           <div className="flex-1 min-w-[200px]">
             <label className="block text-xs font-medium text-text-muted mb-1">بحث</label>
@@ -187,7 +187,7 @@ export default function AdminConsultationsPage() {
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); setPage(1) }}
                 placeholder="بحث بالاسم أو الجوال أو البريد..."
-                className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 pr-9 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold focus:border-accent-gold"
+                className="w-full rounded-control border border-border/60 bg-white px-3 py-2 pr-9 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold focus:border-accent-gold"
               />
               <Search size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
@@ -197,7 +197,7 @@ export default function AdminConsultationsPage() {
             <select
               value={statusFilter}
               onChange={(e) => { setStatusFilter(e.target.value); setPage(1) }}
-              className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
+              className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
             >
               <option value="">الكل</option>
               {statusOptions.map((s) => (
@@ -211,7 +211,7 @@ export default function AdminConsultationsPage() {
               type="date"
               value={dateFrom}
               onChange={(e) => { setDateFrom(e.target.value); setPage(1) }}
-              className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
+              className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
             />
           </div>
           <div className="w-40">
@@ -220,7 +220,7 @@ export default function AdminConsultationsPage() {
               type="date"
               value={dateTo}
               onChange={(e) => { setDateTo(e.target.value); setPage(1) }}
-              className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
+              className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold"
             />
           </div>
           <Button variant="secondary" size="sm" onClick={() => { setStatusFilter(""); setSearchQuery(""); setDateFrom(""); setDateTo(""); setPage(1) }}>
@@ -230,7 +230,7 @@ export default function AdminConsultationsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-border/60 shadow-card overflow-hidden">
+      <div className="bg-white rounded-panel border border-border/60 shadow-subtle overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <Loader2 size={32} className="animate-spin text-accent-gold" />
@@ -356,7 +356,7 @@ export default function AdminConsultationsPage() {
               </div>
 
               <div className="p-6 space-y-5">
-                <div className="bg-gray-50 rounded-[12px] border border-border/60 p-4 space-y-3">
+                <div className="bg-gray-50 rounded-panel border border-border/60 p-4 space-y-3">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <User size={16} className="text-accent-gold" />
@@ -382,7 +382,7 @@ export default function AdminConsultationsPage() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-[12px] border border-border/60 p-4 space-y-3">
+                <div className="bg-gray-50 rounded-panel border border-border/60 p-4 space-y-3">
                   <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider">تفاصيل القضية</h3>
                   <div className="flex items-center gap-2 text-sm">
                     <FileText size={14} className="text-text-muted" />
@@ -392,13 +392,13 @@ export default function AdminConsultationsPage() {
                   {selectedConsultation.details && (
                     <div>
                       <span className="text-sm text-text-muted block mb-1">تفاصيل إضافية:</span>
-                      <p className="text-sm text-text-dark bg-white rounded-[8px] p-3 border border-border/40">{selectedConsultation.details}</p>
+                      <p className="text-sm text-text-dark bg-white rounded-control p-3 border border-border/40">{selectedConsultation.details}</p>
                     </div>
                   )}
                 </div>
 
                 {selectedConsultation.preferredDate && (
-                  <div className="bg-gray-50 rounded-[12px] border border-border/60 p-4 space-y-2">
+                  <div className="bg-gray-50 rounded-panel border border-border/60 p-4 space-y-2">
                     <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider">الموعد المفضل</h3>
                     <div className="flex items-center gap-2 text-sm">
                       <Calendar size={14} className="text-text-muted" />
@@ -415,7 +415,7 @@ export default function AdminConsultationsPage() {
                   </div>
                 )}
 
-                <div className="bg-gray-50 rounded-[12px] border border-border/60 p-4 space-y-3">
+                <div className="bg-gray-50 rounded-panel border border-border/60 p-4 space-y-3">
                   <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider">تحديث الحالة</h3>
                   <div className="flex flex-wrap gap-2">
                     {statusOptions.map((s) => (
@@ -424,7 +424,7 @@ export default function AdminConsultationsPage() {
                         onClick={() => setNewStatus(s)}
                         className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${
                           newStatus === s
-                            ? "bg-accent-gold text-primary border-accent-gold shadow-gold"
+                            ? "bg-accent-gold text-primary border-accent-gold shadow-raised"
                             : "bg-white text-text-muted border-border/60 hover:border-accent-gold/40"
                         }`}
                       >
@@ -441,7 +441,7 @@ export default function AdminConsultationsPage() {
                     onChange={(e) => setAdminNotes(e.target.value)}
                     placeholder="أضف ملاحظات داخلية (تظهر للمشرفين فقط)..."
                     rows={4}
-                    className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-3 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
+                    className="w-full rounded-control border border-border/60 bg-white px-4 py-3 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
                   />
                 </div>
 

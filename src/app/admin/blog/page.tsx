@@ -227,7 +227,7 @@ export default function AdminBlogPage() {
         </Button>
       </div>
 
-      <div className="bg-white rounded-xl border border-border/60 shadow-card p-4">
+      <div className="bg-white rounded-panel border border-border/60 shadow-subtle p-4">
         <div className="flex flex-wrap gap-3 items-end">
           <div className="flex-1 min-w-[200px]">
             <label className="block text-xs font-medium text-text-muted mb-1">بحث</label>
@@ -237,7 +237,7 @@ export default function AdminBlogPage() {
                 value={searchQuery}
                 onChange={(e) => { setSearchQuery(e.target.value); setPage(1) }}
                 placeholder="بحث بالعنوان..."
-                className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 pr-9 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                className="w-full rounded-control border border-border/60 bg-white px-3 py-2 pr-9 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
               />
               <Search size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
@@ -247,7 +247,7 @@ export default function AdminBlogPage() {
             <select
               value={publishedFilter}
               onChange={(e) => { setPublishedFilter(e.target.value); setPage(1) }}
-              className="w-full rounded-[8px] border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
+              className="w-full rounded-control border border-border/60 bg-white px-3 py-2 text-sm text-text-dark focus:outline-none focus:ring-2 focus:ring-accent-gold appearance-none cursor-pointer"
             >
               <option value="">الكل</option>
               <option value="true">منشور</option>
@@ -257,7 +257,7 @@ export default function AdminBlogPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-border/60 shadow-card overflow-hidden">
+      <div className="bg-white rounded-panel border border-border/60 shadow-subtle overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <Loader2 size={32} className="animate-spin text-accent-gold" />
@@ -393,7 +393,7 @@ export default function AdminBlogPage() {
                         value={form.title}
                         onChange={(e) => updateForm("title", e.target.value)}
                         placeholder="عنوان المقال"
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       />
                     </div>
                     <div>
@@ -404,7 +404,7 @@ export default function AdminBlogPage() {
                         onChange={(e) => updateForm("slug", e.target.value)}
                         placeholder="post-slug"
                         dir="ltr"
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       />
                     </div>
                     <div>
@@ -414,7 +414,7 @@ export default function AdminBlogPage() {
                         value={form.category}
                         onChange={(e) => updateForm("category", e.target.value)}
                         placeholder="مثلاً: قضايا تجارية"
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -424,7 +424,7 @@ export default function AdminBlogPage() {
                         onChange={(e) => updateForm("excerpt", e.target.value)}
                         placeholder="نبذة قصيرة عن المقال..."
                         rows={2}
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -434,7 +434,7 @@ export default function AdminBlogPage() {
                         onChange={(e) => updateForm("content", e.target.value)}
                         placeholder="اكتب محتوى المقال هنا..."
                         rows={12}
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold resize-y"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold resize-y"
                       />
                     </div>
                     <div>
@@ -444,7 +444,7 @@ export default function AdminBlogPage() {
                         value={form.author}
                         onChange={(e) => updateForm("author", e.target.value)}
                         placeholder="اسم الكاتب"
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       />
                     </div>
                     <div>
@@ -454,7 +454,7 @@ export default function AdminBlogPage() {
                         value={form.tags}
                         onChange={(e) => updateForm("tags", e.target.value)}
                         placeholder="قانون, محاماة (مفصولة بفاصلة)"
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       />
                     </div>
                     <div>
@@ -465,7 +465,7 @@ export default function AdminBlogPage() {
                         onChange={(e) => updateForm("coverImage", e.target.value)}
                         placeholder="https://..."
                         dir="ltr"
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       />
                     </div>
                     <div>
@@ -476,7 +476,7 @@ export default function AdminBlogPage() {
                         onChange={(e) => updateForm("ogImage", e.target.value)}
                         placeholder="https://..."
                         dir="ltr"
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -486,7 +486,7 @@ export default function AdminBlogPage() {
                         value={form.metaTitle}
                         onChange={(e) => updateForm("metaTitle", e.target.value)}
                         placeholder="عنوان لمحركات البحث"
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -496,7 +496,7 @@ export default function AdminBlogPage() {
                         onChange={(e) => updateForm("metaDescription", e.target.value)}
                         placeholder="وصف لمحركات البحث"
                         rows={2}
-                        className="w-full rounded-[8px] border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
+                        className="w-full rounded-control border border-border/60 bg-white px-4 py-2.5 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold resize-none"
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -524,7 +524,7 @@ export default function AdminBlogPage() {
                   </div>
 
                   {formError && (
-                    <div className="text-sm text-error bg-error/5 border border-error/20 rounded-[8px] px-4 py-2">
+                    <div className="text-sm text-error bg-error/5 border border-error/20 rounded-control px-4 py-2">
                       {formError}
                     </div>
                   )}

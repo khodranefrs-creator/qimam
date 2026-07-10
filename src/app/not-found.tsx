@@ -58,7 +58,7 @@ export default async function NotFound() {
           <input
             type="text"
             placeholder={t.common.search}
-            className="w-full h-12 bg-primary-light/60 border border-border-dark/50 rounded-[8px] pr-12 pl-4 text-text-light placeholder:text-text-muted/60 text-sm focus:outline-none focus:border-accent-gold/50 focus:ring-1 focus:ring-accent-gold/20 transition-all"
+            className="w-full h-12 bg-primary-light/60 border border-border-dark/50 rounded-control pr-12 pl-4 text-text-light placeholder:text-text-muted/60 text-sm focus:outline-none focus:border-accent-gold/50 focus:ring-1 focus:ring-accent-gold/20 transition-all"
           />
         </div>
 
@@ -66,19 +66,19 @@ export default async function NotFound() {
         <nav className="flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex items-center justify-center h-11 px-6 rounded-[8px] bg-accent-gold text-primary text-sm font-medium hover:bg-accent-gold/90 transition-colors"
+            className="inline-flex items-center justify-center h-11 px-6 rounded-control bg-accent-gold text-primary text-sm font-medium hover:bg-accent-gold/90 transition-colors"
           >
             {t.notFound.home}
           </Link>
           <Link
             href="/services"
-            className="inline-flex items-center justify-center h-11 px-6 rounded-[8px] border border-accent-gold/30 text-accent-gold text-sm font-medium hover:bg-accent-gold/10 transition-colors"
+            className="inline-flex items-center justify-center h-11 px-6 rounded-control border border-accent-gold/30 text-accent-gold text-sm font-medium hover:bg-accent-gold/10 transition-colors"
           >
             {t.notFound.services}
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center h-11 px-6 rounded-[8px] border border-border-dark/50 text-text-muted text-sm font-medium hover:border-accent-gold/30 hover:text-accent-gold transition-colors"
+            className="inline-flex items-center justify-center h-11 px-6 rounded-control border border-border-dark/50 text-text-muted text-sm font-medium hover:border-accent-gold/30 hover:text-accent-gold transition-colors"
           >
             {t.notFound.contact}
           </Link>
