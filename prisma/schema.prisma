@@ -207,6 +207,7 @@ model Consultation {
   preferredTime   String?
   details         String?             @db.Text
   contactMethod   String?
+  consent         Boolean             @default(false)
   status          ConsultationStatus  @default(PENDING)
   adminNotes      String?             @db.Text
   createdAt       DateTime            @default(now())

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Award, BadgeCheck, BookOpen, Scale, Phone, MessageCircle, Briefcase, Quote } from "lucide-react"
+import { Award, BadgeCheck, Phone, MessageCircle, Briefcase, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'

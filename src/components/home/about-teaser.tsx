@@ -26,7 +26,7 @@ export function AboutTeaser() {
             initial={{ opacity: 0, x: locale === 'ar' ? -24 : 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
           >
             <h2 className="text-3xl md:text-[2.5rem] font-heading font-bold text-text-dark leading-[1.12] mb-6 text-balance">
               {t.home.aboutTitle}
@@ -61,7 +61,7 @@ export function AboutTeaser() {
             initial={{ opacity: 0, x: locale === 'ar' ? 24 : -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const, delay: 0.15 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }}
             className="relative hidden lg:block"
           >
             <div className="aspect-[4/3] rounded-card bg-primary overflow-hidden border border-border-dark/50">

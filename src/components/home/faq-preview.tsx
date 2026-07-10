@@ -32,16 +32,16 @@ export function FaqPreview({ faqs }: Props) {
   }
 
   return (
-    <section className="bg-primary py-16 md:py-20">
+    <section className="bg-primary section-padding">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="mb-12"
         >
-          <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-light">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light">
             {t.home.faqTitle}
           </h2>
         </motion.div>
@@ -50,7 +50,7 @@ export function FaqPreview({ faqs }: Props) {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] as const }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
           className="max-w-3xl mx-auto space-y-3"
         >
           {faqs.map((faq) => {
@@ -106,9 +106,13 @@ export function FaqPreview({ faqs }: Props) {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-center mt-10"
         >
-          <Link href="/faq" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
-            {t.home.faqLink}
-            {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+          <Link href="/faq" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group">
+            <span>{t.home.faqLink}</span>
+            {isRtl ? (
+              <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+            ) : (
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            )}
           </Link>
         </motion.div>
       </div>

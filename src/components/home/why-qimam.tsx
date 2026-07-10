@@ -20,7 +20,7 @@ export function WhyQimam() {
   ]
 
   return (
-    <section className="bg-primary py-16 md:py-20 relative overflow-hidden">
+    <section className="bg-primary section-padding relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/15 to-transparent" />
 
@@ -34,7 +34,7 @@ export function WhyQimam() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-center mb-10 md:mb-12 lg:mb-14"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-4 text-balance">
@@ -53,7 +53,7 @@ export function WhyQimam() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.4, delay: i * 0.06, ease: [0.25, 0.1, 0.25, 1] as const }}
+                transition={{ duration: 0.4, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const }}
                 className="flex items-start gap-4"
               >
                 <span className="text-[1.75rem] md:text-[2rem] font-heading font-bold text-accent-gold/20 leading-none shrink-0 mt-0.5 select-none w-8 text-center">

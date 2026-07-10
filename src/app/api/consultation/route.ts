@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import { prisma } from "@/lib/prisma"
+import { sendAdminNotification, sendClientConfirmation } from "@/lib/email"
 
 const consultationSchema = z.object({
   name: z.string().min(2, "الاسم يجب أن يكون حرفين على الأقل"),
@@ -11,6 +12,7 @@ const consultationSchema = z.object({
   preferredTime: z.string().optional(),
   details: z.string().optional(),
   contactMethod: z.string().optional(),
+  consent: z.boolean().refine((v) => v === true, { message: "يجب الموافقة على سياسة الخصوصية" }),
 })
 
 export async function POST(request: Request) {
@@ -25,9 +27,9 @@ export async function POST(request: Request) {
       )
     }
 
-    const { name, phone, email, practiceAreaId, preferredDate, preferredTime, details, contactMethod } = parsed.data
+    const { name, phone, email, practiceAreaId, preferredDate, preferredTime, details, contactMethod, consent } = parsed.data
 
-    await prisma.consultation.create({
+    const consultation = await prisma.consultation.create({
       data: {
         name,
         phone,
@@ -37,8 +39,26 @@ export async function POST(request: Request) {
         preferredTime: preferredTime || null,
         details: details || null,
         contactMethod: contactMethod || null,
+        consent,
       },
+      include: { practiceArea: { select: { title: true } } },
     })
+
+    const emailData = {
+      name: consultation.name,
+      phone: consultation.phone,
+      email: consultation.email,
+      practiceAreaTitle: consultation.practiceArea?.title || null,
+      preferredDate: consultation.preferredDate,
+      preferredTime: consultation.preferredTime,
+      details: consultation.details,
+      contactMethod: consultation.contactMethod,
+    }
+
+    Promise.all([
+      sendAdminNotification(emailData),
+      sendClientConfirmation(emailData),
+    ]).catch((err) => console.warn('[consultation] Email notification error:', err))
 
     return NextResponse.json(
       { message: "تم إرسال طلب الاستشارة بنجاح. سنتواصل معك قريباً." },

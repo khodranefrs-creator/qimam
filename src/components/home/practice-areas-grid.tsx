@@ -54,7 +54,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-center mb-10 md:mb-12 lg:mb-14"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
@@ -70,7 +70,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible sm:snap-none">
           {defaultAreas.map((area, i) => {
             const Icon = area.icon && iconMap[area.icon] ? iconMap[area.icon] : Briefcase
             const areaKey = areaKeys[i] || 'commercial'
@@ -78,10 +78,11 @@ export function PracticeAreasGrid({ areas }: Props) {
             return (
               <motion.div
                 key={area.id}
+                className="min-w-[80vw] sm:min-w-0 snap-start"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] as const }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const }}
               >
                 <Link
                   href={`/practice-areas/${area.slug}`}

@@ -69,6 +69,7 @@ function getContactMethods(t: ReturnType<typeof getTranslations>) {
 
 export default function ConsultationPage() {
   const locale = useLocale()
+  const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const [currentStep, setCurrentStep] = useState(1)
   const [practiceAreas, setPracticeAreas] = useState<PracticeArea[]>([])
@@ -211,12 +212,12 @@ export default function ConsultationPage() {
 
   function renderStepIndicator() {
     return (
-      <div className="flex items-center justify-center gap-0 mb-10">
+      <div className="flex items-center justify-center gap-0 mb-8 md:mb-10 -mx-2 md:mx-0">
         {getSteps(t).map((step, idx) => (
-          <div key={step.id} className="flex items-center">
-            <div className="flex flex-col items-center gap-2">
+          <div key={step.id} className="flex items-center min-w-0 flex-1">
+            <div className="flex flex-col items-center gap-1.5 md:gap-2 w-full px-1">
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
+                className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[11px] md:text-sm font-bold transition-all duration-300 shrink-0 ${
                   step.id === currentStep
                     ? "bg-accent-gold text-primary shadow-gold"
                     : step.id < currentStep
@@ -224,10 +225,10 @@ export default function ConsultationPage() {
                     : "bg-gray-100 text-text-muted"
                 }`}
               >
-                {step.id < currentStep ? <Check size={16} /> : step.id}
+                {step.id < currentStep ? <Check size={14} className="md:w-4 md:h-4" /> : step.id}
               </div>
               <span
-                className={`text-xs font-medium whitespace-nowrap transition-colors duration-300 ${
+                className={`text-[10px] md:text-xs font-medium text-center leading-tight transition-colors duration-300 ${
                   step.id <= currentStep ? "text-accent-gold" : "text-text-muted"
                 }`}
               >
@@ -236,7 +237,7 @@ export default function ConsultationPage() {
             </div>
             {idx < getSteps(t).length - 1 && (
               <div
-                className={`w-12 md:w-20 h-0.5 mx-2 md:mx-3 mt-[-1.5rem] transition-colors duration-300 ${
+                className={`h-0.5 self-start mt-[14px] md:mt-[18px] transition-colors duration-300 flex-1 mx-1 md:mx-2 ${
                   step.id < currentStep ? "bg-success" : "bg-gray-200"
                 }`}
               />
@@ -251,7 +252,7 @@ export default function ConsultationPage() {
     return (
       <nav className="flex items-center gap-2 text-sm text-text-muted mb-6">
         <Link href="/" className="hover:text-accent-gold transition">{t.nav.home}</Link>
-        <ChevronLeft size={14} />
+        {isRtl ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
         <span className="text-text-dark font-medium">{t.consultation.title}</span>
       </nav>
     )
@@ -330,7 +331,7 @@ export default function ConsultationPage() {
 
         <div>
           <label className={labelClass}>{t.consultation.timeLabel} <span className="text-error">*</span></label>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-2">
             {timeSlots.map((time) => (
               <button
                 key={time}
@@ -391,9 +392,9 @@ export default function ConsultationPage() {
                   }
                 }}
                 placeholder="+9665XXXXXXXX"
-                className={`${inputClass} pl-10`}
+                className={`${inputClass} ps-10`}
               />
-              <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
+              <Phone size={16} className="absolute start-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
             <p className="text-xs text-text-muted mt-1.5">+966501234567</p>
             {errors.phone && <p className={errorClass}>{errors.phone}</p>}
@@ -407,9 +408,9 @@ export default function ConsultationPage() {
                 value={formData.email}
                 onChange={(e) => updateField("email", e.target.value)}
                 placeholder="example@domain.com"
-                className={`${inputClass} pl-10`}
+                className={`${inputClass} ps-10`}
               />
-              <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
+              <Mail size={16} className="absolute start-3 top-1/2 -translate-y-1/2 text-text-muted" />
             </div>
             <p className="text-xs text-text-muted mt-1.5">{t.common.noData}</p>
             {errors.email && <p className={errorClass}>{errors.email}</p>}
@@ -417,21 +418,21 @@ export default function ConsultationPage() {
 
           <div>
             <label className={labelClass}>{t.consultation.preferredTime} <span className="text-error">*</span></label>
-            <div className="flex gap-2 mt-1">
+            <div className="flex flex-col sm:flex-row gap-2 mt-1">
               {getContactMethods(t).map((method) => (
                 <button
                   key={method.value}
                   type="button"
                   onClick={() => updateField("contactMethod", method.value)}
-                  className={`flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-[8px] text-sm font-medium transition-all duration-200 border ${
+                  className={`flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-[8px] text-xs sm:text-sm font-medium transition-all duration-200 border ${
                     formData.contactMethod === method.value
                       ? "bg-accent-gold text-primary border-accent-gold shadow-gold"
                       : "bg-white text-text-dark border-border/60 hover:border-accent-gold/40 hover:bg-accent-gold/5"
                   }`}
                 >
-                  {method.value === "phone" && <Phone size={16} />}
-                  {method.value === "whatsapp" && <MessageSquare size={16} />}
-                  {method.value === "email" && <Mail size={16} />}
+                  {method.value === "phone" && <Phone size={16} className="shrink-0" />}
+                  {method.value === "whatsapp" && <MessageSquare size={16} className="shrink-0" />}
+                  {method.value === "email" && <Mail size={16} className="shrink-0" />}
                   {method.label}
                 </button>
               ))}
@@ -455,10 +456,10 @@ export default function ConsultationPage() {
         </div>
 
         <div className="bg-gray-50 rounded-[12px] border border-border/60 divide-y divide-border/40">
-          <div className="px-5 py-4">
+          <div className="px-4 sm:px-5 py-4">
             <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">{t.consultation.practiceArea}</h3>
             <div className="space-y-2">
-              <div className="flex justify-between">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5 sm:gap-2">
                 <span className="text-sm text-text-muted">{t.consultation.practiceArea}:</span>
                 <span className="text-sm font-medium text-text-dark">{getSelectedAreaTitle()}</span>
               </div>
@@ -471,44 +472,44 @@ export default function ConsultationPage() {
             </div>
           </div>
 
-          <div className="px-5 py-4">
+          <div className="px-4 sm:px-5 py-4">
             <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">{t.consultation.preferredTime}</h3>
             <div className="space-y-2">
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5 sm:gap-2">
                 <span className="text-sm text-text-muted">{t.consultation.dateLabel}:</span>
-                <span className="text-sm font-medium text-text-dark flex items-center gap-1.5">
-                  <Calendar size={14} className="text-accent-gold" />
-                  {formatDate(formData.preferredDate)}
+                <span className="text-sm font-medium text-text-dark flex items-center gap-1.5 break-words">
+                  <Calendar size={14} className="text-accent-gold shrink-0" />
+                  <span>{formatDate(formData.preferredDate)}</span>
                 </span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5 sm:gap-2">
                 <span className="text-sm text-text-muted">{t.consultation.timeLabel}:</span>
                 <span className="text-sm font-medium text-text-dark flex items-center gap-1.5">
-                  <Clock size={14} className="text-accent-gold" />
+                  <Clock size={14} className="text-accent-gold shrink-0" />
                   {formData.preferredTime || t.consultation.notSelected}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="px-5 py-4">
+          <div className="px-4 sm:px-5 py-4">
             <h3 className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">{t.contact.infoTitle}</h3>
             <div className="space-y-2">
-              <div className="flex justify-between">
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
                 <span className="text-sm text-text-muted">{t.consultation.nameLabel}:</span>
                 <span className="text-sm font-medium text-text-dark">{formData.name}</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
                 <span className="text-sm text-text-muted">{t.consultation.phoneLabel}:</span>
                 <span className="text-sm font-medium text-text-dark" dir="ltr">{formData.phone}</span>
               </div>
               {formData.email && (
-                <div className="flex justify-between">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
                   <span className="text-sm text-text-muted">{t.consultation.emailLabel}:</span>
-                  <span className="text-sm font-medium text-text-dark">{formData.email}</span>
+                  <span className="text-sm font-medium text-text-dark break-all">{formData.email}</span>
                 </div>
               )}
-              <div className="flex justify-between">
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-2">
                 <span className="text-sm text-text-muted">{t.consultation.contactMethod}</span>
                 <span className="text-sm font-medium text-text-dark">
                   {getContactMethods(t).find((m) => m.value === formData.contactMethod)?.label || formData.contactMethod}
@@ -518,17 +519,17 @@ export default function ConsultationPage() {
           </div>
         </div>
 
-        <div className="flex items-start gap-3 bg-amber-50/50 rounded-[12px] border border-amber-200/50 p-4">
+        <div className="flex items-start gap-3 bg-amber-50/50 rounded-[12px] border border-amber-200/50 p-3 sm:p-4">
           <input
             type="checkbox"
             id="consent"
             checked={formData.consent}
             onChange={(e) => updateField("consent", e.target.checked)}
-            className="mt-1 w-4 h-4 rounded border-border/60 text-accent-gold focus:ring-accent-gold shrink-0"
+            className="mt-0.5 w-4 h-4 rounded border-border/60 text-accent-gold focus:ring-accent-gold shrink-0"
           />
-          <label htmlFor="consent" className="text-sm text-text-muted cursor-pointer">
+          <label htmlFor="consent" className="text-xs sm:text-sm text-text-muted cursor-pointer leading-relaxed">
             {t.consultation.consent}{" "}
-            <Link href="/privacy-policy" className="text-accent-gold hover:underline">{t.privacy.title}</Link>
+            <Link href="/privacy-policy" className="text-accent-gold hover:underline whitespace-nowrap">{t.privacy.title}</Link>
             <span className="text-error"> *</span>
           </label>
         </div>
@@ -562,32 +563,32 @@ export default function ConsultationPage() {
               </motion.div>
             </AnimatePresence>
 
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/40">
+            <div className="flex items-center justify-between mt-6 md:mt-8 pt-6 border-t border-border/40">
               <div>
                 {currentStep > 1 && (
-                  <Button variant="outline" size="lg" onClick={handlePrev} className="gap-2">
-                    <ChevronRight size={18} />
+                  <Button variant="outline" size="lg" onClick={handlePrev} className="gap-1.5 md:gap-2 text-xs sm:text-sm px-3 sm:px-5">
+                    {isRtl ? <ChevronRight size={16} className="md:w-[18px] md:h-[18px]" /> : <ChevronLeft size={16} className="md:w-[18px] md:h-[18px]" />}
                     {t.common.back}
                   </Button>
                 )}
               </div>
               <div>
                 {currentStep < 4 ? (
-                  <Button variant="primary" size="lg" onClick={handleNext} className="gap-2">
+                  <Button variant="primary" size="lg" onClick={handleNext} className="gap-1.5 md:gap-2 text-xs sm:text-sm px-3 sm:px-5">
                     {t.blog.next}
-                    <ChevronLeft size={18} />
+                    {isRtl ? <ChevronLeft size={16} className="md:w-[18px] md:h-[18px]" /> : <ChevronRight size={16} className="md:w-[18px] md:h-[18px]" />}
                   </Button>
                 ) : (
-                  <Button variant="primary" size="lg" onClick={handleSubmit} disabled={submitting} className="gap-2 min-w-[160px]">
+                  <Button variant="primary" size="lg" onClick={handleSubmit} disabled={submitting} className="gap-1.5 md:gap-2 text-xs sm:text-sm px-3 sm:px-5 min-w-0 sm:min-w-[160px]">
                     {submitting ? (
                       <>
-                        <Loader2 size={18} className="animate-spin" />
-                        {t.common.loading}
+                        <Loader2 size={16} className="animate-spin shrink-0" />
+                        <span className="truncate">{t.common.loading}</span>
                       </>
                     ) : (
                       <>
-                        <Check size={18} />
-                        {t.consultation.submit}
+                        <Check size={16} className="md:w-[18px] md:h-[18px] shrink-0" />
+                        <span>{t.consultation.submit}</span>
                       </>
                     )}
                   </Button>

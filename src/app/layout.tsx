@@ -116,6 +116,9 @@ export default async function RootLayout({
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap"
           rel="stylesheet"
         />
+        <link rel="alternate" href={siteUrl} hrefLang="x-default" />
+        <link rel="alternate" href={siteUrl} hrefLang="ar" />
+        <link rel="alternate" href={siteUrl} hrefLang="en" />
       </head>
       <body className={`min-h-full flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`}>
         <Providers>

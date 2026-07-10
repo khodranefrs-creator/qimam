@@ -10,7 +10,7 @@ export default function StickyConsultBar() {
   const t = getTranslations(locale)
 
   return (
-    <div className="fixed bottom-0 right-0 left-0 z-30 bg-primary border-t border-accent-gold/20 lg:hidden">
+    <div className="fixed bottom-0 right-0 left-0 z-30 bg-primary border-t border-accent-gold/20 lg:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
       <div className="flex items-center gap-2 px-3 py-3">
         <Link
           href="/consultation"

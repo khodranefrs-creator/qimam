@@ -27,7 +27,7 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const } },
 }
 
 function truncate(text: string, max: number) {
@@ -53,16 +53,16 @@ export function BlogPreview({ posts }: Props) {
   }
 
   return (
-    <section className="bg-secondary py-14 md:py-16">
+    <section className="bg-secondary section-padding">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="mb-12"
         >
-          <h2 className="text-2xl md:text-3xl font-heading font-bold text-text-dark">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark">
             {t.home.blogTitle}
           </h2>
         </motion.div>
@@ -122,9 +122,13 @@ export function BlogPreview({ posts }: Props) {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-center mt-10"
         >
-          <Link href="/blog" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200">
-            {t.home.blogLink}
-            {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+          <Link href="/blog" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group">
+            <span>{t.home.blogLink}</span>
+            {isRtl ? (
+              <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+            ) : (
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            )}
           </Link>
         </motion.div>
       </div>

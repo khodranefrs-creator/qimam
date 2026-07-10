@@ -3,8 +3,20 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Navigation } from 'lucide-react'
+import type { ComponentType, ReactNode } from 'react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
+
+function ContactRow({ icon: Icon, children }: { icon: ComponentType<{ className?: string }>; children: ReactNode }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="w-4 flex items-center justify-center shrink-0">
+        <Icon aria-hidden="true" className="w-4 h-4 text-accent-gold" />
+      </span>
+      <span className="text-text-muted text-sm leading-relaxed">{children}</span>
+    </div>
+  )
+}
 
 export function ContactStrip() {
   const locale = useLocale()
@@ -26,25 +38,20 @@ export function ContactStrip() {
               {t.home.contactTitle}
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-text-dark text-sm font-medium">{t.contact.address}</p>
-                  <p className="text-text-muted text-sm">{t.contact.addressDetail}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
-                <a href="tel:+966565555437" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200 ltr:text-left rtl:text-right" dir="ltr">
+              <ContactRow icon={MapPin}>
+                <span className="text-text-dark text-sm font-medium">{t.contact.address}</span>
+                <span className="text-text-muted text-sm block">{t.contact.addressDetail}</span>
+              </ContactRow>
+              <ContactRow icon={Phone}>
+                <a href="tel:+966565555437" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200" dir="ltr">
                   {t.common.phone}
                 </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold shrink-0" />
+              </ContactRow>
+              <ContactRow icon={Mail}>
                 <a href="mailto:info@qimamlaw.com" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200" dir="ltr">
                   {t.common.email}
                 </a>
-              </div>
+              </ContactRow>
             </div>
           </div>
 

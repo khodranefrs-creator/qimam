@@ -112,7 +112,7 @@ export default async function AboutPage() {
             </div>
           </div>
 
-          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-heading font-bold text-center mb-12">{t.about.whyUsTitle}</h2>
+          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-heading font-bold text-center mb-12">{t.about.valuesTitle}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {values(t).map((v, i) => {
               const Icon = v.icon
