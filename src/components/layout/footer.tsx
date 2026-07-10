@@ -82,7 +82,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-9 h-9 rounded-full border border-text-light/20 text-text-muted text-muted-on-dark hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-accent-gold/10 border border-accent-gold/20 text-accent-gold hover:bg-accent-gold/20 hover:border-accent-gold/40 transition-all duration-300"
                     aria-label={t.footer[social.label]}
                   >
                     <SocialIcon />
@@ -142,7 +142,7 @@ export default function Footer() {
             </h3>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <span className="w-4 flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                 </span>
                 <span className="text-text-muted text-muted-on-dark text-sm leading-relaxed">
@@ -154,7 +154,7 @@ export default function Footer() {
                 className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
                 dir="ltr"
               >
-                <span className="w-4 flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                 </span>
                 {t.footer.phone}
@@ -164,7 +164,7 @@ export default function Footer() {
                 className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
                 dir="ltr"
               >
-                <span className="w-4 flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                 </span>
                 {t.footer.email}
@@ -191,8 +191,8 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-accent-gold/70 text-[11px] hover:text-accent-gold transition-colors duration-200"
               >
-                <span className="w-3 flex items-center justify-center shrink-0">
-                  <MapPin aria-hidden="true" className="w-3 h-3" />
+                <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
+                  <MapPin aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                 </span>
                 {t.footer.viewOnMap}
               </a>
