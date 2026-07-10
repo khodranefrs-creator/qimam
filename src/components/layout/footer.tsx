@@ -93,7 +93,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
+            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-5">
               {t.footer.practiceAreas}
             </h3>
             <ul className="space-y-3">
@@ -119,7 +119,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
+            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-5">
               {t.footer.company}
             </h3>
             <ul className="space-y-3">
@@ -137,7 +137,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading text-text-light font-semibold text-sm mb-5">
+            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-5">
               {t.nav.contactUs}
             </h3>
             <div className="space-y-3">
