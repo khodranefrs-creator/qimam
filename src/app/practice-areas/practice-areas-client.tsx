@@ -54,7 +54,7 @@ export function PracticeAreasClient({ areas }: Props) {
               <Link
                 key={area.id}
                 href={`/practice-areas/${area.slug}`}
-                className="group block p-6 bg-white rounded-card border border-border/60 hover:border-accent-gold/30 hover:shadow-gold transition-all duration-300 hover-lift"
+                className="group flex flex-col h-full p-6 bg-white rounded-card border border-border/60 hover:border-accent-gold/30 hover:shadow-gold transition-all duration-300 hover-lift"
               >
                 <div className="w-12 h-12 rounded-lg bg-accent-gold/10 flex items-center justify-center mb-4 group-hover:bg-accent-gold/20 transition-colors duration-300">
                   <Icon className="w-6 h-6 text-accent-gold" />
@@ -62,9 +62,9 @@ export function PracticeAreasClient({ areas }: Props) {
                 <h3 className="font-heading font-semibold text-text-dark mb-2 group-hover:text-accent-gold transition-colors duration-300">
                   {area.title}
                 </h3>
-                <p className="text-text-muted text-sm leading-relaxed">{area.description}</p>
+                <p className="text-text-muted text-sm leading-relaxed grow">{area.description}</p>
                 {area.content && (
-                  <div className="mt-3 pt-3 border-t border-border/40">
+                  <div className="mt-auto pt-3 border-t border-border/40">
                     <span className="text-accent-gold text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                       {t.common.readMore}
                       {isRtl ? <ArrowLeft className="w-3 h-3" /> : <ArrowRight className="w-3 h-3" />}

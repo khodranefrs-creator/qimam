@@ -77,7 +77,7 @@ export function PracticeAreasGrid({ areas }: Props) {
             return (
               <motion.div
                 key={area.id}
-                className="min-w-[80vw] sm:min-w-0 snap-start"
+                className="flex flex-col min-w-[80vw] sm:min-w-0 snap-start"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -85,18 +85,18 @@ export function PracticeAreasGrid({ areas }: Props) {
               >
                 <Link
                   href={`/practice-areas/${area.slug}`}
-                  className="group block bg-white rounded-card border border-border/60 hover:border-accent-gold/30 hover:shadow-gold transition-all duration-300 hover-lift overflow-hidden"
+                  className="group flex flex-col h-full bg-white rounded-card border border-border/60 hover:border-accent-gold/30 hover:shadow-gold transition-all duration-300 hover-lift overflow-hidden"
                 >
                   <div className={`h-1.5 bg-gradient-to-r ${gradientClass}`} />
-                  <div className="p-7">
+                  <div className="p-7 flex flex-col flex-1">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl bg-accent-gold/10 flex items-center justify-center mb-5 group-hover:bg-accent-gold/20 transition-all duration-300">
                       <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-gold" />
                     </div>
                     <h3 className="font-heading font-semibold text-text-dark mb-3 text-xl group-hover:text-accent-gold transition-colors duration-300">
                       {area.title}
                     </h3>
-                    <p className="text-text-muted text-sm leading-[1.8]">{area.description}</p>
-                    <div className="mt-6 flex items-center gap-1.5 text-accent-gold text-xs font-medium">
+                    <p className="text-text-muted text-sm leading-[1.8] grow">{area.description}</p>
+                    <div className="mt-auto flex items-center gap-1.5 text-accent-gold text-xs font-medium">
                       <span>{t.nav.viewAll}</span>
                       {isRtl ? (
                         <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
