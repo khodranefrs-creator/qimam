@@ -1,5 +1,14 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
+
+const fallbackAreas = [
+  { slug: "commercial-law", title: "القانون التجاري" },
+  { slug: "corporate-law", title: "قانون الشركات وتأسيسها" },
+  { slug: "litigation", title: "التقاضي والمرافعات" },
+  { slug: "real-estate-law", title: "القانون العقاري" },
+  { slug: "family-law", title: "الأحوال الشخصية" },
+  { slug: "inheritance-law", title: "المواريث والوصايا" },
+]
 
 export async function GET() {
   try {
@@ -10,6 +19,11 @@ export async function GET() {
     })
     return NextResponse.json(areas)
   } catch {
-    return NextResponse.json({ error: "حدث خطأ أثناء جلب التخصصات" }, { status: 500 })
+    const areas = fallbackAreas.map((a, i) => ({
+      id: `fallback-${a.slug}`,
+      slug: a.slug,
+      title: a.title,
+    }))
+    return NextResponse.json(areas)
   }
 }
