@@ -89,23 +89,16 @@ export function Hero() {
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center lg:justify-end">
             <Link
-              href="/consultation"
+              href="/services"
               className="btn-primary group"
-              aria-label={t.home.heroCta}
+              aria-label={t.home.heroAbout}
             >
-              {t.home.heroCta}
+              {t.home.heroAbout}
               {isRtl ? (
                 <ArrowLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true" />
               ) : (
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
               )}
-            </Link>
-            <Link
-              href="/services"
-              className="btn-secondary"
-              aria-label={t.home.heroAbout}
-            >
-              {t.home.heroAbout}
             </Link>
           </motion.div>
         </motion.div>

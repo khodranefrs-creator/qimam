@@ -44,9 +44,9 @@ export function ProcessTimeline() {
         </motion.div>
 
         <div className="relative">
-          <div className="hidden lg:block absolute left-[10%] right-[10%] top-[92px] h-px bg-gradient-to-r from-transparent via-accent-gold/[0.25] to-transparent" />
+          <div className={`hidden lg:block absolute left-[10%] right-[10%] top-[92px] h-px ${isRtl ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-transparent via-accent-gold/[0.25] to-transparent`} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 lg:gap-5">
+          <div dir={isRtl ? 'rtl' : 'ltr'} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 lg:gap-5">
             {processSteps.map((step, i) => {
               const Icon = step.icon
               return (

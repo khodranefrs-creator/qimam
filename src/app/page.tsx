@@ -47,14 +47,14 @@ export default async function HomePage() {
     <>
       <Hero />
       <AboutTeaser />
+      <LawyerTeaser />
+      <FinalCTASection />
       <PracticeAreasGrid areas={practiceAreas} />
       <ProcessTimeline />
       <WhyQimam />
       {testimonials.length > 0 && <TestimonialsSlider testimonials={testimonials} />}
-      <LawyerTeaser />
       {posts.length > 0 && <BlogPreview posts={posts} />}
       {faqs.length > 0 && <FaqPreview faqs={faqs} />}
-      <FinalCTASection />
     </>
   )
 }
