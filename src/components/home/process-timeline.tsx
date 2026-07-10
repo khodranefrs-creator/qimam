@@ -57,7 +57,7 @@ export function ProcessTimeline() {
                   transition={{ duration: 0.6, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] as const }}
                   className="group relative flex flex-col items-center text-center lg:items-start lg:text-start"
                 >
-                  <span className="text-[2.5rem] md:text-[3rem] font-heading font-bold text-accent-gold/[0.12] leading-none mb-4 select-none tracking-tight">
+                  <span className="text-[2rem] md:text-[2.5rem] font-heading font-bold text-accent-gold/[0.07] leading-none mb-4 select-none tracking-tight">
                     {step.number}
                   </span>
 
@@ -68,7 +68,7 @@ export function ProcessTimeline() {
                     </div>
                   </div>
 
-                  <h3 className="text-lg md:text-xl font-heading font-semibold text-text-light mb-3 leading-snug">
+                  <h3 className="text-xl md:text-2xl font-heading font-bold text-text-light mb-3 leading-snug">
                     {t.home[step.titleKey]}
                   </h3>
                   <p className="text-sm md:text-[0.9375rem] text-text-muted text-muted-on-dark leading-[1.75] max-w-xs">
