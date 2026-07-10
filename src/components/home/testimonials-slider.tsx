@@ -68,7 +68,7 @@ export default function TestimonialsSlider({
           <span className="inline-block text-accent-gold text-sm font-medium tracking-widest mb-3">
             {t.testimonials.title}
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-dark">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-dark leading-[1.15]">
             {t.home.testimonialsTitle}
           </h2>
           <div className="gold-diamond-divider mt-4 max-w-xs mx-auto">

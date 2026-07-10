@@ -80,7 +80,7 @@ export default async function TermsOfServicePage() {
           <div className="bg-white rounded-xl border border-border p-8 md:p-12 space-y-8 text-text-dark leading-[1.8]">
             {content.sections.map((section) => (
               <div key={section.key}>
-                <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{section.heading}</h2>
+                <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-4 text-primary">{section.heading}</h2>
                 {section.paragraphs ? (
                   section.paragraphs.map((p, i) => (
                     <p key={i} className={i > 0 ? 'mt-3' : ''}>{p}</p>
@@ -91,7 +91,7 @@ export default async function TermsOfServicePage() {
               </div>
             ))}
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{t.terms.contact}</h2>
+              <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-4 text-primary">{t.terms.contact}</h2>
               <p>{content.contact}</p>
               <ul className="list-disc pr-6 mt-3 space-y-2">
                 {content.contactItems.map((item, i) => (

@@ -134,7 +134,7 @@ export default async function CaseStudyPage({
 
           {relatedCaseStudies.length > 0 && (
             <div className="mt-16">
-              <h2 className="text-2xl font-heading font-bold text-primary mb-8">{t.caseStudies.title}</h2>
+              <h2 className="text-2xl font-heading font-bold leading-[1.15] text-primary mb-8">{t.caseStudies.title}</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {relatedCaseStudies.map((rcs) => (
                   <Link key={rcs.id} href={`/case-studies/${rcs.slug}`} className="group">

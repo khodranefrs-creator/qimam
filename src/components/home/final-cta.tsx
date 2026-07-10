@@ -32,7 +32,7 @@ export function FinalCTASection() {
           <div className="flex justify-center mb-5">
             <EyebrowTag label={t.nav.consultation} />
           </div>
-          <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-heading font-bold text-text-light leading-[1.15] mb-5 text-balance">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light leading-[1.15] mb-5 text-balance">
             {t.home.finalCTATitle}
           </h2>
           <p className="text-text-muted text-muted-on-dark text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto">

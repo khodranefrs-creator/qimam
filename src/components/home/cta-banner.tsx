@@ -34,7 +34,7 @@ export function CtaBanner() {
           <EyebrowTag label={t.home.contactCta} />
         </div>
 
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-text-light leading-[1.15] mb-6 max-w-3xl mx-auto text-balance">
+        <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light leading-[1.15] mb-6 max-w-3xl mx-auto text-balance">
           {t.home.ctaTitle}
         </h2>
 

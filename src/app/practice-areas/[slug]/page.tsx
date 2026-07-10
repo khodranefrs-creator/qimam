@@ -174,7 +174,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="p-8 md:p-10 rounded-2xl bg-secondary border border-border/60">
-              <h2 className="text-2xl font-heading font-bold mb-6 text-center">{t.practiceAreas.whyChooseTitle}</h2>
+              <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6 text-center">{t.practiceAreas.whyChooseTitle}</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {[
                   t.practiceAreas.checklist1,
@@ -199,7 +199,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
         <section className="section-padding bg-secondary">
           <div className="container-custom">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl font-heading font-bold text-center mb-10">{t.faq.title}</h2>
+              <h2 className="text-2xl font-heading font-bold leading-[1.15] text-center mb-10">{t.faq.title}</h2>
               <div className="space-y-4">
                 {faqs.map((faq) => (
                   <details
@@ -236,7 +236,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold mb-6">{t.practiceAreas.ctaAreaTitle} {area.title}؟</h2>
+          <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6">{t.practiceAreas.ctaAreaTitle} {area.title}؟</h2>
           <p className="text-text-muted text-muted-on-dark mb-8">{t.practiceAreas.ctaAreaDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">

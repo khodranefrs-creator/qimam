@@ -191,7 +191,7 @@ export default async function BlogPostPage({
 
           {relatedPosts.length > 0 && (
             <div className="mt-16">
-              <h2 className="text-2xl font-heading font-bold text-primary mb-8">{t.blog.relatedPosts}</h2>
+              <h2 className="text-2xl font-heading font-bold leading-[1.15] text-primary mb-8">{t.blog.relatedPosts}</h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedPosts.map((rp) => (
                   <Link key={rp.id} href={`/blog/${rp.slug}`} className="group">

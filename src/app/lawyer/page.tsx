@@ -102,7 +102,7 @@ export default async function LawyerPage() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
             <div>
-              <h2 className="text-2xl font-heading font-bold mb-6">{t.lawyer.experience}</h2>
+              <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6">{t.lawyer.experience}</h2>
               <div className="space-y-4 text-text-muted leading-relaxed">
                 <p>{t.lawyer.bioPara1}</p>
                 <p>{t.lawyer.bioPara2}</p>
@@ -191,7 +191,7 @@ export default async function LawyerPage() {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold mb-6">{t.lawyer.contactTitle}</h2>
+          <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6">{t.lawyer.contactTitle}</h2>
           <p className="text-text-muted mb-8">{t.lawyer.contactDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">

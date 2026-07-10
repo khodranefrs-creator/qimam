@@ -68,13 +68,13 @@ export default async function AboutPage() {
         <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="p-8 rounded-xl border border-border-dark bg-primary-light">
-              <h2 className="text-2xl font-heading font-bold mb-4 text-accent-gold">{t.about.visionTitle}</h2>
+              <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-4 text-accent-gold">{t.about.visionTitle}</h2>
               <p className="leading-[1.8] text-text-muted">
                 {t.about.visionDesc}
               </p>
             </div>
             <div className="p-8 rounded-xl border border-border-dark bg-primary-light">
-              <h2 className="text-2xl font-heading font-bold mb-4 text-accent-gold">{t.about.missionTitle}</h2>
+              <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-4 text-accent-gold">{t.about.missionTitle}</h2>
               <p className="leading-[1.8] text-text-muted">
                 {t.about.missionDesc}
               </p>
@@ -87,7 +87,7 @@ export default async function AboutPage() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto mb-16">
             <div>
-              <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-heading font-bold mb-6">{t.about.whyUsTitle}</h2>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold leading-[1.15] mb-6">{t.about.whyUsTitle}</h2>
               <div className="space-y-4">
                 {highlights(t).map((item) => {
                   const Icon = item.icon
@@ -112,7 +112,7 @@ export default async function AboutPage() {
             </div>
           </div>
 
-          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-heading font-bold text-center mb-12">{t.about.valuesTitle}</h2>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold leading-[1.15] text-center mb-12">{t.about.valuesTitle}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {values(t).map((v, i) => {
               const Icon = v.icon
@@ -132,7 +132,7 @@ export default async function AboutPage() {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold mb-6">{t.contact.infoDesc}</h2>
+          <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6">{t.contact.infoDesc}</h2>
           <p className="text-text-muted mb-8">{t.contact.formDesc}</p>
           <Link href="/consultation">
             <Button variant="primary" size="lg">{t.home.ctaBooking}</Button>

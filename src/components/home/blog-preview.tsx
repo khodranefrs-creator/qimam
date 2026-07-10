@@ -62,7 +62,7 @@ export function BlogPreview({ posts }: Props) {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark leading-[1.15]">
             {t.home.blogTitle}
           </h2>
         </motion.div>

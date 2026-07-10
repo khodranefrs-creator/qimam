@@ -41,7 +41,7 @@ export function FaqPreview({ faqs }: Props) {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light leading-[1.15]">
             {t.home.faqTitle}
           </h2>
         </motion.div>

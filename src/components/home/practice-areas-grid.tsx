@@ -61,7 +61,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           <div className="flex justify-center mb-4">
             <EyebrowTag label={t.nav.practiceAreas} />
           </div>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4 text-balance">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark leading-[1.15] mb-4 text-balance">
             {t.home.practiceAreasTitle}
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">

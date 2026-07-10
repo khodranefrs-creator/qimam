@@ -36,7 +36,7 @@ export function WhyQimam() {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-center mb-10 md:mb-12 lg:mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-4 text-balance">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light leading-[1.15] mb-4 text-balance">
             {t.practiceAreas.whyChooseTitle}
           </h2>
           <p className="text-text-muted text-muted-on-dark max-w-2xl mx-auto text-base md:text-lg leading-relaxed">

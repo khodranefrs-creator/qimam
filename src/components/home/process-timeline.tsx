@@ -34,7 +34,7 @@ export function ProcessTimeline() {
           <div className="flex justify-center mb-4">
             <EyebrowTag label={t.home.processTitle} />
           </div>
-          <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-heading font-bold text-text-light leading-[1.1] mb-5 text-balance max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light leading-[1.15] mb-5 text-balance max-w-3xl mx-auto">
             {t.home.processHeading}
           </h2>
           <p className="text-text-muted text-muted-on-dark max-w-2xl mx-auto text-base md:text-lg leading-relaxed">

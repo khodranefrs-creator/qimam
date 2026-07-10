@@ -184,7 +184,7 @@ export default async function PrivacyPolicyPage() {
           <div className="bg-white rounded-xl border border-border p-8 md:p-12 space-y-8 text-text-dark leading-[1.8]">
             {content.map((section) => (
               <div key={section.key}>
-                <h2 className="text-2xl font-heading font-bold mb-4 text-primary">{section.heading}</h2>
+                <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-4 text-primary">{section.heading}</h2>
                 <p>{section.content}</p>
                 {'items' in section && section.items && (
                   <ul className="list-disc pr-6 mt-3 space-y-2">

@@ -28,7 +28,7 @@ export function AboutTeaser() {
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
           >
-            <h2 className="text-3xl md:text-[2.5rem] font-heading font-bold text-text-dark leading-[1.12] mb-6 text-balance">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark leading-[1.15] mb-6 text-balance">
               {t.home.aboutTitle}
             </h2>
             <p className="text-text-muted leading-[1.9] mb-8 max-w-xl text-base md:text-[1.0625rem]">
