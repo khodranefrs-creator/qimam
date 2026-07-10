@@ -44,31 +44,28 @@ export function WhyQimam() {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid sm:grid-cols-2 gap-x-12 gap-y-5 md:gap-y-6">
-            {items.map((item, i) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.4, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const }}
-                className="flex items-start gap-4"
-              >
-                <span className="text-[1.75rem] md:text-[2rem] font-heading font-bold text-accent-gold/20 leading-none shrink-0 mt-0.5 select-none w-8 text-center">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div className="min-w-0">
-                  <p className="text-text-muted text-muted-on-dark text-sm md:text-base leading-relaxed">
-                    {item}
-                  </p>
-                  {i < items.length - 1 && (
-                    <div className="mt-4 h-px bg-gradient-to-r from-accent-gold/10 via-accent-gold/5 to-transparent" />
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+          {items.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.4, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const }}
+              className="group relative p-6 md:p-7 rounded-2xl bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-all duration-500 overflow-hidden"
+            >
+              {/* Background number — decorative, same treatment as process-steps section */}
+              <span aria-hidden="true" className="absolute -top-1 end-2 text-[3rem] md:text-[4rem] font-heading font-bold text-accent-gold/[0.06] leading-none select-none tracking-tight pointer-events-none">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
+              <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />
+
+              <p className="text-text-muted text-muted-on-dark text-sm md:text-base leading-relaxed relative z-10">
+                {item}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
