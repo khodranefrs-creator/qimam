@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -37,7 +37,7 @@ export function AboutTeaser() {
             <div className="space-y-3 mb-9">
               {highlights.map((item) => (
                 <div key={item.key} className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-gold/50 shrink-0" />
+                  <Check aria-hidden="true" className="w-3.5 h-3.5 text-accent-gold shrink-0" />
                   <span className="text-text-dark text-sm md:text-base">
                     {t.home[item.key as keyof typeof t.home] as string}
                   </span>
