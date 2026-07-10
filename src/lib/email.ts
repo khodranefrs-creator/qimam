@@ -22,6 +22,7 @@ function createTransporter() {
 const transporter = createTransporter()
 const from = process.env.EMAIL_FROM || 'noreply@qimamlaw.com'
 const adminEmail = process.env.ADMIN_EMAIL || ''
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ''
 
 function formatDate(d: Date | string | null | undefined): string {
   if (!d) return '—'
@@ -58,7 +59,7 @@ export async function sendAdminNotification(data: NotificationData) {
 <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:40px 16px;">
 <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
 <tr><td style="background:#071A2B;padding:32px 40px;text-align:center;">
-<img src="https://qimam-lilac.vercel.app/logo.png" alt="قمم اليقين" style="height:48px;margin-bottom:12px;" />
+<img src="${siteUrl}/logo.png" alt="قمم اليقين" style="height:48px;margin-bottom:12px;" />
 <h1 style="color:#C6A15B;margin:0;font-size:20px;font-weight:700;">طلب استشارة قانونية جديدة</h1>
 </td></tr>
 <tr><td style="padding:32px 40px;">
@@ -74,7 +75,7 @@ export async function sendAdminNotification(data: NotificationData) {
 </td></tr>
 <tr><td style="background:#f8f7f3;padding:20px 40px;text-align:center;border-top:1px solid #e8e3d8;">
 <p style="color:#6B7280;font-size:13px;margin:0;">يمكنك متابعة وإدارة الطلبات من لوحة التحكم</p>
-<a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://qimam-lilac.vercel.app'}/admin/consultations" style="display:inline-block;margin-top:8px;padding:10px 24px;background:#C6A15B;color:#071A2B;text-decoration:none;border-radius:8px;font-size:14px;font-weight:600;">لوحة التحكم</a>
+<a href="${siteUrl}/admin/consultations" style="display:inline-block;margin-top:8px;padding:10px 24px;background:#C6A15B;color:#071A2B;text-decoration:none;border-radius:8px;font-size:14px;font-weight:600;">لوحة التحكم</a>
 </td></tr>
 </table>
 <p style="color:#9CA3AF;font-size:12px;text-align:center;margin-top:16px;">شركة قمم اليقين للمحاماة والاستشارات القانونية</p>
