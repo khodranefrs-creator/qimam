@@ -132,8 +132,8 @@ export default async function AboutPage() {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6">{t.contact.infoDesc}</h2>
-          <p className="text-text-muted mb-8">{t.contact.formDesc}</p>
+          <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6">{t.home.finalCTATitle}</h2>
+          <p className="text-text-muted mb-8">{t.home.finalCTADesc}</p>
           <Link href="/consultation">
             <Button variant="primary" size="lg">{t.home.ctaBooking}</Button>
           </Link>

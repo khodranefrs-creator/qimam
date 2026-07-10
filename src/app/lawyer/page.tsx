@@ -174,16 +174,18 @@ export default async function LawyerPage() {
         <div className="container-custom">
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="p-6 rounded-panel bg-white border border-border shadow-subtle text-center hover-lift">
-              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
+              <div className="text-lg font-heading font-bold text-accent-gold mb-1">{t.home.lawyerCredBodyValue}</div>
+              <div className="text-text-muted text-sm">{t.home.lawyerCredBody}</div>
+            </div>
+            <div className="p-6 rounded-panel bg-white border border-border shadow-subtle text-center hover-lift">
+              <div className="text-lg font-heading font-bold text-accent-gold mb-1">{t.home.lawyerCredCourtValue}</div>
+              <div className="text-text-muted text-sm">{t.home.lawyerCredCourts}</div>
+            </div>
+            <div className="p-6 rounded-panel bg-white border border-border shadow-subtle text-center hover-lift">
+              <div className="w-12 h-12 rounded-full bg-accent-gold/10 flex items-center justify-center mx-auto mb-2">
+                <BadgeCheck className="w-6 h-6 text-accent-gold" />
+              </div>
               <div className="text-text-muted text-sm">{t.lawyer.statsLabelYears}</div>
-            </div>
-            <div className="p-6 rounded-panel bg-white border border-border shadow-subtle text-center hover-lift">
-              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
-              <div className="text-text-muted text-sm">{t.home.statsCases}</div>
-            </div>
-            <div className="p-6 rounded-panel bg-white border border-border shadow-subtle text-center hover-lift">
-              <div className="text-3xl font-heading font-bold text-accent-gold mb-1">{t.common.notAvailable}</div>
-              <div className="text-text-muted text-sm">{t.lawyer.statsLabelRating}</div>
             </div>
           </div>
         </div>

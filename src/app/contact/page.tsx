@@ -48,13 +48,13 @@ export default async function ContactPage() {
               <p className="text-text-muted text-sm leading-[1.7]">{t.contact.address}</p>
             </div>
 
-            <div className="bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all">
-              <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <a href="tel:+966565555437" className="block bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all hover:border-accent-gold/30 group">
+              <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent-gold/20 transition-colors duration-300">
                 <Phone className="w-6 h-6 text-accent-gold" />
               </div>
               <h3 className="font-heading font-bold text-primary mb-2">{t.contact.phoneTitle}</h3>
-              <p className="text-text-muted text-sm" dir="ltr">{t.common.phone}</p>
-            </div>
+              <p className="text-text-muted text-sm group-hover:text-accent-gold transition-colors duration-300" dir="ltr">{t.common.phone}</p>
+            </a>
 
             <div className="bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all">
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">

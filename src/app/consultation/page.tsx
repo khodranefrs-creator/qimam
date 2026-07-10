@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Check, ChevronRight, ChevronLeft, Calendar, Clock, User, FileText, Phone, Mail, MessageSquare, CheckCircle, Loader2 } from "lucide-react"
+import { Check, ChevronRight, ChevronLeft, Calendar, Clock, User, FileText, Phone, Mail, MessageSquare, CheckCircle, Loader2, Shield } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useLocale } from '@/i18n/use-locale'
@@ -238,6 +238,23 @@ export default function ConsultationPage() {
               <p className="text-text-muted mb-8 leading-relaxed">
                 {t.consultation.successDesc}
               </p>
+              <div className="text-start max-w-md mx-auto mb-8 p-4 rounded-panel bg-secondary border border-border/60">
+                <p className="text-xs font-bold text-accent-gold uppercase tracking-wider mb-3">{locale === 'ar' ? 'الخطوات التالية' : 'What happens next'}</p>
+                <div className="space-y-3">
+                  {[
+                    { step: '1', text: locale === 'ar' ? 'نراجع طلبك خلال 24 ساعة عمل' : 'We review your request within 24 business hours' },
+                    { step: '2', text: locale === 'ar' ? 'فريقنا يتواصل معك عبر طريقة التواصل المفضلة' : 'Our team contacts you via your preferred method' },
+                    { step: '3', text: locale === 'ar' ? 'نحدد موعد الاستشارة في الوقت المناسب لك' : 'We schedule your consultation at your preferred time' },
+                  ].map((item) => (
+                    <div key={item.step} className="flex items-start gap-3">
+                      <span className="w-6 h-6 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+                        <span className="text-[11px] font-bold text-accent-gold">{item.step}</span>
+                      </span>
+                      <span className="text-sm text-text-muted">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/">
                   <Button variant="primary" size="lg">{t.nav.home}</Button>
@@ -592,6 +609,10 @@ export default function ConsultationPage() {
 
         {errors.consent && <p className={errorClass}>{errors.consent}</p>}
         {errors.step1 && <p className={errorClass}>{errors.step1}</p>}
+        <div className="flex items-center gap-2 text-xs text-text-muted/70">
+          <Shield size={14} className="text-accent-gold shrink-0" />
+          <span>{locale === 'ar' ? 'معلوماتك تتعامل معها بسرية تامة ولن يتم مشاركتها مع أطراف ثالثة.' : 'Your information is handled confidentially and will never be shared with third parties.'}</span>
+        </div>
       </div>
     )
   }

@@ -78,7 +78,7 @@ export default async function ServicesPage() {
               return (
                 <div
                   key={service.id}
-                    className="group p-6 bg-white rounded-surface border border-border/60 hover:border-accent-gold/30 hover:shadow-raised transition-all duration-300 hover-lift"
+                    className="group p-6 bg-white rounded-surface border border-border/60 hover:border-accent-gold/30 hover:shadow-raised transition-all duration-300 hover-lift flex flex-col"
                 >
                     <div className="w-12 h-12 rounded-control bg-accent-gold/10 flex items-center justify-center mb-4 group-hover:bg-accent-gold/20 transition-colors duration-300">
                     <Icon className="w-6 h-6 text-accent-gold" />
@@ -94,6 +94,19 @@ export default async function ServicesPage() {
                       {service.content}
                     </div>
                   )}
+                  <div className="mt-auto">
+                    <Link
+                      href="/consultation"
+                      className="inline-flex items-center gap-1.5 text-accent-gold text-sm font-medium hover:text-accent-gold-light transition-colors duration-200 group"
+                    >
+                      {t.services.requestService}
+                      {isRtl ? (
+                        <ArrowLeft aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
+                      ) : (
+                        <ArrowRight aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                      )}
+                    </Link>
+                  </div>
                 </div>
               )
             })}
