@@ -107,7 +107,7 @@ export function Hero() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { delay: 1.8 + i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
-                    className="group relative p-4 sm:p-5 md:p-8 rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-all duration-700"
+                    className="group relative p-4 sm:p-5 md:p-8 rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-colors duration-700"
                   >
                     <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />
                     <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-accent-gold/[0.08] flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-accent-gold/[0.15] transition-colors duration-700 ring-1 ring-accent-gold/[0.08] group-hover:ring-accent-gold/20">
