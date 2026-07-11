@@ -109,7 +109,7 @@ export function ProcessTimeline() {
                         </h3>
 
                         {/* Description */}
-                        <p className="text-sm md:text-[0.9375rem] text-text-muted text-muted-on-dark leading-[1.65] md:leading-[1.7] relative z-10 max-w-[260px]">
+                        <p className="text-sm md:text-[0.9375rem] text-text-muted text-muted-on-dark leading-[1.65] md:leading-[1.7] relative z-10">
                           {t.home[step.descKey]}
                         </p>
                       </div>

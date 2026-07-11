@@ -69,7 +69,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           </p>
         </motion.div>
 
-        <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible sm:snap-none">
+        <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-ps-4 sm:scroll-ps-0 scrollbar-hide sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible sm:snap-none">
           {defaultAreas.map((area, i) => {
             const Icon = area.icon && iconMap[area.icon] ? iconMap[area.icon] : Briefcase
             const areaKey = areaKeys[i] || 'commercial'

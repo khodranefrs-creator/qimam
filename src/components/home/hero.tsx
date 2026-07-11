@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Scale, Shield, Award, BadgeCheck } from 'lucide-react'
-import { useEffect, useRef } from 'react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import { EyebrowTag } from '@/components/ui/eyebrow-tag'
@@ -30,81 +29,8 @@ export function Hero() {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
-  const sectionRef = useRef<HTMLElement>(null)
-  const gridRef = useRef<HTMLDivElement>(null)
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  useEffect(() => {
-    const measure = () => {
-      const sectionEl = sectionRef.current
-      const gridEl = gridRef.current
-      if (!gridEl) return
-
-      const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[]
-      const cardData = cards.map((el, i) => {
-        const rect = el.getBoundingClientRect()
-        const titleEl = el.querySelector('h3')
-        const descEl = el.querySelector('p')
-        return {
-          i,
-          offsetHeight: el.offsetHeight,
-          scrollHeight: el.scrollHeight,
-          rectTop: +rect.top.toFixed(1),
-          rectBottom: +rect.bottom.toFixed(1),
-          rectHeight: +rect.height.toFixed(1),
-          fontSize: descEl ? +getComputedStyle(descEl).fontSize.replace('px', '') : null,
-          titleFontSize: titleEl ? +getComputedStyle(titleEl).fontSize.replace('px', '') : null,
-        }
-      })
-
-      let overlaps: string[] = []
-      for (let row = 0; row < 2; row++) {
-        const a = row * 2, b = row * 2 + 1
-        if (cardData[a] && cardData[b]) {
-          const diff = +(cardData[a].rectBottom - cardData[b].rectBottom).toFixed(1)
-          if (Math.abs(diff) > 1) {
-            overlaps.push(`row${row}: card${a}.bottom=${cardData[a].rectBottom} card${b}.bottom=${cardData[b].rectBottom} diff=${diff}`)
-          }
-        }
-      }
-
-      const sr = sectionEl?.getBoundingClientRect()
-      const gr = gridEl.getBoundingClientRect()
-
-      console.log('=== HERO DIAG ===', JSON.stringify({
-        vp: {
-          innerH: window.innerHeight,
-          vvH: window.visualViewport?.height ?? null,
-          dpr: window.devicePixelRatio,
-          scrollY: +window.scrollY.toFixed(1),
-        },
-        section: {
-          minH: sr ? getComputedStyle(sectionEl!).minHeight : null,
-          rectBottom: sr ? +sr.bottom.toFixed(1) : null,
-          rectH: sr ? +sr.height.toFixed(1) : null,
-        },
-        grid: {
-          top: +gr.top.toFixed(1),
-          bottom: +gr.bottom.toFixed(1),
-          h: +gr.height.toFixed(1),
-        },
-        cards: cardData,
-        overlaps: overlaps.length ? overlaps : null,
-      }))
-    }
-
-    const t = setTimeout(measure, 2500)
-    window.addEventListener('resize', measure)
-    document.addEventListener('scroll', measure, { passive: true })
-    return () => {
-      clearTimeout(t)
-      window.removeEventListener('resize', measure)
-      document.removeEventListener('scroll', measure)
-    }
-  }, [])
-
   return (
-    <section ref={sectionRef} className="relative min-h-screen min-h-[100dvh] bg-primary lg:flex lg:items-center">
+    <section className="relative min-h-screen bg-primary lg:flex lg:items-center">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 opacity-[0.034]" style={{
           backgroundImage: `
@@ -173,11 +99,11 @@ export function Hero() {
           animate={{ opacity: 1, transition: { delay: 1.6, duration: 0.5 } }}
           className="mt-10 sm:mt-12 md:mt-20"
         >
-          <div ref={gridRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {trustCards.map((card, i) => {
               const Icon = card.icon
               return (
-                <div key={card.titleKey} className="h-full" ref={el => { cardRefs.current[i] = el }}>
+                <div key={card.titleKey} className="h-full">
                   <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: 1.8 + i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
