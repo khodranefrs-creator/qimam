@@ -124,10 +124,10 @@ export default async function RootLayout({
         <Providers>
           <SkipToContent />
           <Header />
-          <main className="flex-1 pb-16 lg:pb-0" id="main-content">
+          <main className="flex-1 pb-24 lg:pb-0" id="main-content">
             {children}
           </main>
-          <div className="pb-16 lg:pb-0">
+          <div className="pb-24 lg:pb-0">
             <Footer />
           </div>
           <ScrollToTop />
