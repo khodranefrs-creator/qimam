@@ -66,7 +66,7 @@ export default async function PracticeAreasPage() {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6">{t.practiceAreas.ctaTitle}</h2>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold leading-[1.15] mb-6">{t.practiceAreas.ctaTitle}</h2>
           <p className="text-text-muted text-muted-on-dark mb-8">{t.practiceAreas.ctaDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">

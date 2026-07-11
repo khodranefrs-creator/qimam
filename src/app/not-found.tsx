@@ -41,7 +41,7 @@ export default async function NotFound() {
         </div>
 
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-heading font-semibold text-text-light mb-3">
+        <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light mb-3">
           {t.notFound.title}
         </h2>
 

@@ -193,7 +193,7 @@ export default async function LawyerPage() {
 
       <section className="section-padding bg-primary text-text-light text-center">
         <div className="container-custom">
-          <h2 className="text-2xl font-heading font-bold leading-[1.15] mb-6">{t.lawyer.contactTitle}</h2>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold leading-[1.15] mb-6">{t.lawyer.contactTitle}</h2>
           <p className="text-text-muted mb-8">{t.lawyer.contactDesc}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/consultation">
