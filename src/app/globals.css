@@ -314,16 +314,16 @@
     padding: 0.875rem 2rem;
     background: transparent;
     color: var(--color-accent-gold);
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.9375rem;
     border-radius: var(--radius-button);
-    border: 1px solid rgba(176, 141, 87, 0.3);
+    border: 1px solid rgba(176, 141, 87, 0.4);
     transition: all 0.3s var(--ease-expo-out);
   }
 
   .btn-secondary:hover {
     background: rgba(176, 141, 87, 0.08);
-    border-color: rgba(176, 141, 87, 0.5);
+    border-color: rgba(176, 141, 87, 0.6);
     transform: translateY(-1px);
   }
 
