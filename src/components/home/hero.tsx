@@ -30,7 +30,7 @@ export function Hero() {
   const t = getTranslations(locale)
 
   return (
-    <section className="relative min-h-screen bg-primary flex items-center lg:overflow-hidden">
+    <section className="relative min-h-screen bg-primary lg:flex lg:items-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 opacity-[0.034]" style={{
           backgroundImage: `
