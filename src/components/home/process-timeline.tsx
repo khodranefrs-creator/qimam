@@ -93,12 +93,12 @@ export function ProcessTimeline() {
                       </div>
 
                       {/* Card */}
-                      <div className="relative rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-all duration-500 pt-5 md:pt-6 pb-5 md:pb-7 px-5 md:px-8 flex flex-col items-center text-center lg:h-full overflow-hidden">
+                      <div className="relative rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-[border-color] duration-500 pt-5 md:pt-6 pb-5 md:pb-7 px-5 md:px-8 flex flex-col items-center text-center lg:h-full overflow-hidden">
                         <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />
 
                         {/* Icon */}
                         <div className="relative z-10 mb-4 md:mb-5">
-                          <div className="w-12 h-12 md:w-20 md:h-20 rounded-full bg-accent-gold/[0.10] flex items-center justify-center group-hover:bg-accent-gold/[0.18] transition-all duration-500 ring-1 ring-accent-gold/25 group-hover:ring-accent-gold/40 shadow-[0_0_25px_rgba(198,161,91,0.10)] group-hover:shadow-[0_0_35px_rgba(198,161,91,0.18)]">
+                          <div className="w-12 h-12 md:w-20 md:h-20 rounded-full bg-accent-gold/[0.10] flex items-center justify-center group-hover:bg-accent-gold/[0.18] transition-[background-color,box-shadow] duration-500 ring-1 ring-accent-gold/25 group-hover:ring-accent-gold/40 shadow-[0_0_25px_rgba(198,161,91,0.10)] group-hover:shadow-[0_0_35px_rgba(198,161,91,0.18)]">
                             <Icon aria-hidden="true" className="w-6 h-6 md:w-8 md:h-8 text-accent-gold" />
                           </div>
                         </div>

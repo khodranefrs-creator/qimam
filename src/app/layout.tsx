@@ -1,5 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+}
 import { Providers } from "@/components/providers";
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from "@/components/layout";
@@ -104,7 +110,7 @@ export default async function RootLayout({
   };
 
   return (
-    <html dir={dir} lang={locale} className="h-full">
+      <html dir={dir} lang={locale} className="min-h-dvh">
       <head>
         <script
           type="application/ld+json"
@@ -120,7 +126,7 @@ export default async function RootLayout({
         <link rel="alternate" href={siteUrl} hrefLang="ar" />
         <link rel="alternate" href={siteUrl} hrefLang="en" />
       </head>
-      <body className={`min-h-full flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`}>
+      <body className={`min-h-dvh flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`}>
         <Providers>
           <SkipToContent />
           <Header />

@@ -83,7 +83,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-8 h-8 rounded-full bg-accent-gold/10 border border-accent-gold/20 text-accent-gold hover:bg-accent-gold/20 hover:border-accent-gold/40 transition-all duration-300"
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-accent-gold/10 border border-accent-gold/20 text-accent-gold hover:bg-accent-gold/20 hover:border-accent-gold/40 transition-colors duration-300"
                     aria-label={t.footer[social.label]}
                   >
                     <SocialIcon />
@@ -102,7 +102,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="inline-block text-text-muted text-muted-on-dark text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200"
+                    className="inline-block text-text-muted text-muted-on-dark text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-[color,transform] duration-200"
                   >
                     {dd[areaKeyOrder[i]]?.label || ''}
                   </Link>
@@ -111,7 +111,7 @@ export default function Footer() {
               <li className="pt-1">
                 <Link
                   href="/practice-areas"
-                  className="text-accent-gold/80 text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200 inline-flex items-center gap-1"
+                  className="text-accent-gold/80 text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-[color,transform] duration-200 inline-flex items-center gap-1"
                 >
                   {t.nav.viewAllAreas}
                 </Link>
@@ -128,7 +128,7 @@ export default function Footer() {
                 <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-block text-text-muted text-muted-on-dark text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200"
+                  className="inline-block text-text-muted text-muted-on-dark text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-[color,transform] duration-200"
                 >
                   {resolveLabel(link.labelKey)}
                   </Link>
@@ -209,14 +209,14 @@ export default function Footer() {
             <div className="flex items-center gap-4 text-xs">
                 <Link
                   href="/privacy-policy"
-                  className="inline-block text-text-muted text-muted-on-dark hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200"
+                  className="inline-block text-text-muted text-muted-on-dark hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-[color,transform] duration-200"
               >
                 {t.footer.privacy}
               </Link>
               <span className="text-border-dark/50">|</span>
                 <Link
                   href="/terms-of-service"
-                  className="inline-block text-text-muted text-muted-on-dark hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200"
+                  className="inline-block text-text-muted text-muted-on-dark hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-[color,transform] duration-200"
               >
                 {t.footer.terms}
               </Link>

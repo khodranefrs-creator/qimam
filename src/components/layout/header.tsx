@@ -73,24 +73,12 @@ export default function Header() {
 
   useEffect(() => {
     if (mobileOpen) {
-      const scrollY = window.scrollY
-      document.body.style.position = 'fixed'
-      document.body.style.top = `-${scrollY}px`
-      document.body.style.width = '100%'
-      document.body.style.overflowY = 'scroll'
+      document.documentElement.style.overflow = 'hidden'
     } else {
-      const scrollY = parseInt(document.body.style.top || '0') * -1
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.width = ''
-      document.body.style.overflowY = ''
-      if (scrollY > 0) window.scrollTo(0, scrollY)
+      document.documentElement.style.overflow = ''
     }
     return () => {
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.width = ''
-      document.body.style.overflowY = ''
+      document.documentElement.style.overflow = ''
     }
   }, [mobileOpen])
 
@@ -130,7 +118,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 right-0 left-0 z-50 transition-all duration-500',
+        'fixed top-0 right-0 left-0 z-50 transition-[background,backdrop-filter,border-bottom,box-shadow] duration-500',
         scrolled
           ? 'glass-header'
           : 'bg-gradient-to-b from-black/40 to-transparent'
@@ -248,7 +236,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <a
               href="tel:+966565555437"
-              className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-light/80 hover:text-accent-gold hover:border-accent-gold/50 hover:bg-accent-gold/5 active:bg-accent-gold/10 transition-all duration-300 focus-ring-gold"
+              className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full border border-text-light/20 text-text-light/80 hover:text-accent-gold hover:border-accent-gold/50 hover:bg-accent-gold/5 active:bg-accent-gold/10 transition-colors duration-300 focus-ring-gold"
               aria-label={t.nav.contactUs}
               title={t.nav.phone}
             >
@@ -261,7 +249,7 @@ export default function Header() {
 
             <Link
               href="/consultation"
-              className="hidden sm:inline-flex items-center px-5 py-2.5 bg-accent-gold text-primary font-semibold text-sm rounded-control hover:bg-accent-gold/90 active:bg-accent-gold/80 transition-all duration-300 shadow-raised hover:shadow-[0_4px_25px_rgba(176,141,87,0.35)]"
+              className="hidden sm:inline-flex items-center px-5 py-2.5 bg-accent-gold text-primary font-semibold text-sm rounded-control hover:bg-accent-gold/90 active:bg-accent-gold/80 transition-[background,box-shadow] duration-300 shadow-raised hover:shadow-[0_4px_25px_rgba(176,141,87,0.35)]"
             >
               {t.nav.consultation}
             </Link>
@@ -300,7 +288,7 @@ export default function Header() {
             initial={{ x: isRtl ? '100%' : '-100%' }}
             animate={{ x: 0 }}
             exit={{ x: isRtl ? '100%' : '-100%' }}
-            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
             className={`fixed inset-y-0 ${isRtl ? 'right-0 border-l' : 'left-0 border-r'} w-[85vw] max-w-sm bg-primary border-border-dark/50 z-50 lg:hidden overflow-y-auto`}
           >
             <div className="p-6">
@@ -381,13 +369,13 @@ export default function Header() {
                 <Link
                   href="/consultation"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center w-full px-5 py-3 bg-accent-gold text-primary font-semibold text-sm rounded-control hover:bg-accent-gold/90 transition-all duration-300"
+                  className="flex items-center justify-center w-full px-5 py-3 bg-accent-gold text-primary font-semibold text-sm rounded-control hover:bg-accent-gold/90 transition-colors duration-300"
                 >
                   {t.nav.consultation}
                 </Link>
                 <a
                   href="tel:+966565555437"
-                  className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-text-light/20 text-text-light/80 rounded-control text-sm hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-300"
+                  className="flex items-center justify-center gap-2 w-full px-5 py-3 border border-text-light/20 text-text-light/80 rounded-control text-sm hover:text-accent-gold hover:border-accent-gold/50 transition-colors duration-300"
                 >
                   <Phone className="w-4 h-4" />
                   {t.nav.phone}

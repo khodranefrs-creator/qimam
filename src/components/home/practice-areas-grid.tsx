@@ -85,11 +85,11 @@ export function PracticeAreasGrid({ areas }: Props) {
               >
                 <Link
                   href={`/practice-areas/${area.slug}`}
-                  className="group flex flex-col h-full bg-white rounded-surface border border-border/60 hover:border-accent-gold/30 hover:shadow-raised transition-all duration-300 hover-lift overflow-hidden"
+                  className="group flex flex-col h-full bg-white rounded-surface border border-border/60 hover:border-accent-gold/30 hover:shadow-raised hover-lift overflow-hidden"
                 >
                   <div className={`h-1.5 bg-gradient-to-r ${gradientClass}`} />
                   <div className="p-5 md:p-7 flex flex-col flex-1">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-control bg-accent-gold/10 flex items-center justify-center mb-5 group-hover:bg-accent-gold/20 transition-all duration-300">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-control bg-accent-gold/10 flex items-center justify-center mb-5 group-hover:bg-accent-gold/20 transition-colors duration-300">
                       <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-gold" />
                     </div>
                     <h3 className="font-heading font-semibold text-text-dark mb-3 text-xl group-hover:text-accent-gold transition-colors duration-300">

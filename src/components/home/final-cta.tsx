@@ -18,7 +18,7 @@ export function FinalCTASection() {
       <div className="absolute top-7 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-accent-gold/[0.06] blur-[3px]" />
 
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/[0.02] blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/[0.02] blur-[120px] max-md:blur-[60px]" />
       </div>
 
       <div className="container-custom">

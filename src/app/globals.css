@@ -91,8 +91,8 @@
 @layer utilities {
   .glass-header {
     background: rgba(7, 26, 43, 0.88);
-    backdrop-filter: blur(24px) saturate(1.2);
-    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    backdrop-filter: blur(16px) saturate(1.15);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
     border-bottom: 1px solid rgba(198, 161, 91, 0.15);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   }
@@ -242,7 +242,7 @@
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
     border: 1px solid rgba(176, 141, 87, 0.15);
     border-radius: var(--radius-card);
-    transition: all 0.4s var(--ease-expo-out);
+    transition: border-color 0.4s var(--ease-expo-out), box-shadow 0.4s var(--ease-expo-out), transform 0.4s var(--ease-expo-out);
   }
 
   .premium-card:hover {
@@ -255,7 +255,7 @@
     background: var(--color-secondary);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-card);
-    transition: all 0.4s var(--ease-expo-out);
+    transition: border-color 0.4s var(--ease-expo-out), box-shadow 0.4s var(--ease-expo-out), transform 0.4s var(--ease-expo-out);
   }
 
   .premium-card-light:hover {
@@ -291,7 +291,7 @@
     font-weight: 600;
     font-size: 0.9375rem;
     border-radius: var(--radius-button);
-    transition: all 0.3s var(--ease-expo-out);
+    transition: background 0.3s var(--ease-expo-out), box-shadow 0.3s var(--ease-expo-out), transform 0.3s var(--ease-expo-out);
     box-shadow: 0 4px 15px rgba(176, 141, 87, 0.25);
   }
 
@@ -318,7 +318,7 @@
     font-size: 0.9375rem;
     border-radius: var(--radius-button);
     border: 1px solid rgba(176, 141, 87, 0.4);
-    transition: all 0.3s var(--ease-expo-out);
+    transition: background 0.3s var(--ease-expo-out), border-color 0.3s var(--ease-expo-out), transform 0.3s var(--ease-expo-out);
   }
 
   .btn-secondary:hover {
