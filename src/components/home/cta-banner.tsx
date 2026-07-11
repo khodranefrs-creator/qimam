@@ -9,7 +9,7 @@ export function CtaBanner({ locale }: { locale: Locale }) {
   const t = getTranslations(locale)
 
   return (
-    <section className="bg-primary relative overflow-hidden pb-16 lg:pb-0">
+    <section className="bg-primary relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent" />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
         backgroundImage: `radial-gradient(circle at 25% 50%, #C6A15B 1px, transparent 1px), radial-gradient(circle at 75% 50%, #C6A15B 1px, transparent 1px)`,

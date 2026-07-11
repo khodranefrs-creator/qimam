@@ -43,7 +43,7 @@ export function LawyerTeaser() {
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-10 md:gap-14 lg:gap-20 items-center">
           <div
-            className={`order-2 lg:order-1 ${isRtl ? 'animate-fade-in-left' : 'animate-fade-in-right'}`}
+            className={`order-1 lg:order-1 ${isRtl ? 'animate-fade-in-left' : 'animate-fade-in-right'}`}
           >
             <div className="aspect-[4/5] max-w-md mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-primary-light to-primary overflow-hidden border border-border-dark/50 relative shadow-[0_0_60px_rgba(198,161,91,0.08)]">
               <div className="absolute inset-0 opacity-[0.04]" style={{
@@ -66,7 +66,7 @@ export function LawyerTeaser() {
           </div>
 
           <div
-            className={`order-1 lg:order-2 ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
+            className={`order-2 lg:order-2 ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
             style={{ animationDelay: '0.15s' }}
           >
             <div className="flex mb-4">

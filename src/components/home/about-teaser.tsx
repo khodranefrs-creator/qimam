@@ -51,7 +51,7 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
           </div>
 
           <div
-            className={`relative hidden lg:block ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
+            className={`relative ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
             style={{ animationDelay: '0.15s' }}
           >
             <div className="aspect-[4/3] relative">

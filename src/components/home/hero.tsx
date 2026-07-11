@@ -106,7 +106,7 @@ export function Hero({ locale }: { locale: Locale }) {
                     <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-accent-gold/[0.08] flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-accent-gold/[0.15] transition-colors duration-700 ring-1 ring-accent-gold/[0.08] group-hover:ring-accent-gold/20">
                       <Icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-gold" />
                     </div>
-                    <h3 className="text-sm sm:text-base md:text-lg font-heading font-semibold text-text-light mb-1.5 sm:mb-2 leading-snug tracking-tight">
+                    <h3 className="text-base sm:text-base md:text-lg font-heading font-semibold text-text-light mb-1.5 sm:mb-2 leading-snug tracking-tight">
                       {t.home[card.titleKey as keyof typeof t.home] as string}
                     </h3>
                     <p className="text-xs md:text-sm text-text-muted text-muted-on-dark leading-relaxed md:leading-[1.7]">
