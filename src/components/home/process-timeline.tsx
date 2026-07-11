@@ -83,7 +83,7 @@ export function ProcessTimeline() {
                     </div>
 
                     {/* Mobile: numbered badge */}
-                    <div className="lg:hidden flex items-center gap-3 mb-3">
+                    <div className="lg:hidden flex items-center gap-3 mb-4 relative z-10">
                       <div className="w-9 h-9 rounded-full bg-accent-gold flex items-center justify-center shadow-[0_0_16px_rgba(198,161,91,0.2)] shrink-0">
                         <span className="text-primary font-heading font-bold text-[11px]">{step.number}</span>
                       </div>
