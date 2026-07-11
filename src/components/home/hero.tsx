@@ -30,8 +30,8 @@ export function Hero() {
   const t = getTranslations(locale)
 
   return (
-    <section className="relative min-h-screen bg-primary lg:flex lg:items-center overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+    <section className="relative min-h-screen bg-primary lg:flex lg:items-center">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 opacity-[0.034]" style={{
           backgroundImage: `
             linear-gradient(30deg, #C6A15B 10%, transparent 10.5%, transparent 90%, #C6A15B 90.5%, #C6A15B)

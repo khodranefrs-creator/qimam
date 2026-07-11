@@ -93,7 +93,7 @@ export function ProcessTimeline() {
                     </div>
 
                     {/* Card */}
-                    <div className="relative rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-all duration-500 pt-5 md:pt-6 pb-5 md:pb-7 px-5 md:px-8 flex flex-col items-center text-center h-full overflow-hidden">
+                    <div className="relative rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-all duration-500 pt-5 md:pt-6 pb-5 md:pb-7 px-5 md:px-8 flex flex-col items-center text-center lg:h-full overflow-hidden">
                       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />
 
                       {/* Icon */}
