@@ -1,13 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Scale, Shield, Award, BadgeCheck } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import { EyebrowTag } from '@/components/ui/eyebrow-tag'
-
-const staggerDuration = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
 
 const trustCards = [
   { icon: BadgeCheck, titleKey: 'statsYearsBadge', descKey: 'card1Desc' },
@@ -51,38 +48,30 @@ export function Hero() {
 
       <div className="relative z-10 container-custom pt-24 md:pt-36 pb-16 md:pb-20">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={staggerDuration}
-            className="flex justify-center mb-3"
+          <div
+            className="animate-hero-slide-up flex justify-center mb-3"
+            style={{ animationDelay: '0s' }}
           >
             <EyebrowTag label={t.home.heroBadge} />
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ ...staggerDuration, delay: 0.08 }}
-            className="text-[clamp(1.875rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.1] mb-6 md:mb-7 text-balance"
+          <h1
+            className="animate-hero-slide-up text-[clamp(1.875rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.1] mb-6 md:mb-7 text-balance"
+            style={{ animationDelay: '0.08s' }}
           >
             {t.home.heroTitle}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ ...staggerDuration, delay: 0.16 }}
-            className="text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-[39rem] mb-8 md:mb-10 mx-auto"
+          <p
+            className="animate-hero-slide-up text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-[39rem] mb-8 md:mb-10 mx-auto"
+            style={{ animationDelay: '0.16s' }}
           >
             {t.home.heroDesc}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ ...staggerDuration, delay: 0.24 }}
-            className="flex flex-wrap gap-4 justify-center"
+          <div
+            className="animate-hero-slide-up flex flex-wrap gap-4 justify-center"
+            style={{ animationDelay: '0.24s' }}
           >
             <Link
               href="/consultation"
@@ -103,7 +92,7 @@ export function Hero() {
             >
               {t.home.heroAbout}
             </Link>
-          </motion.div>
+          </div>
         </div>
 
         <div className="mt-10 sm:mt-12 md:mt-20">
