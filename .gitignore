@@ -53,4 +53,4 @@ node_modules/.prisma
 # temp files
 *.log
 CLAUDE.md
-mainlogo.png
+# mainlogo.png — removed from gitignore, used as about-teaser panel centerpiece
