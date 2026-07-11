@@ -30,7 +30,7 @@ export function Hero() {
   const t = getTranslations(locale)
 
   return (
-    <section className="relative min-h-screen bg-primary lg:flex lg:items-center">
+    <section className="relative min-h-screen min-h-[100dvh] bg-primary lg:flex lg:items-center">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 opacity-[0.034]" style={{
           backgroundImage: `
@@ -103,7 +103,7 @@ export function Hero() {
             {trustCards.map((card, i) => {
               const Icon = card.icon
               return (
-                <div key={card.titleKey}>
+                <div key={card.titleKey} className="h-full">
                   <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: 1.8 + i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
