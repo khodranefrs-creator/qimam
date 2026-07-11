@@ -127,7 +127,9 @@ export default async function RootLayout({
           <main className="flex-1 pb-16 lg:pb-0" id="main-content">
             {children}
           </main>
-          <Footer />
+          <div className="pb-16 lg:pb-0">
+            <Footer />
+          </div>
           <ScrollToTop />
           <WhatsAppButton />
           <StickyConsultBar />
