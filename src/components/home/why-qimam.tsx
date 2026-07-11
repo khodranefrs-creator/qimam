@@ -52,16 +52,16 @@ export function WhyQimam() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.4, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const }}
-              className="group relative pt-5 md:pt-6 pb-6 md:pb-7 px-6 md:px-7 rounded-2xl bg-primary-light border border-white/[0.06] hover:border-accent-gold/25 transition-all duration-500 hover:shadow-[0_0_35px_rgba(198,161,91,0.08)] overflow-hidden"
+              className="group relative pt-4 md:pt-5 pb-5 md:pb-6 px-6 md:px-7 rounded-2xl bg-primary-light border border-white/[0.06] hover:border-accent-gold/25 transition-all duration-500 hover:shadow-[0_0_35px_rgba(198,161,91,0.08)] overflow-hidden"
             >
               {/* Left gold accent bar */}
-              <div aria-hidden="true" className="absolute start-0 top-3 bottom-3 w-px bg-gradient-to-b from-accent-gold/30 via-accent-gold/10 to-transparent rounded-full group-hover:from-accent-gold/50 transition-all duration-500" />
+              <div aria-hidden="true" className="absolute start-0 top-2 bottom-2 w-px bg-gradient-to-b from-accent-gold/30 via-accent-gold/10 to-transparent rounded-full group-hover:from-accent-gold/50 transition-all duration-500" />
 
               {/* Top gold accent line */}
               <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />
 
               {/* Number badge */}
-              <div className="relative z-10 mb-2 md:mb-3">
+              <div className="relative z-10 mb-1 md:mb-1.5">
                 <div className="inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-accent-gold/[0.10] ring-1 ring-accent-gold/25 transition-all duration-500 group-hover:bg-accent-gold/[0.18] group-hover:ring-accent-gold/40 shadow-[0_0_20px_rgba(198,161,91,0.06)] group-hover:shadow-[0_0_30px_rgba(198,161,91,0.12)]">
                   <span className="text-accent-gold font-heading font-bold text-base md:text-lg leading-none">
                     {String(i + 1).padStart(2, '0')}
