@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/config'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { getTranslations } from '@/i18n/get-translations'
@@ -55,46 +56,9 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
             style={{ animationDelay: '0.15s' }}
           >
             <div className="aspect-[4/3] relative">
-              {/* Front panel — premium presentation board (replace with <Image fill className="object-cover" /> when office photo is available) */}
-              <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/20 bg-gradient-to-br from-primary via-primary-light to-primary">
-                {/* Architectural silhouette + lighting overlay */}
-                <svg viewBox="0 0 600 450" className="absolute inset-0 w-full h-full" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-                  <defs>
-                    <radialGradient id="warmGlow" cx="50%" cy="45%" r="50%">
-                      <stop offset="0%" stopColor="#C6A15B" stopOpacity="0.05" />
-                      <stop offset="60%" stopColor="#C6A15B" stopOpacity="0.01" />
-                      <stop offset="100%" stopColor="#C6A15B" stopOpacity="0" />
-                    </radialGradient>
-                    <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
-                      <stop offset="0%" stopColor="transparent" />
-                      <stop offset="65%" stopColor="transparent" />
-                      <stop offset="100%" stopColor="#071A2B" stopOpacity="0.3" />
-                    </radialGradient>
-                  </defs>
-                  <rect width="600" height="450" fill="url(#warmGlow)" />
-                  <rect width="600" height="450" fill="url(#vignette)" />
-                  <g opacity="0.035" stroke="#C6A15B" fill="none" strokeLinecap="round">
-                    <path d="M 170 400 Q 170 80 300 80 Q 430 80 430 400" strokeWidth="0.5" />
-                    <path d="M 195 400 Q 195 105 300 105 Q 405 105 405 400" strokeWidth="0.25" />
-                    <line x1="105" y1="80" x2="105" y2="400" strokeWidth="0.35" />
-                    <line x1="495" y1="80" x2="495" y2="400" strokeWidth="0.35" />
-                    <line x1="105" y1="355" x2="495" y2="355" strokeWidth="0.3" />
-                    <line x1="80" y1="68" x2="520" y2="68" strokeWidth="0.2" />
-                    <line x1="80" y1="405" x2="520" y2="405" strokeWidth="0.2" />
-                    <circle cx="300" cy="225" r="135" strokeWidth="0.2" />
-                    <circle cx="300" cy="225" r="125" strokeWidth="0.12" />
-                  </g>
-                </svg>
-                {/* Logo centerpiece + presentation label */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex flex-col items-center gap-0">
-                    <img src="/logo.png" alt={t.common.qimam} className="h-14 w-auto opacity-90 mb-5" />
-                    <div className="w-10 h-px bg-accent-gold/25 mx-auto mb-3" />
-                    <p className="text-accent-gold/30 text-[0.625rem] font-heading tracking-[0.2em]">
-                      {isRtl ? 'المكتب الرئيسي' : 'Main Office'}
-                    </p>
-                  </div>
-                </div>
+              {/* Front panel — temporary office artwork */}
+              <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/20 bg-primary">
+                <Image fill className="object-cover" src="/officepic.png" alt={t.common.qimam} />
               </div>
 
               {/* Back panel — decorative SVG, horizontally offset to peek from behind */}
