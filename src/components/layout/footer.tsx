@@ -59,9 +59,9 @@ export default function Footer() {
   return (
     <footer className="bg-primary border-t border-accent-gold/20">
       <div className="container-custom py-14 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           <div>
-            <Link href="/" className="block mb-4">
+            <Link href="/" className="block mb-6">
               <Image
                 src="/logo.png"
                 alt={t.common.firmName}
@@ -71,7 +71,7 @@ export default function Footer() {
                 className="h-12 w-auto object-contain"
               />
             </Link>
-            <p className="text-text-muted text-muted-on-dark text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-text-muted text-muted-on-dark text-sm leading-relaxed mb-4 max-w-xs">
               {t.footer.description}
             </p>
             <div className="flex items-center gap-3">
@@ -94,7 +94,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-5">
+            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-6">
               {t.footer.practiceAreas}
             </h3>
             <ul className="space-y-3">
@@ -102,7 +102,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
+                    className="inline-block text-text-muted text-muted-on-dark text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200"
                   >
                     {dd[areaKeyOrder[i]]?.label || ''}
                   </Link>
@@ -111,7 +111,7 @@ export default function Footer() {
               <li className="pt-1">
                 <Link
                   href="/practice-areas"
-                  className="text-accent-gold/80 text-sm hover:text-accent-gold transition-colors duration-200 inline-flex items-center gap-1"
+                  className="text-accent-gold/80 text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200 inline-flex items-center gap-1"
                 >
                   {t.nav.viewAllAreas}
                 </Link>
@@ -120,17 +120,17 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-5">
+            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-6">
               {t.footer.company}
             </h3>
             <ul className="space-y-3">
               {footerCompanyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                  >
-                    {resolveLabel(link.labelKey)}
+                <Link
+                  href={link.href}
+                  className="inline-block text-text-muted text-muted-on-dark text-sm hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200"
+                >
+                  {resolveLabel(link.labelKey)}
                   </Link>
                 </li>
               ))}
@@ -138,7 +138,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-5">
+            <h3 className="font-heading text-text-light font-bold tracking-wider text-sm mb-6">
               {t.nav.contactUs}
             </h3>
             <div className="space-y-3">
@@ -153,7 +153,6 @@ export default function Footer() {
               <a
                 href="tel:+966565555437"
                 className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                dir="ltr"
               >
                 <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold" />
@@ -163,7 +162,6 @@ export default function Footer() {
               <a
                 href="mailto:info@qimamlaw.com"
                 className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-                dir="ltr"
               >
                 <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold" />
@@ -171,7 +169,7 @@ export default function Footer() {
                 {t.footer.email}
               </a>
 
-              <div className="space-y-1.5 pt-1">
+              <div className="space-y-2.5 pt-2">
                 {([
                   { day: t.contact.daySunThu, time: t.contact.timeSunThu },
                   { day: t.contact.dayFri, time: t.contact.timeFri },
@@ -202,23 +200,23 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-border-dark/50">
-        <div className="container-custom py-5">
+      <div className="border-t border-white/[0.07]">
+        <div className="container-custom pt-6 pb-5">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-3">
             <p className="text-xs text-text-muted text-muted-on-dark">
               &copy; {currentYear} {t.common.firmName}. {t.footer.copyright}
             </p>
             <div className="flex items-center gap-4 text-xs">
-              <Link
-                href="/privacy-policy"
-                className="text-text-muted text-muted-on-dark hover:text-accent-gold transition-colors duration-200"
+                <Link
+                  href="/privacy-policy"
+                  className="inline-block text-text-muted text-muted-on-dark hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200"
               >
                 {t.footer.privacy}
               </Link>
               <span className="text-border-dark/50">|</span>
-              <Link
-                href="/terms-of-service"
-                className="text-text-muted text-muted-on-dark hover:text-accent-gold transition-colors duration-200"
+                <Link
+                  href="/terms-of-service"
+                  className="inline-block text-text-muted text-muted-on-dark hover:text-accent-gold ltr:hover:translate-x-0.5 rtl:hover:-translate-x-0.5 transition-all duration-200"
               >
                 {t.footer.terms}
               </Link>
