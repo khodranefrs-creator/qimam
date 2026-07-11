@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Sans_Arabic, Tajawal } from "next/font/google";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -6,7 +7,23 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: 'cover',
 }
+
+const headingFont = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-heading',
+  display: 'swap',
+})
+
+const bodyFont = Tajawal({
+  subsets: ['arabic'],
+  weight: ['400', '500', '700', '800'],
+  variable: '--font-body',
+  display: 'swap',
+})
+
 import { Providers } from "@/components/providers";
+import { LocaleProvider } from "@/i18n/locale-context";
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from "@/components/layout";
 import { Footer } from "@/components/layout";
@@ -110,17 +127,11 @@ export default async function RootLayout({
   };
 
   return (
-      <html dir={dir} lang={locale} className="min-h-dvh">
+      <html dir={dir} lang={locale} className={`${headingFont.variable} ${bodyFont.variable} min-h-dvh`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap"
-          rel="stylesheet"
         />
         <link rel="alternate" href={siteUrl} hrefLang="x-default" />
         <link rel="alternate" href={siteUrl} hrefLang="ar" />
@@ -128,6 +139,7 @@ export default async function RootLayout({
       </head>
       <body className={`min-h-dvh flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`}>
         <Providers>
+          <LocaleProvider locale={locale}>
           <SkipToContent />
           <Header />
           <main className="flex-1 pb-24 lg:pb-0" id="main-content">
@@ -138,6 +150,7 @@ export default async function RootLayout({
           <WhatsAppButton />
           <StickyConsultBar />
           <Toaster />
+          </LocaleProvider>
         </Providers>
       </body>
     </html>

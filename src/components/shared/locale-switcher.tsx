@@ -1,6 +1,5 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import { locales, type Locale, cookieName, localeNames } from '@/i18n/config'
 
 function getCurrentLocale(): Locale {
@@ -12,7 +11,6 @@ function getCurrentLocale(): Locale {
 }
 
 export function LocaleSwitcher() {
-  const pathname = usePathname()
   const current = getCurrentLocale()
   const next = current === 'ar' ? 'en' : 'ar'
 

@@ -389,6 +389,11 @@
   animation: pulse-ring-subtle 3s ease-in-out infinite;
 }
 
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes accordion-down {
   from { height: 0; opacity: 0; }
   to { height: var(--radix-accordion-content-height); opacity: 1; }

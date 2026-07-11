@@ -7,15 +7,7 @@ import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
-}
+const staggerDuration = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
 
 const trustCards = [
   { icon: BadgeCheck, titleKey: 'statsYearsBadge', descKey: 'card1Desc' },
@@ -58,20 +50,40 @@ export function Hero() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold to-transparent" />
 
       <div className="relative z-10 container-custom pt-24 md:pt-36 pb-16 md:pb-20">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-4xl mx-auto text-center">
-          <motion.div variants={itemVariants} className="flex justify-center mb-3">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={staggerDuration}
+            className="flex justify-center mb-3"
+          >
             <EyebrowTag label={t.home.heroBadge} />
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-[clamp(1.875rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.1] mb-6 md:mb-7 text-balance">
+          <motion.h1
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ ...staggerDuration, delay: 0.08 }}
+            className="text-[clamp(1.875rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.1] mb-6 md:mb-7 text-balance"
+          >
             {t.home.heroTitle}
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-[39rem] mb-8 md:mb-10 mx-auto">
+          <motion.p
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ ...staggerDuration, delay: 0.16 }}
+            className="text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-[39rem] mb-8 md:mb-10 mx-auto"
+          >
             {t.home.heroDesc}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center">
+          <motion.div
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ ...staggerDuration, delay: 0.24 }}
+            className="flex flex-wrap gap-4 justify-center"
+          >
             <Link
               href="/consultation"
               className="btn-primary group"
@@ -92,22 +104,17 @@ export function Hero() {
               {t.home.heroAbout}
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { delay: 1.6, duration: 0.5 } }}
-          className="mt-10 sm:mt-12 md:mt-20"
-        >
+        <div className="mt-10 sm:mt-12 md:mt-20">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {trustCards.map((card, i) => {
               const Icon = card.icon
               return (
                 <div key={card.titleKey} className="h-full">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, transition: { delay: 1.8 + i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } }}
+                  <div
                     className="group relative p-4 sm:p-5 md:p-8 rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-colors duration-700"
+                    style={{ animation: `fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${0.8 + i * 0.08}s forwards` }}
                   >
                     <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />
                     <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-accent-gold/[0.08] flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-accent-gold/[0.15] transition-colors duration-700 ring-1 ring-accent-gold/[0.08] group-hover:ring-accent-gold/20">
@@ -119,12 +126,12 @@ export function Hero() {
                     <p className="text-xs md:text-sm text-text-muted text-muted-on-dark leading-relaxed md:leading-[1.7]">
                       {t.home[card.descKey as keyof typeof t.home] as string}
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
               )
             })}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-primary via-primary/60 to-transparent pointer-events-none" />
