@@ -24,7 +24,7 @@ export function StatsBar({ locale }: { locale: Locale }) {
                 className="animate-fade-up flex items-center gap-4 px-5 py-5 rounded-panel bg-primary-light/30 border border-border-dark/20 hover:border-accent-gold/20 transition-all duration-500"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
-                <div className="w-12 h-12 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <Icon aria-hidden="true" className="w-5 h-5 text-accent-gold" />
                 </div>
                 <span className="text-text-muted text-muted-on-dark text-sm leading-snug">{t.home[item.key]}</span>

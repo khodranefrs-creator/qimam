@@ -99,7 +99,7 @@ export function Hero({ locale }: { locale: Locale }) {
               return (
                 <div key={card.titleKey} className="h-full">
                   <div
-                    className="group relative p-4 sm:p-5 md:p-8 rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-colors duration-700"
+                    className="group relative p-5 sm:p-5 md:p-8 rounded-surface bg-primary-light border border-white/[0.06] hover:border-accent-gold/20 transition-colors duration-700"
                     style={{ animation: `fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${0.8 + i * 0.08}s forwards` }}
                   >
                     <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/25 to-transparent" />

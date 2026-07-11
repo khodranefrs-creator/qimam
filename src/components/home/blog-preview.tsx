@@ -58,7 +58,7 @@ export function BlogPreview({ posts, locale }: Props & { locale: Locale }) {
                 href={`/blog/${post.slug}`}
                 className="group block bg-white rounded-surface border border-border/60 hover:border-accent-gold/30 hover:shadow-raised transition-all duration-300 hover-lift overflow-hidden"
               >
-                <div className="h-[200px] bg-border rounded-t-card flex items-center justify-center overflow-hidden relative">
+                <div className="h-44 md:h-[200px] bg-border rounded-t-card flex items-center justify-center overflow-hidden relative">
                   {post.coverImage ? (
                     <Image
                       src={post.coverImage}

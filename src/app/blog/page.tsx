@@ -137,7 +137,7 @@ export default async function BlogPage({
                 {posts.map((post) => (
                   <Link key={post.id} href={`/blog/${post.slug}`} className="group">
                     <div className="bg-white rounded-panel border border-border overflow-hidden shadow-subtle hover-lift transition-all">
-                      <div className="h-48 bg-gray-200 flex items-center justify-center text-text-muted">
+                      <div className="h-44 md:h-48 bg-gray-200 flex items-center justify-center text-text-muted">
                         {post.coverImage ? (
                           <img src={post.coverImage} alt={post.title} loading="lazy" className="w-full h-full object-cover" />
                         ) : (
