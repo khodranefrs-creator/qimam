@@ -3,12 +3,14 @@ import { redirect } from "next/navigation"
 import AdminSidebar from "@/components/admin/sidebar"
 import AdminHeader from "@/components/admin/header"
 import { SidebarProvider } from "@/components/admin/sidebar-context"
+import { AdminSessionProvider } from "@/components/admin/session-provider"
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await auth()
   if (!session) redirect("/admin/login")
 
   return (
+    <AdminSessionProvider>
     <SidebarProvider>
       <div className="flex h-screen bg-primary" dir="rtl">
         <AdminSidebar />
@@ -18,5 +20,6 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </div>
       </div>
     </SidebarProvider>
+    </AdminSessionProvider>
   )
 }

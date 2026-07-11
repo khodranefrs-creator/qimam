@@ -1,10 +1,7 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Building2, Scale, Briefcase, Home, Heart, BookOpen, Gavel, FileText, Landmark, Users, Shield } from 'lucide-react'
 import type { PracticeArea } from '@prisma/client'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
@@ -25,8 +22,7 @@ interface Props {
   areas: Pick<PracticeArea, 'id' | 'slug' | 'title' | 'description' | 'icon'>[]
 }
 
-export function PracticeAreasGrid({ areas }: Props) {
-  const locale = useLocale()
+export function PracticeAreasGrid({ areas, locale }: Props & { locale: Locale }) {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
@@ -51,12 +47,8 @@ export function PracticeAreasGrid({ areas }: Props) {
   return (
     <section className="bg-secondary section-padding">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-          className="text-center mb-10 md:mb-12"
+        <div
+          className="animate-fade-up-sm text-center mb-10 md:mb-12"
         >
           <div className="flex justify-center mb-4">
             <EyebrowTag label={t.nav.practiceAreas} />
@@ -67,7 +59,7 @@ export function PracticeAreasGrid({ areas }: Props) {
           <p className="text-text-muted max-w-2xl mx-auto">
             {t.home.practiceAreasDesc}
           </p>
-        </motion.div>
+        </div>
 
         <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-ps-4 sm:scroll-ps-0 scrollbar-hide sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible sm:snap-none">
           {defaultAreas.map((area, i) => {
@@ -75,13 +67,10 @@ export function PracticeAreasGrid({ areas }: Props) {
             const areaKey = areaKeys[i] || 'commercial'
             const gradientClass = categoryColors[areaKey] || 'from-primary-light/20 to-primary-light/5'
             return (
-              <motion.div
+              <div
                 key={area.id}
-                className="flex flex-col min-w-[80vw] sm:min-w-0 snap-start"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const }}
+                className="animate-fade-up flex flex-col min-w-[80vw] sm:min-w-0 snap-start"
+                style={{ animationDelay: `${i * 0.08}s` }}
               >
                 <Link
                   href={`/practice-areas/${area.slug}`}
@@ -106,17 +95,14 @@ export function PracticeAreasGrid({ areas }: Props) {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             )
           })}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-10 md:mt-12"
+        <div
+          className="animate-fade-in text-center mt-10 md:mt-12"
+          style={{ animationDelay: '0.3s' }}
         >
           <Link
             href="/practice-areas"
@@ -129,7 +115,7 @@ export function PracticeAreasGrid({ areas }: Props) {
               <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             )}
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

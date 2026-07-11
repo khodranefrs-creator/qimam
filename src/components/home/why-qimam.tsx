@@ -1,11 +1,7 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { useLocale } from '@/i18n/use-locale'
+import type { Locale } from '@/i18n/config'
 import { getTranslations } from '@/i18n/get-translations'
 
-export function WhyQimam() {
-  const locale = useLocale()
+export function WhyQimam({ locale }: { locale: Locale }) {
   const t = getTranslations(locale)
 
   const pa = t.practiceAreas as unknown as Record<string, string>
@@ -29,12 +25,8 @@ export function WhyQimam() {
       </div>
 
       <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-          className="text-center mb-10 md:mb-12"
+        <div
+          className="animate-fade-up-sm text-center mb-10 md:mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light leading-[1.15] mb-4 text-balance">
             {t.practiceAreas.whyChooseTitle}
@@ -42,17 +34,14 @@ export function WhyQimam() {
           <p className="text-text-muted text-muted-on-dark max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {t.home.aboutDesc}
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
           {items.map((item, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const }}
-              className="group relative pt-4 md:pt-5 pb-5 md:pb-6 px-6 md:px-7 rounded-2xl bg-primary-light border border-white/[0.06] hover:border-accent-gold/25 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_0_35px_rgba(198,161,91,0.08)] overflow-hidden"
+              className="animate-fade-up-sm group relative pt-4 md:pt-5 pb-5 md:pb-6 px-6 md:px-7 rounded-2xl bg-primary-light border border-white/[0.06] hover:border-accent-gold/25 transition-[border-color,box-shadow] duration-500 hover:shadow-[0_0_35px_rgba(198,161,91,0.08)] overflow-hidden"
+              style={{ animationDelay: `${i * 0.06}s` }}
             >
               {/* Left gold accent bar */}
               <div aria-hidden="true" className="absolute start-0 top-2 bottom-2 w-px bg-gradient-to-b from-accent-gold/30 via-accent-gold/10 to-transparent rounded-full group-hover:from-accent-gold/50 transition-opacity duration-500" />
@@ -73,7 +62,7 @@ export function WhyQimam() {
               <p className="text-text-muted text-muted-on-dark text-sm md:text-base font-medium leading-relaxed relative z-10">
                 {item}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

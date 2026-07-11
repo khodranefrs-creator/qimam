@@ -1,10 +1,7 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Clock } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 interface BlogPreviewPost {
@@ -20,16 +17,6 @@ interface Props {
   posts: BlogPreviewPost[]
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const } },
-}
-
 function truncate(text: string, max: number) {
   if (text.length <= max) return text
   return text.slice(0, max).trimEnd() + '…'
@@ -43,8 +30,7 @@ function formatDate(date: string | Date, locale: string) {
   })
 }
 
-export function BlogPreview({ posts }: Props) {
-  const locale = useLocale()
+export function BlogPreview({ posts, locale }: Props & { locale: Locale }) {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
@@ -55,27 +41,19 @@ export function BlogPreview({ posts }: Props) {
   return (
     <section className="bg-secondary section-padding">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-          className="mb-10 md:mb-12"
+        <div
+          className="animate-fade-up-sm mb-10 md:mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark leading-[1.15]">
             {t.home.blogTitle}
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+        <div
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {posts.map((post) => (
-            <motion.div key={post.slug} variants={cardVariants}>
+          {posts.map((post, idx) => (
+            <div key={post.slug} className="animate-fade-up" style={{ animationDelay: `${idx * 0.1}s` }}>
               <Link
                 href={`/blog/${post.slug}`}
                 className="group block bg-white rounded-surface border border-border/60 hover:border-accent-gold/30 hover:shadow-raised transition-all duration-300 hover-lift overflow-hidden"
@@ -111,16 +89,13 @@ export function BlogPreview({ posts }: Props) {
                   </p>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-10 md:mt-12"
+        <div
+          className="animate-fade-in text-center mt-10 md:mt-12"
+          style={{ animationDelay: '0.3s' }}
         >
           <Link href="/blog" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group">
             <span>{t.home.blogLink}</span>
@@ -130,7 +105,7 @@ export function BlogPreview({ posts }: Props) {
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             )}
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

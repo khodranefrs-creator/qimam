@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useCallback, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight, ChevronLeft, Star, Quote, MessageSquare, ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useLocale } from '@/i18n/use-locale'
@@ -17,29 +16,22 @@ export default function TestimonialsSlider({
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
   const [current, setCurrent] = useState(0)
-  const [direction, setDirection] = useState(1)
   const [isPaused, setIsPaused] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const hasTestimonials = testimonials && testimonials.length > 0
 
   const goNext = useCallback(() => {
-    setDirection(1)
     setCurrent((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))
   }, [testimonials.length])
 
   const goPrev = useCallback(() => {
-    setDirection(-1)
     setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
   }, [testimonials.length])
 
-  const goTo = useCallback(
-    (index: number) => {
-      setDirection(index > current ? 1 : -1)
-      setCurrent(index)
-    },
-    [current]
-  )
+  const goTo = useCallback((index: number) => {
+    setCurrent(index)
+  }, [])
 
   useEffect(() => {
     if (isPaused || !hasTestimonials || testimonials.length <= 1) return
@@ -49,21 +41,11 @@ export default function TestimonialsSlider({
     }
   }, [isPaused, goNext, testimonials.length, hasTestimonials])
 
-  const variants = {
-    enter: (dir: number) => ({ x: dir * 120, opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (dir: number) => ({ x: dir * -120, opacity: 0 }),
-  }
-
   return (
     <section className="section-padding bg-white overflow-hidden">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-          className="text-center mb-10 md:mb-12"
+        <div
+          className="animate-fade-up-sm text-center mb-10 md:mb-12"
         >
           <span className="inline-block text-accent-gold text-sm font-medium tracking-widest mb-3">
             {t.testimonials.title}
@@ -74,7 +56,7 @@ export default function TestimonialsSlider({
           <div className="gold-diamond-divider mt-4 max-w-xs mx-auto">
             <span>◆</span>
           </div>
-        </motion.div>
+        </div>
 
         {hasTestimonials ? (
           <div
@@ -83,29 +65,11 @@ export default function TestimonialsSlider({
             onMouseLeave={() => setIsPaused(false)}
           >
             <div className="relative min-h-[260px] flex items-center">
-              <AnimatePresence custom={direction} mode="wait">
-                <motion.div
-                  key={current}
-                  custom={direction}
-                  variants={variants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.3}
-                  onDragEnd={(_, info) => {
-                    if (isRtl) {
-                      if (info.offset.x > 50) goNext()
-                      else if (info.offset.x < -50) goPrev()
-                    } else {
-                      if (info.offset.x > 50) goPrev()
-                      else if (info.offset.x < -50) goNext()
-                    }
-                  }}
-                  className="w-full"
-                >
+              <div
+                key={current}
+                className="w-full animate-fade-in"
+                style={{ animationDuration: '0.4s' }}
+              >
                   <div className="text-center px-4">
                     <div className="text-6xl leading-none text-accent-gold/15 font-heading mb-4">
                       &quot;
@@ -141,8 +105,7 @@ export default function TestimonialsSlider({
                       )}
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
+                </div>
             </div>
 
             {testimonials.length > 1 && (
@@ -179,12 +142,9 @@ export default function TestimonialsSlider({
             )}
           </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-              className="max-w-lg mx-auto text-center py-12"
+            <div
+              className="animate-fade-up-sm max-w-lg mx-auto text-center py-12"
+              style={{ animationDelay: '0.1s' }}
             >
               <div className="w-20 h-20 rounded-full bg-accent-gold/5 border border-accent-gold/10 flex items-center justify-center mx-auto mb-6">
                 <MessageSquare aria-hidden="true" className="w-8 h-8 text-accent-gold/40" />
@@ -196,15 +156,12 @@ export default function TestimonialsSlider({
               <p className="text-text-muted/60 text-sm">
                 {t.testimonials.noTestimonials}
               </p>
-            </motion.div>
+            </div>
           )}
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-center mt-10 md:mt-12"
+          <div
+            className="animate-fade-in text-center mt-10 md:mt-12"
+            style={{ animationDelay: '0.4s' }}
           >
             <Link
               href="/consultation"
@@ -217,7 +174,7 @@ export default function TestimonialsSlider({
                 <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               )}
             </Link>
-          </motion.div>
+          </div>
         </div>
     </section>
   )

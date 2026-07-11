@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu,
   X,
@@ -166,17 +165,13 @@ export default function Header() {
                         )}
                       />
                     </Link>
-                    <AnimatePresence>
-                      {megaOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 8 }}
-                          transition={{ duration: 0.2 }}
-                          className={`absolute top-full ${isRtl ? 'right-0' : 'left-0'} mt-2 w-[640px] bg-primary border border-border-dark/50 rounded-card shadow-2xl shadow-black/30 p-6 grid grid-cols-2 gap-3`}
-                          onMouseEnter={handleMegaEnter}
-                          onMouseLeave={handleMegaLeave}
-                        >
+                    <div
+                      className={`absolute top-full ${isRtl ? 'right-0' : 'left-0'} mt-2 w-[640px] bg-primary border border-border-dark/50 rounded-card shadow-2xl shadow-black/30 p-6 grid grid-cols-2 gap-3 transition-all duration-200 ${
+                        megaOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
+                      }`}
+                      onMouseEnter={handleMegaEnter}
+                      onMouseLeave={handleMegaLeave}
+                    >
                           {item.children.map((child) => {
                             const Icon = child.icon
                             return (
@@ -205,9 +200,7 @@ export default function Header() {
                           >
                             {t.nav.viewAllAreas}
                           </Link>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                        </div>
                   </div>
                 ) : (
                   <Link
@@ -221,10 +214,7 @@ export default function Header() {
                   >
                     {item.label}
                     {isActive(item.href) && (
-                      <motion.span
-                        layoutId="nav-active"
-                        className="absolute -bottom-px left-3 right-3 h-0.5 bg-accent-gold rounded-full"
-                      />
+                      <span className="absolute -bottom-px left-3 right-3 h-0.5 bg-accent-gold rounded-full" />
                     )}
                   </Link>
                 )}
@@ -266,31 +256,19 @@ export default function Header() {
       </div>
 
       {/* Mobile Overlay */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            key="overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-            onClick={() => setMobileOpen(false)}
-          />
-        )}
-      </AnimatePresence>
+      <div
+        className={`fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-200 ${
+          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setMobileOpen(false)}
+      />
 
       {/* Mobile Sidebar */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            key="sidebar"
-            initial={{ x: isRtl ? '100%' : '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: isRtl ? '100%' : '-100%' }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className={`fixed inset-y-0 ${isRtl ? 'right-0 border-l' : 'left-0 border-r'} w-[85vw] max-w-sm bg-primary border-border-dark/50 z-50 lg:hidden overflow-y-auto`}
-          >
+      <div
+        className={`fixed inset-y-0 ${isRtl ? 'right-0 border-l' : 'left-0 border-r'} w-[85vw] max-w-sm bg-primary border-border-dark/50 z-50 lg:hidden overflow-y-auto transition-transform duration-300 ease-in-out ${
+          mobileOpen ? 'translate-x-0' : isRtl ? 'translate-x-full' : '-translate-x-full'
+        }`}
+      >
             <div className="p-6">
               <div className="flex items-center justify-between mb-8">
                 <Link
@@ -382,9 +360,7 @@ export default function Header() {
                 </a>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
     </header>
   )
 }

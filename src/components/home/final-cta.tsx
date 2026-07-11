@@ -1,14 +1,10 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
-export function FinalCTASection() {
-  const locale = useLocale()
+export function FinalCTASection({ locale }: { locale: Locale }) {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
@@ -22,12 +18,8 @@ export function FinalCTASection() {
       </div>
 
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-          className="max-w-2xl mx-auto text-center"
+        <div
+          className="animate-fade-up max-w-2xl mx-auto text-center"
         >
           <div className="flex justify-center mb-5">
             <EyebrowTag label={t.nav.consultation} />
@@ -52,7 +44,7 @@ export function FinalCTASection() {
               )}
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

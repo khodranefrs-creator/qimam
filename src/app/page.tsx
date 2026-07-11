@@ -42,18 +42,19 @@ async function getHomeData() {
 
 export default async function HomePage() {
   const { practiceAreas, testimonials, posts, faqs } = await getHomeData()
+  const locale = await getLocale()
 
   return (
     <>
-      <Hero />
-      <AboutTeaser />
+      <Hero locale={locale} />
+      <AboutTeaser locale={locale} />
       <LawyerTeaser />
-      <FinalCTASection />
-      <PracticeAreasGrid areas={practiceAreas} />
-      <ProcessTimeline />
-      <WhyQimam />
+      <FinalCTASection locale={locale} />
+      <PracticeAreasGrid areas={practiceAreas} locale={locale} />
+      <ProcessTimeline locale={locale} />
+      <WhyQimam locale={locale} />
       {testimonials.length > 0 && <TestimonialsSlider testimonials={testimonials} />}
-      {posts.length > 0 && <BlogPreview posts={posts} />}
+      {posts.length > 0 && <BlogPreview posts={posts} locale={locale} />}
       {faqs.length > 0 && <FaqPreview faqs={faqs} />}
     </>
   )

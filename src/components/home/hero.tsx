@@ -1,8 +1,6 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Scale, Shield, Award, BadgeCheck } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
@@ -13,8 +11,7 @@ const trustCards = [
   { icon: Award, titleKey: 'statsRatingBadge', descKey: 'card4Desc' },
 ]
 
-export function Hero() {
-  const locale = useLocale()
+export function Hero({ locale }: { locale: Locale }) {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 

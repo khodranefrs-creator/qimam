@@ -1,10 +1,7 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Navigation } from 'lucide-react'
 import type { ComponentType, ReactNode } from 'react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 function ContactRow({ icon: Icon, children }: { icon: ComponentType<{ className?: string }>; children: ReactNode }) {
@@ -18,19 +15,14 @@ function ContactRow({ icon: Icon, children }: { icon: ComponentType<{ className?
   )
 }
 
-export function ContactStrip() {
-  const locale = useLocale()
+export function ContactStrip({ locale }: { locale: Locale }) {
   const t = getTranslations(locale)
 
   return (
     <section className="bg-secondary border-t border-border/80 overflow-hidden">
       <div className="container-custom py-16 md:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-          className="grid md:grid-cols-3 gap-10 md:gap-8"
+        <div
+          className="animate-fade-up grid md:grid-cols-3 gap-10 md:gap-8"
         >
           <div className="space-y-2">
             <h3 className="font-heading font-bold text-text-dark text-lg mb-5 flex items-center gap-2">
@@ -101,7 +93,7 @@ export function ContactStrip() {
               {t.footer.getDirections}
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

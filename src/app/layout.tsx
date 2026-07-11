@@ -140,15 +140,15 @@ export default async function RootLayout({
       <body className={`min-h-dvh flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`}>
         <Providers>
           <LocaleProvider locale={locale}>
-          <SkipToContent />
+          <SkipToContent locale={locale} />
           <Header />
           <main className="flex-1 pb-24 lg:pb-0" id="main-content">
             {children}
           </main>
-          <Footer />
+          <Footer locale={locale} />
           <ScrollToTop />
-          <WhatsAppButton />
-          <StickyConsultBar />
+          <WhatsAppButton locale={locale} />
+          <StickyConsultBar locale={locale} />
           <Toaster />
           </LocaleProvider>
         </Providers>

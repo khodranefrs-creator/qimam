@@ -1,9 +1,6 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { PhoneCall, FileText, Handshake, Scale, ArrowLeft, ArrowRight } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
@@ -14,17 +11,7 @@ const processSteps = [
   { number: '04', icon: Scale, titleKey: 'step4Title' as const, descKey: 'step4Desc' as const },
 ]
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] as const },
-  }),
-}
-
-export function ProcessTimeline() {
-  const locale = useLocale()
+export function ProcessTimeline({ locale }: { locale: Locale }) {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
@@ -34,12 +21,8 @@ export function ProcessTimeline() {
 
       <div className="container-custom">
         {/* Title block */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 md:mb-14"
+        <div
+          className="animate-fade-up-sm text-center mb-12 md:mb-14"
         >
           <div className="flex justify-center mb-4">
             <EyebrowTag label={t.home.processTitle} />
@@ -50,7 +33,7 @@ export function ProcessTimeline() {
           <p className="text-text-muted text-muted-on-dark max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             {t.home.processDesc}
           </p>
-        </motion.div>
+        </div>
 
         {/* Timeline */}
         <div dir={isRtl ? 'rtl' : 'ltr'}>
@@ -67,13 +50,9 @@ export function ProcessTimeline() {
 
                 return (
                   <div key={step.titleKey}>
-                    <motion.div
-                      custom={i}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, margin: '-50px' }}
-                      variants={cardVariants}
-                      className="group"
+                    <div
+                      className="animate-fade-up group"
+                      style={{ animationDelay: `${i * 0.12}s` }}
                     >
                       {/* Desktop: numbered node above card */}
                       <div className="hidden lg:flex justify-center relative z-10 -mb-3">
@@ -121,7 +100,7 @@ export function ProcessTimeline() {
                           <div className="w-1.5 h-1.5 rounded-full bg-accent-gold/30 shrink-0" />
                         </div>
                       )}
-                    </motion.div>
+                    </div>
                   </div>
                 )
               })}
@@ -129,12 +108,9 @@ export function ProcessTimeline() {
           </div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-            className="flex justify-center mt-12 md:mt-16"
+          <div
+            className="animate-fade-up-sm flex justify-center mt-12 md:mt-16"
+            style={{ animationDelay: '0.6s' }}
           >
             <Link
               href="/consultation"
@@ -148,7 +124,7 @@ export function ProcessTimeline() {
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
               )}
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

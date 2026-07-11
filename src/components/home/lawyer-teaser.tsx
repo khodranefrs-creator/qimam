@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, BadgeCheck, Award, Calendar, Scale } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
@@ -43,12 +42,8 @@ export function LawyerTeaser() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-10 md:gap-14 lg:gap-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: locale === 'ar' ? -30 : 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
-            className="order-2 lg:order-1"
+          <div
+            className={`order-2 lg:order-1 ${isRtl ? 'animate-fade-in-left' : 'animate-fade-in-right'}`}
           >
             <div className="aspect-[4/5] max-w-md mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-primary-light to-primary overflow-hidden border border-border-dark/50 relative shadow-[0_0_60px_rgba(198,161,91,0.08)]">
               <div className="absolute inset-0 opacity-[0.04]" style={{
@@ -68,14 +63,11 @@ export function LawyerTeaser() {
                 />
               )}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: locale === 'ar' ? 30 : -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }}
-            className="order-1 lg:order-2"
+          <div
+            className={`order-1 lg:order-2 ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
+            style={{ animationDelay: '0.15s' }}
           >
             <div className="flex mb-4">
               <EyebrowTag label={t.nav.lawyer} />
@@ -128,7 +120,7 @@ export function LawyerTeaser() {
                 <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               )}
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

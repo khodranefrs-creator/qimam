@@ -1,8 +1,5 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import type { Locale } from '@/i18n/config'
 import { Scale, Shield, BadgeCheck, ScrollText } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 const credentials = [
@@ -12,8 +9,7 @@ const credentials = [
   { icon: ScrollText, key: 'lawyerBadge2' as const },
 ]
 
-export function StatsBar() {
-  const locale = useLocale()
+export function StatsBar({ locale }: { locale: Locale }) {
   const t = getTranslations(locale)
 
   return (
@@ -23,19 +19,16 @@ export function StatsBar() {
           {credentials.map((item, i) => {
             const Icon = item.icon
             return (
-              <motion.div
+              <div
                 key={item.key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-                className="flex items-center gap-4 px-5 py-5 rounded-panel bg-primary-light/30 border border-border-dark/20 hover:border-accent-gold/20 transition-all duration-500"
+                className="animate-fade-up flex items-center gap-4 px-5 py-5 rounded-panel bg-primary-light/30 border border-border-dark/20 hover:border-accent-gold/20 transition-all duration-500"
+                style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="w-12 h-12 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
                   <Icon aria-hidden="true" className="w-5 h-5 text-accent-gold" />
                 </div>
                 <span className="text-text-muted text-muted-on-dark text-sm leading-snug">{t.home[item.key]}</span>
-              </motion.div>
+              </div>
             )
           })}
         </div>

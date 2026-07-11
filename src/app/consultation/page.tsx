@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useCallback, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { Check, ChevronRight, ChevronLeft, Calendar, Clock, User, FileText, Phone, Mail, MessageSquare, CheckCircle, Loader2, Shield } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -33,12 +32,6 @@ type PracticeArea = { id: string; title: string; slug: string }
 const inputClass = "w-full rounded-[10px] border border-border/60 bg-white px-4 py-3 text-sm text-text-dark placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent-gold focus:border-accent-gold transition-all duration-200"
 const labelClass = "block text-sm font-medium text-text-dark mb-1.5"
 const errorClass = "text-xs text-error mt-1"
-
-const containerVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const } },
-  exit: { opacity: 0, y: -20, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] as const } },
-}
 
 function getTodayString(): string {
   const now = new Date()
@@ -626,20 +619,16 @@ export default function ConsultationPage() {
           <div className="bg-white rounded-surface border border-border/60 shadow-subtle p-6 md:p-8 lg:p-10">
             {renderStepIndicator()}
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentStep}
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                {currentStep === 1 && renderStep1()}
-                {currentStep === 2 && renderStep2()}
-                {currentStep === 3 && renderStep3()}
-                {currentStep === 4 && renderStep4()}
-              </motion.div>
-            </AnimatePresence>
+            <div
+              key={currentStep}
+              className="animate-fade-up-sm"
+              style={{ animationDuration: '0.4s' }}
+            >
+              {currentStep === 1 && renderStep1()}
+              {currentStep === 2 && renderStep2()}
+              {currentStep === 3 && renderStep3()}
+              {currentStep === 4 && renderStep4()}
+            </div>
 
             <div className="flex items-center justify-between mt-6 md:mt-8 pt-6 border-t border-border/40">
               <div>

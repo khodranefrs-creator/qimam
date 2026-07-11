@@ -1,10 +1,7 @@
-'use client'
-
-import { useLocale } from '@/i18n/use-locale'
+import type { Locale } from '@/i18n/config'
 import { getTranslations } from '@/i18n/get-translations'
 
-export default function SkipToContent() {
-  const locale = useLocale()
+export default function SkipToContent({ locale }: { locale: Locale }) {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 

@@ -1,9 +1,7 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 const footerAreaLinks = [
@@ -39,8 +37,7 @@ const socialLinks = [
   },
 ]
 
-export default function Footer() {
-  const locale = useLocale()
+export default function Footer({ locale }: { locale: Locale }) {
   const t = getTranslations(locale)
   const currentYear = new Date().getFullYear()
 

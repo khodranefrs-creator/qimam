@@ -1,14 +1,10 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Phone, MessageCircle } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 import { EyebrowTag } from '@/components/ui/eyebrow-tag'
 
-export function CtaBanner() {
-  const locale = useLocale()
+export function CtaBanner({ locale }: { locale: Locale }) {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
@@ -23,12 +19,8 @@ export function CtaBanner() {
       <div className="absolute top-1/2 -left-20 w-64 h-64 rounded-full bg-accent-gold/5 blur-[100px] pointer-events-none" />
       <div className="absolute top-1/2 -right-20 w-64 h-64 rounded-full bg-accent-gold/5 blur-[100px] pointer-events-none" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-        className="container-custom py-24 md:py-32 text-center relative z-10"
+      <div
+        className="animate-fade-up container-custom py-24 md:py-32 text-center relative z-10"
       >
         <div className="flex justify-center mb-6">
           <EyebrowTag label={t.home.contactCta} />
@@ -74,7 +66,7 @@ export function CtaBanner() {
             {t.nav.phone}
           </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

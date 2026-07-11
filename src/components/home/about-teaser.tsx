@@ -1,9 +1,6 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
 const highlights = [
@@ -13,8 +10,7 @@ const highlights = [
   { key: 'aboutHighlight4' },
 ]
 
-export function AboutTeaser() {
-  const locale = useLocale()
+export function AboutTeaser({ locale }: { locale: Locale }) {
   const isRtl = locale === 'ar'
   const t = getTranslations(locale)
 
@@ -22,11 +18,8 @@ export function AboutTeaser() {
     <section className="bg-secondary section-padding">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: locale === 'ar' ? -24 : 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+          <div
+            className={isRtl ? 'animate-fade-in-left' : 'animate-fade-in-right'}
           >
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark leading-[1.15] mb-6 text-balance">
               {t.home.aboutTitle}
@@ -55,29 +48,33 @@ export function AboutTeaser() {
                 <ArrowRight aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               )}
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: locale === 'ar' ? 24 : -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }}
-            className="relative hidden lg:block"
+          <div
+            className={`relative hidden lg:block ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
+            style={{ animationDelay: '0.15s' }}
           >
             <div className="aspect-[4/3] relative">
               {/* Front panel — photo-ready area */}
-              <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/50 bg-primary-light/80">
-                <div className="w-full h-full flex items-center justify-center bg-primary-light/40">
-                  <svg viewBox="0 0 400 300" className="w-3/5 h-3/5 opacity-[0.08]" aria-hidden="true">
-                    <rect x="50" y="50" width="300" height="200" rx="8" stroke="#C6A15B" strokeWidth="1.5" fill="none" />
-                    <circle cx="200" cy="130" r="40" stroke="#C6A15B" strokeWidth="1" fill="none" />
-                    <path d="M80 240 L170 170 L220 200 L300 150 L360 240" stroke="#C6A15B" strokeWidth="1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
+              <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/30 bg-gradient-to-br from-primary via-primary-light to-primary">
+                {/* Watermark — replace <svg> with <Image fill className="object-cover" /> when office photo is available */}
+                <svg viewBox="0 0 600 450" className="w-full h-full opacity-[0.04]" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+                  <defs>
+                    <pattern id="dotGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                      <circle cx="20" cy="20" r="0.75" fill="#C6A15B" fillOpacity="0.5" />
+                    </pattern>
+                  </defs>
+                  <rect width="600" height="450" fill="url(#dotGrid)" />
+                  <circle cx="300" cy="225" r="140" stroke="#C6A15B" strokeWidth="0.5" fill="none" />
+                  <circle cx="300" cy="225" r="130" stroke="#C6A15B" strokeWidth="0.3" fill="none" />
+                  <polygon points="300,140 318,185 365,185 326,212 340,255 300,230 260,255 274,212 235,185 282,185" stroke="#C6A15B" strokeWidth="0.4" fill="none" />
+                  <line x1="80" y1="370" x2="520" y2="370" stroke="#C6A15B" strokeWidth="0.3" />
+                  <line x1="80" y1="80" x2="520" y2="80" stroke="#C6A15B" strokeWidth="0.3" />
+                </svg>
               </div>
 
               {/* Back panel — decorative SVG, horizontally offset to peek from behind */}
-              <div className={`absolute inset-0 z-0 rounded-card overflow-hidden bg-primary border border-border-dark/50 ${isRtl ? 'translate-x-7' : '-translate-x-7'}`}>
+              <div className={`absolute inset-0 z-0 rounded-card overflow-hidden bg-primary border border-border-dark/30 ${isRtl ? 'translate-x-7' : '-translate-x-7'}`}>
                 <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" aria-hidden="true">
                 <defs>
                   <pattern id="aboutGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -137,7 +134,7 @@ export function AboutTeaser() {
               </svg>
             </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

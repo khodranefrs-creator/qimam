@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react'
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
@@ -34,24 +33,17 @@ export function FaqPreview({ faqs }: Props) {
   return (
     <section className="bg-primary section-padding">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-          className="mb-10 md:mb-12"
+        <div
+          className="animate-fade-up-sm mb-10 md:mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-light leading-[1.15]">
             {t.home.faqTitle}
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-          className="max-w-3xl mx-auto space-y-3"
+        <div
+          className="animate-fade-up-sm max-w-3xl mx-auto space-y-3"
+          style={{ animationDelay: '0.1s' }}
         >
           {faqs.map((faq) => {
             const isOpen = openId === faq.id
@@ -79,32 +71,23 @@ export function FaqPreview({ faqs }: Props) {
                     }`}
                   />
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-5 text-text-muted text-muted-on-dark text-sm leading-relaxed border-t border-accent-gold/10 pt-4">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-6 pb-5 text-text-muted text-muted-on-dark text-sm leading-relaxed border-t border-accent-gold/10 pt-4">
+                    {faq.answer}
+                  </div>
+                </div>
               </div>
             )
           })}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-10 md:mt-12"
+        <div
+          className="animate-fade-in text-center mt-10 md:mt-12"
+          style={{ animationDelay: '0.3s' }}
         >
           <Link href="/faq" className="inline-flex items-center gap-2 text-accent-gold font-medium hover:text-accent-gold-light transition-colors duration-200 group">
             <span>{t.home.faqLink}</span>
@@ -114,7 +97,7 @@ export function FaqPreview({ faqs }: Props) {
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             )}
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

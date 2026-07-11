@@ -1,12 +1,9 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
 import { MessageCircle, Phone } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
-export default function StickyConsultBar() {
-  const locale = useLocale()
+export default function StickyConsultBar({ locale }: { locale: Locale }) {
   const t = getTranslations(locale)
 
   return (

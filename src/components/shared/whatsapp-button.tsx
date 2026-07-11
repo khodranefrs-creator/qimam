@@ -1,11 +1,8 @@
-'use client'
-
+import type { Locale } from '@/i18n/config'
 import { MessageCircle } from 'lucide-react'
-import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
-export default function WhatsAppButton() {
-  const locale = useLocale()
+export default function WhatsAppButton({ locale }: { locale: Locale }) {
   const t = getTranslations(locale)
   const whatsappText = locale === 'ar' ? 'مرحباً، أرغب بالاستفسار عن خدماتكم القانونية' : 'Hello, I would like to inquire about your legal services'
 
