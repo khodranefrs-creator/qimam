@@ -42,7 +42,7 @@ export function LawyerTeaser() {
     <section className="bg-primary section-padding relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/30 to-transparent" />
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-14 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: locale === 'ar' ? -30 : 30 }}
             whileInView={{ opacity: 1, x: 0 }}

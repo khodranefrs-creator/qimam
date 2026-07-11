@@ -98,7 +98,7 @@ export function ProcessTimeline() {
 
                       {/* Icon */}
                       <div className="relative z-10 mb-4 md:mb-5">
-                        <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-accent-gold/[0.10] flex items-center justify-center group-hover:bg-accent-gold/[0.18] transition-all duration-500 ring-1 ring-accent-gold/25 group-hover:ring-accent-gold/40 shadow-[0_0_25px_rgba(198,161,91,0.10)] group-hover:shadow-[0_0_35px_rgba(198,161,91,0.18)]">
+                        <div className="w-12 h-12 md:w-20 md:h-20 rounded-full bg-accent-gold/[0.10] flex items-center justify-center group-hover:bg-accent-gold/[0.18] transition-all duration-500 ring-1 ring-accent-gold/25 group-hover:ring-accent-gold/40 shadow-[0_0_25px_rgba(198,161,91,0.10)] group-hover:shadow-[0_0_35px_rgba(198,161,91,0.18)]">
                           <Icon aria-hidden="true" className="w-6 h-6 md:w-8 md:h-8 text-accent-gold" />
                         </div>
                       </div>
