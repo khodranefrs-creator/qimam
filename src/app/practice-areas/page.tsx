@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 import { Button } from "@/components/ui/button"
+import { Breadcrumbs } from "@/components/shared"
 import { PracticeAreasClient } from "./practice-areas-client"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
@@ -38,11 +39,10 @@ export default async function PracticeAreasPage() {
     <div>
       <div className="bg-primary text-text-light py-4 header-offset">
         <div className="container-custom">
-          <div className="flex items-center gap-2 text-sm text-text-muted text-muted-on-dark">
-            <Link href="/">{t.nav.home}</Link>
-            <span>/</span>
-            <span className="text-accent-gold">{t.practiceAreas.title}</span>
-          </div>
+          <Breadcrumbs items={[
+            { label: t.nav.home, href: "/" },
+            { label: t.practiceAreas.title },
+          ]} />
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Shield, Zap, Users, FileCheck, Scale, Building2, Gavel } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Breadcrumbs } from "@/components/shared"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -34,11 +35,10 @@ export default async function AboutPage() {
     <div>
       <div className="bg-primary text-text-light py-4 header-offset">
         <div className="container-custom">
-          <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">{t.nav.home}</Link>
-            <span>/</span>
-            <span className="text-accent-gold">{t.about.title}</span>
-          </div>
+          <Breadcrumbs items={[
+            { label: t.nav.home, href: "/" },
+            { label: t.about.title },
+          ]} />
         </div>
       </div>
 

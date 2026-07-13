@@ -15,8 +15,11 @@ export function LocaleSwitcher() {
   const next = current === 'ar' ? 'en' : 'ar'
 
   const switchLocale = () => {
+    const currentPath = window.location.pathname
+    const pathWithoutLocale = currentPath.replace(/^\/(ar|en)(\/|$)/, '/')
+    const newPath = `/${next}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
     document.cookie = `${cookieName}=${next}; path=/; max-age=31536000; SameSite=Lax`
-    window.location.reload()
+    window.location.href = newPath
   }
 
   return (

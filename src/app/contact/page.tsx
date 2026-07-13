@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import Link from "next/link"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { ContactForm } from "./contact-form"
+import { Breadcrumbs } from "@/components/shared"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -21,11 +22,10 @@ export default async function ContactPage() {
     <div>
       <div className="bg-primary text-text-light py-4 header-offset">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">{t.nav.home}</Link>
-            <span>/</span>
-            <span className="text-accent-gold">{t.contact.title}</span>
-          </div>
+          <Breadcrumbs items={[
+            { label: t.nav.home, href: "/" },
+            { label: t.contact.title },
+          ]} />
         </div>
       </div>
 

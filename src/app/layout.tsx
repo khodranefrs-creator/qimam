@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { IBM_Plex_Sans_Arabic, Tajawal } from "next/font/google";
 import "./globals.css";
 
@@ -49,6 +50,17 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const t = getTranslations(locale);
 
+  let canonicalPath = "/";
+  try {
+    const h = await headers();
+    canonicalPath = h.get("x-canonical-path") || "/";
+  } catch {}
+
+  const langPrefix = locale === "ar" ? "/ar" : "/en";
+  const canonicalUrl = `${siteUrl}${langPrefix}${canonicalPath === "/" ? "" : canonicalPath}`;
+  const arUrl = `${siteUrl}/ar${canonicalPath === "/" ? "" : canonicalPath}`;
+  const enUrl = `${siteUrl}/en${canonicalPath === "/" ? "" : canonicalPath}`;
+
   return {
     title: {
       template: `%s | ${t.site.fullName}`,
@@ -58,7 +70,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: t.site.fullName,
       description: `${t.site.fullName} — ${t.site.tagline}${locale === 'ar' ? ' في مكة المكرمة' : ' in Makkah'}.`,
-      url: siteUrl,
+      url: canonicalUrl,
       siteName: t.site.fullName,
       locale: locale === 'ar' ? "ar_SA" : "en_US",
       type: "website",
@@ -83,7 +95,12 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     metadataBase: new URL(siteUrl),
     alternates: {
-      canonical: siteUrl,
+      canonical: canonicalUrl,
+      languages: {
+        "x-default": arUrl,
+        ar: arUrl,
+        en: enUrl,
+      },
     },
   };
 }
@@ -97,13 +114,23 @@ export default async function RootLayout({
   const dir = localeDirections[locale];
   const t = getTranslations(locale);
 
+  let canonicalPath = "/";
+  try {
+    const h = await headers();
+    canonicalPath = h.get("x-canonical-path") || "/";
+  } catch {}
+
+  const langPrefix = locale === "ar" ? "/ar" : "/en";
+  const canonicalUrl = `${siteUrl}${langPrefix}${canonicalPath === "/" ? "" : canonicalPath}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["LegalService", "Organization"],
     name: t.site.fullName,
     alternateName: "Qimam Al-Yaqin Law Firm",
-    url: siteUrl,
+    url: canonicalUrl,
     logo: `${siteUrl}/logo.png`,
+    image: `${siteUrl}/og-image.svg`,
     telephone: "+966565555437",
     address: {
       "@type": "PostalAddress",
@@ -117,6 +144,7 @@ export default async function RootLayout({
     areaServed: "SA",
     sameAs: ["https://wa.me/966565555437"],
     hasMap: `https://www.google.com/maps/search/?api=1&query=شارع+النسيم+العام+مكة+المكرمة`,
+    openingHours: "Sa-Th 09:00-17:00",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "الخدمات القانونية",
@@ -141,9 +169,6 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <link rel="alternate" href={siteUrl} hrefLang="x-default" />
-        <link rel="alternate" href={siteUrl} hrefLang="ar" />
-        <link rel="alternate" href={siteUrl} hrefLang="en" />
       </head>
       <body className={`min-h-dvh flex flex-col font-body antialiased ${dir === 'ltr' ? 'text-left' : ''}`}>
         <Providers>

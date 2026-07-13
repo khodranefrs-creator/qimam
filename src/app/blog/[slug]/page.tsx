@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Calendar, Clock } from "lucide-react"
 import { ReadingProgress } from "@/components/blog/reading-progress"
 import { ShareButtons } from "@/components/blog/share-buttons"
+import { Breadcrumbs } from "@/components/shared"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -83,7 +84,7 @@ export default async function BlogPostPage({
     console.warn("Database unavailable for related blog posts")
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://qimam-lilac.vercel.app"
   const postUrl = `${siteUrl}/blog/${post.slug}`
 
   const articleJsonLd = {
@@ -123,13 +124,11 @@ export default async function BlogPostPage({
 
       <div className="bg-primary text-text-light py-4 header-offset">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/">{t.nav.home}</Link>
-            <span>/</span>
-            <Link href="/blog" className="hover:text-accent-gold transition-colors">{t.blog.title}</Link>
-            <span>/</span>
-            <span className="text-accent-gold truncate">{post.title}</span>
-          </div>
+          <Breadcrumbs items={[
+            { label: t.nav.home, href: "/" },
+            { label: t.blog.title, href: "/blog" },
+            { label: post.title },
+          ]} />
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { prisma } from "@/lib/prisma"
 import { ArrowLeft, ArrowRight, CheckCircle2, Phone, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Breadcrumbs } from "@/components/shared"
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -83,7 +84,7 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
     "@type": "LegalService",
     name: `${area.title} — ${t.site.fullName}`,
     description: area.description,
-    url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/practice-areas/${slug}`,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://qimam-lilac.vercel.app"}/practice-areas/${slug}`,
     provider: {
       "@type": "Organization",
       name: t.site.fullName,
@@ -125,13 +126,11 @@ export default async function PracticeAreaPage({ params }: { params: Params }) {
 
       <div className="bg-primary text-text-light py-4 header-offset">
         <div className="container-custom">
-          <div className="flex items-center gap-2 text-sm text-text-muted text-muted-on-dark">
-            <Link href="/">{t.nav.home}</Link>
-            <span>/</span>
-            <Link href="/practice-areas" className="hover:text-accent-gold transition-colors">{t.practiceAreas.title}</Link>
-            <span>/</span>
-            <span className="text-accent-gold">{area.title}</span>
-          </div>
+          <Breadcrumbs items={[
+            { label: t.nav.home, href: "/" },
+            { label: t.practiceAreas.title, href: "/practice-areas" },
+            { label: area.title },
+          ]} />
         </div>
       </div>
 

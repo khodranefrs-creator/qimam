@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react"
 import { Check, ChevronRight, ChevronLeft, Calendar, Clock, User, FileText, Phone, Mail, MessageSquare, CheckCircle, Loader2, Shield } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Breadcrumbs } from "@/components/shared"
 import { useLocale } from '@/i18n/use-locale'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -305,13 +306,10 @@ export default function ConsultationPage() {
   }
 
   function renderBreadcrumb() {
-    return (
-      <nav className="flex items-center gap-2 text-sm text-text-muted mb-6">
-        <Link href="/" className="hover:text-accent-gold transition">{t.nav.home}</Link>
-        {isRtl ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
-        <span className="text-text-dark font-medium">{t.consultation.title}</span>
-      </nav>
-    )
+    return <Breadcrumbs items={[
+      { label: t.nav.home, href: "/" },
+      { label: t.consultation.title },
+    ]} />
   }
 
   function renderStep1() {

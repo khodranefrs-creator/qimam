@@ -3,25 +3,33 @@ export const dynamic = 'force-dynamic'
 import { prisma } from "@/lib/prisma"
 import { MetadataRoute } from "next"
 
+const locales = ["ar", "en"] as const
+
+function localize(url: string, baseUrl: string, locale: string): string {
+  const path = url.replace(baseUrl, "")
+  return `${baseUrl}/${locale}${path === "" ? "" : path}`
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://qimam-lilac.vercel.app"
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "monthly", priority: 1.0 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
-    { url: `${baseUrl}/testimonials`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/careers`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/privacy-policy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/terms-of-service`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/case-studies`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/lawyer`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/practice-areas`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/consultation`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+  const staticPaths = [
+    "", "/about", "/blog", "/testimonials", "/faq", "/contact",
+    "/careers", "/privacy-policy", "/terms-of-service", "/case-studies",
+    "/services", "/lawyer", "/practice-areas", "/consultation",
   ]
+
+  const staticRoutes: MetadataRoute.Sitemap = []
+  for (const locale of locales) {
+    for (const path of staticPaths) {
+      staticRoutes.push({
+        url: `${baseUrl}/${locale}${path}`,
+        lastModified: new Date(),
+        changeFrequency: path === "/blog" ? "weekly" as const : "monthly" as const,
+        priority: path === "" ? 1.0 : 0.8,
+      })
+    }
+  }
 
   let blogRoutes: MetadataRoute.Sitemap = []
   let caseStudyRoutes: MetadataRoute.Sitemap = []
@@ -43,26 +51,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }),
     ])
 
-    blogRoutes = posts.map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: post.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    }))
+    for (const locale of locales) {
+      blogRoutes.push(...posts.map((post) => ({
+        url: `${baseUrl}/${locale}/blog/${post.slug}`,
+        lastModified: post.updatedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      })))
 
-    caseStudyRoutes = caseStudies.map((cs) => ({
-      url: `${baseUrl}/case-studies/${cs.slug}`,
-      lastModified: cs.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    }))
+      caseStudyRoutes.push(...caseStudies.map((cs) => ({
+        url: `${baseUrl}/${locale}/case-studies/${cs.slug}`,
+        lastModified: cs.updatedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      })))
 
-    practiceAreaRoutes = practiceAreas.map((pa) => ({
-      url: `${baseUrl}/practice-areas/${pa.slug}`,
-      lastModified: pa.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }))
+      practiceAreaRoutes.push(...practiceAreas.map((pa) => ({
+        url: `${baseUrl}/${locale}/practice-areas/${pa.slug}`,
+        lastModified: pa.updatedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      })))
+    }
   } catch {
     console.warn("Failed to fetch dynamic routes for sitemap")
   }

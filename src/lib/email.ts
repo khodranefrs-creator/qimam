@@ -22,7 +22,7 @@ function createTransporter() {
 const transporter = createTransporter()
 const from = process.env.EMAIL_FROM || 'noreply@qimamlaw.com'
 const adminEmail = process.env.ADMIN_EMAIL || ''
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ''
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://qimam-lilac.vercel.app'
 
 function formatDate(d: Date | string | null | undefined): string {
   if (!d) return '—'

@@ -18,7 +18,7 @@ export function Hero({ locale }: { locale: Locale }) {
   return (
     <section className="relative min-h-screen bg-primary lg:flex lg:items-center">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.034]" style={{
+        <div className="absolute inset-0 opacity-[0.034] max-md:hidden" style={{
           backgroundImage: `
             linear-gradient(30deg, #C6A15B 10%, transparent 10.5%, transparent 90%, #C6A15B 90.5%, #C6A15B)
           `,
@@ -28,8 +28,8 @@ export function Hero({ locale }: { locale: Locale }) {
         <div className="absolute top-0 bottom-0 left-[15%] w-px bg-gradient-to-b from-transparent via-accent-gold/15 to-transparent hidden lg:block" />
         <div className="absolute top-0 bottom-0 right-[15%] w-px bg-gradient-to-b from-transparent via-accent-gold/15 to-transparent hidden lg:block" />
 
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/4 blur-[150px] max-md:blur-[60px]" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] rounded-full bg-accent-gold/2 blur-[120px] max-md:blur-[60px]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-accent-gold/4 blur-[150px] max-md:blur-[20px] max-md:opacity-40" />
+        <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] rounded-full bg-accent-gold/2 blur-[120px] max-md:blur-[20px] max-md:opacity-40" />
 
         <div className="absolute bottom-24 left-[8%] opacity-[0.034] hidden lg:block" aria-hidden="true">
           <svg width="100" height="100" viewBox="0 0 100 100" fill="none" stroke="#C6A15B" strokeWidth="1">
@@ -53,15 +53,13 @@ export function Hero({ locale }: { locale: Locale }) {
           </div>
 
           <h1
-            className="animate-hero-slide-up text-[clamp(1.875rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.1] mb-6 md:mb-7 text-balance"
-            style={{ animationDelay: '0.08s' }}
+            className="text-[clamp(1.875rem,5.5vw,5rem)] font-heading font-bold text-text-light leading-[1.1] mb-6 md:mb-7"
           >
             {t.home.heroTitle}
           </h1>
 
           <p
-            className="animate-hero-slide-up text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-[39rem] mb-8 md:mb-10 mx-auto"
-            style={{ animationDelay: '0.16s' }}
+            className="text-base sm:text-lg md:text-xl text-text-muted text-muted-on-dark leading-[1.7] sm:leading-[1.8] max-w-[39rem] mb-8 md:mb-10 mx-auto"
           >
             {t.home.heroDesc}
           </p>

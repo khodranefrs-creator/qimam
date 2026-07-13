@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma"
+import { Suspense } from "react"
 import { Hero } from "@/components/home/hero"
 import { AboutTeaser } from "@/components/home/about-teaser"
 import { WhyQimam } from "@/components/home/why-qimam"
@@ -12,6 +13,7 @@ import { FinalCTASection } from "@/components/home/final-cta"
 
 import { getLocale } from '@/i18n/get-locale'
 import { getTranslations } from '@/i18n/get-translations'
+import type { Locale } from '@/i18n/config'
 import type { Metadata } from "next"
 
 export const dynamic = 'force-dynamic'
@@ -25,37 +27,64 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-async function getHomeData() {
+async function PracticeAreasSection({ locale }: { locale: Locale }) {
+  let areas: Awaited<ReturnType<typeof prisma.practiceArea.findMany>> = []
   try {
-    const [practiceAreas, testimonials, posts, faqs] = await Promise.all([
-      prisma.practiceArea.findMany({ where: { published: true }, orderBy: { order: 'asc' } }),
-      prisma.testimonial.findMany({ where: { approved: true, featured: true } }),
-      prisma.blogPost.findMany({ where: { published: true }, orderBy: { createdAt: 'desc' }, take: 3 }),
-      prisma.faq.findMany({ where: { published: true }, orderBy: { order: 'asc' }, take: 5 }),
-    ])
-    return { practiceAreas, testimonials, posts, faqs }
-  } catch {
-    console.warn("Failed to fetch homepage data, using empty fallback")
-    return { practiceAreas: [], testimonials: [], posts: [], faqs: [] }
-  }
+    areas = await prisma.practiceArea.findMany({ where: { published: true }, orderBy: { order: 'asc' } })
+  } catch {}
+  return <PracticeAreasGrid areas={areas} locale={locale} />
+}
+
+async function TestimonialsSection({ locale }: { locale: Locale }) {
+  let testimonials: Awaited<ReturnType<typeof prisma.testimonial.findMany>> = []
+  try {
+    testimonials = await prisma.testimonial.findMany({ where: { approved: true, featured: true } })
+  } catch {}
+  if (testimonials.length > 0) return <TestimonialsSlider testimonials={testimonials} locale={locale} />
+  return null
+}
+
+async function BlogSection({ locale }: { locale: Locale }) {
+  let posts: Awaited<ReturnType<typeof prisma.blogPost.findMany>> = []
+  try {
+    posts = await prisma.blogPost.findMany({ where: { published: true }, orderBy: { createdAt: 'desc' }, take: 3 })
+  } catch {}
+  if (posts.length > 0) return <BlogPreview posts={posts} locale={locale} />
+  return null
+}
+
+async function FaqSection({ locale }: { locale: Locale }) {
+  let faqs: Awaited<ReturnType<typeof prisma.faq.findMany>> = []
+  try {
+    faqs = await prisma.faq.findMany({ where: { published: true }, orderBy: { order: 'asc' }, take: 5 })
+  } catch {}
+  if (faqs.length > 0) return <FaqPreview faqs={faqs} locale={locale} />
+  return null
 }
 
 export default async function HomePage() {
-  const { practiceAreas, testimonials, posts, faqs } = await getHomeData()
   const locale = await getLocale()
 
   return (
     <>
       <Hero locale={locale} />
       <AboutTeaser locale={locale} />
-      <LawyerTeaser />
+      <LawyerTeaser locale={locale} />
       <FinalCTASection locale={locale} />
-      <PracticeAreasGrid areas={practiceAreas} locale={locale} />
+      <Suspense fallback={<PracticeAreasGrid areas={[]} locale={locale} />}>
+        <PracticeAreasSection locale={locale} />
+      </Suspense>
       <ProcessTimeline locale={locale} />
       <WhyQimam locale={locale} />
-      {testimonials.length > 0 && <TestimonialsSlider testimonials={testimonials} />}
-      {posts.length > 0 && <BlogPreview posts={posts} locale={locale} />}
-      {faqs.length > 0 && <FaqPreview faqs={faqs} />}
+      <Suspense fallback={null}>
+        <TestimonialsSection locale={locale} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <BlogSection locale={locale} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <FaqSection locale={locale} />
+      </Suspense>
     </>
   )
 }

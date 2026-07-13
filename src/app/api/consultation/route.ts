@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import { prisma } from "@/lib/prisma"
+import { rateLimit } from "@/lib/rate-limit"
 import { sendAdminNotification, sendClientConfirmation } from "@/lib/email"
 
 const consultationSchema = z.object({
@@ -16,6 +17,15 @@ const consultationSchema = z.object({
 })
 
 export async function POST(request: Request) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown"
+  const rl = rateLimit({ identifier: `consultation:${ip}`, maxRequests: 3, windowMs: 60 * 1000 })
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: "طلبات كثيرة جداً. الرجاء الانتظار دقيقة قبل المحاولة مرة أخرى." },
+      { status: 429, headers: { "Retry-After": String(Math.ceil((rl.resetAt - Date.now()) / 1000)) } }
+    )
+  }
+
   try {
     const body = await request.json()
     const parsed = consultationSchema.safeParse(body)
