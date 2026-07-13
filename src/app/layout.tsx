@@ -142,7 +142,7 @@ export default async function RootLayout({
           <LocaleProvider locale={locale}>
           <SkipToContent locale={locale} />
           <Header />
-          <main className="flex-1 pb-24 lg:pb-0" id="main-content">
+          <main className="flex-1 pb-24 lg:pb-0 bg-primary" id="main-content">
             {children}
           </main>
           <Footer locale={locale} />
