@@ -52,17 +52,17 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
           </div>
 
           <div
-            className={`relative ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
+            className={`relative max-lg:max-w-[260px] max-lg:mx-auto ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
             style={{ animationDelay: '0.15s' }}
           >
             <div className="aspect-[5/2] lg:aspect-[4/3] relative">
               {/* Front panel — centered logo on solid navy */}
-              <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/20 bg-primary flex items-center justify-center">
-                <Image src="/mainlogo.png" alt={t.common.qimam} width={400} height={300} className="w-[85%] lg:w-3/5 h-auto max-h-[85%] lg:max-h-[40%] object-contain" />
+              <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/20 max-lg:border-border-dark/[0.08] bg-primary flex items-center justify-center">
+                <Image src="/mainlogo.png" alt={t.common.qimam} width={400} height={300} className="w-[85%] lg:w-3/5 h-auto max-h-[90%] lg:max-h-[40%] object-contain" />
               </div>
 
               {/* Back panel — solid navy, same as front, for unified surface */}
-              <div className={`absolute inset-0 z-0 rounded-card overflow-hidden bg-primary border border-border-dark/20 ${isRtl ? 'translate-x-7' : '-translate-x-7'}`} />
+              <div className={`absolute inset-0 z-0 rounded-card overflow-hidden bg-primary border border-border-dark/20 ${isRtl ? 'translate-x-7' : '-translate-x-7'} max-lg:translate-x-0`} />
             </div>
           </div>
         </div>
