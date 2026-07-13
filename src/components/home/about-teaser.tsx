@@ -1,5 +1,6 @@
 import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -54,10 +55,10 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
             className={`relative ${isRtl ? 'animate-fade-in-right' : 'animate-fade-in-left'}`}
             style={{ animationDelay: '0.15s' }}
           >
-            <div className="aspect-[4/3] relative">
+            <div className="aspect-[16/9] lg:aspect-[4/3] relative">
               {/* Front panel — centered logo on solid navy */}
               <div className="absolute inset-0 z-10 rounded-card overflow-hidden border border-border-dark/20 bg-primary flex items-center justify-center">
-                <img src="/mainlogo.png" alt={t.common.qimam} className="w-3/5 h-auto max-h-[40%] object-contain" />
+                <Image src="/mainlogo.png" alt={t.common.qimam} width={400} height={300} className="w-4/5 lg:w-3/5 h-auto max-h-[55%] lg:max-h-[40%] object-contain" />
               </div>
 
               {/* Back panel — solid navy, same as front, for unified surface */}
