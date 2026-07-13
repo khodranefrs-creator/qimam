@@ -1,6 +1,6 @@
 import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
-import { MapPin, Phone, Mail, Navigation } from 'lucide-react'
+import { MapPin, Phone, Navigation } from 'lucide-react'
 import type { ComponentType, ReactNode } from 'react'
 import { getTranslations } from '@/i18n/get-translations'
 
@@ -37,11 +37,6 @@ export function ContactStrip({ locale }: { locale: Locale }) {
               <ContactRow icon={Phone}>
                 <a href="tel:+966565555437" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200" dir="ltr">
                   {t.common.phone}
-                </a>
-              </ContactRow>
-              <ContactRow icon={Mail}>
-                <a href="mailto:info@qimamlaw.com" className="text-text-muted text-sm hover:text-accent-gold transition-colors duration-200" dir="ltr">
-                  {t.common.email}
                 </a>
               </ContactRow>
             </div>

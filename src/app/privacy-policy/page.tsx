@@ -71,13 +71,11 @@ const privacyContent = {
     { key: 'thirdParty', heading: 'روابط خارجية', content: 'قد يحتوي موقعنا على روابط لمواقع خارجية لا تخضع لسياسة الخصوصية هذه. نحن غير مسؤولين عن ممارسات الخصوصية أو محتوى تلك المواقع. ننصحك بمراجعة سياسات الخصوصية الخاصة بكل موقع تزوره.' },
     { key: 'internationalTransfer', heading: 'نقل البيانات الدولية', content: 'قد يتم نقل بياناتك الشخصية ومعالجتها في دول أخرى غير المملكة العربية السعودية. عند نقل بياناتك إلى خارج المملكة، سنتخذ التدابير المناسبة لضمان أن تتلاءم حماية البيانات مع المستوى المطلوب بموجب نظام حماية البيانات الشخصية السعودي.' },
     { key: 'dataOfficer', heading: 'مسؤول حماية البيانات', content: 'لقد عينت الشركة مسؤولاً لحماية البيانات الشخصية. يمكنك التواصل معه بخصوص أي استفسار أو طلب يتعلق ببياناتك الشخصية من خلال:', contactItems: [
-      'privacy@qimam-law.com',
       '٠٥٦٥٥٥٥٤٣٧',
     ]},
     { key: 'complaints', heading: 'تقديم شكوى', content: 'إذا كنت تعتقد أننا انتهكنا أي حق من حقوقك بموجب نظام حماية البيانات الشخصية، يمكنك تقديم شكوى إلى الجهة المختصة (الهيئة السعودية للبيانات والذكاء الاصطناعي - سدايا) بعد التواصل معنا ومنحنا فرصة معقولة لحل المشكلة.' },
     { key: 'updates', heading: 'تحديثات سياسة الخصوصية', content: 'قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر لتعكس التغييرات في ممارساتنا أو المتطلبات القانونية. سنقوم بنشر التحديثات على هذه الصفحة مع تحديث تاريخ "آخر تحديث" في أعلى الصفحة. نشجعك على مراجعة هذه الصفحة بشكل دوري.' },
     { key: 'contact', heading: 'اتصل بنا', content: 'إذا كانت لديك أي أسئلة أو استفسارات حول سياسة الخصوصية هذه أو ممارساتنا في التعامل مع البيانات الشخصية، يرجى التواصل معنا:', contactItems: [
-      'info@qimam-law.com',
       '٠٥٦٥٥٥٥٤٣٧',
       'شارع النسيم العام، مكة المكرمة، المملكة العربية السعودية',
     ]},
@@ -140,13 +138,11 @@ const privacyContent = {
     { key: 'thirdParty', heading: 'External Links', content: 'Our website may contain links to external sites not governed by this Privacy Policy. We are not responsible for the privacy practices or content of those sites. We recommend reviewing the privacy policies of each site you visit.' },
     { key: 'internationalTransfer', heading: 'International Data Transfer', content: 'Your personal data may be transferred to and processed in countries other than the Kingdom of Saudi Arabia. When transferring your data outside the Kingdom, we will take appropriate measures to ensure that data protection complies with the level required under Saudi Personal Data Protection Law.' },
     { key: 'dataOfficer', heading: 'Data Protection Officer', content: 'The Firm has appointed a Data Protection Officer. You may contact them regarding any inquiry or request concerning your personal data through:', contactItems: [
-      'privacy@qimam-law.com',
       '+966 56 555 5437',
     ]},
     { key: 'complaints', heading: 'Filing a Complaint', content: 'If you believe we have violated any of your rights under the Personal Data Protection Law, you may file a complaint with the competent authority (Saudi Authority for Data and Artificial Intelligence - SDAIA) after contacting us and giving us a reasonable opportunity to resolve the issue.' },
     { key: 'updates', heading: 'Updates to This Privacy Policy', content: 'We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will post updates on this page with an updated "Last Updated" date at the top. We encourage you to review this page periodically.' },
     { key: 'contact', heading: 'Contact Us', content: 'If you have any questions or concerns about this Privacy Policy or our data handling practices, please contact us:', contactItems: [
-      'info@qimam-law.com',
       '+966 56 555 5437',
       'Al-Naseem General Street, Makkah, Kingdom of Saudi Arabia',
     ]},

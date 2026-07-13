@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { MapPin, Phone, Clock } from "lucide-react"
 import { ContactForm } from "./contact-form"
 import { Breadcrumbs } from "@/components/shared"
 import { getLocale } from '@/i18n/get-locale'
@@ -55,14 +55,6 @@ export default async function ContactPage() {
               <h3 className="font-heading font-bold text-primary mb-2">{t.contact.phoneTitle}</h3>
               <p className="text-text-muted text-sm group-hover:text-accent-gold transition-colors duration-300" dir="ltr">{t.common.phone}</p>
             </a>
-
-            <div className="bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all">
-              <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-6 h-6 text-accent-gold" />
-              </div>
-              <h3 className="font-heading font-bold text-primary mb-2">{t.contact.emailLabel}</h3>
-              <p className="text-text-muted text-sm">{t.common.email}</p>
-            </div>
 
             <div className="bg-white rounded-panel border border-border p-6 shadow-subtle text-center hover-lift transition-all">
               <div className="w-14 h-14 bg-accent-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">

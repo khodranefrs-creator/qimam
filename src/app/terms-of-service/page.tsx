@@ -25,7 +25,6 @@ const termsContent = {
     ],
     contact: 'للاستفسارات المتعلقة بشروط الخدمة هذه، يرجى التواصل معنا عبر:',
     contactItems: [
-      { label: 'البريد الإلكتروني', value: 'info@qimam-law.com' },
       { label: 'الهاتف', value: '٠٥٦٥٥٥٥٤٣٧' },
       { label: 'العنوان', value: 'مكة المكرمة، المملكة العربية السعودية' },
     ],
@@ -42,7 +41,6 @@ const termsContent = {
     ],
     contact: 'For inquiries regarding these Terms of Service, please contact us:',
     contactItems: [
-      { label: 'Email', value: 'info@qimam-law.com' },
       { label: 'Phone', value: '+966 56 555 5437' },
       { label: 'Address', value: 'Makkah, Kingdom of Saudi Arabia' },
     ],

@@ -1,7 +1,7 @@
 import type { Locale } from '@/i18n/config'
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
+import { MapPin, Phone, MessageCircle } from 'lucide-react'
 import { getTranslations } from '@/i18n/get-translations'
 
 const footerAreaLinks = [
@@ -155,15 +155,6 @@ export default function Footer({ locale }: { locale: Locale }) {
                   <Phone aria-hidden="true" className="w-4 h-4 text-accent-gold" />
                 </span>
                 {t.footer.phone}
-              </a>
-              <a
-                href="mailto:info@qimamlaw.com"
-                className="flex items-center gap-3 text-text-muted text-muted-on-dark text-sm hover:text-accent-gold transition-colors duration-200"
-              >
-                <span className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center shrink-0">
-                  <Mail aria-hidden="true" className="w-4 h-4 text-accent-gold" />
-                </span>
-                {t.footer.email}
               </a>
 
               <div className="space-y-2.5 pt-2">
