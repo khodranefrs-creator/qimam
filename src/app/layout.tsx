@@ -10,27 +10,35 @@ export const viewport: Viewport = {
 
 const headingFont = IBM_Plex_Sans_Arabic({
   subsets: ['arabic'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700'],
   variable: '--font-heading',
   display: 'swap',
 })
 
 const bodyFont = Tajawal({
   subsets: ['arabic'],
-  weight: ['400', '500', '700', '800'],
+  weight: ['400'],
   variable: '--font-body',
   display: 'swap',
 })
 
+const bodyFont700 = Tajawal({
+  subsets: ['arabic'],
+  weight: ['700'],
+  display: 'optional',
+  preload: false,
+  variable: '--font-body-700',
+})
+
 import { Providers } from "@/components/providers";
 import { LocaleProvider } from "@/i18n/locale-context";
-import { Toaster } from "@/components/ui/toaster";
 import { Header } from "@/components/layout";
 import { Footer } from "@/components/layout";
 import { SkipToContent } from "@/components/shared";
-import { ScrollToTop } from "@/components/shared";
 import { WhatsAppButton } from "@/components/shared";
 import { StickyConsultBar } from "@/components/shared";
+import { LazyScrollTop } from "@/components/shared/lazy-scroll-top";
+import { LazyToaster } from "@/components/ui/lazy-toaster";
 import { getLocale } from "@/i18n/get-locale";
 import { localeDirections } from "@/i18n/config";
 import { getTranslations } from "@/i18n/get-translations";
@@ -127,7 +135,7 @@ export default async function RootLayout({
   };
 
   return (
-      <html dir={dir} lang={locale} className={`${headingFont.variable} ${bodyFont.variable} min-h-dvh`}>
+      <html dir={dir} lang={locale} className={`${headingFont.variable} ${bodyFont.variable} ${bodyFont700.variable} min-h-dvh`}>
       <head>
         <script
           type="application/ld+json"
@@ -146,10 +154,10 @@ export default async function RootLayout({
             {children}
           </main>
           <Footer locale={locale} />
-          <ScrollToTop />
+          <LazyScrollTop />
           <WhatsAppButton locale={locale} />
           <StickyConsultBar locale={locale} />
-          <Toaster />
+          <LazyToaster />
           </LocaleProvider>
         </Providers>
       </body>
