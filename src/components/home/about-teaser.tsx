@@ -16,9 +16,9 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
   const t = getTranslations(locale)
 
   return (
-    <section className="bg-secondary section-padding">
+    <section className="bg-secondary section-padding max-lg:pb-8">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 max-lg:gap-8 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 max-lg:gap-4 lg:gap-20 items-center">
           <div
             className={isRtl ? 'animate-fade-in-left' : 'animate-fade-in-right'}
           >
